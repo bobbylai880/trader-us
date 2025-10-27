@@ -90,10 +90,10 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
    - `--output-dir`：当日输出目录，默认会按日期创建。
    - 调度脚本会自动读取 `.env` 或系统环境变量中的 `FRED_API_KEY`，并通过 `yfinance` 与 FRED 下载最近约 1 年的行情与宏观数据。若网络受限，脚本会优先使用本地缓存并在输出目录记录异常。 
 3. **脚本输出**：
-   - `report.md`：面向人工的 Markdown 摘要（LLM 汇总 + 结构化信息）。
-   - `actions.json`：建议操作清单（含股数、止损/止盈、风险提示）。
-   - `risk_flags.json`：市场与盘前风险评估。
-   - `*_features.json`：市场、板块、个股的原始特征快照，便于回溯。
+   - `report.md`：面向人工的 Markdown 摘要。
+   - `report.json`：结构化操作清单、目标敞口与风控信息。
+   - `llm_analysis.json`：分阶段 DeepSeek（或其替代方案）分析结果，含市场/板块/个股/敞口摘要与最终汇总。
+   - `market_features.json`、`sector_features.json`、`stock_features.json`、`premarket_flags.json`：原始特征快照与盘前风险评估，便于复盘与调试。
 4. **人工复核与执行**：根据报告在券商端手动下单。
 5. **收盘后/次日早晨**：将实际执行记录追加到 `storage/operations.jsonl`，并确认 `storage/positions.json` 是否更新。
 

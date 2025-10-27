@@ -21,6 +21,7 @@ from ..portfolio_manager.positions import (
     read_operations_log,
     save_positions_snapshot,
 )
+from ..llm.analyzer import DeepSeekAnalyzer
 from ..position_sizer.sizer import PositionSizer
 from ..report_builder.builder import DailyReportBuilder
 from ..risk_engine.macro_engine import MacroRiskEngine
@@ -100,6 +101,13 @@ def main() -> None:
     if latest_prices:
         state.update_prices(latest_prices)
 
+    llm_config = config.get("llm", {})
+    prompt_files = {
+        key: resolve_path(project_root, path)
+        for key, path in llm_config.get("prompt_files", {}).items()
+    }
+    analyzer = DeepSeekAnalyzer(prompt_files=prompt_files) if prompt_files else None
+
     agent = BaseAgent(
         config=config,
         macro_engine=MacroRiskEngine(),
@@ -107,6 +115,7 @@ def main() -> None:
         sizer=PositionSizer(config["limits"], config["sizer"]),
         portfolio_state=state,
         report_builder=DailyReportBuilder(config["sizer"]),
+        analyzer=analyzer,
     )
 
     if args.output_dir:

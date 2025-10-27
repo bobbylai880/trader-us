@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from ..decision_engine.stock_scoring import StockDecisionEngine
+from ..llm.analyzer import DeepSeekAnalyzer
 from ..position_sizer.sizer import PositionSizer
 from ..portfolio_manager.state import PortfolioState
 from ..report_builder.builder import DailyReportBuilder
@@ -27,6 +28,7 @@ class PipelineContext:
     orders: Dict[str, List[Dict]]
     report_json: Dict
     report_markdown: str
+    llm_analysis: Optional[Dict]
 
 
 class BaseAgent:
@@ -40,6 +42,7 @@ class BaseAgent:
         sizer: PositionSizer,
         portfolio_state: PortfolioState,
         report_builder: DailyReportBuilder,
+        analyzer: Optional[DeepSeekAnalyzer] = None,
     ) -> None:
         self.config = config
         self.macro_engine = macro_engine
@@ -47,6 +50,7 @@ class BaseAgent:
         self.sizer = sizer
         self.portfolio_state = portfolio_state
         self.report_builder = report_builder
+        self.analyzer = analyzer
 
     def run(
         self,
@@ -96,12 +100,29 @@ class BaseAgent:
             portfolio_state=self.portfolio_state,
         )
 
+        llm_analysis = None
+        if self.analyzer:
+            llm_analysis = self.analyzer.run(
+                trading_day=trading_day,
+                risk=risk_view,
+                sector_scores=sector_scores,
+                stock_scores=stock_scores,
+                orders=orders,
+                portfolio_state=self.portfolio_state,
+                market_features=market_features,
+                premarket_flags=premarket_flags or {},
+            )
+
         if output_dir:
             output_dir.mkdir(parents=True, exist_ok=True)
             (output_dir / "report.json").write_text(
                 self.report_builder.dumps_json(report_json), encoding="utf-8"
             )
             (output_dir / "report.md").write_text(report_markdown, encoding="utf-8")
+            if llm_analysis is not None:
+                (output_dir / "llm_analysis.json").write_text(
+                    self.report_builder.dumps_json(llm_analysis), encoding="utf-8"
+                )
 
         return PipelineContext(
             risk=risk_view,
@@ -110,4 +131,5 @@ class BaseAgent:
             orders=orders,
             report_json=report_json,
             report_markdown=report_markdown,
+            llm_analysis=llm_analysis,
         )
