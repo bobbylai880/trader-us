@@ -1,0 +1,35 @@
+{
+  "universe": {
+    "sectors": ["XLK", "XLC", "XLF", "XLE", "XLV", "XLY", "XLP", "XLU", "XLB", "XLRE"],
+    "watchlist": ["AAPL", "MSFT", "NVDA", "AMZN", "META", "AMD"]
+  },
+  "limits": {
+    "max_exposure": 0.85,
+    "max_single_weight": 0.25,
+    "min_ticket": 200
+  },
+  "risk": {
+    "cooling_days": 3,
+    "earnings_blackout": true
+  },
+  "sizer": {
+    "atr_eps": 0.0001,
+    "k1_stop": 1.5,
+    "k2_target": 2.5
+  },
+  "llm": {
+    "provider": "deepseek",
+    "prompt_files": {
+      "market_overview": "configs/prompts/deepseek_market_overview.md",
+      "sector_analysis": "configs/prompts/deepseek_sector_analysis.md",
+      "stock_actions": "configs/prompts/deepseek_stock_actions.md",
+      "exposure_check": "configs/prompts/deepseek_exposure_check.md",
+      "report_compose": "configs/prompts/deepseek_report_compose.md"
+    }
+  },
+  "schedule": {
+    "premarket_check": "05:30",
+    "report_time": "06:10",
+    "tz": "America/Los_Angeles"
+  }
+}
