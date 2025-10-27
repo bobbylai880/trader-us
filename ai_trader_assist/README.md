@@ -23,6 +23,12 @@ ai_trader_assist/
 ├── jobs/                   # 日常调度脚本（如 run_daily）
 ├── storage/                # 持仓与操作日志、每日归档目录
 └── tests/                  # pytest 用例
+
+**默认股票池速览**
+
+- 指数/ETF：SPY、QQQ、DIA、IWM、VIX 以及 11 支 SPDR 板块 ETF。
+- 个股：AAPL、AMZN、AMD、META、MSFT、NVDA（可在配置中扩展）。
+- 可在 `configs/base.json` 中调整上述列表；所有新增标的会自动纳入数据采集与评分流程。
 ```
 
 ---
@@ -83,9 +89,10 @@ ai_trader_assist/
    - `--output-dir`：当日输出目录，默认会按日期创建。
    - 调度脚本会自动读取 `.env` 或系统环境变量中的 `FRED_API_KEY`，并通过 `yfinance` 与 FRED 下载最近约 1 年的行情与宏观数据。若网络受限，脚本会优先使用本地缓存并在输出目录记录异常。 
 3. **脚本输出**：
+   - `report.md`：面向人工的 Markdown 摘要（LLM 汇总 + 结构化信息）。
+   - `actions.json`：建议操作清单（含股数、止损/止盈、风险提示）。
    - `risk_flags.json`：市场与盘前风险评估。
-   - `actions.json`：建议操作清单（含股数、止损/止盈）。
-   - `report.md`：面向人工的 Markdown 摘要。
+   - `*_features.json`：市场、板块、个股的原始特征快照，便于回溯。
 4. **人工复核与执行**：根据报告在券商端手动下单。
 5. **收盘后/次日早晨**：将实际执行记录追加到 `storage/operations.jsonl`，并确认 `storage/positions.json` 是否更新。
 
@@ -117,7 +124,7 @@ LLM 推理拆分为四个分析阶段与一个终稿阶段，对应以下模板�
 
 `configs/base.json` 默认引用这些模板路径；如需自定义，可在派生配置中覆盖 `llm.prompt_files` 对应键值。
 
-调用 DeepSeek 前，请确保 `.env` 或运行环境中设置了 `DEEPSEEK_API_KEY`。
+调用 DeepSeek 前，请确保 `.env` 或运行环境中设置了 `DEEPSEEK_API_KEY`。若需串联其他 LLM，可新增模板文件并在配置中覆盖 `llm.provider` 与 `llm.prompt_files`。
 
 若某些数据缺失或 API 访问失败，流水线会在报告末尾记录异常条目，确保人工注意补充或回溯。
 
@@ -174,3 +181,19 @@ pytest ai_trader_assist/tests -q
 - 指标计算基于 `pandas`/`numpy`，如需扩展可参考 `ta` 等开源库。
 
 欢迎根据自身策略需求扩展模型、增强风险约束或引入可视化面板。记得保持人工复核与风控纪律。
+
+---
+
+## 快速体验示例
+
+以下命令演示如何在“零持仓 + 仅关注 AMD”假设下生成当日盘前报告。请在运行前确认 `.env` 中写入真实的 API Key，或通过命令行临时注入：
+
+```bash
+FRED_API_KEY="<your_fred_key>" \
+DEEPSEEK_API_KEY="<your_deepseek_key>" \
+python -m ai_trader_assist.jobs.run_daily \
+  --config configs/base.json \
+  --output-dir storage/daily_demo
+```
+
+运行完成后，可在 `storage/daily_demo/` 中找到完整的特征快照与盘前报告；若需查看逐步评分过程，可结合 `*_features.json` 与 `configs/prompts/` 手动复盘 LLM 的输入输出。若当日已无最新行情，可通过 `--date YYYY-MM-DD` 指定历史交易日。
