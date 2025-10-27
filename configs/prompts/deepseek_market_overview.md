@@ -7,9 +7,33 @@
 - `premarket`: 标记重要标的的盘前偏离与量能情况。
 - `macro_flags`: 额外宏观信号（若存在）。
 
-## 输出要求
-1. 判断当前市场风险等级与多空倾向，并给出 1–2 句结论。
-2. 指出支撑该判断的关键驱动因子（如 VIX 水平、指数动能、收益率差）。
-3. 若数据出现矛盾或缺失，请说明需要人工复核的点。
+## 输出格式（JSON）
+```json
+{
+  "risk_level": "low|medium|high",
+  "bias": "bullish|neutral|bearish",
+  "summary": "string",
+  "drivers": [
+    {
+      "factor": "string",
+      "evidence": "引用输入中的具体数值，如 \"VIX=14.2, 环比-0.8\"",
+      "direction": "supports_risk_down|supports_risk_up|mixed"
+    }
+  ],
+  "premarket_flags": [
+    {
+      "symbol": "string",
+      "deviation": 0.0,
+      "volume_ratio": 0.0,
+      "comment": "string"
+    }
+  ],
+  "data_gaps": ["列出缺失或矛盾数据，没有则留空数组"]
+}
+```
 
-输出需使用中文，格式为简短段落，控制在 120 字以内。
+### 额外要求
+- `summary` 需用 60–120 字中文概述整体结论。
+- `drivers` 至少列出 2 条可量化的驱动因子，如波动率、动量、期限利差等。
+- `premarket_flags` 仅在 `premarket` 输入存在显著偏离（偏离率 ≥ 0.03 或量能倍数 ≥ 1.5）时填写，否则使用空数组。
+- `data_gaps` 必须客观列出缺失的关键字段；无缺失时填 `[]`。

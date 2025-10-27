@@ -1,7 +1,13 @@
 {
   "date": "2025-10-27",
-  "cash": 10000.0,
-  "positions": [],
-  "equity_value": 10000.0,
-  "exposure": 0.0
+  "cash": 9042.44,
+  "positions": [
+    {
+      "symbol": "AMD",
+      "shares": 4,
+      "avg_cost": 239.39
+    }
+  ],
+  "equity_value": 9722.853451402227,
+  "exposure": 0.06998083996669698
 }

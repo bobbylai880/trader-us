@@ -6,9 +6,50 @@
 - `sectors`: 每个板块的相对强度、动量、资金流、VWAP 偏离等数据。
 - `market_bias`: 市场层面的倾向（可选）。
 
-## 输出要求
-1. 指出领先与落后板块，并解释支撑结论的具体数据（如动量分数、量能趋势）。
-2. 对每类板块给出关注逻辑或潜在风险提示。
-3. 若某些板块数据缺失或异常，明确说明需要人工确认。
+## 输出格式（JSON）
+```json
+{
+  "leading": [
+    {
+      "sector": "string",
+      "composite_score": 0.0,
+      "evidence": {
+        "mom5": 0.0,
+        "mom20": 0.0,
+        "rs_z": 0.0,
+        "volume_trend": 0.0,
+        "vwap_deviation": 0.0
+      },
+      "comment": "string"
+    }
+  ],
+  "lagging": [
+    {
+      "sector": "string",
+      "composite_score": 0.0,
+      "evidence": {
+        "mom5": 0.0,
+        "mom20": 0.0,
+        "rs_z": 0.0,
+        "volume_trend": 0.0,
+        "vwap_deviation": 0.0
+      },
+      "comment": "string"
+    }
+  ],
+  "focus_points": [
+    {
+      "topic": "string",
+      "rationale": "说明为什么需要关注，引用具体数据"
+    }
+  ],
+  "data_gaps": ["列出缺失或异常的板块数据"]
+}
+```
 
-输出请使用中文要点式段落，每个要点以破折号开头，总字数不超过 150 字。
+### 额外要求
+- `leading` 与 `lagging` 最多各列出 3 个板块，没有符合条件时返回空数组。
+- `composite_score` 使用输入中提供的分值（如标准化分数），范围以 0–1 或 Z 分表示即可。
+- `comment` 需简要说明结论（≤40 字），并引用至少一个 `evidence` 中的数值。
+- `focus_points` 可用于提醒轮动逻辑、潜在催化或风险，至少列出 1 项；若无可说则解释原因。
+- `data_gaps` 无缺失时填 `[]`。

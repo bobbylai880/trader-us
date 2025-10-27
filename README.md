@@ -125,6 +125,15 @@ LLM 推理拆分为四个分析阶段与一个终稿阶段，对应以下模板�
 
 `configs/base.json` 默认引用这些模板路径；如需自定义，可在派生配置中覆盖 `llm.prompt_files` 对应键值。
 
+### 输出结构规范
+
+- 所有 DeepSeek 提示词现统一要求 **JSON 输出**，禁止返回纯文本或 Markdown；通用准则收录在 `deepseek_base_prompt.md` 中。
+- `deepseek_market_overview.md`：返回包含 `risk_level`、`bias`、`summary`、`drivers`、`premarket_flags`、`data_gaps` 的对象。
+- `deepseek_sector_analysis.md`：输出 `leading`、`lagging`、`focus_points`、`data_gaps` 字段，每个板块条目需附带量化证据。
+- `deepseek_stock_actions.md`：以 `categories` 字典给出 Buy/Hold/Reduce/Avoid 列表，并列出 `drivers`、`risks`、`premarket_score` 等客观指标。
+- `deepseek_exposure_check.md`：返回敞口差异与 `allocation_plan`、`constraints` 建议，便于对接头寸引擎。
+- `deepseek_report_compose.md`：输出包含 `markdown` 正文与 `sections` 摘要的对象，同时合并所有数据缺口至 `data_gaps`。
+
 调用 DeepSeek 前，请确保 `.env` 或运行环境中设置了 `DEEPSEEK_API_KEY`。若需串联其他 LLM，可新增模板文件并在配置中覆盖 `llm.provider` 与 `llm.prompt_files`。
 
 若某些数据缺失或 API 访问失败，流水线会在报告末尾记录异常条目，确保人工注意补充或回溯。

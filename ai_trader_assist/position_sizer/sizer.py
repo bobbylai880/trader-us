@@ -77,6 +77,8 @@ class PositionSizer:
             position = portfolio_state.get_position(candidate["symbol"])
             if not position:
                 continue
+            if candidate.get("price", 0.0) <= 0:
+                continue
             shares = max(1, int(math.floor(position.shares * 0.25)))
             sell_orders.append(
                 {
