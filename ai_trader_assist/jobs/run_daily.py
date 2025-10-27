@@ -58,9 +58,9 @@ def resolve_path(root: Path, maybe_relative: str | Path) -> Path:
 def main() -> None:
     load_dotenv()
     args = parse_args()
-    root = Path(__file__).resolve().parents[1]
+    project_root = Path(__file__).resolve().parents[2]
 
-    config_path = resolve_path(root, args.config)
+    config_path = resolve_path(project_root, args.config)
     config = load_config(config_path)
 
     tz_name = os.getenv("TZ", config.get("schedule", {}).get("tz", "America/Los_Angeles"))
@@ -73,16 +73,16 @@ def main() -> None:
         now = datetime.now(tzinfo)
         trading_day = now.date()
 
-    operations_path = root / "storage" / "operations.jsonl"
-    positions_path = root / "storage" / "positions.json"
+    operations_path = project_root / "storage" / "operations.jsonl"
+    positions_path = project_root / "storage" / "positions.json"
 
     operations = read_operations_log(operations_path)
     state = load_positions_snapshot(positions_path)
     apply_daily_operations(state, operations)
 
     fred_key = os.getenv("FRED_API_KEY")
-    yf_client = YahooFinanceClient(cache_dir=root / "storage" / "cache" / "yf")
-    fred_client = FredClient(api_key=fred_key, cache_dir=root / "storage" / "cache" / "fred")
+    yf_client = YahooFinanceClient(cache_dir=project_root / "storage" / "cache" / "yf")
+    fred_client = FredClient(api_key=fred_key, cache_dir=project_root / "storage" / "cache" / "fred")
 
     market, sectors, stocks, premarket = prepare_feature_sets(
         config=config,
@@ -110,9 +110,9 @@ def main() -> None:
     )
 
     if args.output_dir:
-        output_dir = resolve_path(root, args.output_dir)
+        output_dir = resolve_path(project_root, args.output_dir)
     else:
-        output_dir = root / "storage" / f"daily_{trading_day.isoformat()}"
+        output_dir = project_root / "storage" / f"daily_{trading_day.isoformat()}"
 
     agent.run(
         trading_day=trading_day,
