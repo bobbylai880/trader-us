@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+ai_trader_assist/storage/cache/
+ai_trader_assist/storage/daily_*/
