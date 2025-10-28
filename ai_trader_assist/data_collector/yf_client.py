@@ -5,7 +5,7 @@ import hashlib
 import json
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 import numpy as np
 import pandas as pd
@@ -15,11 +15,17 @@ try:  # pragma: no cover - optional dependency during unit tests
 except Exception:  # pragma: no cover
     yf = None
 
+try:  # pragma: no cover - optional dependency during unit tests
+    from yfinance.search import Search as YFSearch
+except Exception:  # pragma: no cover
+    YFSearch = None
+
 
 class YahooFinanceClient:
     def __init__(self, cache_dir: Optional[Path] = None) -> None:
         self.cache_dir = cache_dir or Path("storage/cache/yf")
         self.cache_dir.mkdir(parents=True, exist_ok=True)
+        self._company_name_cache: Dict[str, Optional[str]] = {}
 
     # ------------------------------------------------------------------
     # Price history helpers
@@ -137,6 +143,60 @@ class YahooFinanceClient:
         news_dir = self.cache_dir / "news"
         news_dir.mkdir(parents=True, exist_ok=True)
         return news_dir / f"{symbol}.json"
+
+    # ------------------------------------------------------------------
+    # Company metadata helpers
+    # ------------------------------------------------------------------
+
+    def resolve_company_name(self, symbol: str) -> Optional[str]:
+        """Return the long company name for ``symbol`` when available."""
+
+        key = symbol.upper()
+        if key in self._company_name_cache:
+            cached = self._company_name_cache[key]
+            return cached
+
+        long_name: Optional[str] = None
+
+        if YFSearch is not None:
+            try:
+                search_client = YFSearch(symbol)
+                raw_quotes = getattr(search_client, "quotes", []) or []
+                for quote in raw_quotes:
+                    if not isinstance(quote, dict):
+                        continue
+                    quote_symbol = str(quote.get("symbol") or "").upper()
+                    if quote_symbol and quote_symbol != key:
+                        continue
+                    for field in ("longname", "shortname", "name"):
+                        candidate = quote.get(field)
+                        if isinstance(candidate, str) and candidate.strip():
+                            long_name = candidate.strip()
+                            break
+                    if long_name:
+                        break
+                if not long_name:
+                    query_value = getattr(search_client, "query", None)
+                    if isinstance(query_value, str) and query_value.strip():
+                        long_name = query_value.strip()
+            except Exception:
+                long_name = None
+
+        if long_name is None and yf is not None:
+            try:
+                ticker = yf.Ticker(symbol)
+                raw_info = getattr(ticker, "info", {})
+                if isinstance(raw_info, dict):
+                    for field in ("longName", "shortName"):
+                        candidate = raw_info.get(field)
+                        if isinstance(candidate, str) and candidate.strip():
+                            long_name = candidate.strip()
+                            break
+            except Exception:
+                long_name = None
+
+        self._company_name_cache[key] = long_name
+        return long_name
 
     @staticmethod
     def _filter_articles(
@@ -334,11 +394,37 @@ class YahooFinanceClient:
             except Exception:
                 articles = []
 
+        company_articles: List[dict] = []
+        company_name = self.resolve_company_name(symbol)
+        if company_name and YFSearch is not None:
+            try:
+                search_client = YFSearch(company_name)
+                raw_items = getattr(search_client, "news", []) or []
+                for item in raw_items[: max_items * 3]:
+                    normalised = _normalise_article(item)
+                    if not normalised:
+                        continue
+
+                    published_dt = _parse_datetime(normalised.get("published"))
+                    if published_dt is None:
+                        published_dt = now.replace(tzinfo=timezone.utc)
+                        normalised["published"] = published_dt.isoformat()
+
+                    if published_dt >= cutoff:
+                        company_articles.append(normalised)
+
+                    if len(company_articles) >= max_items:
+                        break
+            except Exception:
+                company_articles = []
+
         combined: List[dict] = []
         if cached_articles:
             combined.extend(cached_articles)
         if articles:
             combined.extend(articles)
+        if company_articles:
+            combined.extend(company_articles)
 
         if combined:
             # Deduplicate by (title, published) and keep the most recent entries.
