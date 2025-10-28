@@ -72,7 +72,7 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 | `risk.earnings_blackout` | 是否在财报窗口自动加入黑名单。 |
 | `sizer.k1_stop/k2_target` | 止损与止盈的 ATR 系数。 |
 | `trend.*` | 趋势特征窗口（近 5/20 日斜率、10 日动量、均线、波动率窗口等）。 |
-| `logging.operations_path / positions_path` | 手工操作记录与持仓快照路径，可按需调整。 |
+| `logging.log_dir / operations_path / positions_path` | 日志输出与手工操作记录、持仓快照路径，可按需调整。 |
 | `schedule.*` | 每日关键节点（05:30 数据/06:10 报告等）。 |
 
 如需自定义不同市场或股票池，可复制 `base.json` 创建新的配置文件，并在运行脚本时通过环境变量或命令参数指定。
@@ -90,7 +90,8 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
    ```
    - `--config`：可替换为自定义配置。
    - `--output-dir`：当日输出目录，默认会按日期创建。
-   - 调度脚本会自动读取 `.env` 或系统环境变量中的 `FRED_API_KEY`，并通过 `yfinance` 与 FRED 下载最近约 1 年的行情与宏观数据。若网络受限，脚本会优先使用本地缓存并在输出目录记录异常。 
+   - 日志：默认写入 `storage/logs/run_daily_<时间戳>.log` 并同步输出到终端，可通过 `--log-dir` 自定义目录，使用 `--verbose` 输出 DEBUG 级别信息，或通过 `--quiet` 将终端输出限制为 ERROR。
+   - 调度脚本会自动读取 `.env` 或系统环境变量中的 `FRED_API_KEY`，并通过 `yfinance` 与 FRED 下载最近约 1 年的行情与宏观数据。若网络受限，脚本会优先使用本地缓存并在输出目录记录异常。
 3. **脚本输出**：
    - `report.md`：面向人工的 Markdown 摘要。
    - `report.json`：结构化操作清单、目标敞口与风控信息。
@@ -262,6 +263,21 @@ pytest tests -q
 - `test_macro_engine.py`：检查目标仓位是否落在 0.4–0.8 区间，并包含驱动因素。
 - `test_sizer.py`：验证买入预算分配与期望增量资金误差 < 5%。
 - `test_positions.py`：模拟操作日志，确认现金、持仓与均价计算正确。
+
+### 端到端验证示例
+
+若需在本地确认数据采集、新闻管线与 LLM 分析完整串联，可在命令行临时注入真实的 API Key 后运行每日作业。以下命令以 2025-10-27 为例，生成完整的盘前 artefacts 供人工校验：
+
+```bash
+FRED_API_KEY="<your_fred_key>" \
+DEEPSEEK_API_KEY="<your_deepseek_key>" \
+python -m ai_trader_assist.jobs.run_daily \
+  --config configs/base.json \
+  --output-dir storage/daily_full_check \
+  --date 2025-10-27
+```
+
+执行完成后可在输出目录中找到 `report.md`、`llm_analysis.json`、`news_bundle.json`、`trend_features.json` 等文件，并在日志目录 `storage/logs/` 查看带时间戳的执行记录，验证整套流水线在真实密钥下的表现。
 
 ---
 

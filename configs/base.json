@@ -37,6 +37,7 @@
     }
   },
   "logging": {
+    "log_dir": "storage/logs",
     "operations_path": "storage/operations.jsonl",
     "positions_path": "storage/positions.json"
   },
