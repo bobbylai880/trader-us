@@ -325,6 +325,17 @@ class YahooFinanceClient:
             if not (title or summary or content):
                 continue
 
+            if not summary and title:
+                summary = title
+
+            if not content:
+                content = summary or title
+
+            if not content:
+                fallback_bits = [title]
+                fallback_bits.append("未能获取新闻正文，保留标题作为参考。")
+                content = " ".join(bit for bit in fallback_bits if bit).strip()
+
             published_raw = article.get("published")
             published_dt: Optional[datetime]
             if isinstance(published_raw, str):
@@ -565,7 +576,13 @@ class YahooFinanceClient:
                 existing_content = (entry.get("content") or "").strip()
                 summary_text = (entry.get("summary") or "").strip()
                 if idx >= 3 and not force:
-                    entry["content"] = existing_content or summary_text
+                    fallback_text = existing_content or summary_text
+                    if not fallback_text:
+                        title_text = (entry.get("title") or "").strip()
+                        fallback_bits = [title_text]
+                        fallback_bits.append("未能获取新闻正文，保留标题作为参考。")
+                        fallback_text = " ".join(bit for bit in fallback_bits if bit)
+                    entry["content"] = fallback_text.strip()
                     continue
                 should_fetch = force or not existing_content or existing_content == summary_text
                 content_text = existing_content

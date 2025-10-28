@@ -1,4 +1,5 @@
 """Unit tests for the Yahoo Finance client news handling."""
+import json
 from datetime import datetime, timezone
 
 from ai_trader_assist.data_collector import yf_client
@@ -125,3 +126,36 @@ def test_fetch_news_falls_back_to_title_when_no_summary(tmp_path, monkeypatch):
     article = articles[0]
     assert article["title"]
     assert article["content"].startswith(article["title"])  # falls back to title text
+
+
+def test_fetch_news_rehydrates_cached_articles(tmp_path, monkeypatch):
+    monkeypatch.setattr(yf_client, "yf", None)
+    monkeypatch.setattr(yf_client, "YFSearch", None)
+
+    cache_dir = tmp_path
+    client = YahooFinanceClient(cache_dir=cache_dir)
+
+    cache_path = client._news_cache_path("AAPL")  # type: ignore[attr-defined]
+    now = datetime.utcnow().isoformat()
+    cache_payload = {
+        "_cached_at": now,
+        "articles": [
+            {
+                "title": "Cached headline",
+                "summary": "",
+                "publisher": "Example",
+                "link": "https://example.com/cached",
+                "published": now,
+                "content": "",
+            }
+        ],
+    }
+    cache_path.write_text(json.dumps(cache_payload))
+
+    articles = client.fetch_news("AAPL", lookback_days=7, max_items=1, force=False)
+
+    assert len(articles) == 1
+    article = articles[0]
+    assert article["title"] == "Cached headline"
+    assert article["content"]
+    assert "未能获取新闻正文" in article["content"] or article["content"] == article["title"]
