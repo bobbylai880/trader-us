@@ -74,6 +74,12 @@ class _StubRequests:
         )
 
 
+class _FailingRequests(_StubRequests):
+    def get(self, url: str, timeout: int = 6, headers=None):  # noqa: D401 - mimic requests
+        self.calls.append(url)
+        return _StubResponse("", status_code=500)
+
+
 def test_fetch_news_parses_nested_content(tmp_path, monkeypatch):
     """Ensure modern yfinance news payloads are normalised correctly."""
 
@@ -103,3 +109,19 @@ def test_fetch_news_parses_nested_content(tmp_path, monkeypatch):
     )
 
     assert stub_requests.calls  # ensure article downloads were attempted
+
+
+def test_fetch_news_falls_back_to_title_when_no_summary(tmp_path, monkeypatch):
+    monkeypatch.setattr(yf_client, "yf", _StubYF())
+    monkeypatch.setattr(yf_client, "YFSearch", _StubSearch)
+    failing_requests = _FailingRequests()
+    monkeypatch.setattr(yf_client, "requests", failing_requests)
+
+    client = YahooFinanceClient(cache_dir=tmp_path)
+
+    articles = client.fetch_news("AAPL", lookback_days=7, max_items=1, force=True)
+
+    assert len(articles) == 1
+    article = articles[0]
+    assert article["title"]
+    assert article["content"].startswith(article["title"])  # falls back to title text

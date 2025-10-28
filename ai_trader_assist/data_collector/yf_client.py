@@ -438,6 +438,8 @@ class YahooFinanceClient:
 
             title = next((str(c).strip() for c in title_candidates if c), "")
             summary = next((str(c).strip() for c in summary_candidates if c), "")
+            if not summary and title:
+                summary = title
 
             publisher_candidates = [
                 item.get("publisher"),
@@ -575,6 +577,10 @@ class YahooFinanceClient:
                             content_text = fetched.strip()
                 if not content_text:
                     content_text = summary_text
+                if not content_text:
+                    fallback_bits = [entry.get("title", "").strip()]
+                    fallback_bits.append("未能获取新闻正文，保留标题作为参考。")
+                    content_text = " ".join(bit for bit in fallback_bits if bit)
                 entry["content"] = content_text.strip()
 
         if not combined:
