@@ -74,8 +74,13 @@ def main() -> None:
         now = datetime.now(tzinfo)
         trading_day = now.date()
 
-    operations_path = project_root / "storage" / "operations.jsonl"
-    positions_path = project_root / "storage" / "positions.json"
+    logging_cfg = config.get("logging", {})
+    operations_path = resolve_path(
+        project_root, logging_cfg.get("operations_path", "storage/operations.jsonl")
+    )
+    positions_path = resolve_path(
+        project_root, logging_cfg.get("positions_path", "storage/positions.json")
+    )
 
     operations = read_operations_log(operations_path)
     state = load_positions_snapshot(positions_path)

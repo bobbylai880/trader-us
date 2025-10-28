@@ -36,6 +36,10 @@
       "report_compose": "configs/prompts/deepseek_report_compose.md"
     }
   },
+  "logging": {
+    "operations_path": "storage/operations.jsonl",
+    "positions_path": "storage/positions.json"
+  },
   "schedule": {
     "premarket_check": "05:30",
     "report_time": "06:10",

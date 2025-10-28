@@ -72,6 +72,7 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 | `risk.earnings_blackout` | 是否在财报窗口自动加入黑名单。 |
 | `sizer.k1_stop/k2_target` | 止损与止盈的 ATR 系数。 |
 | `trend.*` | 趋势特征窗口（近 5/20 日斜率、10 日动量、均线、波动率窗口等）。 |
+| `logging.operations_path / positions_path` | 手工操作记录与持仓快照路径，可按需调整。 |
 | `schedule.*` | 每日关键节点（05:30 数据/06:10 报告等）。 |
 
 如需自定义不同市场或股票池，可复制 `base.json` 创建新的配置文件，并在运行脚本时通过环境变量或命令参数指定。
@@ -101,6 +102,66 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 5. **收盘后/次日早晨**：将实际执行记录追加到 `storage/operations.jsonl`，并确认 `storage/positions.json` 是否更新。
 
 > 提示：如需历史回溯，可对旧日期运行 `run_daily.py --as-of YYYY-MM-DD`（若已实现），或手动指定 `--date` 以复现当日建议。
+
+---
+
+## 盘后录入操作记录（CLI）
+
+收盘后运行交互式脚本，将人工执行的真实成交写入操作日志并同步更新持仓：
+
+```bash
+python -m ai_trader_assist.jobs.record_operations --config configs/base.json
+```
+
+- 默认会在项目根目录读取 `logging.operations_path`（默认为 `storage/operations.jsonl`）并追加写入，每条操作独占一行 JSON。
+- 输入内容包含日期、代码、动作（BUY/SELL/REDUCE/HOLD）、数量、价格与可选备注；系统会自动补充 `source="manual"` 与 UTC 时间戳。
+- 写入前会将旧文件备份为 `*.bak`，防止误操作导致数据损坏。
+- 保存后立即加载 `logging.positions_path`（默认为 `storage/positions.json`），按最新操作更新现金、均价与股数，并写回 `last_updated` 时间戳。
+
+示例会话：
+
+```
+=== Record Today's Operations ===
+Date (default: 2025-10-28):
+Symbol (e.g., NVDA): NVDA
+Action [BUY/SELL/REDUCE/HOLD]: BUY
+Quantity: 30
+Price: 1098.2
+Reason (optional): trend breakout
+Add another? (y/n): y
+
+Symbol (e.g., NVDA): AAPL
+Action [BUY/SELL/REDUCE/HOLD]: SELL
+Quantity: 20
+Price: 228.5
+Reason (optional): rebalance
+Add another? (y/n): n
+Save and update positions? (y/n): y
+✅ 2 operations appended to operations.jsonl
+✅ positions.json updated successfully
+```
+
+生成的日志与持仓片段如下：
+
+```json
+{"date":"2025-10-28","symbol":"NVDA","action":"BUY","quantity":30,"price":1098.2,"reason":"trend breakout","source":"manual","timestamp":"2025-10-28T06:30:00+00:00"}
+```
+
+```json
+{
+  "date": "2025-10-28",
+  "cash": 18240.0,
+  "positions": [
+    {"symbol": "NVDA", "shares": 130, "avg_cost": 1090.2},
+    {"symbol": "AAPL", "shares": 80, "avg_cost": 226.5}
+  ],
+  "equity_value": 159846.0,
+  "exposure": 0.85,
+  "last_updated": "2025-10-28T06:30:00+00:00"
+}
+```
+
+> 建议：若需要批量修正历史记录，可手动编辑 `operations.jsonl`，再运行 `record_operations` 或 `run_daily` 让系统重新计算持仓。
 
 ---
 
