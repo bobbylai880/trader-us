@@ -132,7 +132,16 @@ def _news_sentiment_score(articles: List[Dict[str, str]]) -> float:
     signal = 0
     total = 0
     for article in articles:
-        text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+        text = " ".join(
+            filter(
+                None,
+                [
+                    str(article.get("title", "")),
+                    str(article.get("summary", "")),
+                    str(article.get("content", "")),
+                ],
+            )
+        ).lower()
         pos_hits = sum(keyword in text for keyword in POSITIVE_KEYWORDS)
         neg_hits = sum(keyword in text for keyword in NEGATIVE_KEYWORDS)
         if pos_hits or neg_hits:
@@ -156,6 +165,7 @@ def _aggregate_headlines(news_map: Dict[str, List[Dict]], limit: int = 6) -> Lis
                     "publisher": article.get("publisher", ""),
                     "published": article.get("published", ""),
                     "link": article.get("link", ""),
+                    "content": article.get("content", ""),
                 }
             )
     entries.sort(key=lambda item: item.get("published", ""), reverse=True)

@@ -57,11 +57,30 @@ class _StubSearch:
         ]
 
 
+class _StubResponse:
+    def __init__(self, text: str, status_code: int = 200) -> None:
+        self.text = text
+        self.status_code = status_code
+
+
+class _StubRequests:
+    def __init__(self) -> None:
+        self.calls = []
+
+    def get(self, url: str, timeout: int = 6, headers=None):  # noqa: D401 - mimic requests
+        self.calls.append(url)
+        return _StubResponse(
+            "<html><body><article><h1>Expanded headline</h1><p>Expanded content for testing.</p></article></body></html>"
+        )
+
+
 def test_fetch_news_parses_nested_content(tmp_path, monkeypatch):
     """Ensure modern yfinance news payloads are normalised correctly."""
 
     monkeypatch.setattr(yf_client, "yf", _StubYF())
     monkeypatch.setattr(yf_client, "YFSearch", _StubSearch)
+    stub_requests = _StubRequests()
+    monkeypatch.setattr(yf_client, "requests", stub_requests)
 
     client = YahooFinanceClient(cache_dir=tmp_path)
     articles = client.fetch_news("AAPL", lookback_days=7, max_items=5, force=True)
@@ -76,8 +95,11 @@ def test_fetch_news_parses_nested_content(tmp_path, monkeypatch):
     assert sample["summary"] == "Concise summary for testing."
     assert sample["publisher"] == "Yahoo Finance"
     assert sample["link"] == "https://example.com/article"
+    assert "Expanded content for testing." in sample["content"]
 
     published = datetime.fromisoformat(sample["published"])
     assert published.replace(tzinfo=published.tzinfo or timezone.utc) >= datetime(
         2025, 10, 25, tzinfo=timezone.utc
     )
+
+    assert stub_requests.calls  # ensure article downloads were attempted

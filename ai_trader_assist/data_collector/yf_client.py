@@ -3,12 +3,16 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import datetime, timedelta, timezone
+from html import unescape
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Dict, List, Optional
 
 import numpy as np
 import pandas as pd
+import requests
 
 try:  # pragma: no cover - optional dependency during unit tests
     import yfinance as yf
@@ -21,11 +25,54 @@ except Exception:  # pragma: no cover
     YFSearch = None
 
 
+class _ArticleTextExtractor(HTMLParser):
+    """Minimal HTML -> text extractor for article bodies."""
+
+    _BLOCK_TAGS = {"p", "div", "br", "li", "section", "article", "h1", "h2", "h3", "h4"}
+    _SKIP_TAGS = {"script", "style", "noscript"}
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._parts: List[str] = []
+        self._skip_level = 0
+
+    def handle_starttag(self, tag: str, attrs):  # noqa: D401 - part of HTMLParser API
+        tag_lower = tag.lower()
+        if tag_lower in self._SKIP_TAGS:
+            self._skip_level += 1
+            return
+        if tag_lower in self._BLOCK_TAGS:
+            self._parts.append("\n")
+
+    def handle_endtag(self, tag: str):  # noqa: D401 - part of HTMLParser API
+        tag_lower = tag.lower()
+        if tag_lower in self._SKIP_TAGS and self._skip_level > 0:
+            self._skip_level -= 1
+            return
+        if tag_lower in self._BLOCK_TAGS:
+            self._parts.append("\n")
+
+    def handle_data(self, data: str):  # noqa: D401 - part of HTMLParser API
+        if self._skip_level:
+            return
+        text = data.strip()
+        if not text:
+            return
+        self._parts.append(unescape(text))
+
+    def get_text(self) -> str:
+        content = " ".join(segment.strip() for segment in self._parts if segment.strip())
+        content = re.sub(r"\s+", " ", content)
+        return content.strip()
+
+
 class YahooFinanceClient:
     def __init__(self, cache_dir: Optional[Path] = None) -> None:
         self.cache_dir = cache_dir or Path("storage/cache/yf")
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self._company_name_cache: Dict[str, Optional[str]] = {}
+        self._news_content_dir = self.cache_dir / "news_content"
+        self._news_content_dir.mkdir(parents=True, exist_ok=True)
 
     # ------------------------------------------------------------------
     # Price history helpers
@@ -144,6 +191,70 @@ class YahooFinanceClient:
         news_dir.mkdir(parents=True, exist_ok=True)
         return news_dir / f"{symbol}.json"
 
+    def _article_cache_path(self, url: str) -> Path:
+        digest = hashlib.sha256(url.encode("utf-8")).hexdigest()
+        return self._news_content_dir / f"{digest}.json"
+
+    @staticmethod
+    def _extract_text_from_html(html: str) -> str:
+        if not html:
+            return ""
+        parser = _ArticleTextExtractor()
+        try:
+            parser.feed(html)
+            parser.close()
+        except Exception:
+            pass
+        text = parser.get_text()
+        if not text:
+            return ""
+        # Limit to a reasonable size for prompt payloads.
+        return text[:8000]
+
+    def _fetch_article_content(self, url: str, *, force: bool = False) -> str:
+        if not url:
+            return ""
+
+        cache_path = self._article_cache_path(url)
+        if cache_path.exists() and not force:
+            try:
+                payload = json.loads(cache_path.read_text())
+                cached = payload.get("content", "")
+                if cached:
+                    return cached
+            except Exception:
+                cache_path.unlink(missing_ok=True)
+
+        try:
+            response = requests.get(
+                url,
+                timeout=3,
+                headers={
+                    "User-Agent": "Mozilla/5.0 (compatible; AI-Trader/1.0; +https://example.com)"
+                },
+            )
+        except Exception:
+            response = None
+
+        text = ""
+        if response is not None and getattr(response, "status_code", 0) == 200:
+            try:
+                text = self._extract_text_from_html(response.text)
+            except Exception:
+                text = ""
+
+        if not text:
+            return ""
+
+        try:
+            cache_path.write_text(
+                json.dumps({"content": text, "_cached_at": datetime.utcnow().isoformat()}, ensure_ascii=False)
+            )
+        except Exception:
+            pass
+
+        return text
+
     # ------------------------------------------------------------------
     # Company metadata helpers
     # ------------------------------------------------------------------
@@ -210,7 +321,8 @@ class YahooFinanceClient:
         for article in articles:
             title = (article.get("title") or "").strip()
             summary = (article.get("summary") or "").strip()
-            if not (title or summary):
+            content = (article.get("content") or "").strip()
+            if not (title or summary or content):
                 continue
 
             published_raw = article.get("published")
@@ -237,6 +349,7 @@ class YahooFinanceClient:
                     if published_dt is not None
                     else article.get("published")
                 ),
+                "content": content,
             }
             filtered.append(normalised)
         return filtered
@@ -371,6 +484,7 @@ class YahooFinanceClient:
                 "publisher": publisher,
                 "link": link,
                 "published": published_dt.isoformat(),
+                "content": summary,
             }
 
         articles: List[dict] = []
@@ -445,6 +559,24 @@ class YahooFinanceClient:
             combined = sorted(dedup_map.values(), key=_sort_key, reverse=True)
             combined = combined[: max(max_items, 10)]
 
+            for idx, entry in enumerate(combined):
+                existing_content = (entry.get("content") or "").strip()
+                summary_text = (entry.get("summary") or "").strip()
+                if idx >= 3 and not force:
+                    entry["content"] = existing_content or summary_text
+                    continue
+                should_fetch = force or not existing_content or existing_content == summary_text
+                content_text = existing_content
+                if should_fetch:
+                    link = (entry.get("link") or "").strip()
+                    if link:
+                        fetched = self._fetch_article_content(link, force=force)
+                        if fetched:
+                            content_text = fetched.strip()
+                if not content_text:
+                    content_text = summary_text
+                entry["content"] = content_text.strip()
+
         if not combined:
             # Provide a deterministic synthetic article so downstream logic has
             # context even when running offline.
@@ -458,6 +590,7 @@ class YahooFinanceClient:
                     "publisher": "synthetic",
                     "link": "",
                     "published": now.replace(tzinfo=timezone.utc).isoformat(),
+                    "content": "无实时新闻数据，生成合成概览以支持新闻因子分析。",
                 }
             ]
 
