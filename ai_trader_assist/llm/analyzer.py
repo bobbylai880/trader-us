@@ -269,6 +269,12 @@ class DeepSeekAnalyzer:
             pre_score = pre_flag.get("score")
             news_meta = news.get(symbol, {}) if news else {}
             news_highlights = news_meta.get("headlines", [])[:5]
+            trend_strength = float(features.get("trend_strength", 0.0))
+            trend_state = features.get("trend_state", "flat")
+            momentum_state = features.get("momentum_state", "stable")
+            momentum_10d = float(features.get("momentum_10d", 0.0))
+            vol_trend = float(features.get("volatility_trend", 1.0))
+            trend_score = float(stock.get("trend_score", features.get("trend_score", 0.0)))
 
             drivers = []
             if "rsi_norm" in features:
@@ -295,6 +301,22 @@ class DeepSeekAnalyzer:
                         "comment": f"MACD 相对价差{features['macd_signal']:.4f}",
                     }
                 )
+            if "trend_strength" in features:
+                drivers.append(
+                    {
+                        "metric": "trend_strength",
+                        "value": _round(trend_strength, 3),
+                        "comment": f"趋势状态{trend_state}, 动量{momentum_state}",
+                    }
+                )
+            if "momentum_10d" in features:
+                drivers.append(
+                    {
+                        "metric": "momentum_10d",
+                        "value": _round(momentum_10d, 3),
+                        "comment": f"10日累计涨幅{momentum_10d:.2%}",
+                    }
+                )
             news_score = features.get("news_score")
             if news_score is not None:
                 drivers.append(
@@ -317,6 +339,14 @@ class DeepSeekAnalyzer:
                         "metric": "atr_pct",
                         "value": _round(atr_pct, 3),
                         "comment": "波动率较高需控制仓位",
+                    }
+                )
+            if vol_trend >= 1.2:
+                risks.append(
+                    {
+                        "metric": "volatility_trend",
+                        "value": _round(vol_trend, 3),
+                        "comment": "短期波动率上升，关注回撤风险",
                     }
                 )
             if pre_score is not None and pre_score >= 0.6:
@@ -364,6 +394,12 @@ class DeepSeekAnalyzer:
                     "news_sentiment": _round(
                         float(news_meta.get("sentiment", news_score or 0.0)), 3
                     ),
+                    "trend_change": momentum_state,
+                    "momentum_strength": _round((trend_strength + 1) / 2, 3),
+                    "trend_explanation": (
+                        f"趋势{trend_state}, 动量{momentum_state}, 10日涨幅{momentum_10d:.2%}"
+                    ),
+                    "trend_score": _round(trend_score, 3),
                 }
             )
 

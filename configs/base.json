@@ -17,6 +17,15 @@
     "k1_stop": 1.5,
     "k2_target": 2.5
   },
+  "trend": {
+    "window_short": 5,
+    "window_long": 20,
+    "momentum_days": 10,
+    "ma_fast": 10,
+    "ma_slow": 30,
+    "volatility_short": 5,
+    "volatility_long": 20
+  },
   "llm": {
     "provider": "deepseek",
     "prompt_files": {

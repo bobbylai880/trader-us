@@ -12,6 +12,7 @@ from ..data_collector.fred_client import FredClient
 from ..data_collector.yf_client import YahooFinanceClient
 from ..portfolio_manager.state import PortfolioState
 from . import indicators
+from .trend_features import compute_trend_features
 
 
 def _fetch_history(
@@ -194,6 +195,7 @@ def prepare_feature_sets(
     vix_history = _fetch_history(yf_client, "^VIX", start, end)
 
     market_symbols = ["SPY", "QQQ"]
+    market_history = {"SPY": spy_history, "QQQ": qqq_history}
     market_news = {
         symbol: yf_client.fetch_news(symbol, lookback_days=7)
         for symbol in market_symbols
@@ -245,12 +247,19 @@ def prepare_feature_sets(
         breadth_samples.append(1.0 if above else 0.0)
     breadth = float(sum(breadth_samples) / len(breadth_samples)) if breadth_samples else 0.0
 
+    trend_config = config.get("trend")
+
+    market_trends = compute_trend_features(market_history, config=trend_config)
+    sector_trends = compute_trend_features(sector_data, config=trend_config)
+    stock_trends = compute_trend_features(stock_data, config=trend_config)
+
     market_features = {
         "RS_SPY": rs_spy,
         "RS_QQQ": rs_qqq,
         "VIX_Z": vix_z,
         "PUTCALL_Z": put_call_z,
         "BREADTH": breadth,
+        "trend": market_trends,
     }
 
     spy_close = _latest_close(spy_history)
@@ -265,6 +274,7 @@ def prepare_feature_sets(
             latest = _latest_close(df)
             relative_strength = float((latest / spy_close) - 1.0) if latest else 0.0
         news_articles = sector_news.get(symbol, [])
+        trend_meta = sector_trends.get(symbol, {})
         sector_features[symbol] = {
             "momentum_5d": momentum5,
             "momentum_20d": momentum20,
@@ -272,6 +282,14 @@ def prepare_feature_sets(
             "volume_trend": _volume_trend(volume),
             "news_score": _news_sentiment_score(news_articles),
             "news": news_articles[:5],
+            "trend_slope_5d": float(trend_meta.get("trend_slope_5d", 0.0)),
+            "trend_slope_20d": float(trend_meta.get("trend_slope_20d", 0.0)),
+            "momentum_10d": float(trend_meta.get("momentum_10d", 0.0)),
+            "volatility_trend": float(trend_meta.get("volatility_trend", 1.0)),
+            "moving_avg_cross": int(trend_meta.get("moving_avg_cross", 0)),
+            "trend_strength": float(trend_meta.get("trend_strength", 0.0)),
+            "trend_state": trend_meta.get("trend_state", "flat"),
+            "momentum_state": trend_meta.get("momentum_state", "stable"),
         }
 
     stock_features: Dict[str, Dict] = {}
@@ -281,6 +299,7 @@ def prepare_feature_sets(
         volume = df.get("Volume")
         price = _latest_close(df)
         news_articles = stock_news.get(symbol, [])
+        trend_meta = stock_trends.get(symbol, {})
         if close is None or close.empty or price == 0:
             stock_features[symbol] = {
                 "rsi_norm": 0.5,
@@ -293,6 +312,14 @@ def prepare_feature_sets(
                 "price": 0.0,
                 "news_score": 0.0,
                 "recent_news": news_articles[:5],
+                "trend_slope_5d": float(trend_meta.get("trend_slope_5d", 0.0)),
+                "trend_slope_20d": float(trend_meta.get("trend_slope_20d", 0.0)),
+                "momentum_10d": float(trend_meta.get("momentum_10d", 0.0)),
+                "volatility_trend": float(trend_meta.get("volatility_trend", 1.0)),
+                "moving_avg_cross": int(trend_meta.get("moving_avg_cross", 0)),
+                "trend_strength": float(trend_meta.get("trend_strength", 0.0)),
+                "trend_state": trend_meta.get("trend_state", "flat"),
+                "momentum_state": trend_meta.get("momentum_state", "stable"),
             }
             continue
 
@@ -333,6 +360,14 @@ def prepare_feature_sets(
             "price": price,
             "news_score": _news_sentiment_score(news_articles),
             "recent_news": news_articles[:5],
+            "trend_slope_5d": float(trend_meta.get("trend_slope_5d", 0.0)),
+            "trend_slope_20d": float(trend_meta.get("trend_slope_20d", 0.0)),
+            "momentum_10d": float(trend_meta.get("momentum_10d", 0.0)),
+            "volatility_trend": float(trend_meta.get("volatility_trend", 1.0)),
+            "moving_avg_cross": int(trend_meta.get("moving_avg_cross", 0)),
+            "trend_strength": float(trend_meta.get("trend_strength", 0.0)),
+            "trend_state": trend_meta.get("trend_state", "flat"),
+            "momentum_state": trend_meta.get("momentum_state", "stable"),
         }
 
         if len(close) > 1:
@@ -375,4 +410,17 @@ def prepare_feature_sets(
         },
     }
 
-    return market_features, sector_features, stock_features, premarket_flags, news_bundle
+    trend_bundle = {
+        "market": market_trends,
+        "sectors": sector_trends,
+        "stocks": stock_trends,
+    }
+
+    return (
+        market_features,
+        sector_features,
+        stock_features,
+        premarket_flags,
+        news_bundle,
+        trend_bundle,
+    )

@@ -63,6 +63,11 @@ def test_analyzer_emits_structured_outputs():
                 "volume_score": 0.2,
                 "structure_score": 0.03,
                 "risk_modifier": 0.0,
+                "trend_strength": 0.4,
+                "momentum_state": "strengthening",
+                "momentum_10d": 0.06,
+                "volatility_trend": 0.9,
+                "trend_score": 0.7,
             },
         },
         {
@@ -79,6 +84,11 @@ def test_analyzer_emits_structured_outputs():
                 "volume_score": -0.05,
                 "structure_score": 0.01,
                 "risk_modifier": 0.0,
+                "trend_strength": -0.2,
+                "momentum_state": "weakening",
+                "momentum_10d": -0.03,
+                "volatility_trend": 1.3,
+                "trend_score": 0.3,
             },
         },
     ]
@@ -178,6 +188,7 @@ def test_analyzer_emits_structured_outputs():
     assert stock_view["categories"]["Buy"]
     assert stock_view["categories"]["Buy"][0]["drivers"]
     assert stock_view["categories"]["Buy"][0]["news_highlights"]
+    assert "trend_change" in stock_view["categories"]["Buy"][0]
 
     exposure_view = payload["exposure_check"]
     assert exposure_view["direction"] in {"increase", "maintain", "decrease"}

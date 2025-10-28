@@ -14,7 +14,7 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 │   ├── agent/              # 风险→决策→仓位→报告 orchestrator
 │   ├── agent_tools/        # 行情缓存、账本模拟、数学函数
 │   ├── data_collector/     # yfinance 与 FRED 抽象层
-│   ├── feature_engineering/# 指标工程 (RSI/MACD/ATR 等)
+│   ├── feature_engineering/# 指标工程 (RSI/MACD/ATR/趋势 等)
 │   ├── decision_engine/    # 板块与个股评分逻辑
 │   ├── position_sizer/     # 仓位与股数分配
 │   ├── portfolio_manager/  # 基于人工日志维护持仓
@@ -71,6 +71,7 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 | `risk.cooling_days` | 连续亏损后冷却期天数。 |
 | `risk.earnings_blackout` | 是否在财报窗口自动加入黑名单。 |
 | `sizer.k1_stop/k2_target` | 止损与止盈的 ATR 系数。 |
+| `trend.*` | 趋势特征窗口（近 5/20 日斜率、10 日动量、均线、波动率窗口等）。 |
 | `schedule.*` | 每日关键节点（05:30 数据/06:10 报告等）。 |
 
 如需自定义不同市场或股票池，可复制 `base.json` 创建新的配置文件，并在运行脚本时通过环境变量或命令参数指定。
@@ -93,8 +94,9 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
    - `report.md`：面向人工的 Markdown 摘要。
    - `report.json`：结构化操作清单、目标敞口与风控信息。
    - `llm_analysis.json`：分阶段 DeepSeek（或其替代方案）分析结果，含市场/板块/个股/敞口摘要与最终汇总。
-   - `market_features.json`、`sector_features.json`、`stock_features.json`、`premarket_flags.json`：原始特征快照与盘前风险评估，便于复盘与调试。
-   - `news_bundle.json` 与 `news_snapshot.json`：市场/板块/个股新闻摘要及其情绪评分，供人工快速追踪事件驱动。
+  - `market_features.json`、`sector_features.json`、`stock_features.json`、`premarket_flags.json`：原始特征快照与盘前风险评估，便于复盘与调试。
+  - `trend_features.json`：指数、板块、个股的趋势强度、动量、波动率趋势等量化指标（`trend_strength`、`momentum_10d`、`volatility_trend`）。
+  - `news_bundle.json` 与 `news_snapshot.json`：市场/板块/个股新闻摘要及其情绪评分，供人工快速追踪事件驱动。
 4. **人工复核与执行**：根据报告在券商端手动下单。
 5. **收盘后/次日早晨**：将实际执行记录追加到 `storage/operations.jsonl`，并确认 `storage/positions.json` 是否更新。
 
@@ -109,6 +111,7 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 | `data_collector.yf_client` | `yfinance` | 默认获取日线历史与近一日的盘前价格估计，支持本地缓存以减少请求。 |
 | `data_collector.fred_client` | FRED | 拉取宏观序列（如 10Y/2Y 国债利差、CPI），频率低，建议本地缓存 JSON。 |
 | `feature_engineering.indicators` | 本地计算 | 对历史价格序列计算 RSI、MACD、ATR、VWAP、z-score、斜率等。 |
+| `feature_engineering.trend_features` | 本地计算 | 近 5/20 日斜率、10 日动量、波动率趋势、均线交叉等趋势指标，输出到 `trend_features.json`。 |
 | `feature_engineering.pipeline` | `yfinance.news` | 聚合指数、板块、个股新闻并计算关键词情绪分数，默认缓存 3 小时。 |
 
 ### 新闻聚合与情绪分数
@@ -117,6 +120,16 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 - 数据默认缓存 3 小时；若离线运行，会生成可追溯的合成新闻以维持流程完整性。
 - `feature_engineering.pipeline.prepare_feature_sets` 会为每个层级计算关键词情绪分数（-1~1）并输出到 `news_bundle.json`，供 LLM 与人工复核。
 - 报告与 LLM 摘要会引用这些新闻条目，确保量化指标与事件驱动双线结合。
+
+### 趋势指标快照
+
+- `feature_engineering.trend_features.compute_trend_features` 会为市场（SPY/QQQ）、板块 ETF 及个股分别计算：
+  - `trend_slope_5d` / `trend_slope_20d`：近 5/20 个交易日的线性回归斜率；
+  - `momentum_10d`：近 10 日累计涨幅；
+  - `volatility_trend`：短期波动率与 20 日波动率之比，用于识别波动放大；
+  - `moving_avg_cross`：10 日与 30 日均线是否发生金叉/死叉（1/-1/0）；
+  - `trend_strength`、`trend_state`、`momentum_state`：综合趋势方向、稳定性与动量变化。
+- 结果存入 `trend_features.json` 并被 `stock_features.json`、`sector_features.json` 以及 LLM 提示词消费，用于解释趋势强度与回调风险。
 
 ---
 
@@ -139,7 +152,7 @@ LLM 推理拆分为四个分析阶段与一个终稿阶段，对应以下模板�
 - 所有 DeepSeek 提示词现统一要求 **JSON 输出**，禁止返回纯文本或 Markdown；通用准则收录在 `deepseek_base_prompt.md` 中。
 - `deepseek_market_overview.md`：返回包含 `risk_level`、`bias`、`summary`、`drivers`、`premarket_flags`、`news_sentiment`、`news_highlights`、`data_gaps` 的对象。
 - `deepseek_sector_analysis.md`：输出 `leading`、`lagging`、`focus_points`、`data_gaps` 字段，每个板块条目需附带量化证据与新闻摘要。
-- `deepseek_stock_actions.md`：以 `categories` 字典给出 Buy/Hold/Reduce/Avoid 列表，并列出 `drivers`、`risks`、`premarket_score`、`news_highlights` 等客观指标。
+- `deepseek_stock_actions.md`：以 `categories` 字典给出 Buy/Hold/Reduce/Avoid 列表，并列出 `drivers`、`risks`、`premarket_score`、`news_highlights`、`trend_change`、`momentum_strength`、`trend_explanation` 等客观指标。
 - `deepseek_exposure_check.md`：返回敞口差异与 `allocation_plan`、`constraints` 建议，便于对接头寸引擎。
 - `deepseek_report_compose.md`：输出包含 `markdown` 正文与 `sections` 摘要（含 `news` 列表）的对象，同时合并所有数据缺口至 `data_gaps`。
 

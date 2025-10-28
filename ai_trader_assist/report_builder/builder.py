@@ -6,6 +6,7 @@ from datetime import date
 from typing import Dict, List, Optional, Tuple
 
 from ..portfolio_manager.state import PortfolioState
+from .summary import build_trend_rows, render_trend_table
 
 
 @dataclass
@@ -34,6 +35,7 @@ class DailyReportBuilder:
         weak = [s["symbol"] for s in sectors[-3:]] if sectors else []
 
         score_lookup = {item["symbol"]: item for item in stock_scores}
+        trend_rows = build_trend_rows(stock_scores)
 
         actions_json: List[Dict] = []
         for order in orders.get("buy", []):
@@ -95,6 +97,7 @@ class DailyReportBuilder:
                 "market_headlines": market_news,
                 "sector_headlines": sector_news,
             },
+            "trend_overview": trend_rows,
         }
 
         markdown_lines = [
@@ -116,6 +119,10 @@ class DailyReportBuilder:
                     )
         else:
             markdown_lines.append("- \u6682\u65e0\u65b0\u6307\u4ee4")
+
+        trend_section = render_trend_table(trend_rows)
+        if trend_section:
+            markdown_lines.extend(trend_section)
 
         markdown_lines.append(
             f"[\u9884\u8ba1\u4ed3\u4f4d] {exposure_after:.0%}"
