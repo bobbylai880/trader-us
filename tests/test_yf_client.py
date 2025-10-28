@@ -1,6 +1,6 @@
 """Unit tests for the Yahoo Finance client news handling."""
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from ai_trader_assist.data_collector import yf_client
 from ai_trader_assist.data_collector.yf_client import YahooFinanceClient
@@ -143,7 +143,8 @@ def test_fetch_news_rehydrates_cached_articles(tmp_path, monkeypatch):
 
     as_of = datetime(2025, 10, 27, tzinfo=timezone.utc)
     cache_path = client._news_cache_path("AAPL", as_of)  # type: ignore[attr-defined]
-    now = as_of.isoformat()
+    now = datetime.utcnow().replace(tzinfo=timezone.utc).isoformat()
+    published = (as_of - timedelta(hours=1)).isoformat()
     cache_payload = {
         "_cached_at": now,
         "articles": [
@@ -152,7 +153,7 @@ def test_fetch_news_rehydrates_cached_articles(tmp_path, monkeypatch):
                 "summary": "",
                 "publisher": "Example",
                 "link": "https://example.com/cached",
-                "published": now,
+                "published": published,
                 "content": "",
             }
         ],

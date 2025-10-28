@@ -406,18 +406,21 @@ class YahooFinanceClient:
         produced by ``yfinance.Ticker.news`` with only the relevant fields.
         """
 
+        wall_clock_now = datetime.utcnow().replace(tzinfo=timezone.utc)
         if as_of is None:
-            now = datetime.utcnow().replace(tzinfo=timezone.utc)
+            target_now = wall_clock_now
         else:
             if as_of.tzinfo is None:
-                now = as_of.replace(tzinfo=timezone.utc)
+                target_now = as_of.replace(tzinfo=timezone.utc)
             else:
-                now = as_of.astimezone(timezone.utc)
+                target_now = as_of.astimezone(timezone.utc)
 
-        cache_path = self._news_cache_path(symbol, now)
+        effective_now = min(target_now, wall_clock_now)
+
+        cache_path = self._news_cache_path(symbol, target_now)
         ttl = timedelta(hours=3)
 
-        cutoff = now - timedelta(days=max(lookback_days, 1))
+        cutoff = effective_now - timedelta(days=max(lookback_days, 1))
 
         cached_articles: List[dict] = []
         cached_at: Optional[datetime] = None
@@ -432,14 +435,14 @@ class YahooFinanceClient:
                     else:
                         cached_at = cached_at.astimezone(timezone.utc)
                 cached_articles = self._filter_articles(
-                    payload.get("articles", []), cutoff=cutoff, end=now
+                    payload.get("articles", []), cutoff=cutoff, end=effective_now
                 )
-                if (
-                    cached_articles
-                    and cached_at is not None
-                    and not force
-                    and timedelta(0) <= now - cached_at <= ttl
-                ):
+                is_fresh = False
+                if cached_at is not None:
+                    age = wall_clock_now - cached_at
+                    if age >= timedelta(0):
+                        is_fresh = age <= ttl
+                if cached_articles and is_fresh and not force:
                     return cached_articles[:max_items]
             except Exception:
                 cache_path.unlink(missing_ok=True)
@@ -524,7 +527,7 @@ class YahooFinanceClient:
             if published_dt is None:
                 published_dt = _parse_datetime(item.get("displayTime"))
             if published_dt is None:
-                published_dt = now.replace(tzinfo=timezone.utc)
+                published_dt = effective_now
 
             if not (title or summary):
                 return None
@@ -549,12 +552,12 @@ class YahooFinanceClient:
 
                     published_dt = _parse_datetime(normalised.get("published"))
                     if published_dt is None:
-                        published_dt = now
+                        published_dt = effective_now
                     if published_dt.tzinfo is None:
                         published_dt = published_dt.replace(tzinfo=timezone.utc)
                     else:
                         published_dt = published_dt.astimezone(timezone.utc)
-                    if published_dt >= cutoff and published_dt <= now:
+                    if published_dt >= cutoff and published_dt <= effective_now:
                         articles.append(normalised)
 
                     if len(articles) >= max_items:
@@ -575,14 +578,14 @@ class YahooFinanceClient:
 
                     published_dt = _parse_datetime(normalised.get("published"))
                     if published_dt is None:
-                        published_dt = now
+                        published_dt = effective_now
                     if published_dt.tzinfo is None:
                         published_dt = published_dt.replace(tzinfo=timezone.utc)
                     else:
                         published_dt = published_dt.astimezone(timezone.utc)
                     normalised["published"] = published_dt.isoformat()
 
-                    if published_dt >= cutoff and published_dt <= now:
+                    if published_dt >= cutoff and published_dt <= effective_now:
                         company_articles.append(normalised)
 
                     if len(company_articles) >= max_items:
@@ -657,7 +660,7 @@ class YahooFinanceClient:
                     "summary": "无实时新闻数据，生成合成概览以支持新闻因子分析。",
                     "publisher": "synthetic",
                     "link": "",
-                    "published": now.astimezone(timezone.utc).isoformat(),
+                    "published": effective_now.astimezone(timezone.utc).isoformat(),
                     "content": "无实时新闻数据，生成合成概览以支持新闻因子分析。",
                 }
             ]
@@ -665,7 +668,8 @@ class YahooFinanceClient:
         try:
             cache_path.write_text(
                 json.dumps({
-                    "_cached_at": now.isoformat(),
+                    "_cached_at": wall_clock_now.isoformat(),
+                    "_as_of": target_now.isoformat(),
                     "articles": combined,
                 }, ensure_ascii=False)
             )
