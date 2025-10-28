@@ -80,7 +80,15 @@ class DeepSeekAnalyzer:
             if value is None:
                 missing.append(metric)
                 continue
-            numeric_value = float(value)
+            if isinstance(value, (int, float)):
+                numeric_value = float(value)
+            else:
+                # Nested dictionaries (e.g. trend snapshots) are provided for
+                # completeness but they do not translate into scalar drivers.
+                # Record them as unavailable for this stage so downstream
+                # consumers understand they were intentionally omitted.
+                missing.append(metric)
+                continue
             direction = DeepSeekAnalyzer._driver_direction(metric, numeric_value)
             driver_entries.append(
                 (

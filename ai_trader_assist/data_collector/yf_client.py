@@ -73,6 +73,10 @@ class YahooFinanceClient:
         self._company_name_cache: Dict[str, Optional[str]] = {}
         self._news_content_dir = self.cache_dir / "news_content"
         self._news_content_dir.mkdir(parents=True, exist_ok=True)
+        # Cap the number of network fetches for article bodies in a single
+        # session so offline environments do not spend minutes waiting for
+        # repeated timeouts when traversing a large universe.
+        self._content_fetch_budget = 8
 
     # ------------------------------------------------------------------
     # Price history helpers
@@ -215,6 +219,9 @@ class YahooFinanceClient:
         if not url:
             return ""
 
+        if self._content_fetch_budget <= 0 and not force:
+            return ""
+
         cache_path = self._article_cache_path(url)
         if cache_path.exists() and not force:
             try:
@@ -225,10 +232,12 @@ class YahooFinanceClient:
             except Exception:
                 cache_path.unlink(missing_ok=True)
 
+        self._content_fetch_budget -= 1
+
         try:
             response = requests.get(
                 url,
-                timeout=3,
+                timeout=(1, 2),
                 headers={
                     "User-Agent": "Mozilla/5.0 (compatible; AI-Trader/1.0; +https://example.com)"
                 },
@@ -575,7 +584,7 @@ class YahooFinanceClient:
             for idx, entry in enumerate(combined):
                 existing_content = (entry.get("content") or "").strip()
                 summary_text = (entry.get("summary") or "").strip()
-                if idx >= 3 and not force:
+                if idx >= 1 and not force:
                     fallback_text = existing_content or summary_text
                     if not fallback_text:
                         title_text = (entry.get("title") or "").strip()
