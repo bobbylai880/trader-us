@@ -118,6 +118,7 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 
 - 通过 `yfinance.Ticker(symbol).news` 抓取市场（SPY、QQQ）、板块 ETF 与个股的新闻，字段包含标题、摘要、发布方与时间戳。
 - 数据默认缓存 3 小时；若离线运行，会生成可追溯的合成新闻以维持流程完整性。
+- 指定 `--date YYYY-MM-DD` 回测时，流水线会将该日期的盘后时间戳作为 `as_of` 参数，仅保留当日及其向前 7 日的新闻，避免报告混入未来事件；如需更长窗口，可在调用 `YahooFinanceClient.fetch_news(..., lookback_days=)` 时覆盖默认值。
 - `feature_engineering.pipeline.prepare_feature_sets` 会为每个层级计算关键词情绪分数（-1~1）并输出到 `news_bundle.json`，供 LLM 与人工复核。
 - 报告与 LLM 摘要会引用这些新闻条目，确保量化指标与事件驱动双线结合。
 

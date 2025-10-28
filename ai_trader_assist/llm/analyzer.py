@@ -382,12 +382,18 @@ class DeepSeekAnalyzer:
                     }
                 )
 
+            position_shares = float(
+                stock.get("position_shares", features.get("position_shares", 0.0) or 0.0)
+            )
+
             action = stock.get("action", "hold").lower()
             key = {
                 "buy": "Buy",
                 "hold": "Hold",
                 "reduce": "Reduce",
             }.get(action, "Avoid")
+            if key == "Reduce" and position_shares <= 0:
+                key = "Avoid"
 
             categories[key].append(
                 {
@@ -408,6 +414,7 @@ class DeepSeekAnalyzer:
                         f"趋势{trend_state}, 动量{momentum_state}, 10日涨幅{momentum_10d:.2%}"
                     ),
                     "trend_score": _round(trend_score, 3),
+                    "position_shares": _round(position_shares, 3),
                 }
             )
 

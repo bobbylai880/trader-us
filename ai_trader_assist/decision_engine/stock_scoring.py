@@ -68,6 +68,7 @@ class StockDecisionEngine:
             trend_state = feats.get("trend_state", "flat")
             momentum_10d = float(feats.get("momentum_10d", 0.0))
             volatility_trend = float(feats.get("volatility_trend", 1.0))
+            position_shares = float(feats.get("position_shares", 0.0))
 
             trend_component = _clip01(0.5 + 0.5 * trend_strength)
             if trend_state == "uptrend":
@@ -104,7 +105,7 @@ class StockDecisionEngine:
             if adjusted_score >= self.buy_threshold:
                 action = "buy"
             elif adjusted_score < self.reduce_threshold:
-                action = "reduce"
+                action = "reduce" if position_shares > 0 else "avoid"
             else:
                 action = "hold"
 
@@ -118,6 +119,7 @@ class StockDecisionEngine:
                     "price": float(feats.get("price", 0.0)),
                     "premarket": float(premarket.get("score", 0.0)),
                     "trend_score": trend_component,
+                    "position_shares": position_shares,
                     "features": {
                         "rsi_norm": rsi_norm,
                         "macd_signal": macd_signal,
@@ -136,6 +138,8 @@ class StockDecisionEngine:
                         "trend_state": trend_state,
                         "momentum_state": feats.get("momentum_state", "stable"),
                         "trend_score": trend_component,
+                        "position_shares": position_shares,
+                        "position_value": float(feats.get("position_value", 0.0)),
                     },
                 }
             )

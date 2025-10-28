@@ -190,10 +190,16 @@ class YahooFinanceClient:
     # News helpers
     # ------------------------------------------------------------------
 
-    def _news_cache_path(self, symbol: str) -> Path:
+    def _news_cache_path(self, symbol: str, as_of: Optional[datetime] = None) -> Path:
         news_dir = self.cache_dir / "news"
         news_dir.mkdir(parents=True, exist_ok=True)
-        return news_dir / f"{symbol}.json"
+        suffix = "latest"
+        if as_of is not None:
+            if as_of.tzinfo is None:
+                suffix = as_of.date().isoformat()
+            else:
+                suffix = as_of.astimezone(timezone.utc).date().isoformat()
+        return news_dir / f"{symbol}_{suffix}.json"
 
     def _article_cache_path(self, url: str) -> Path:
         digest = hashlib.sha256(url.encode("utf-8")).hexdigest()
@@ -323,6 +329,7 @@ class YahooFinanceClient:
         articles: List[dict],
         *,
         cutoff: Optional[datetime] = None,
+        end: Optional[datetime] = None,
     ) -> List[dict]:
         """Normalise cached articles and drop stale/empty entries."""
 
@@ -356,7 +363,16 @@ class YahooFinanceClient:
                 published_dt = None
 
             if cutoff is not None and published_dt is not None:
-                if published_dt.replace(tzinfo=published_dt.tzinfo or timezone.utc) < cutoff:
+                published_norm = published_dt.replace(
+                    tzinfo=published_dt.tzinfo or timezone.utc
+                )
+                if published_norm < cutoff:
+                    continue
+            if end is not None and published_dt is not None:
+                published_norm = published_dt.replace(
+                    tzinfo=published_dt.tzinfo or timezone.utc
+                )
+                if published_norm > end:
                     continue
 
             normalised = {
@@ -381,6 +397,7 @@ class YahooFinanceClient:
         lookback_days: int = 7,
         *,
         force: bool = False,
+        as_of: Optional[datetime] = None,
     ) -> List[dict]:
         """Return recent news articles for ``symbol``.
 
@@ -389,11 +406,18 @@ class YahooFinanceClient:
         produced by ``yfinance.Ticker.news`` with only the relevant fields.
         """
 
-        cache_path = self._news_cache_path(symbol)
-        now = datetime.utcnow()
+        if as_of is None:
+            now = datetime.utcnow().replace(tzinfo=timezone.utc)
+        else:
+            if as_of.tzinfo is None:
+                now = as_of.replace(tzinfo=timezone.utc)
+            else:
+                now = as_of.astimezone(timezone.utc)
+
+        cache_path = self._news_cache_path(symbol, now)
         ttl = timedelta(hours=3)
 
-        cutoff = now.replace(tzinfo=timezone.utc) - timedelta(days=max(lookback_days, 1))
+        cutoff = now - timedelta(days=max(lookback_days, 1))
 
         cached_articles: List[dict] = []
         cached_at: Optional[datetime] = None
@@ -402,14 +426,19 @@ class YahooFinanceClient:
                 payload = json.loads(cache_path.read_text())
                 cached_at_raw = payload.get("_cached_at")
                 cached_at = datetime.fromisoformat(cached_at_raw) if cached_at_raw else None
+                if cached_at is not None:
+                    if cached_at.tzinfo is None:
+                        cached_at = cached_at.replace(tzinfo=timezone.utc)
+                    else:
+                        cached_at = cached_at.astimezone(timezone.utc)
                 cached_articles = self._filter_articles(
-                    payload.get("articles", []), cutoff=cutoff
+                    payload.get("articles", []), cutoff=cutoff, end=now
                 )
                 if (
                     cached_articles
                     and cached_at is not None
                     and not force
-                    and now - cached_at <= ttl
+                    and timedelta(0) <= now - cached_at <= ttl
                 ):
                     return cached_articles[:max_items]
             except Exception:
@@ -520,9 +549,12 @@ class YahooFinanceClient:
 
                     published_dt = _parse_datetime(normalised.get("published"))
                     if published_dt is None:
-                        published_dt = now.replace(tzinfo=timezone.utc)
-
-                    if published_dt >= cutoff:
+                        published_dt = now
+                    if published_dt.tzinfo is None:
+                        published_dt = published_dt.replace(tzinfo=timezone.utc)
+                    else:
+                        published_dt = published_dt.astimezone(timezone.utc)
+                    if published_dt >= cutoff and published_dt <= now:
                         articles.append(normalised)
 
                     if len(articles) >= max_items:
@@ -543,10 +575,14 @@ class YahooFinanceClient:
 
                     published_dt = _parse_datetime(normalised.get("published"))
                     if published_dt is None:
-                        published_dt = now.replace(tzinfo=timezone.utc)
-                        normalised["published"] = published_dt.isoformat()
+                        published_dt = now
+                    if published_dt.tzinfo is None:
+                        published_dt = published_dt.replace(tzinfo=timezone.utc)
+                    else:
+                        published_dt = published_dt.astimezone(timezone.utc)
+                    normalised["published"] = published_dt.isoformat()
 
-                    if published_dt >= cutoff:
+                    if published_dt >= cutoff and published_dt <= now:
                         company_articles.append(normalised)
 
                     if len(company_articles) >= max_items:
@@ -621,7 +657,7 @@ class YahooFinanceClient:
                     "summary": "无实时新闻数据，生成合成概览以支持新闻因子分析。",
                     "publisher": "synthetic",
                     "link": "",
-                    "published": now.replace(tzinfo=timezone.utc).isoformat(),
+                    "published": now.astimezone(timezone.utc).isoformat(),
                     "content": "无实时新闻数据，生成合成概览以支持新闻因子分析。",
                 }
             ]

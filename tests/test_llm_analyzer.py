@@ -56,6 +56,7 @@ def test_analyzer_emits_structured_outputs():
             "confidence": 0.82,
             "atr_pct": 0.02,
             "price": 190.0,
+            "position_shares": 0.0,
             "features": {
                 "rsi_norm": 0.7,
                 "macd_signal": 0.05,
@@ -68,6 +69,7 @@ def test_analyzer_emits_structured_outputs():
                 "momentum_10d": 0.06,
                 "volatility_trend": 0.9,
                 "trend_score": 0.7,
+                "position_shares": 0.0,
             },
         },
         {
@@ -77,6 +79,7 @@ def test_analyzer_emits_structured_outputs():
             "confidence": 0.4,
             "atr_pct": 0.04,
             "price": 320.0,
+            "position_shares": 0.0,
             "features": {
                 "rsi_norm": 0.5,
                 "macd_signal": 0.01,
@@ -89,6 +92,30 @@ def test_analyzer_emits_structured_outputs():
                 "momentum_10d": -0.03,
                 "volatility_trend": 1.3,
                 "trend_score": 0.3,
+                "position_shares": 0.0,
+            },
+        },
+        {
+            "symbol": "AMD",
+            "score": 0.35,
+            "action": "reduce",
+            "confidence": 0.35,
+            "atr_pct": 0.06,
+            "price": 130.0,
+            "position_shares": 4.0,
+            "features": {
+                "rsi_norm": 0.55,
+                "macd_signal": -0.01,
+                "trend_slope": -0.003,
+                "volume_score": 0.05,
+                "structure_score": -0.02,
+                "risk_modifier": 0.0,
+                "trend_strength": -0.3,
+                "momentum_state": "rolling_over",
+                "momentum_10d": -0.04,
+                "volatility_trend": 1.4,
+                "trend_score": 0.25,
+                "position_shares": 4.0,
             },
         },
     ]
@@ -158,6 +185,16 @@ def test_analyzer_emits_structured_outputs():
                 "headlines": [],
                 "sentiment": -0.1,
             },
+            "AMD": {
+                "headlines": [
+                    {
+                        "title": "AMD faces competitive pricing pressure",
+                        "publisher": "SemiNews",
+                        "published": "2025-10-25T18:00:00+00:00",
+                    }
+                ],
+                "sentiment": -0.3,
+            },
         },
     }
 
@@ -189,6 +226,11 @@ def test_analyzer_emits_structured_outputs():
     assert stock_view["categories"]["Buy"][0]["drivers"]
     assert stock_view["categories"]["Buy"][0]["news_highlights"]
     assert "trend_change" in stock_view["categories"]["Buy"][0]
+    assert all(item["position_shares"] > 0 for item in stock_view["categories"]["Reduce"])
+    assert all(
+        item["symbol"] != "MSFT"
+        for item in stock_view["categories"]["Reduce"]
+    ), "Non-held symbols should not appear in Reduce"
 
     exposure_view = payload["exposure_check"]
     assert exposure_view["direction"] in {"increase", "maintain", "decrease"}

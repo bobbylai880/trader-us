@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import math
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from typing import Dict, Iterable, List, Tuple, Union
 
 import numpy as np
@@ -188,6 +188,7 @@ def prepare_feature_sets(
 ]:
     day = _trading_day_date(trading_day)
     end = datetime.combine(day, datetime.min.time()) + timedelta(days=1)
+    as_of = datetime.combine(day, datetime.max.time()).replace(tzinfo=timezone.utc)
     start = end - timedelta(days=250)
 
     spy_history = _fetch_history(yf_client, "SPY", start, end)
@@ -197,7 +198,7 @@ def prepare_feature_sets(
     market_symbols = ["SPY", "QQQ"]
     market_history = {"SPY": spy_history, "QQQ": qqq_history}
     market_news = {
-        symbol: yf_client.fetch_news(symbol, lookback_days=7)
+        symbol: yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
         for symbol in market_symbols
     }
 
@@ -207,7 +208,7 @@ def prepare_feature_sets(
         for symbol in sector_symbols
     }
     sector_news = {
-        symbol: yf_client.fetch_news(symbol, lookback_days=7)
+        symbol: yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
         for symbol in sector_symbols
     }
 
@@ -219,7 +220,7 @@ def prepare_feature_sets(
         for symbol in sorted_watchlist
     }
     stock_news = {
-        symbol: yf_client.fetch_news(symbol, lookback_days=7)
+        symbol: yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
         for symbol in sorted_watchlist
     }
 
@@ -300,6 +301,9 @@ def prepare_feature_sets(
         price = _latest_close(df)
         news_articles = stock_news.get(symbol, [])
         trend_meta = stock_trends.get(symbol, {})
+        position = state.get_position(symbol)
+        held_shares = float(position.shares) if position else 0.0
+        held_value = float(position.market_value) if position else 0.0
         if close is None or close.empty or price == 0:
             stock_features[symbol] = {
                 "rsi_norm": 0.5,
@@ -320,6 +324,8 @@ def prepare_feature_sets(
                 "trend_strength": float(trend_meta.get("trend_strength", 0.0)),
                 "trend_state": trend_meta.get("trend_state", "flat"),
                 "momentum_state": trend_meta.get("momentum_state", "stable"),
+                "position_shares": held_shares,
+                "position_value": held_value,
             }
             continue
 
@@ -368,6 +374,8 @@ def prepare_feature_sets(
             "trend_strength": float(trend_meta.get("trend_strength", 0.0)),
             "trend_state": trend_meta.get("trend_state", "flat"),
             "momentum_state": trend_meta.get("momentum_state", "stable"),
+            "position_shares": held_shares,
+            "position_value": held_value,
         }
 
         if len(close) > 1:

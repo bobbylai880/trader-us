@@ -90,7 +90,10 @@ def test_fetch_news_parses_nested_content(tmp_path, monkeypatch):
     monkeypatch.setattr(yf_client, "requests", stub_requests)
 
     client = YahooFinanceClient(cache_dir=tmp_path)
-    articles = client.fetch_news("AAPL", lookback_days=7, max_items=5, force=True)
+    as_of = datetime(2025, 10, 27, tzinfo=timezone.utc)
+    articles = client.fetch_news(
+        "AAPL", lookback_days=7, max_items=5, force=True, as_of=as_of
+    )
 
     assert len(articles) == 2
     titles = {article["title"] for article in articles}
@@ -120,7 +123,10 @@ def test_fetch_news_falls_back_to_title_when_no_summary(tmp_path, monkeypatch):
 
     client = YahooFinanceClient(cache_dir=tmp_path)
 
-    articles = client.fetch_news("AAPL", lookback_days=7, max_items=1, force=True)
+    as_of = datetime(2025, 10, 27, tzinfo=timezone.utc)
+    articles = client.fetch_news(
+        "AAPL", lookback_days=7, max_items=1, force=True, as_of=as_of
+    )
 
     assert len(articles) == 1
     article = articles[0]
@@ -135,8 +141,9 @@ def test_fetch_news_rehydrates_cached_articles(tmp_path, monkeypatch):
     cache_dir = tmp_path
     client = YahooFinanceClient(cache_dir=cache_dir)
 
-    cache_path = client._news_cache_path("AAPL")  # type: ignore[attr-defined]
-    now = datetime.utcnow().isoformat()
+    as_of = datetime(2025, 10, 27, tzinfo=timezone.utc)
+    cache_path = client._news_cache_path("AAPL", as_of)  # type: ignore[attr-defined]
+    now = as_of.isoformat()
     cache_payload = {
         "_cached_at": now,
         "articles": [
@@ -152,7 +159,9 @@ def test_fetch_news_rehydrates_cached_articles(tmp_path, monkeypatch):
     }
     cache_path.write_text(json.dumps(cache_payload))
 
-    articles = client.fetch_news("AAPL", lookback_days=7, max_items=1, force=False)
+    articles = client.fetch_news(
+        "AAPL", lookback_days=7, max_items=1, force=False, as_of=as_of
+    )
 
     assert len(articles) == 1
     article = articles[0]
