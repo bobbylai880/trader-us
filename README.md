@@ -165,6 +165,23 @@ Save and update positions? (y/n): y
 
 ---
 
+## 持仓复盘与盈亏报告（CLI）
+
+每日收盘或次日盘前，可快速生成历史持仓与实时盈亏视图：
+
+```bash
+python -m ai_trader_assist.jobs.report_portfolio --config configs/base.json --as-of 2025-10-28
+```
+
+- 默认会读取 `logging.operations_path` 与 `logging.positions_path`，聚合 `operations.jsonl` 全量操作，结合最新 `positions.json` 校准现金余额。
+- 价格优先来自 `storage/daily_<date>/stock_features.json` 中缓存的收盘价；若缺失且未指定 `--no-fetch`，则回落至 Yahoo Finance 历史行情。
+- 结果写入 `storage/reports/<date>/`：`current_pnl.json`（逐持仓盈亏）、`history_report.json`（每日快照序列）、`portfolio_report.md`（Markdown 摘要）。
+- Markdown 会列出当前仓位表、累计盈亏、平均敞口，以及历史持仓变化，便于盘后复盘与风控留档。
+
+> 小贴士：若只想在终端查看结果，可追加 `--output-dir /tmp/report --no-fetch`，或修改 `configs/base.json` 的 `logging` 段落以统一存储位置。
+
+---
+
 ## 数据与缓存
 
 | 模块 | 数据源 | 说明 |
