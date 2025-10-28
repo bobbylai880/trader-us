@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+storage/cache/
+storage/daily_*/
+*.bak
