@@ -94,6 +94,7 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
    - `report.json`：结构化操作清单、目标敞口与风控信息。
    - `llm_analysis.json`：分阶段 DeepSeek（或其替代方案）分析结果，含市场/板块/个股/敞口摘要与最终汇总。
    - `market_features.json`、`sector_features.json`、`stock_features.json`、`premarket_flags.json`：原始特征快照与盘前风险评估，便于复盘与调试。
+   - `news_bundle.json` 与 `news_snapshot.json`：市场/板块/个股新闻摘要及其情绪评分，供人工快速追踪事件驱动。
 4. **人工复核与执行**：根据报告在券商端手动下单。
 5. **收盘后/次日早晨**：将实际执行记录追加到 `storage/operations.jsonl`，并确认 `storage/positions.json` 是否更新。
 
@@ -108,6 +109,14 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 | `data_collector.yf_client` | `yfinance` | 默认获取日线历史与近一日的盘前价格估计，支持本地缓存以减少请求。 |
 | `data_collector.fred_client` | FRED | 拉取宏观序列（如 10Y/2Y 国债利差、CPI），频率低，建议本地缓存 JSON。 |
 | `feature_engineering.indicators` | 本地计算 | 对历史价格序列计算 RSI、MACD、ATR、VWAP、z-score、斜率等。 |
+| `feature_engineering.pipeline` | `yfinance.news` | 聚合指数、板块、个股新闻并计算关键词情绪分数，默认缓存 3 小时。 |
+
+### 新闻聚合与情绪分数
+
+- 通过 `yfinance.Ticker(symbol).news` 抓取市场（SPY、QQQ）、板块 ETF 与个股的新闻，字段包含标题、摘要、发布方与时间戳。
+- 数据默认缓存 3 小时；若离线运行，会生成可追溯的合成新闻以维持流程完整性。
+- `feature_engineering.pipeline.prepare_feature_sets` 会为每个层级计算关键词情绪分数（-1~1）并输出到 `news_bundle.json`，供 LLM 与人工复核。
+- 报告与 LLM 摘要会引用这些新闻条目，确保量化指标与事件驱动双线结合。
 
 ---
 
@@ -128,11 +137,11 @@ LLM 推理拆分为四个分析阶段与一个终稿阶段，对应以下模板�
 ### 输出结构规范
 
 - 所有 DeepSeek 提示词现统一要求 **JSON 输出**，禁止返回纯文本或 Markdown；通用准则收录在 `deepseek_base_prompt.md` 中。
-- `deepseek_market_overview.md`：返回包含 `risk_level`、`bias`、`summary`、`drivers`、`premarket_flags`、`data_gaps` 的对象。
-- `deepseek_sector_analysis.md`：输出 `leading`、`lagging`、`focus_points`、`data_gaps` 字段，每个板块条目需附带量化证据。
-- `deepseek_stock_actions.md`：以 `categories` 字典给出 Buy/Hold/Reduce/Avoid 列表，并列出 `drivers`、`risks`、`premarket_score` 等客观指标。
+- `deepseek_market_overview.md`：返回包含 `risk_level`、`bias`、`summary`、`drivers`、`premarket_flags`、`news_sentiment`、`news_highlights`、`data_gaps` 的对象。
+- `deepseek_sector_analysis.md`：输出 `leading`、`lagging`、`focus_points`、`data_gaps` 字段，每个板块条目需附带量化证据与新闻摘要。
+- `deepseek_stock_actions.md`：以 `categories` 字典给出 Buy/Hold/Reduce/Avoid 列表，并列出 `drivers`、`risks`、`premarket_score`、`news_highlights` 等客观指标。
 - `deepseek_exposure_check.md`：返回敞口差异与 `allocation_plan`、`constraints` 建议，便于对接头寸引擎。
-- `deepseek_report_compose.md`：输出包含 `markdown` 正文与 `sections` 摘要的对象，同时合并所有数据缺口至 `data_gaps`。
+- `deepseek_report_compose.md`：输出包含 `markdown` 正文与 `sections` 摘要（含 `news` 列表）的对象，同时合并所有数据缺口至 `data_gaps`。
 
 调用 DeepSeek 前，请确保 `.env` 或运行环境中设置了 `DEEPSEEK_API_KEY`。若需串联其他 LLM，可新增模板文件并在配置中覆盖 `llm.provider` 与 `llm.prompt_files`。
 

@@ -25,7 +25,20 @@ class StockDecisionEngine:
                 + 0.2 * volume_trend
                 + 0.1 * news
             )
-            results.append({"symbol": symbol, "score": score})
+            results.append(
+                {
+                    "symbol": symbol,
+                    "score": score,
+                    "features": {
+                        "momentum_5d": momentum5,
+                        "momentum_20d": momentum20,
+                        "rs": relative_strength,
+                        "volume_trend": volume_trend,
+                        "news_score": news,
+                        "news": feats.get("news", []),
+                    },
+                }
+            )
         results.sort(key=lambda r: r["score"], reverse=True)
         return results
 
@@ -42,6 +55,7 @@ class StockDecisionEngine:
             volume_score = float(feats.get("volume_score", 0.0))
             structure_score = float(feats.get("structure_score", 0.0))
             risk_modifier = float(feats.get("risk_modifier", 0.0))
+            news_score = float(feats.get("news_score", 0.0))
 
             base_score = (
                 0.25 * rsi_norm
@@ -51,6 +65,7 @@ class StockDecisionEngine:
                 + 0.15 * structure_score
             )
             base_score += risk_modifier
+            base_score += 0.1 * news_score
 
             premarket = premarket_flags.get(symbol, {})
             pre_penalty = float(premarket.get("score", 0.0)) * 0.25
@@ -72,6 +87,16 @@ class StockDecisionEngine:
                     "atr_pct": float(feats.get("atr_pct", 0.02)),
                     "price": float(feats.get("price", 0.0)),
                     "premarket": float(premarket.get("score", 0.0)),
+                    "features": {
+                        "rsi_norm": rsi_norm,
+                        "macd_signal": macd_signal,
+                        "trend_slope": trend_slope,
+                        "volume_score": volume_score,
+                        "structure_score": structure_score,
+                        "risk_modifier": risk_modifier,
+                        "news_score": news_score,
+                        "recent_news": feats.get("recent_news", []),
+                    },
                 }
             )
 

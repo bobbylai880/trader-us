@@ -29,6 +29,7 @@ class PipelineContext:
     report_json: Dict
     report_markdown: str
     llm_analysis: Optional[Dict]
+    news: Optional[Dict]
 
 
 class BaseAgent:
@@ -59,6 +60,7 @@ class BaseAgent:
         sector_features: Dict[str, Dict],
         stock_features: Dict[str, Dict],
         premarket_flags: Optional[Dict[str, Dict]] = None,
+        news: Optional[Dict] = None,
         output_dir: Optional[Path] = None,
     ) -> PipelineContext:
         """Execute the pipeline.
@@ -98,6 +100,7 @@ class BaseAgent:
             stock_scores=stock_scores,
             orders=orders,
             portfolio_state=self.portfolio_state,
+            news=news,
         )
 
         llm_analysis = None
@@ -111,6 +114,7 @@ class BaseAgent:
                 portfolio_state=self.portfolio_state,
                 market_features=market_features,
                 premarket_flags=premarket_flags or {},
+                news=news,
             )
 
         if output_dir:
@@ -123,6 +127,10 @@ class BaseAgent:
                 (output_dir / "llm_analysis.json").write_text(
                     self.report_builder.dumps_json(llm_analysis), encoding="utf-8"
                 )
+            if news is not None:
+                (output_dir / "news_snapshot.json").write_text(
+                    self.report_builder.dumps_json(news), encoding="utf-8"
+                )
 
         return PipelineContext(
             risk=risk_view,
@@ -132,4 +140,5 @@ class BaseAgent:
             report_json=report_json,
             report_markdown=report_markdown,
             llm_analysis=llm_analysis,
+            news=news,
         )

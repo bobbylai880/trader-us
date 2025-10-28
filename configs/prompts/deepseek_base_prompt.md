@@ -8,6 +8,7 @@
 - `stocks`: 个股指标，包括技术分值（RSI、MACD、ATR%）、趋势斜率、VWAP 偏离、情绪分数等。
 - `portfolio`: 当前持仓与现金信息，用于评估仓位匹配度。
 - `premarket`: 盘前异动标记，包括偏离率、量能倍率与情绪。
+- `news`: 市场、板块、个股层面的最新新闻摘要，用于补充情绪与事件驱动。
 - `risk_view`、`sector_view`、`stock_view`、`exposure_view`: 前序步骤返回的结构化结论（JSON）。
 
 ## 通用输出准则

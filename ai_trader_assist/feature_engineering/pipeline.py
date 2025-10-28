@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import math
 from datetime import date, datetime, timedelta
-from typing import Dict, Iterable, Tuple, Union
+from typing import Dict, Iterable, List, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -97,13 +97,84 @@ def _trading_day_date(trading_day: Union[date, datetime]) -> date:
     return trading_day
 
 
+POSITIVE_KEYWORDS = {
+    "beat",
+    "growth",
+    "up",
+    "surge",
+    "record",
+    "upgrade",
+    "strong",
+    "positive",
+    "rally",
+    "bullish",
+}
+
+
+NEGATIVE_KEYWORDS = {
+    "miss",
+    "down",
+    "cut",
+    "drop",
+    "lawsuit",
+    "negative",
+    "downgrade",
+    "weak",
+    "bearish",
+    "loss",
+}
+
+
+def _news_sentiment_score(articles: List[Dict[str, str]]) -> float:
+    if not articles:
+        return 0.0
+
+    signal = 0
+    total = 0
+    for article in articles:
+        text = f"{article.get('title', '')} {article.get('summary', '')}".lower()
+        pos_hits = sum(keyword in text for keyword in POSITIVE_KEYWORDS)
+        neg_hits = sum(keyword in text for keyword in NEGATIVE_KEYWORDS)
+        if pos_hits or neg_hits:
+            signal += pos_hits - neg_hits
+            total += pos_hits + neg_hits
+    if total == 0:
+        return 0.0
+    score = signal / max(total, 1)
+    return float(np.clip(score, -1.0, 1.0))
+
+
+def _aggregate_headlines(news_map: Dict[str, List[Dict]], limit: int = 6) -> List[Dict]:
+    entries: List[Dict] = []
+    for symbol, articles in news_map.items():
+        for article in articles:
+            entries.append(
+                {
+                    "symbol": symbol,
+                    "title": article.get("title", ""),
+                    "summary": article.get("summary", ""),
+                    "publisher": article.get("publisher", ""),
+                    "published": article.get("published", ""),
+                    "link": article.get("link", ""),
+                }
+            )
+    entries.sort(key=lambda item: item.get("published", ""), reverse=True)
+    return entries[:limit]
+
+
 def prepare_feature_sets(
     config: Dict,
     state: PortfolioState,
     yf_client: YahooFinanceClient,
     fred_client: FredClient,
     trading_day: Union[date, datetime],
-) -> Tuple[Dict, Dict[str, Dict], Dict[str, Dict], Dict[str, Dict]]:
+) -> Tuple[
+    Dict,
+    Dict[str, Dict],
+    Dict[str, Dict],
+    Dict[str, Dict],
+    Dict[str, Dict],
+]:
     day = _trading_day_date(trading_day)
     end = datetime.combine(day, datetime.min.time()) + timedelta(days=1)
     start = end - timedelta(days=250)
@@ -112,17 +183,32 @@ def prepare_feature_sets(
     qqq_history = _fetch_history(yf_client, "QQQ", start, end)
     vix_history = _fetch_history(yf_client, "^VIX", start, end)
 
+    market_symbols = ["SPY", "QQQ"]
+    market_news = {
+        symbol: yf_client.fetch_news(symbol, lookback_days=7)
+        for symbol in market_symbols
+    }
+
     sector_symbols: Iterable[str] = config.get("universe", {}).get("sectors", [])
     sector_data = {
         symbol: _fetch_history(yf_client, symbol, start, end)
         for symbol in sector_symbols
     }
+    sector_news = {
+        symbol: yf_client.fetch_news(symbol, lookback_days=7)
+        for symbol in sector_symbols
+    }
 
     watchlist = set(config.get("universe", {}).get("watchlist", []))
     watchlist.update(position.symbol for position in state.positions)
+    sorted_watchlist = sorted(watchlist)
     stock_data = {
         symbol: _fetch_history(yf_client, symbol, start, end)
-        for symbol in sorted(watchlist)
+        for symbol in sorted_watchlist
+    }
+    stock_news = {
+        symbol: yf_client.fetch_news(symbol, lookback_days=7)
+        for symbol in sorted_watchlist
     }
 
     rs_spy = _relative_to_ma(spy_history.get("Close"), 50)
@@ -147,9 +233,7 @@ def prepare_feature_sets(
             continue
         above = df["Close"].iloc[-1] > df["Close"].rolling(window=50, min_periods=50).mean().iloc[-1]
         breadth_samples.append(1.0 if above else 0.0)
-    breadth = 0.0
-    if breadth_samples:
-        breadth = float(sum(breadth_samples) / len(breadth_samples))
+    breadth = float(sum(breadth_samples) / len(breadth_samples)) if breadth_samples else 0.0
 
     market_features = {
         "RS_SPY": rs_spy,
@@ -168,13 +252,16 @@ def prepare_feature_sets(
         momentum20 = _pct_change(close, 20)
         relative_strength = 0.0
         if spy_close:
-            relative_strength = float((_latest_close(df) / spy_close) - 1.0) if _latest_close(df) else 0.0
+            latest = _latest_close(df)
+            relative_strength = float((latest / spy_close) - 1.0) if latest else 0.0
+        news_articles = sector_news.get(symbol, [])
         sector_features[symbol] = {
             "momentum_5d": momentum5,
             "momentum_20d": momentum20,
             "rs": relative_strength,
             "volume_trend": _volume_trend(volume),
-            "news_score": 0.0,
+            "news_score": _news_sentiment_score(news_articles),
+            "news": news_articles[:5],
         }
 
     stock_features: Dict[str, Dict] = {}
@@ -183,6 +270,7 @@ def prepare_feature_sets(
         close = df.get("Close")
         volume = df.get("Volume")
         price = _latest_close(df)
+        news_articles = stock_news.get(symbol, [])
         if close is None or close.empty or price == 0:
             stock_features[symbol] = {
                 "rsi_norm": 0.5,
@@ -193,6 +281,8 @@ def prepare_feature_sets(
                 "risk_modifier": 0.0,
                 "atr_pct": 0.02,
                 "price": 0.0,
+                "news_score": 0.0,
+                "recent_news": news_articles[:5],
             }
             continue
 
@@ -200,9 +290,7 @@ def prepare_feature_sets(
         rsi_norm = float((rsi_series.iloc[-1] if not rsi_series.empty else 50) / 100)
 
         macd_df = indicators.macd(close)
-        macd_val = 0.0
-        if not macd_df.empty:
-            macd_val = float(macd_df["macd"].iloc[-1] / price)
+        macd_val = float(macd_df["macd"].iloc[-1] / price) if not macd_df.empty else 0.0
 
         slope_val = indicators.slope(close, window=10)
         trend_slope = float((slope_val.iloc[-1] if not slope_val.empty else 0.0) / price)
@@ -233,6 +321,8 @@ def prepare_feature_sets(
             "risk_modifier": risk_modifier,
             "atr_pct": _atr_pct(df),
             "price": price,
+            "news_score": _news_sentiment_score(news_articles),
+            "recent_news": news_articles[:5],
         }
 
         if len(close) > 1:
@@ -251,4 +341,28 @@ def prepare_feature_sets(
                 "score": _premarket_score(dev, vol_ratio, sentiment),
             }
 
-    return market_features, sector_features, stock_features, premarket_flags
+    news_bundle = {
+        "market": {
+            "symbols": market_symbols,
+            "headlines": _aggregate_headlines(market_news),
+            "sentiment": _news_sentiment_score(
+                [article for articles in market_news.values() for article in articles]
+            ),
+        },
+        "sectors": {
+            symbol: {
+                "headlines": _aggregate_headlines({symbol: sector_news.get(symbol, [])}, 3),
+                "sentiment": _news_sentiment_score(sector_news.get(symbol, [])),
+            }
+            for symbol in sector_symbols
+        },
+        "stocks": {
+            symbol: {
+                "headlines": stock_news.get(symbol, [])[:5],
+                "sentiment": _news_sentiment_score(stock_news.get(symbol, [])),
+            }
+            for symbol in sorted_watchlist
+        },
+    }
+
+    return market_features, sector_features, stock_features, premarket_flags, news_bundle

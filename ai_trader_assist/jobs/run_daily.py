@@ -85,7 +85,7 @@ def main() -> None:
     yf_client = YahooFinanceClient(cache_dir=project_root / "storage" / "cache" / "yf")
     fred_client = FredClient(api_key=fred_key, cache_dir=project_root / "storage" / "cache" / "fred")
 
-    market, sectors, stocks, premarket = prepare_feature_sets(
+    market, sectors, stocks, premarket, news_bundle = prepare_feature_sets(
         config=config,
         state=state,
         yf_client=yf_client,
@@ -129,6 +129,7 @@ def main() -> None:
         sector_features=sectors,
         stock_features=stocks,
         premarket_flags=premarket,
+        news=news_bundle,
         output_dir=output_dir,
     )
 
@@ -145,6 +146,9 @@ def main() -> None:
         )
         (output_dir / "premarket_flags.json").write_text(
             json.dumps(premarket, indent=2), encoding="utf-8"
+        )
+        (output_dir / "news_bundle.json").write_text(
+            json.dumps(news_bundle, indent=2, ensure_ascii=False), encoding="utf-8"
         )
 
     save_positions_snapshot(positions_path, state, trading_day)

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from ..portfolio_manager.state import PortfolioState
 
@@ -28,6 +28,7 @@ class DailyReportBuilder:
         stock_scores: List[Dict],
         orders: Dict[str, List[Dict]],
         portfolio_state: PortfolioState,
+        news: Optional[Dict] = None,
     ) -> Tuple[Dict, str]:
         leading = [s["symbol"] for s in sectors[:3]]
         weak = [s["symbol"] for s in sectors[-3:]] if sectors else []
@@ -74,6 +75,12 @@ class DailyReportBuilder:
         est_equity = est_cash + est_market
         exposure_after = est_market / est_equity if est_equity > 0 else 0.0
 
+        market_news = (news or {}).get("market", {}).get("headlines", [])[:3] if news else []
+        sector_news = {
+            item["symbol"]: (news or {}).get("sectors", {}).get(item["symbol"], {}).get("headlines", [])[:2]
+            for item in sectors[:3]
+        } if news else {}
+
         report_json = {
             "date": trading_day.isoformat(),
             "market": {
@@ -84,6 +91,10 @@ class DailyReportBuilder:
             "sectors": {"leading": leading, "weak": weak},
             "actions": actions_json,
             "portfolio_after_est": {"exposure": exposure_after},
+            "news": {
+                "market_headlines": market_news,
+                "sector_headlines": sector_news,
+            },
         }
 
         markdown_lines = [
@@ -109,6 +120,12 @@ class DailyReportBuilder:
         markdown_lines.append(
             f"[\u9884\u8ba1\u4ed3\u4f4d] {exposure_after:.0%}"
         )
+        if market_news:
+            markdown_lines.append("[\u65b0\u95fb]\u8be6\u89e3")
+            for item in market_news:
+                title = item.get("title", "")
+                publisher = item.get("publisher", "")
+                markdown_lines.append(f"- {title} ({publisher})")
         high_risk = [s for s in stock_scores if s.get("premarket", 0) > 0.6]
         markdown_lines.append("[\u98ce\u63a7] \u76d8\u524d\u9ad8\u98ce\u9669\uff1a-" if not high_risk else "[\u98ce\u63a7] \u76d8\u524d\u9ad8\u98ce\u9669\uff1a" + ", ".join(h["symbol"] for h in high_risk))
         markdown_lines.append("[\u5f85\u529e] \u76d8\u4e2d\u6267\u884c\u540e\u8bf7\u5f55\u5165 operations.jsonl")
