@@ -34,6 +34,7 @@ class PipelineContext:
     report_markdown: str
     llm_analysis: Optional[Dict]
     news: Optional[Dict]
+    macro_flags: Optional[Dict[str, Dict]]
     stage_metrics: Dict[str, Dict]
 
 
@@ -70,6 +71,7 @@ class BaseAgent:
         stock_features: Dict[str, Dict],
         premarket_flags: Optional[Dict[str, Dict]] = None,
         trend_features: Optional[Dict] = None,
+        macro_flags: Optional[Dict[str, Dict]] = None,
         news: Optional[Dict] = None,
         output_dir: Optional[Path] = None,
     ) -> PipelineContext:
@@ -84,6 +86,7 @@ class BaseAgent:
                 sector_features=sector_features,
                 stock_features=stock_features,
                 trend_features=trend_features or {},
+                macro_flags=macro_flags or {},
                 premarket_flags=premarket_flags or {},
                 news=news or {},
                 output_dir=output_dir,
@@ -96,6 +99,7 @@ class BaseAgent:
             sector_features,
             stock_features,
             premarket_flags,
+            macro_flags,
             news,
             output_dir,
             stage_metrics,
@@ -111,6 +115,7 @@ class BaseAgent:
         sector_features: Dict[str, Dict],
         stock_features: Dict[str, Dict],
         premarket_flags: Optional[Dict[str, Dict]],
+        macro_flags: Optional[Dict[str, Dict]],
         news: Optional[Dict],
         output_dir: Optional[Path],
         stage_metrics: Dict[str, Dict[str, object]],
@@ -312,6 +317,7 @@ class BaseAgent:
             report_markdown=report_markdown,
             llm_analysis=llm_analysis,
             news=news,
+            macro_flags=macro_flags,
             stage_metrics=stage_metrics,
         )
 
@@ -325,6 +331,7 @@ class BaseAgent:
         sector_features: Dict[str, Dict],
         stock_features: Dict[str, Dict],
         trend_features: Dict,
+        macro_flags: Dict[str, Dict],
         premarket_flags: Dict[str, Dict],
         news: Dict,
         output_dir: Optional[Path],
@@ -339,6 +346,7 @@ class BaseAgent:
             sector_features,
             stock_features,
             trend_features,
+            macro_flags,
             premarket_flags,
             news,
         )
@@ -438,6 +446,7 @@ class BaseAgent:
             report_markdown=report_markdown,
             llm_analysis=llm_analysis,
             news=news,
+            macro_flags=macro_flags,
             stage_metrics=stage_metrics,
         )
 
@@ -448,6 +457,7 @@ class BaseAgent:
         sector_features: Dict[str, Dict],
         stock_features: Dict[str, Dict],
         trend_features: Dict,
+        macro_flags: Dict[str, Dict],
         premarket_flags: Dict[str, Dict],
         news: Dict,
     ) -> Dict:
@@ -465,6 +475,7 @@ class BaseAgent:
                 "trend": trend_features,
                 "news": news,
                 "premarket": premarket_flags,
+                "macro_flags": macro_flags,
             },
             "constraints": {
                 "limits": self.config.get("limits", {}),
@@ -473,6 +484,7 @@ class BaseAgent:
             "context": {
                 "positions_snapshot": self.portfolio_state.snapshot_dict(),
             },
+            "macro_flags": macro_flags,
         }
 
     def _convert_sector_view(self, view: Mapping) -> List[Dict]:

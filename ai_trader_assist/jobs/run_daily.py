@@ -159,7 +159,9 @@ def main() -> None:
         fred_key = os.getenv("FRED_API_KEY")
         yf_client = YahooFinanceClient(cache_dir=project_root / "storage" / "cache" / "yf")
         fred_client = FredClient(
-            api_key=fred_key, cache_dir=project_root / "storage" / "cache" / "fred"
+            api_key=fred_key,
+            cache_dir=project_root / "storage" / "cache" / "fred",
+            logger=logger,
         )
 
         (
@@ -169,6 +171,7 @@ def main() -> None:
             premarket,
             news_bundle,
             trend_bundle,
+            macro_flags,
             feature_metrics,
         ) = prepare_feature_sets(
             config=config,
@@ -312,6 +315,7 @@ def main() -> None:
             premarket_flags=premarket,
             trend_features=trend_bundle,
             news=news_bundle,
+            macro_flags=macro_flags,
             output_dir=output_dir,
         )
         phases_executed.extend(context.stage_metrics.keys())
@@ -336,6 +340,9 @@ def main() -> None:
             )
             (output_dir / "trend_features.json").write_text(
                 json.dumps(trend_bundle, indent=2), encoding="utf-8"
+            )
+            (output_dir / "macro_flags.json").write_text(
+                json.dumps(macro_flags, indent=2), encoding="utf-8"
             )
 
         save_positions_snapshot(positions_path, state, trading_day)
