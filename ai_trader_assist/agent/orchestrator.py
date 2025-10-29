@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
-from typing import Dict, Mapping, Optional, Sequence, Tuple
+from typing import Dict, List, Mapping, Optional, Sequence, Tuple
 
 from .safe_mode import SafeModeConfig, build_safe_outputs
 from ..llm_operators.base import (
@@ -332,14 +332,71 @@ class LLMOrchestrator:
         stage_results: Mapping[str, Mapping],
         state: PortfolioState,
     ) -> Mapping:
+        context = payload.get("context", {})
+        news_digest = payload.get("features", {}).get("news", {})
+        data_gaps = self._collect_data_gaps(payload, stage_results)
+
+        market_view = stage_results.get("market_analyzer", {})
+        sector_view = stage_results.get("sector_analyzer", {})
+        stock_view = stage_results.get("stock_classifier", {})
+        exposure_view = stage_results.get("exposure_planner", {})
+
         return {
             "as_of": payload.get("as_of"),
-            "market_view": stage_results.get("market_analyzer", {}),
-            "sector_view": stage_results.get("sector_analyzer", {}),
-            "stock_view": stage_results.get("stock_classifier", {}),
-            "exposure_view": stage_results.get("exposure_planner", {}),
-            "news": payload.get("features", {}).get("news", {}),
+            "report_date": payload.get("as_of"),
+            "market_summary": market_view,
+            "market_view": market_view,
+            "sector_notes": sector_view,
+            "sector_view": sector_view,
+            "stock_actions": stock_view,
+            "stock_view": stock_view,
+            "exposure_check": exposure_view,
+            "exposure_view": exposure_view,
+            "current_positions": context.get("current_positions", {}),
+            "portfolio_value": context.get("portfolio_value"),
+            "positions_snapshot": context.get("positions_snapshot", {}),
+            "news_digest": news_digest,
+            "news": news_digest,
+            "data_gaps": data_gaps,
         }
+
+    @staticmethod
+    def _collect_data_gaps(
+        payload: Mapping,
+        stage_results: Mapping[str, Mapping],
+    ) -> Sequence[str]:
+        """Merge known data gaps from payload and intermediate stages."""
+
+        candidates: List[str] = []
+
+        def _extend(items) -> None:
+            if not isinstance(items, Sequence) or isinstance(items, (str, bytes)):
+                return
+            for entry in items:
+                if isinstance(entry, str):
+                    candidates.append(entry)
+
+        _extend(payload.get("data_gaps"))
+        features = payload.get("features", {}) if isinstance(payload, Mapping) else {}
+        _extend(features.get("data_gaps"))
+
+        for stage_name in (
+            "market_analyzer",
+            "sector_analyzer",
+            "stock_classifier",
+            "exposure_planner",
+        ):
+            stage_payload = stage_results.get(stage_name, {})
+            if isinstance(stage_payload, Mapping):
+                _extend(stage_payload.get("data_gaps"))
+
+        seen = set()
+        merged: List[str] = []
+        for entry in candidates:
+            if entry not in seen:
+                merged.append(entry)
+                seen.add(entry)
+        return merged
 
     def _append_error_log(
         self,

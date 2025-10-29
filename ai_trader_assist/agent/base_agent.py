@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 from time import perf_counter
-from typing import Dict, List, Mapping, Optional
+from typing import Dict, List, Mapping, Optional, Tuple
 
 from ..decision_engine.stock_scoring import StockDecisionEngine
 from ..llm.analyzer import DeepSeekAnalyzer
@@ -464,6 +464,8 @@ class BaseAgent:
         universe = self.config.get("universe", {})
         schedule = self.config.get("schedule", {})
 
+        positions_summary, portfolio_value = self._summarize_current_positions()
+
         return {
             "as_of": trading_day.isoformat(),
             "timezone": schedule.get("tz"),
@@ -483,9 +485,38 @@ class BaseAgent:
             },
             "context": {
                 "positions_snapshot": self.portfolio_state.snapshot_dict(),
+                "current_positions": positions_summary,
+                "portfolio_value": portfolio_value,
             },
             "macro_flags": macro_flags,
         }
+
+    def _summarize_current_positions(self) -> Tuple[Dict[str, Dict[str, float]], float]:
+        """Normalise portfolio holdings for LLM consumption."""
+
+        equity = float(self.portfolio_state.total_equity or 0.0)
+        summary: Dict[str, Dict[str, float]] = {}
+
+        if not self.portfolio_state.positions:
+            return summary, equity
+
+        for position in self.portfolio_state.positions:
+            shares = float(position.shares)
+            last_price = float(position.last_price or position.avg_cost or 0.0)
+            market_value = shares * last_price
+            weight = market_value / equity if equity else 0.0
+            side = "short" if shares < 0 or market_value < 0 else "long"
+
+            summary[position.symbol] = {
+                "weight": weight,
+                "side": side,
+                "avg_price": float(position.avg_cost or 0.0),
+                "last_price": last_price,
+                "shares": shares,
+                "market_value": market_value,
+            }
+
+        return summary, equity
 
     def _convert_sector_view(self, view: Mapping) -> List[Dict]:
         results: List[Dict] = []
