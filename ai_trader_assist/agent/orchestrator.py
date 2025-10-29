@@ -196,7 +196,7 @@ class LLMOrchestrator:
     def _init_operators(self) -> Dict[str, LLMOperator]:
         operators: Dict[str, LLMOperator] = {}
         temperature = float(self.operator_configs.get("temperature", 0.2) or 0.2)
-        max_tokens = int(self.operator_configs.get("max_tokens", 1200) or 1200)
+        max_tokens = int(self.operator_configs.get("max_tokens", 12000) or 12000)
         stage_settings = self.operator_configs.get("operators", {})
         max_retry = int(self.guardrails.get("max_retry", 2) or 2)
 

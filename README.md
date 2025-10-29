@@ -55,8 +55,8 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
   - `DEEPSEEK_API_KEY`：DeepSeek LLM 的访问令牌，用于盘前分析提示词调用（必填）。
   - `DEEPSEEK_MODEL`：可选，自定义 DeepSeek 模型名称，默认为 `deepseek-chat`。
   - `DEEPSEEK_API_URL`：可选，自定义 API 入口地址，默认为官方 `https://api.deepseek.com/v1/chat/completions`。
-  - `DEEPSEEK_TIMEOUT`：可选，覆盖请求超时时间（秒），默认 30。
-  - `DEEPSEEK_MAX_TOKENS`：可选，限制每次生成的最大 Token 数，默认 1200，用于控制响应时长与 JSON 长度。
+  - `DEEPSEEK_TIMEOUT`：可选，覆盖请求超时时间（秒），默认 90。
+  - `DEEPSEEK_MAX_TOKENS`：可选，限制每次生成的最大 Token 数，默认 12000，用于处理更长的结构化响应。
    - `TZ`：默认 `America/Los_Angeles`，用于统一时区。
 
 ---
