@@ -16,8 +16,8 @@ class DeepSeekClient:
     api_key: str
     model: str = "deepseek-chat"
     api_url: str = "https://api.deepseek.com/v1/chat/completions"
-    timeout: float = 30.0
-    max_tokens: int = 1200
+    timeout: float = 90.0
+    max_tokens: int = 8192
 
     @classmethod
     def from_env(cls) -> "DeepSeekClient":
@@ -31,9 +31,9 @@ class DeepSeekClient:
             "DEEPSEEK_API_URL", "https://api.deepseek.com/v1/chat/completions"
         )
         timeout_env = os.getenv("DEEPSEEK_TIMEOUT")
-        timeout = float(timeout_env) if timeout_env else 30.0
+        timeout = float(timeout_env) if timeout_env else 90.0
         max_tokens_env = os.getenv("DEEPSEEK_MAX_TOKENS")
-        max_tokens = int(max_tokens_env) if max_tokens_env else 1200
+        max_tokens = int(max_tokens_env) if max_tokens_env else 8192
         return cls(
             api_key=api_key,
             model=model,
