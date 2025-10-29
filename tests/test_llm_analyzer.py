@@ -24,7 +24,11 @@ class _StubDeepSeekClient:
 
     def chat(self, messages, stage, temperature=0.0, max_tokens=2048):  # noqa: D401
         self.calls.append({"stage": stage, "messages": messages})
-        return self.responses[stage]
+        return self.responses[stage], {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30,
+        }
 
 
 def test_analyzer_emits_structured_outputs():
@@ -397,6 +401,9 @@ def test_analyzer_emits_structured_outputs():
             "published": "2025-10-27T12:00:00+00:00",
         }
     ]
+
+    usage = payload["usage"]
+    assert usage["market_overview"]["total_tokens"] == 30
 
     assert [call["stage"] for call in client.calls] == [
         "market_overview",

@@ -2,13 +2,16 @@
 from __future__ import annotations
 
 import json
+import logging
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
+from time import perf_counter
 from typing import Dict, List, Mapping, Optional
 
 from .client import DeepSeekClient
 from ..portfolio_manager.state import PortfolioState
+from ..utils import log_ok, log_result, log_step
 
 
 def _portfolio_snapshot(state: PortfolioState) -> Dict:
@@ -36,8 +39,10 @@ class DeepSeekAnalyzer:
     prompt_files: Mapping[str, Path]
     client: DeepSeekClient
     base_prompt: Optional[Path] = None
+    logger: Optional[logging.Logger] = None
     _prompt_cache: Dict[str, str] = field(default_factory=dict, init=False)
     _base_prompt_text: Optional[str] = field(default=None, init=False)
+    _usage: Dict[str, Dict] = field(default_factory=dict, init=False)
 
     def __post_init__(self) -> None:
         for stage, path in self.prompt_files.items():
@@ -63,6 +68,7 @@ class DeepSeekAnalyzer:
         premarket_flags: Dict[str, Dict],
         news: Optional[Dict] = None,
     ) -> Dict:
+        self._usage = {}
         news_bundle = news or {}
         market_view = self._invoke(
             "market_overview",
@@ -119,6 +125,7 @@ class DeepSeekAnalyzer:
             "stock_actions": stock_view,
             "exposure_check": exposure_view,
             "report_compose": report_view,
+            "usage": self._usage,
         }
 
     def _invoke(self, stage: str, payload: Dict) -> Dict:
@@ -130,7 +137,10 @@ class DeepSeekAnalyzer:
         if self._base_prompt_text:
             messages.append({"role": "system", "content": self._base_prompt_text})
         messages.append({"role": "user", "content": user_prompt})
-        raw_response = self.client.chat(messages=messages, stage=stage)
+        if self.logger:
+            log_step(self.logger, f"llm:{stage}", "Invoking DeepSeek stage")
+        stage_start = perf_counter()
+        raw_response, usage = self.client.chat(messages=messages, stage=stage)
         try:
             parsed = self._parse_json_response(raw_response)
         except ValueError as exc:
@@ -138,6 +148,31 @@ class DeepSeekAnalyzer:
             raise ValueError(
                 f"DeepSeek 阶段 {stage} 返回非结构化文本: {exc}"
             ) from exc
+        self._usage[stage] = usage or {}
+        if self.logger:
+            prompt_tokens = usage.get("prompt_tokens") if isinstance(usage, dict) else None
+            completion_tokens = usage.get("completion_tokens") if isinstance(usage, dict) else None
+            total_tokens = usage.get("total_tokens") if isinstance(usage, dict) else None
+            token_summary = ", ".join(
+                f"{label}={value}"
+                for label, value in (
+                    ("prompt", prompt_tokens),
+                    ("completion", completion_tokens),
+                    ("total", total_tokens),
+                )
+                if isinstance(value, (int, float))
+            ) or "tokens=unknown"
+            keys_preview = ", ".join(list(parsed.keys())[:4]) if isinstance(parsed, dict) else ""
+            log_result(
+                self.logger,
+                f"llm:{stage}",
+                f"{token_summary} | keys={keys_preview}",
+            )
+            log_ok(
+                self.logger,
+                f"llm:{stage}",
+                f"Completed in {perf_counter() - stage_start:.2f}s",
+            )
         return parsed
 
     @staticmethod

@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass
-from typing import List, Mapping
+from typing import Dict, List, Mapping
 
 import requests
 
@@ -48,8 +48,8 @@ class DeepSeekClient:
         stage: str,
         temperature: float = 0.0,
         max_tokens: int = 2048,
-    ) -> str:
-        """Send a chat completion request and return the raw content string."""
+    ) -> tuple[str, Dict]:
+        """Send a chat completion request and return the content and usage."""
 
         payload = {
             "model": self.model,
@@ -89,4 +89,8 @@ class DeepSeekClient:
         if not isinstance(content, str):
             raise ValueError("DeepSeek 返回非结构化文本")
 
-        return content
+        usage = data.get("usage") if isinstance(data, dict) else {}
+        if usage is None:
+            usage = {}
+
+        return content, usage

@@ -1,9 +1,11 @@
 """Feature preparation helpers for the daily job."""
 from __future__ import annotations
 
+import logging
 import math
 from datetime import date, datetime, timedelta, timezone
-from typing import Dict, Iterable, List, Tuple, Union
+from time import perf_counter
+from typing import Dict, Iterable, List, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -11,6 +13,7 @@ import pandas as pd
 from ..data_collector.fred_client import FredClient
 from ..data_collector.yf_client import YahooFinanceClient
 from ..portfolio_manager.state import PortfolioState
+from ..utils import log_ok, log_result, log_step
 from . import indicators
 from .trend_features import compute_trend_features
 
@@ -198,23 +201,49 @@ def prepare_feature_sets(
     yf_client: YahooFinanceClient,
     fred_client: FredClient,
     trading_day: Union[date, datetime],
+    logger: Optional[logging.Logger] = None,
 ) -> Tuple[
     Dict,
     Dict[str, Dict],
     Dict[str, Dict],
     Dict[str, Dict],
     Dict[str, Dict],
+    Dict[str, Dict],
+    Dict[str, Dict],
 ]:
+    """Collect data, engineer features, and emit news/trend bundles."""
+
     day = _trading_day_date(trading_day)
     end = datetime.combine(day, datetime.min.time()) + timedelta(days=1)
     as_of = datetime.combine(day, datetime.max.time()).replace(tzinfo=timezone.utc)
     start = end - timedelta(days=250)
 
+    market_symbols = ["SPY", "QQQ"]
+    sector_symbols: List[str] = list(config.get("universe", {}).get("sectors", []))
+    watchlist = set(config.get("universe", {}).get("watchlist", []))
+    watchlist.update(position.symbol for position in state.positions)
+    sorted_watchlist = sorted(watchlist)
+
+    history_symbols = market_symbols + ["^VIX"] + sector_symbols + sorted_watchlist
+
+    metrics: Dict[str, Dict[str, object]] = {
+        "data_collector": {},
+        "feature_engineering": {},
+    }
+
+    data_start = perf_counter()
+    if logger:
+        log_step(
+            logger,
+            "data_collector",
+            "Fetching price history and news for %d symbols (lookback=250d, news_window=7d)"
+            % len(history_symbols),
+        )
+
     spy_history = _fetch_history(yf_client, "SPY", start, end)
     qqq_history = _fetch_history(yf_client, "QQQ", start, end)
     vix_history = _fetch_history(yf_client, "^VIX", start, end)
 
-    market_symbols = ["SPY", "QQQ"]
     market_history = {"SPY": spy_history, "QQQ": qqq_history}
     market_news = {
         symbol: _normalize_news_payload(
@@ -223,7 +252,6 @@ def prepare_feature_sets(
         for symbol in market_symbols
     }
 
-    sector_symbols: Iterable[str] = config.get("universe", {}).get("sectors", [])
     sector_data = {
         symbol: _fetch_history(yf_client, symbol, start, end)
         for symbol in sector_symbols
@@ -235,9 +263,6 @@ def prepare_feature_sets(
         for symbol in sector_symbols
     }
 
-    watchlist = set(config.get("universe", {}).get("watchlist", []))
-    watchlist.update(position.symbol for position in state.positions)
-    sorted_watchlist = sorted(watchlist)
     stock_data = {
         symbol: _fetch_history(yf_client, symbol, start, end)
         for symbol in sorted_watchlist
@@ -272,6 +297,91 @@ def prepare_feature_sets(
         above = df["Close"].iloc[-1] > df["Close"].rolling(window=50, min_periods=50).mean().iloc[-1]
         breadth_samples.append(1.0 if above else 0.0)
     breadth = float(sum(breadth_samples) / len(breadth_samples)) if breadth_samples else 0.0
+
+    yf_stats = yf_client.snapshot_stats()
+    fred_stats = fred_client.snapshot_stats()
+    data_duration = perf_counter() - data_start
+
+    history_stats = yf_stats.get("history", {})
+    news_stats = yf_stats.get("news", {})
+
+    metrics["data_collector"] = {
+        "history_requests": history_stats.get("requests", 0),
+        "history_cache_hits": history_stats.get("cache_hits", 0),
+        "history_rows": history_stats.get("rows", 0),
+        "history_symbols": history_stats.get("symbol_count", 0),
+        "history_synthetic_fallbacks": history_stats.get("synthetic_fallbacks", 0),
+        "news_requests": news_stats.get("requests", 0),
+        "news_cache_hits": news_stats.get("cache_hits", 0),
+        "news_articles": news_stats.get("articles", 0),
+        "news_symbols": news_stats.get("symbol_count", 0),
+        "news_content_downloads": news_stats.get("content_downloads", 0),
+        "news_content_requests": news_stats.get("content_requests", 0),
+        "news_content_failures": news_stats.get("content_failures", 0),
+        "news_synthetic": news_stats.get("synthetic_articles", 0),
+        "fred_series": fred_stats.get("series_count", 0),
+        "fred_cache_hits": fred_stats.get("cache_hits", 0),
+        "duration": data_duration,
+    }
+
+    if logger:
+        history_requests = history_stats.get("requests", 0)
+        history_hits = history_stats.get("cache_hits", 0)
+        history_rate = (history_hits / history_requests) if history_requests else 0.0
+        log_result(
+            logger,
+            "data_collector",
+            "history: symbols=%d, rows=%d, cache_hit=%d/%d (%.0f%%), synthetic=%d"
+            % (
+                history_stats.get("symbol_count", 0),
+                history_stats.get("rows", 0),
+                history_hits,
+                history_requests,
+                history_rate * 100,
+                history_stats.get("synthetic_fallbacks", 0),
+            ),
+        )
+
+        news_requests = news_stats.get("requests", 0)
+        news_hits = news_stats.get("cache_hits", 0)
+        news_rate = (news_hits / news_requests) if news_requests else 0.0
+        content_requests = news_stats.get("content_requests", 0)
+        content_downloads = news_stats.get("content_downloads", 0)
+        log_result(
+            logger,
+            "data_collector",
+            "news: symbols=%d, articles=%d, cache_hit=%d/%d (%.0f%%), content=%d/%d, synthetic=%d"
+            % (
+                news_stats.get("symbol_count", 0),
+                news_stats.get("articles", 0),
+                news_hits,
+                news_requests,
+                news_rate * 100,
+                content_downloads,
+                content_requests,
+                news_stats.get("synthetic_articles", 0),
+            ),
+        )
+        if fred_stats.get("series_count", 0):
+            log_result(
+                logger,
+                "data_collector",
+                "fred: series=%d, cache_hits=%d"
+                % (
+                    fred_stats.get("series_count", 0),
+                    fred_stats.get("cache_hits", 0),
+                ),
+            )
+        log_ok(logger, "data_collector", f"Completed in {data_duration:.2f}s")
+
+    if logger:
+        log_step(
+            logger,
+            "feature_engineering",
+            "Calculating indicators and trend features (stocks=%d, sectors=%d)"
+            % (len(sorted_watchlist), len(sector_symbols)),
+        )
+    feature_start = perf_counter()
 
     trend_config = config.get("trend")
 
@@ -419,6 +529,44 @@ def prepare_feature_sets(
                 "score": _premarket_score(dev, vol_ratio, sentiment),
             }
 
+    feature_duration = perf_counter() - feature_start
+
+    stock_trend_states = [meta.get("trend_state", "flat") for meta in stock_trends.values()]
+    up_count = sum(1 for state in stock_trend_states if state == "uptrend")
+    down_count = sum(1 for state in stock_trend_states if state == "downtrend")
+    flat_count = len(stock_trend_states) - up_count - down_count
+    avg_momentum = float(
+        np.mean([meta.get("momentum_10d", 0.0) for meta in stock_trends.values()])
+    ) if stock_trends else 0.0
+
+    metrics["feature_engineering"] = {
+        "market_fields": len(market_features),
+        "sector_symbols": len(sector_features),
+        "stock_symbols": len(stock_features),
+        "trend_states": {
+            "uptrend": up_count,
+            "downtrend": down_count,
+            "flat": flat_count,
+        },
+        "avg_momentum_10d": avg_momentum,
+        "duration": feature_duration,
+    }
+
+    if logger:
+        log_result(
+            logger,
+            "feature_engineering",
+            "features: market_fields=%d, sectors=%d, stocks=%d"
+            % (len(market_features), len(sector_features), len(stock_features)),
+        )
+        log_result(
+            logger,
+            "feature_engineering",
+            "stock_trend_states: up=%d, down=%d, flat=%d, avg_momentum_10d=%.1f%%"
+            % (up_count, down_count, flat_count, avg_momentum * 100),
+        )
+        log_ok(logger, "feature_engineering", f"Completed in {feature_duration:.2f}s")
+
     news_bundle = {
         "market": {
             "symbols": market_symbols,
@@ -456,4 +604,5 @@ def prepare_feature_sets(
         premarket_flags,
         news_bundle,
         trend_bundle,
+        metrics,
     )

@@ -3,9 +3,24 @@ from __future__ import annotations
 
 import logging
 import sys
+from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
-from typing import Tuple
+from time import perf_counter
+from typing import Callable, Iterator, Tuple
+
+
+# ---------------------------------------------------------------------------
+# Custom log levels used across the pipeline.
+# ---------------------------------------------------------------------------
+
+STEP_LEVEL = logging.INFO + 1
+RESULT_LEVEL = logging.INFO + 2
+OK_LEVEL = logging.INFO + 3
+
+logging.addLevelName(STEP_LEVEL, "STEP")
+logging.addLevelName(RESULT_LEVEL, "RESULT")
+logging.addLevelName(OK_LEVEL, "OK")
 
 
 def _clear_handlers(logger: logging.Logger) -> None:
@@ -13,6 +28,50 @@ def _clear_handlers(logger: logging.Logger) -> None:
     for handler in list(logger.handlers):
         logger.removeHandler(handler)
     logger.propagate = False
+
+
+def _format_component(component: str, message: str) -> str:
+    return f"[{component}] {message}"
+
+
+def log_step(logger: logging.Logger, component: str, message: str) -> None:
+    logger.log(STEP_LEVEL, _format_component(component, message))
+
+
+def log_result(logger: logging.Logger, component: str, message: str) -> None:
+    logger.log(RESULT_LEVEL, _format_component(component, message))
+
+
+def log_ok(logger: logging.Logger, component: str, message: str) -> None:
+    logger.log(OK_LEVEL, _format_component(component, message))
+
+
+def log_warn(logger: logging.Logger, component: str, message: str) -> None:
+    logger.warning(_format_component(component, message))
+
+
+def log_error(logger: logging.Logger, component: str, message: str) -> None:
+    logger.error(_format_component(component, message))
+
+
+@contextmanager
+def log_timed_stage(
+    logger: logging.Logger,
+    component: str,
+    message: str,
+) -> Iterator[Callable[[str], None]]:
+    """Context manager that logs the start, results, and completion of a stage."""
+
+    log_step(logger, component, message)
+    start = perf_counter()
+    try:
+        yield lambda result_message: log_result(logger, component, result_message)
+    except Exception:
+        logger.exception(_format_component(component, "阶段执行失败"))
+        raise
+    else:
+        duration = perf_counter() - start
+        log_ok(logger, component, f"Completed in {duration:.2f}s")
 
 
 def setup_logger(
@@ -51,7 +110,9 @@ def setup_logger(
     _clear_handlers(logger)
     logger.setLevel(level)
 
-    formatter = logging.Formatter("[%(asctime)s][%(levelname)s] %(message)s", "%H:%M:%S")
+    formatter = logging.Formatter(
+        "[%(asctime)s][%(levelname)s][%(name)s] %(message)s", "%Y-%m-%d %H:%M:%S"
+    )
 
     file_handler = logging.FileHandler(log_path, encoding="utf-8")
     file_handler.setLevel(level)

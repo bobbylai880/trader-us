@@ -12,6 +12,8 @@ from zoneinfo import ZoneInfo
 
 from dotenv import load_dotenv
 
+from typing import List
+
 from ..agent.base_agent import BaseAgent
 from ..data_collector.fred_client import FredClient
 from ..data_collector.yf_client import YahooFinanceClient
@@ -28,7 +30,7 @@ from ..llm.client import DeepSeekClient
 from ..position_sizer.sizer import PositionSizer
 from ..report_builder.builder import DailyReportBuilder
 from ..risk_engine.macro_engine import MacroRiskEngine
-from ..utils import setup_logger
+from ..utils import log_ok, log_result, log_step, setup_logger
 
 
 def load_config(path: Path) -> dict:
@@ -122,21 +124,35 @@ def main() -> None:
 
         fred_detected = "已检测" if os.getenv("FRED_API_KEY") else "缺失"
         deepseek_detected = "已检测" if os.getenv("DEEPSEEK_API_KEY") else "缺失"
-        logger.info(
-            "环境变量加载完毕 (FRED_API_KEY: %s, DEEPSEEK_API_KEY: %s)",
-            fred_detected,
-            deepseek_detected,
+        log_result(
+            logger,
+            "run_daily",
+            f"环境变量检测: FRED_API_KEY={fred_detected}, DEEPSEEK_API_KEY={deepseek_detected}",
         )
         logger.info("运行时区: %s, 目标交易日: %s", tz_name, trading_day.isoformat())
 
-        logger.info("读取操作日志: %s", operations_path)
-        operations = read_operations_log(operations_path)
-        logger.debug("共加载 %d 条历史操作记录", len(operations))
+        phases_executed: List[str] = []
 
-        logger.info("载入持仓快照: %s", positions_path)
+        portfolio_start = perf_counter()
+        log_step(
+            logger,
+            "portfolio_manager",
+            f"同步操作日志与持仓 (operations={operations_path.name}, positions={positions_path.name})",
+        )
+        operations = read_operations_log(operations_path)
         state = load_positions_snapshot(positions_path)
         apply_daily_operations(state, operations)
-        logger.debug("持仓快照更新完成 (现金=%.2f, 持仓数=%d)", state.cash, len(state.positions))
+        log_result(
+            logger,
+            "portfolio_manager",
+            f"loaded_operations={len(operations)}, positions={len(state.positions)}, cash={state.cash:.2f}",
+        )
+        log_ok(
+            logger,
+            "portfolio_manager",
+            f"Completed in {perf_counter() - portfolio_start:.2f}s",
+        )
+        phases_executed.append("portfolio_manager")
 
         fred_key = os.getenv("FRED_API_KEY")
         yf_client = YahooFinanceClient(cache_dir=project_root / "storage" / "cache" / "yf")
@@ -144,7 +160,6 @@ def main() -> None:
             api_key=fred_key, cache_dir=project_root / "storage" / "cache" / "fred"
         )
 
-        logger.info("开始采集行情与特征数据")
         (
             market,
             sectors,
@@ -152,18 +167,37 @@ def main() -> None:
             premarket,
             news_bundle,
             trend_bundle,
+            feature_metrics,
         ) = prepare_feature_sets(
             config=config,
             state=state,
             yf_client=yf_client,
             fred_client=fred_client,
             trading_day=now,
+            logger=logger,
         )
-        logger.info(
-            "完成特征准备: 市场=%d 字段, 板块=%d, 个股=%d",
-            len(market),
-            len(sectors),
-            len(stocks),
+        phases_executed.extend(feature_metrics.keys())
+        data_metrics = feature_metrics.get("data_collector", {})
+        feature_summary = feature_metrics.get("feature_engineering", {})
+        log_result(
+            logger,
+            "run_daily",
+            "数据摘要: history_rows=%s, news_articles=%s, fred_series=%s"
+            % (
+                data_metrics.get("history_rows", 0),
+                data_metrics.get("news_articles", 0),
+                data_metrics.get("fred_series", 0),
+            ),
+        )
+        log_result(
+            logger,
+            "run_daily",
+            "特征摘要: stocks=%s, uptrend=%s, downtrend=%s"
+            % (
+                feature_summary.get("stock_symbols", 0),
+                feature_summary.get("trend_states", {}).get("uptrend", 0),
+                feature_summary.get("trend_states", {}).get("downtrend", 0),
+            ),
         )
 
         latest_prices = {
@@ -190,11 +224,16 @@ def main() -> None:
                 base_prompt=resolve_path(project_root, base_prompt_path)
                 if base_prompt_path
                 else None,
+                logger=logger,
             )
         if analyzer:
-            logger.info("加载 DeepSeek 提示词 (%d 个阶段)", len(prompt_files))
+            log_result(
+                logger,
+                "llm",
+                f"DeepSeek prompts configured: {len(prompt_files)} stages",
+            )
         else:
-            logger.info("未配置 DeepSeek 提示词，跳过 LLM 分析阶段")
+            log_result(logger, "llm", "Skipped (no prompt files configured)")
 
         agent = BaseAgent(
             config=config,
@@ -204,6 +243,7 @@ def main() -> None:
             portfolio_state=state,
             report_builder=DailyReportBuilder(config["sizer"]),
             analyzer=analyzer,
+            logger=logger,
         )
 
         if args.output_dir:
@@ -213,7 +253,7 @@ def main() -> None:
 
         logger.info("开始执行日常流程，输出目录: %s", output_dir)
 
-        agent.run(
+        context = agent.run(
             trading_day=trading_day,
             market_features=market,
             sector_features=sectors,
@@ -222,10 +262,11 @@ def main() -> None:
             news=news_bundle,
             output_dir=output_dir,
         )
+        phases_executed.extend(context.stage_metrics.keys())
 
         if output_dir:
             output_dir.mkdir(parents=True, exist_ok=True)
-            logger.info("写入特征与分析文件至 %s", output_dir)
+            log_step(logger, "run_daily", f"写入特征文件到 {output_dir}")
             (output_dir / "market_features.json").write_text(
                 json.dumps(market, indent=2), encoding="utf-8"
             )
@@ -246,7 +287,52 @@ def main() -> None:
             )
 
         save_positions_snapshot(positions_path, state, trading_day)
-        logger.info("已更新持仓文件: %s", positions_path)
+        log_result(
+            logger,
+            "portfolio_manager",
+            f"Positions snapshot updated ({positions_path.name})",
+        )
+
+        summary_duration = perf_counter() - start_time
+        unique_phases: List[str] = []
+        seen = set()
+        for phase in phases_executed:
+            if phase not in seen:
+                unique_phases.append(phase)
+                seen.add(phase)
+
+        stock_actions = {"buy": 0, "hold": 0, "reduce": 0, "avoid": 0}
+        for item in context.stock_scores:
+            key = item.get("action", "hold")
+            if key in stock_actions:
+                stock_actions[key] += 1
+
+        buy_notional = sum(order.get("notional", 0.0) for order in context.orders.get("buy", []))
+        report_path = output_dir / "report.md" if output_dir else None
+
+        logger.info("==================== SUMMARY ====================")
+        logger.info("Total time: %.2fs", summary_duration)
+        logger.info(
+            "Phases executed: %s",
+            " → ".join(unique_phases) if unique_phases else "n/a",
+        )
+        logger.info(
+            "Stocks analyzed: %d (Buy=%d, Hold=%d, Reduce=%d, Avoid=%d)",
+            len(context.stock_scores),
+            stock_actions["buy"],
+            stock_actions["hold"],
+            stock_actions["reduce"],
+            stock_actions["avoid"],
+        )
+        logger.info(
+            "Orders: buy=%d (notional=%.2f), sell=%d",
+            len(context.orders.get("buy", [])),
+            buy_notional,
+            len(context.orders.get("sell", [])),
+        )
+        if report_path:
+            logger.info("Report saved: %s", report_path)
+        logger.info("=================================================")
 
     except Exception:
         logger.exception("执行 run_daily 发生异常")

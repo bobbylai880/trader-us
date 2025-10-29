@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from copy import deepcopy
 from datetime import datetime, timedelta, timezone
 from html import unescape
 from html.parser import HTMLParser
@@ -77,6 +78,27 @@ class YahooFinanceClient:
         # session so offline environments do not spend minutes waiting for
         # repeated timeouts when traversing a large universe.
         self._content_fetch_budget = 8
+        self.stats = {
+            "history": {
+                "requests": 0,
+                "cache_hits": 0,
+                "rows": 0,
+                "symbols": set(),
+                "synthetic_fallbacks": 0,
+            },
+            "news": {
+                "requests": 0,
+                "cache_hits": 0,
+                "articles": 0,
+                "symbols": set(),
+                "content_requests": 0,
+                "content_cache_hits": 0,
+                "content_downloads": 0,
+                "content_failures": 0,
+                "synthetic_articles": 0,
+                "company_queries": 0,
+            },
+        }
 
     # ------------------------------------------------------------------
     # Price history helpers
@@ -138,10 +160,16 @@ class YahooFinanceClient:
         force: bool = False,
     ) -> pd.DataFrame:
         """Fetch price history, caching results locally or using a fallback."""
+        stats = self.stats["history"]
+        stats["requests"] += 1
+        stats["symbols"].add(symbol)
         cache_path = self._cache_path(symbol, start, end, interval)
         if cache_path.exists() and not force:
             try:
-                return pd.read_parquet(cache_path)
+                data = pd.read_parquet(cache_path)
+                stats["cache_hits"] += 1
+                stats["rows"] += len(data)
+                return data
             except Exception:
                 cache_path.unlink(missing_ok=True)
 
@@ -162,11 +190,15 @@ class YahooFinanceClient:
 
         if data.empty and cache_path.exists():
             try:
-                return pd.read_parquet(cache_path)
+                data = pd.read_parquet(cache_path)
+                stats["cache_hits"] += 1
+                stats["rows"] += len(data)
+                return data
             except Exception:
                 cache_path.unlink(missing_ok=True)
 
         if data.empty:
+            stats["synthetic_fallbacks"] += 1
             data = self._synthetic_history(symbol, start, end, interval)
 
         if data.empty:
@@ -176,6 +208,7 @@ class YahooFinanceClient:
             data.to_parquet(cache_path)
         except Exception:
             pass
+        stats["rows"] += len(data)
         return data
 
     def latest_price(self, symbol: str) -> Optional[float]:
@@ -229,11 +262,14 @@ class YahooFinanceClient:
             return ""
 
         cache_path = self._article_cache_path(url)
+        stats = self.stats["news"]
+        stats["content_requests"] += 1
         if cache_path.exists() and not force:
             try:
                 payload = json.loads(cache_path.read_text())
                 cached = payload.get("content", "")
                 if cached:
+                    stats["content_cache_hits"] += 1
                     return cached
             except Exception:
                 cache_path.unlink(missing_ok=True)
@@ -257,8 +293,12 @@ class YahooFinanceClient:
                 text = self._extract_text_from_html(response.text)
             except Exception:
                 text = ""
+            else:
+                if text:
+                    stats["content_downloads"] += 1
 
         if not text:
+            stats["content_failures"] += 1
             return ""
 
         try:
@@ -283,6 +323,7 @@ class YahooFinanceClient:
             return cached
 
         long_name: Optional[str] = None
+        self.stats["news"]["company_queries"] += 1
 
         if YFSearch is not None:
             try:
@@ -422,6 +463,10 @@ class YahooFinanceClient:
 
         cutoff = effective_now - timedelta(days=max(lookback_days, 1))
 
+        stats = self.stats["news"]
+        stats["requests"] += 1
+        stats["symbols"].add(symbol)
+
         cached_articles: List[dict] = []
         cached_at: Optional[datetime] = None
         if cache_path.exists():
@@ -443,7 +488,10 @@ class YahooFinanceClient:
                     if age >= timedelta(0):
                         is_fresh = age <= ttl
                 if cached_articles and is_fresh and not force:
-                    return cached_articles[:max_items]
+                    stats["cache_hits"] += 1
+                    limited = cached_articles[:max_items]
+                    stats["articles"] += len(limited)
+                    return limited
             except Exception:
                 cache_path.unlink(missing_ok=True)
 
@@ -664,6 +712,7 @@ class YahooFinanceClient:
                     "content": "无实时新闻数据，生成合成概览以支持新闻因子分析。",
                 }
             ]
+            stats["synthetic_articles"] += 1
 
         try:
             cache_path.write_text(
@@ -676,4 +725,20 @@ class YahooFinanceClient:
         except Exception:
             pass
 
-        return combined[:max_items]
+        limited = combined[:max_items]
+        stats["articles"] += len(limited)
+        return limited
+
+    def snapshot_stats(self) -> Dict[str, object]:
+        """Return a serialisable copy of the collected statistics."""
+
+        snapshot = deepcopy(self.stats)
+        for section in ("history", "news"):
+            section_data = snapshot.get(section, {})
+            symbols = section_data.get("symbols", set())
+            section_data["symbols"] = sorted(symbols)
+            if section == "history":
+                section_data["symbol_count"] = len(symbols)
+            else:
+                section_data["symbol_count"] = len(symbols)
+        return snapshot
