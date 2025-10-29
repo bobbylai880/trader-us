@@ -113,3 +113,22 @@ class PortfolioState:
 
     def update_last_updated(self, timestamp: datetime) -> None:
         self.last_updated = timestamp.isoformat()
+
+    def snapshot_dict(self) -> Dict:
+        """Return a serialisable snapshot used by the LLM orchestrator."""
+
+        return {
+            "cash": self.cash,
+            "equity": self.total_equity,
+            "exposure": self.current_exposure,
+            "positions": [
+                {
+                    "symbol": position.symbol,
+                    "shares": position.shares,
+                    "avg_cost": position.avg_cost,
+                    "last_price": position.last_price,
+                }
+                for position in self.positions
+            ],
+            "last_updated": self.last_updated,
+        }
