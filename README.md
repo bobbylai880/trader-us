@@ -76,7 +76,10 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 | `risk.earnings_blackout` | 是否在财报窗口自动加入黑名单。 |
 | `sizer.k1_stop/k2_target` | 止损与止盈的 ATR 系数。 |
 | `trend.*` | 趋势特征窗口（近 5/20 日斜率、10 日动量、均线、波动率窗口等）。 |
-| `llm.max_stock_payload` | 向 LLM 提供的个股数量上限（按评分降序截断，默认 4），避免提示词过长。 |
+| `llm.max_stock_payload` | 向 LLM 提供的个股数量上限（默认 8），超出部分将按顺序截断，避免提示词过长。 |
+| `llm.operators.*` | 定义五个分阶段推理算子的提示词文件与重试次数，例如 `market_analyzer.retries=1`。 |
+| `llm.guardrails` | JSON Schema 校验与 ticker 审查等硬约束参数，异常时会触发自动重试。 |
+| `llm.safe_mode` | LLM 失败时的安全回退策略（禁止新增风险、限制目标仓位等）。 |
 | `logging.log_dir / operations_path / positions_path` | 日志输出与手工操作记录、持仓快照路径，可按需调整。 |
 | `schedule.*` | 每日关键节点（05:30 数据/06:10 报告等）。 |
 
@@ -100,7 +103,8 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 3. **脚本输出**：
    - `report.md`：面向人工的 Markdown 摘要。
    - `report.json`：结构化操作清单、目标敞口与风控信息。
-   - `llm_analysis.json`：分阶段 DeepSeek（或其替代方案）分析结果，含市场/板块/个股/敞口摘要与最终汇总。
+  - `llm_analysis.json`：分阶段 DeepSeek（或其替代方案）分析结果，含市场/板块/个股/敞口摘要与最终汇总。
+  - `llm/llm_<date>/step_*`：每个 LLM 阶段的输入、输出与原始响应，便于审计及 Prompt 迭代（仅当启用分阶段编排时生成）。
   - `market_features.json`、`sector_features.json`、`stock_features.json`、`premarket_flags.json`：原始特征快照与盘前风险评估，便于复盘与调试。
   - `trend_features.json`：指数、板块、个股的趋势强度、动量、波动率趋势等量化指标（`trend_strength`、`momentum_10d`、`volatility_trend`）。
   - `news_bundle.json` 与 `news_snapshot.json`：市场/板块/个股新闻摘要及其情绪评分，供人工快速追踪事件驱动。
@@ -230,9 +234,10 @@ LLM 推理拆分为四个分析阶段与一个终稿阶段，对应以下模板�
 | 仓位审查 | `deepseek_exposure_check.md` | 对比当前敞口与目标敞口并提出调仓方向。 |
 | 报告整合 | `deepseek_report_compose.md` | 结合前述结论生成 Markdown 盘前报告并列出异常。 |
 
-`configs/base.json` 默认引用这些模板路径；如需自定义，可在派生配置中覆盖 `llm.prompt_files` 对应键值。
+`configs/base.json` 默认引用这些模板路径；如需自定义，可在派生配置中覆盖 `llm.prompt_files` 对应键值，或直接在 `llm.operators` 下为每个阶段指定新的提示词。
 
-- 为控制请求体大小与响应时长，系统仅向 LLM 发送按分数排序的前 4 只个股，并将每条新闻的 `summary`/`content` 裁剪至约 400 字符；可通过 `llm.max_stock_payload` 与 `DEEPSEEK_MAX_TOKENS` 自行调整。
+- 为控制请求体大小与响应时长，系统仅向 LLM 发送按监控列表顺序截取的前 8 只个股，并将每条新闻的 `summary`/`content` 裁剪至约 400 字符；可通过 `llm.max_stock_payload` 与 `DEEPSEEK_MAX_TOKENS` 自行调整。
+- `llm.guardrails.reject_on_hallucinated_tickers=true` 将拒绝非监控列表的 ticker，触发自动重试；连续失败后将进入 `llm.safe_mode`，输出“无新增风险”的保守建议并强行压低目标仓位。
 
 ### 输出结构规范
 
