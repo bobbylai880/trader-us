@@ -12,9 +12,11 @@ from zoneinfo import ZoneInfo
 
 from dotenv import load_dotenv
 
-from typing import List
+from typing import List, Optional
 
 from ..agent.base_agent import BaseAgent
+from ..agent.orchestrator import LLMOrchestrator
+from ..agent.safe_mode import SafeModeConfig
 from ..data_collector.fred_client import FredClient
 from ..data_collector.yf_client import YahooFinanceClient
 from ..decision_engine.stock_scoring import StockDecisionEngine
@@ -157,7 +159,9 @@ def main() -> None:
         fred_key = os.getenv("FRED_API_KEY")
         yf_client = YahooFinanceClient(cache_dir=project_root / "storage" / "cache" / "yf")
         fred_client = FredClient(
-            api_key=fred_key, cache_dir=project_root / "storage" / "cache" / "fred"
+            api_key=fred_key,
+            cache_dir=project_root / "storage" / "cache" / "fred",
+            logger=logger,
         )
 
         (
@@ -167,6 +171,7 @@ def main() -> None:
             premarket,
             news_bundle,
             trend_bundle,
+            macro_flags,
             feature_metrics,
         ) = prepare_feature_sets(
             config=config,
@@ -215,25 +220,78 @@ def main() -> None:
             for key, path in llm_config.get("prompt_files", {}).items()
         }
         base_prompt_path = llm_config.get("base_prompt")
-        analyzer = None
+        if args.output_dir:
+            output_dir = resolve_path(project_root, args.output_dir)
+        else:
+            output_dir = project_root / "storage" / f"daily_{trading_day.isoformat()}"
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        analyzer: Optional[DeepSeekAnalyzer] = None
+        deepseek_client: Optional[DeepSeekClient] = None
+
         if prompt_files:
-            client = DeepSeekClient.from_env()
-            analyzer = DeepSeekAnalyzer(
-                prompt_files=prompt_files,
-                client=client,
-                base_prompt=resolve_path(project_root, base_prompt_path)
-                if base_prompt_path
-                else None,
-                logger=logger,
-            )
+            try:
+                deepseek_client = DeepSeekClient.from_env()
+                analyzer = DeepSeekAnalyzer(
+                    prompt_files=prompt_files,
+                    client=deepseek_client,
+                    base_prompt=resolve_path(project_root, base_prompt_path)
+                    if base_prompt_path
+                    else None,
+                    logger=logger,
+                )
+            except RuntimeError as exc:
+                log_result(logger, "llm", f"Analyzer disabled: {exc}")
+
         if analyzer:
             log_result(
                 logger,
                 "llm",
                 f"DeepSeek prompts configured: {len(prompt_files)} stages",
             )
-        else:
+        elif not prompt_files:
             log_result(logger, "llm", "Skipped (no prompt files configured)")
+
+        llm_orchestrator: Optional[LLMOrchestrator] = None
+        operator_settings = llm_config.get("operators", {})
+        if operator_settings:
+            try:
+                if deepseek_client is None:
+                    deepseek_client = DeepSeekClient.from_env()
+                resolved_ops = {
+                    stage: {
+                        **settings,
+                        "prompt_file": resolve_path(
+                            project_root, settings.get("prompt_file", "")
+                        ),
+                    }
+                    for stage, settings in operator_settings.items()
+                }
+                prepared_llm_config = dict(llm_config)
+                prepared_llm_config["operators"] = resolved_ops
+                guardrails = llm_config.get("guardrails", {})
+                safe_dict = llm_config.get("safe_mode", {})
+                safe_config = SafeModeConfig(
+                    on_llm_failure=safe_dict.get("on_llm_failure", "no_new_risk"),
+                    max_exposure_cap=float(safe_dict.get("max_exposure_cap", 0.4)),
+                )
+                base_prompt_full = (
+                    resolve_path(project_root, llm_config.get("base_prompt"))
+                    if llm_config.get("base_prompt")
+                    else None
+                )
+                llm_orchestrator = LLMOrchestrator(
+                    client=deepseek_client,
+                    operator_configs=prepared_llm_config,
+                    base_prompt_path=base_prompt_full,
+                    storage_dir=output_dir / "llm",
+                    guardrails=guardrails,
+                    safe_mode_config=safe_config,
+                    logger=logger,
+                )
+                log_result(logger, "llm", "LLM orchestrator ready")
+            except RuntimeError as exc:
+                log_result(logger, "llm", f"Orchestrator disabled: {exc}")
 
         agent = BaseAgent(
             config=config,
@@ -243,13 +301,9 @@ def main() -> None:
             portfolio_state=state,
             report_builder=DailyReportBuilder(config["sizer"]),
             analyzer=analyzer,
+            llm_orchestrator=llm_orchestrator,
             logger=logger,
         )
-
-        if args.output_dir:
-            output_dir = resolve_path(project_root, args.output_dir)
-        else:
-            output_dir = project_root / "storage" / f"daily_{trading_day.isoformat()}"
 
         logger.info("开始执行日常流程，输出目录: %s", output_dir)
 
@@ -259,7 +313,9 @@ def main() -> None:
             sector_features=sectors,
             stock_features=stocks,
             premarket_flags=premarket,
+            trend_features=trend_bundle,
             news=news_bundle,
+            macro_flags=macro_flags,
             output_dir=output_dir,
         )
         phases_executed.extend(context.stage_metrics.keys())
@@ -284,6 +340,9 @@ def main() -> None:
             )
             (output_dir / "trend_features.json").write_text(
                 json.dumps(trend_bundle, indent=2), encoding="utf-8"
+            )
+            (output_dir / "macro_flags.json").write_text(
+                json.dumps(macro_flags, indent=2), encoding="utf-8"
             )
 
         save_positions_snapshot(positions_path, state, trading_day)

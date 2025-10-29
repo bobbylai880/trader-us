@@ -5,7 +5,7 @@ import logging
 import math
 from datetime import date, datetime, timedelta, timezone
 from time import perf_counter
-from typing import Dict, Iterable, List, Optional, Tuple, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -16,6 +16,17 @@ from ..portfolio_manager.state import PortfolioState
 from ..utils import log_ok, log_result, log_step
 from . import indicators
 from .trend_features import compute_trend_features
+
+
+def _default_macro_series() -> Dict[str, Dict[str, object]]:
+    return {
+        "CPIAUCSL": {"label": "CPI YoY"},
+        "T10Y2Y": {"label": "10Y-2Y Spread"},
+        "FEDFUNDS": {"label": "Fed Funds Rate"},
+        "M2SL": {"label": "M2 Money Supply"},
+        "UNRATE": {"label": "Unemployment Rate"},
+        "INDPRO": {"label": "Industrial Production"},
+    }
 
 
 def _fetch_history(
@@ -95,6 +106,20 @@ def _premarket_score(dev: float, vol_ratio: float, sentiment: float) -> float:
     return 0.5 * min(dev, 0.1) + 0.3 * min(vol_ratio / 5, 1) + 0.2 * s
 
 
+def _compute_vix_metrics(vix_history: pd.DataFrame) -> Dict[str, float]:
+    value = 0.0
+    zscore = 0.0
+    if "Close" in vix_history and not vix_history.empty:
+        close = vix_history["Close"].dropna()
+        if not close.empty:
+            value = float(close.iloc[-1])
+            if len(close) >= 20:
+                z_values = indicators.zscore(close, window=20)
+                if not z_values.empty:
+                    zscore = float(z_values.iloc[-1])
+    return {"vix_value": value, "vix_zscore": zscore}
+
+
 def _trading_day_date(trading_day: Union[date, datetime]) -> date:
     if isinstance(trading_day, datetime):
         return trading_day.date()
@@ -127,6 +152,26 @@ NEGATIVE_KEYWORDS = {
     "bearish",
     "loss",
 }
+
+
+def _normalize_macro_series(
+    series_cfg: Optional[Mapping[str, Any]] | Iterable[str],
+) -> Dict[str, Dict[str, object]]:
+    if series_cfg is None:
+        return {key: dict(meta) for key, meta in _default_macro_series().items()}
+
+    normalized: Dict[str, Dict[str, object]] = {}
+    if isinstance(series_cfg, Mapping):
+        for series_id, meta in series_cfg.items():
+            if isinstance(meta, Mapping):
+                normalized[str(series_id)] = {str(k): v for k, v in meta.items()}
+            else:
+                normalized[str(series_id)] = {"label": str(meta)}
+    else:
+        for series_id in series_cfg:
+            normalized[str(series_id)] = {}
+
+    return normalized or {key: dict(meta) for key, meta in _default_macro_series().items()}
 
 
 def _normalize_news_payload(articles: List[Dict], limit_chars: int = 400) -> List[Dict]:
@@ -210,6 +255,7 @@ def prepare_feature_sets(
     Dict[str, Dict],
     Dict[str, Dict],
     Dict[str, Dict],
+    Dict[str, Dict],
 ]:
     """Collect data, engineer features, and emit news/trend bundles."""
 
@@ -277,9 +323,9 @@ def prepare_feature_sets(
     rs_spy = _relative_to_ma(spy_history.get("Close"), 50)
     rs_qqq = _relative_to_ma(qqq_history.get("Close"), 50)
 
-    vix_z = 0.0
-    if not vix_history.empty and "Close" in vix_history:
-        vix_z = float(indicators.zscore(vix_history["Close"], window=20).iloc[-1])
+    vix_metrics = _compute_vix_metrics(vix_history)
+    vix_z = float(vix_metrics["vix_zscore"])
+    vix_value = float(vix_metrics["vix_value"])
 
     put_call_z = 0.0
     start_str = (start.date()).isoformat()
@@ -297,6 +343,22 @@ def prepare_feature_sets(
         above = df["Close"].iloc[-1] > df["Close"].rolling(window=50, min_periods=50).mean().iloc[-1]
         breadth_samples.append(1.0 if above else 0.0)
     breadth = float(sum(breadth_samples) / len(breadth_samples)) if breadth_samples else 0.0
+
+    macro_cfg = config.get("macro", {}) if isinstance(config, Mapping) else {}
+    macro_series_map = _normalize_macro_series(macro_cfg.get("series"))
+    macro_ids = list(macro_series_map.keys())
+    macro_lookback = int(macro_cfg.get("lookback_days", 730) or 730)
+    macro_start = (day - timedelta(days=macro_lookback)).isoformat()
+    macro_raw = fred_client.fetch_macro_indicators(
+        macro_ids,
+        start_date=macro_start,
+        logger=logger,
+    )
+    macro_flags: Dict[str, Dict[str, object]] = {}
+    for series_id, data in macro_raw.items():
+        entry = dict(macro_series_map.get(series_id, {}))
+        entry.update(data)
+        macro_flags[series_id] = entry
 
     yf_stats = yf_client.snapshot_stats()
     fred_stats = fred_client.snapshot_stats()
@@ -396,7 +458,11 @@ def prepare_feature_sets(
         "PUTCALL_Z": put_call_z,
         "BREADTH": breadth,
         "trend": market_trends,
+        "vix_value": vix_value,
+        "vix_zscore": vix_z,
     }
+    if macro_flags:
+        market_features["macro_flags"] = macro_flags
 
     spy_close = _latest_close(spy_history)
     sector_features: Dict[str, Dict] = {}
@@ -604,5 +670,6 @@ def prepare_feature_sets(
         premarket_flags,
         news_bundle,
         trend_bundle,
+        macro_flags,
         metrics,
     )
