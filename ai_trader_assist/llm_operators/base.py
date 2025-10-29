@@ -6,9 +6,23 @@ import logging
 from dataclasses import dataclass, field
 from pathlib import Path
 from time import perf_counter
-from typing import Dict, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Type
 
-from jsonschema import Draft7Validator, ValidationError
+try:  # pragma: no cover - exercised indirectly via orchestrator tests
+    from jsonschema import Draft7Validator, ValidationError  # type: ignore
+except ImportError:  # pragma: no cover - fallback executed when dependency missing
+    Draft7Validator = None  # type: ignore
+
+    class ValidationError(Exception):
+        """Simplified validation error used when jsonschema is unavailable."""
+
+try:  # pragma: no cover - fallback when pydantic is not installed
+    from pydantic import BaseModel, ValidationError as PydanticValidationError
+except ImportError:  # pragma: no cover
+    BaseModel = None  # type: ignore
+
+    class PydanticValidationError(Exception):
+        """Placeholder error used when Pydantic is unavailable."""
 
 from ..llm.client import DeepSeekClient
 from ..utils import log_ok, log_result, log_step
@@ -73,6 +87,24 @@ class LLMRunArtifacts:
         )
 
 
+class _PydanticValidator:
+    """Minimal validator that mirrors jsonschema's interface using Pydantic."""
+
+    def __init__(self, model_cls: Type[Any]):
+        if BaseModel is None:
+            raise ImportError(
+                "Pydantic 未安装，无法在缺少 jsonschema 时执行 Schema 校验。"
+            )
+        self._model_cls = model_cls
+
+    def validate(self, instance: Mapping[str, Any]) -> None:
+        try:
+            if hasattr(self._model_cls, "model_validate"):
+                self._model_cls.model_validate(instance)  # type: ignore[attr-defined]
+            else:  # pragma: no cover - Pydantic v1 compatibility
+                self._model_cls.parse_obj(instance)  # type: ignore[attr-defined]
+        except PydanticValidationError as exc:  # pragma: no cover - delegated message
+            raise ValidationError(str(exc)) from exc
 @dataclass
 class LLMOperator:
     """Base class encapsulating prompt loading, retries and schema validation."""
@@ -81,6 +113,7 @@ class LLMOperator:
     config: LLMOperatorConfig
     client: DeepSeekClient
     schema: Mapping
+    model_cls: Optional[Type[Any]] = None
     base_prompt: Optional[str] = None
     logger: Optional[logging.Logger] = None
     guardrails: Optional[Mapping[str, bool]] = None
@@ -92,7 +125,14 @@ class LLMOperator:
         if not prompt_path.exists():
             raise FileNotFoundError(f"Prompt 文件缺失: {prompt_path}")
         self._prompt_text = prompt_path.read_text(encoding="utf-8")
-        self._validator = Draft7Validator(self.schema)
+        if Draft7Validator is not None:
+            self._validator = Draft7Validator(self.schema)
+        else:
+            if self.model_cls is None:
+                raise ImportError(
+                    "jsonschema 未安装，且当前 Operator 未提供 Pydantic 模型用于回退校验。"
+                )
+            self._validator = _PydanticValidator(self.model_cls)
 
     @property
     def retries(self) -> int:

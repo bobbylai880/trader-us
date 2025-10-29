@@ -1,15 +1,21 @@
 """Optional Pydantic models mirroring the JSON Schema definitions."""
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
+
+
+class MarketDriver(BaseModel):
+    factor: str
+    evidence: str
+    direction: str
 
 
 class MarketAnalyzerModel(BaseModel):
     risk_level: str
     bias: str
-    drivers: List[str]
+    drivers: List[Union[str, MarketDriver]]
     summary: str
     data_gaps: List[str] = Field(default_factory=list)
     premarket_flags: List[str] = Field(default_factory=list)
@@ -48,10 +54,17 @@ class SectorAnalyzerModel(BaseModel):
     data_gaps: List[str] = Field(default_factory=list)
 
 
+class StockDriver(BaseModel):
+    metric: str
+    value: Optional[Union[float, str]] = None
+    direction: Optional[str] = None
+    evidence: Optional[str] = None
+
+
 class StockItem(BaseModel):
     symbol: str
     premarket_score: float
-    drivers: List[str]
+    drivers: List[Union[str, StockDriver]]
     risks: List[str]
     trend_change: Optional[str] = None
     momentum_strength: Optional[str] = None

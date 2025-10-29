@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import Mapping, Optional
 
 from .base import LLMOperator, LLMOperatorConfig
+from ..validators.pydantic_models import ReportComposerModel
 
 
 @dataclass
@@ -23,6 +24,7 @@ class ReportComposerOperator(LLMOperator):
             config=config,
             client=client,
             schema=schema,
+            model_cls=ReportComposerModel,
             base_prompt=base_prompt,
             logger=logger,
         )

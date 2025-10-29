@@ -5,10 +5,30 @@ MARKET_ANALYZER_SCHEMA = {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "required": ["risk_level", "bias", "drivers", "summary", "data_gaps"],
+    "definitions": {
+        "MarketDriver": {
+            "type": "object",
+            "required": ["factor", "evidence", "direction"],
+            "properties": {
+                "factor": {"type": "string"},
+                "evidence": {"type": "string"},
+                "direction": {"type": "string"},
+            },
+            "additionalProperties": True,
+        }
+    },
     "properties": {
         "risk_level": {"type": "string", "enum": ["low", "medium", "high"]},
         "bias": {"type": "string", "enum": ["bearish", "neutral", "bullish"]},
-        "drivers": {"type": "array", "items": {"type": "string"}},
+        "drivers": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {"type": "string"},
+                    {"$ref": "#/definitions/MarketDriver"},
+                ]
+            },
+        },
         "premarket_flags": {"type": "array", "items": {"type": "string"}},
         "news_sentiment": {"type": "number", "minimum": -1, "maximum": 1},
         "summary": {"type": "string"},
@@ -67,6 +87,17 @@ STOCK_CLASSIFIER_SCHEMA = {
         "data_gaps": {"type": "array", "items": {"type": "string"}},
     },
     "definitions": {
+        "StockDriver": {
+            "type": "object",
+            "required": ["metric"],
+            "properties": {
+                "metric": {"type": "string"},
+                "value": {"type": ["number", "string"]},
+                "direction": {"type": "string"},
+                "evidence": {"type": "string"},
+            },
+            "additionalProperties": True,
+        },
         "StockItem": {
             "type": "object",
             "required": ["symbol", "premarket_score", "drivers", "risks"],
@@ -83,11 +114,22 @@ STOCK_CLASSIFIER_SCHEMA = {
                     "enum": ["weak", "neutral", "strong"],
                 },
                 "trend_explanation": {"type": "string"},
-                "drivers": {"type": "array", "items": {"type": "string"}},
+                "drivers": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {"type": "string"},
+                            {"$ref": "#/definitions/StockDriver"},
+                        ]
+                    },
+                },
                 "risks": {"type": "array", "items": {"type": "string"}},
-                "news_highlights": {"type": "array", "items": {"type": "string"}},
+                "news_highlights": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                },
             },
-        }
+        },
     },
 }
 

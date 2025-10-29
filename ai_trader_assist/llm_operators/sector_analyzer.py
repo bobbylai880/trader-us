@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import Mapping, Optional
 
 from .base import LLMOperator, LLMOperatorConfig
+from ..validators.pydantic_models import SectorAnalyzerModel
 
 
 @dataclass
@@ -23,6 +24,7 @@ class SectorAnalyzerOperator(LLMOperator):
             config=config,
             client=client,
             schema=schema,
+            model_cls=SectorAnalyzerModel,
             base_prompt=base_prompt,
             logger=logger,
         )
