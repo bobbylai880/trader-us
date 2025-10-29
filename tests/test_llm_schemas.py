@@ -8,6 +8,7 @@ from jsonschema import ValidationError, validate
 
 from ai_trader_assist.validators.json_schemas import (
     MARKET_ANALYZER_SCHEMA,
+    SECTOR_ANALYZER_SCHEMA,
     STOCK_CLASSIFIER_SCHEMA,
 )
 
@@ -52,6 +53,29 @@ def test_market_schema_accepts_structured_drivers() -> None:
         "data_gaps": [],
     }
     validate(instance=payload, schema=MARKET_ANALYZER_SCHEMA)
+
+
+def test_sector_schema_accepts_structured_entries() -> None:
+    payload = {
+        "leading": [
+            {
+                "sector": "XLK",
+                "composite_score": 0.63,
+                "evidence": {"mom5": 0.047, "mom20": 0.071},
+                "news_highlights": [
+                    {
+                        "title": "Tech stocks rally",
+                        "publisher": "MT Newswires",
+                    }
+                ],
+                "news_sentiment": 0.6,
+            }
+        ],
+        "lagging": ["XLU 缺乏资金流入"],
+        "focus_points": ["留意科技板块持续强势"],
+        "data_gaps": [],
+    }
+    validate(instance=payload, schema=SECTOR_ANALYZER_SCHEMA)
 
 
 def test_stock_classifier_requires_categories() -> None:
@@ -112,6 +136,33 @@ def test_stock_classifier_accepts_structured_drivers() -> None:
                         }
                     ],
                     "risks": ["valuation"],
+                }
+            ],
+            "Hold": [],
+            "Reduce": [],
+            "Avoid": [],
+        },
+        "notes": [],
+        "data_gaps": [],
+    }
+    validate(instance=payload, schema=STOCK_CLASSIFIER_SCHEMA)
+
+
+def test_stock_classifier_accepts_structured_news_highlights() -> None:
+    payload = {
+        "categories": {
+            "Buy": [
+                {
+                    "symbol": "NVDA",
+                    "premarket_score": 88.0,
+                    "drivers": ["AI demand"],
+                    "risks": ["valuation"],
+                    "news_highlights": [
+                        {
+                            "title": "Nvidia extends rally",
+                            "publisher": "Reuters",
+                        }
+                    ],
                 }
             ],
             "Hold": [],

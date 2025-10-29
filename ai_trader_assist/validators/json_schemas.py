@@ -39,29 +39,64 @@ MARKET_ANALYZER_SCHEMA = {
 SECTOR_ANALYZER_SCHEMA = {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
+    "definitions": {
+        "SectorHighlight": {
+            "type": "object",
+            "properties": {
+                "symbol": {"type": "string"},
+                "sector": {"type": "string"},
+                "name": {"type": "string"},
+                "comment": {"type": "string"},
+                "composite_score": {"type": "number"},
+                "evidence": {
+                    "anyOf": [
+                        {"type": "string"},
+                        {"type": "object"},
+                        {"type": "array"},
+                    ]
+                },
+                "news_sentiment": {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1,
+                },
+                "news_highlights": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {"type": "string"},
+                            {"type": "object"},
+                        ]
+                    },
+                },
+            },
+            "additionalProperties": True,
+            "allOf": [
+                {
+                    "anyOf": [
+                        {"required": ["symbol"]},
+                        {"required": ["sector"]},
+                        {"required": ["name"]},
+                    ]
+                }
+            ],
+        },
+        "SectorEntry": {
+            "anyOf": [
+                {"type": "string"},
+                {"$ref": "#/definitions/SectorHighlight"},
+            ]
+        },
+    },
     "required": ["leading", "lagging", "focus_points", "data_gaps"],
     "properties": {
         "leading": {
             "type": "array",
-            "items": {
-                "type": "object",
-                "required": ["symbol", "evidence"],
-                "properties": {
-                    "symbol": {"type": "string"},
-                    "evidence": {"type": "string"},
-                },
-            },
+            "items": {"$ref": "#/definitions/SectorEntry"},
         },
         "lagging": {
             "type": "array",
-            "items": {
-                "type": "object",
-                "required": ["symbol", "evidence"],
-                "properties": {
-                    "symbol": {"type": "string"},
-                    "evidence": {"type": "string"},
-                },
-            },
+            "items": {"$ref": "#/definitions/SectorEntry"},
         },
         "focus_points": {"type": "array", "items": {"type": "string"}},
         "data_gaps": {"type": "array", "items": {"type": "string"}},
@@ -126,7 +161,12 @@ STOCK_CLASSIFIER_SCHEMA = {
                 "risks": {"type": "array", "items": {"type": "string"}},
                 "news_highlights": {
                     "type": "array",
-                    "items": {"type": "string"},
+                    "items": {
+                        "anyOf": [
+                            {"type": "string"},
+                            {"type": "object"},
+                        ]
+                    },
                 },
             },
         },

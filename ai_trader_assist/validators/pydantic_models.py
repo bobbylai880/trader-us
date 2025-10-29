@@ -1,7 +1,7 @@
 """Optional Pydantic models mirroring the JSON Schema definitions."""
 from __future__ import annotations
 
-from typing import List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, validator
 
@@ -42,9 +42,34 @@ class MarketAnalyzerModel(BaseModel):
         return value
 
 
-class SectorEvidence(BaseModel):
-    symbol: str
-    evidence: str
+class SectorEvidenceDetail(BaseModel):
+    symbol: Optional[str] = None
+    sector: Optional[str] = None
+    name: Optional[str] = None
+    evidence: Optional[Union[str, Dict[str, Any], List[Any]]] = None
+    comment: Optional[str] = None
+    composite_score: Optional[float] = None
+    news_sentiment: Optional[float] = None
+    news_highlights: List[Union[str, Dict[str, Any]]] = Field(default_factory=list)
+
+    @validator("news_sentiment")
+    def validate_sentiment(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
+        if not -1 <= value <= 1:
+            raise ValueError("news_sentiment 必须在 [-1, 1]")
+        return value
+
+    @validator("name", always=True)
+    def ensure_identifier(
+        cls, value: Optional[str], values: Dict[str, Any]
+    ) -> Optional[str]:
+        if not value and not values.get("symbol") and not values.get("sector"):
+            raise ValueError("sector item 需至少包含 symbol/sector/name 之一")
+        return value
+
+
+SectorEvidence = Union[str, SectorEvidenceDetail]
 
 
 class SectorAnalyzerModel(BaseModel):
@@ -69,7 +94,7 @@ class StockItem(BaseModel):
     trend_change: Optional[str] = None
     momentum_strength: Optional[str] = None
     trend_explanation: Optional[str] = None
-    news_highlights: List[str] = Field(default_factory=list)
+    news_highlights: List[Union[str, Dict[str, Any]]] = Field(default_factory=list)
 
     @validator("premarket_score")
     def check_score(cls, value: float) -> float:
