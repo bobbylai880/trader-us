@@ -108,7 +108,19 @@ def test_stock_classifier_requires_categories() -> None:
             "Reduce": [],
             "Avoid": [],
         },
-        "notes": [],
+        "data_gaps": [],
+    }
+    validate(instance=payload, schema=STOCK_CLASSIFIER_SCHEMA)
+
+
+def test_stock_classifier_accepts_missing_notes() -> None:
+    payload = {
+        "categories": {
+            "Buy": [],
+            "Hold": [],
+            "Reduce": [],
+            "Avoid": [],
+        },
         "data_gaps": [],
     }
     validate(instance=payload, schema=STOCK_CLASSIFIER_SCHEMA)
@@ -158,6 +170,53 @@ def test_stock_classifier_accepts_structured_drivers() -> None:
             "Avoid": [],
         },
         "notes": [],
+        "data_gaps": [],
+    }
+    validate(instance=payload, schema=STOCK_CLASSIFIER_SCHEMA)
+
+
+def test_stock_classifier_accepts_structured_risks() -> None:
+    payload = {
+        "categories": {
+            "Buy": [
+                {
+                    "symbol": "AAPL",
+                    "premarket_score": None,
+                    "drivers": [],
+                    "risks": [
+                        {
+                            "metric": "atr_pct",
+                            "value": 0.05,
+                            "comment": "elevated volatility",
+                        }
+                    ],
+                }
+            ],
+            "Hold": [],
+            "Reduce": [],
+            "Avoid": [],
+        },
+        "data_gaps": [],
+    }
+    validate(instance=payload, schema=STOCK_CLASSIFIER_SCHEMA)
+
+
+def test_stock_classifier_accepts_numeric_momentum_strength() -> None:
+    payload = {
+        "categories": {
+            "Buy": [
+                {
+                    "symbol": "MSFT",
+                    "premarket_score": 20.0,
+                    "drivers": [],
+                    "risks": [],
+                    "momentum_strength": 0.42,
+                }
+            ],
+            "Hold": [],
+            "Reduce": [],
+            "Avoid": [],
+        },
         "data_gaps": [],
     }
     validate(instance=payload, schema=STOCK_CLASSIFIER_SCHEMA)

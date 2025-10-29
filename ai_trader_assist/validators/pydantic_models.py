@@ -96,28 +96,46 @@ class StockDriver(BaseModel):
     evidence: Optional[str] = None
 
 
+class StockRisk(BaseModel):
+    metric: str
+    value: Optional[Union[float, str]] = None
+    direction: Optional[str] = None
+    comment: Optional[str] = None
+
+
+RiskEntry = Union[str, StockRisk]
+
+
 class StockItem(BaseModel):
     symbol: str
-    premarket_score: float
+    premarket_score: Optional[float] = None
     drivers: List[Union[str, StockDriver]]
-    risks: List[str]
+    risks: List[RiskEntry]
     trend_change: Optional[str] = None
-    momentum_strength: Optional[str] = None
+    momentum_strength: Optional[Union[str, float]] = None
     trend_explanation: Optional[str] = None
     news_highlights: List[Union[str, Dict[str, Any]]] = Field(default_factory=list)
 
     @validator("premarket_score")
-    def check_score(cls, value: float) -> float:
+    def check_score(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
         if not 0 <= value <= 100:
             raise ValueError("premarket_score 必须在 [0, 100]")
         return value
 
     @validator("momentum_strength")
-    def check_momentum(cls, value: Optional[str]) -> Optional[str]:
+    def check_momentum(
+        cls, value: Optional[Union[str, float]]
+    ) -> Optional[Union[str, float]]:
         if value is None:
             return value
-        if value not in {"weak", "neutral", "strong"}:
-            raise ValueError("momentum_strength 必须为 weak/neutral/strong")
+        if isinstance(value, str):
+            if value not in {"weak", "neutral", "strong"}:
+                raise ValueError("momentum_strength 必须为 weak/neutral/strong 或 0~1 数值")
+            return value
+        if not 0 <= value <= 1:
+            raise ValueError("momentum_strength 数值必须在 [0, 1]")
         return value
 
 
@@ -128,9 +146,15 @@ class StockCategories(BaseModel):
     Avoid: List[StockItem] = Field(default_factory=list)
 
 
+class UnclassifiedItem(BaseModel):
+    symbol: str
+    reason: str
+
+
 class StockClassifierModel(BaseModel):
     categories: StockCategories
     notes: List[str] = Field(default_factory=list)
+    unclassified: List[UnclassifiedItem] = Field(default_factory=list)
     data_gaps: List[str] = Field(default_factory=list)
 
 

@@ -126,7 +126,7 @@ SECTOR_ANALYZER_SCHEMA = {
 STOCK_CLASSIFIER_SCHEMA = {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-    "required": ["categories", "notes", "data_gaps"],
+    "required": ["categories", "data_gaps"],
     "properties": {
         "categories": {
             "type": "object",
@@ -139,6 +139,18 @@ STOCK_CLASSIFIER_SCHEMA = {
             },
         },
         "notes": {"type": "array", "items": {"type": "string"}},
+        "unclassified": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["symbol", "reason"],
+                "properties": {
+                    "symbol": {"type": "string"},
+                    "reason": {"type": "string"},
+                },
+                "additionalProperties": True,
+            },
+        },
         "data_gaps": {"type": "array", "items": {"type": "string"}},
     },
     "definitions": {
@@ -153,20 +165,46 @@ STOCK_CLASSIFIER_SCHEMA = {
             },
             "additionalProperties": True,
         },
+        "StockRisk": {
+            "type": "object",
+            "required": ["metric"],
+            "properties": {
+                "metric": {"type": "string"},
+                "value": {"type": ["number", "string", "null"]},
+                "direction": {"type": "string"},
+                "comment": {"type": "string"},
+            },
+            "additionalProperties": True,
+        },
         "StockItem": {
             "type": "object",
             "required": ["symbol", "premarket_score", "drivers", "risks"],
             "properties": {
                 "symbol": {"type": "string"},
                 "premarket_score": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 100,
+                    "anyOf": [
+                        {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100,
+                        },
+                        {"type": "null"},
+                    ]
                 },
                 "trend_change": {"type": "string"},
                 "momentum_strength": {
-                    "type": "string",
-                    "enum": ["weak", "neutral", "strong"],
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "enum": ["weak", "neutral", "strong"],
+                        },
+                        {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1,
+                        },
+                        {"type": "null"},
+                    ]
                 },
                 "trend_explanation": {"type": "string"},
                 "drivers": {
@@ -178,7 +216,15 @@ STOCK_CLASSIFIER_SCHEMA = {
                         ]
                     },
                 },
-                "risks": {"type": "array", "items": {"type": "string"}},
+                "risks": {
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            {"type": "string"},
+                            {"$ref": "#/definitions/StockRisk"},
+                        ]
+                    },
+                },
                 "news_highlights": {
                     "type": "array",
                     "items": {
