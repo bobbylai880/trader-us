@@ -6,3 +6,4 @@ requests
 pytz
 jsonschema
 pydantic
+json5

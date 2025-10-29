@@ -7,6 +7,7 @@ pytest.importorskip("jsonschema")
 from jsonschema import ValidationError, validate
 
 from ai_trader_assist.validators.json_schemas import (
+    EXPOSURE_PLANNER_SCHEMA,
     MARKET_ANALYZER_SCHEMA,
     SECTOR_ANALYZER_SCHEMA,
     STOCK_CLASSIFIER_SCHEMA,
@@ -247,3 +248,49 @@ def test_stock_classifier_accepts_structured_news_highlights() -> None:
         "data_gaps": [],
     }
     validate(instance=payload, schema=STOCK_CLASSIFIER_SCHEMA)
+
+
+def test_exposure_planner_accepts_structured_plan_items() -> None:
+    payload = {
+        "target_exposure": 0.85,
+        "current_exposure": 0.12,
+        "delta": 0.73,
+        "direction": "increase",
+        "allocation_plan": [
+            {
+                "symbol": "AMD",
+                "action": "buy",
+                "size_hint": "加仓 ~USD 3k",
+                "rationale": "趋势最强且权重低",
+                "linked_constraint": "单股权重限制25%",
+            },
+            {
+                "symbol": "NVDA",
+                "target_weight": 0.18,
+                "rationale": "AI 受益股",
+            },
+        ],
+        "constraints": [
+            {
+                "name": "最大敞口限制",
+                "status": "clear",
+                "details": "当前敞口远低于限制",
+            },
+            "安全垫要求维持 20% 现金",
+        ],
+        "data_gaps": [],
+    }
+    validate(instance=payload, schema=EXPOSURE_PLANNER_SCHEMA)
+
+
+def test_exposure_planner_rejects_out_of_range_weight() -> None:
+    payload = {
+        "target_exposure": 0.5,
+        "allocation_plan": [
+            {"symbol": "AAPL", "weight": 1.5},
+        ],
+        "constraints": [],
+        "data_gaps": [],
+    }
+    with pytest.raises(ValidationError):
+        validate(instance=payload, schema=EXPOSURE_PLANNER_SCHEMA)

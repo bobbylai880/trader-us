@@ -8,6 +8,8 @@ from pathlib import Path
 from time import perf_counter
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Type
 
+import json5
+
 try:  # pragma: no cover - exercised indirectly via orchestrator tests
     from jsonschema import Draft7Validator, ValidationError  # type: ignore
 except ImportError:  # pragma: no cover - fallback executed when dependency missing
@@ -185,8 +187,11 @@ class LLMOperator:
         json_segment = text[start : end + 1]
         try:
             parsed = json.loads(json_segment)
-        except json.JSONDecodeError as exc:
-            raise LLMValidationError("JSON 解析失败") from exc
+        except json.JSONDecodeError:
+            try:
+                parsed = json5.loads(json_segment)
+            except Exception as exc:  # pragma: no cover - json5 supplies its own error type
+                raise LLMValidationError("JSON 解析失败") from exc
         if not isinstance(parsed, Mapping):
             raise LLMValidationError("响应需为 JSON 对象")
         return parsed

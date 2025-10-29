@@ -158,28 +158,90 @@ class StockClassifierModel(BaseModel):
     data_gaps: List[str] = Field(default_factory=list)
 
 
+class ConstraintDetail(BaseModel):
+    name: str
+    status: Optional[str] = None
+    details: Optional[str] = None
+    limit: Optional[str] = None
+    action: Optional[str] = None
+
+
 class AllocationPlanItem(BaseModel):
     symbol: str
-    weight: float
+    weight: Optional[float] = None
+    target_weight: Optional[float] = None
+    delta_weight: Optional[float] = None
+    notional: Optional[float] = None
+    size_hint: Optional[str] = None
+    direction: Optional[str] = None
+    action: Optional[str] = None
     rationale: Optional[str] = None
+    linked_constraint: Optional[str] = None
+    confidence: Optional[float] = None
+    notes: Optional[str] = None
 
-    @validator("weight")
-    def check_weight(cls, value: float) -> float:
+    @validator("weight", "target_weight")
+    def check_weight(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
         if not 0 <= value <= 1:
-            raise ValueError("weight 必须在 [0, 1]")
+            raise ValueError("权重字段必须在 [0, 1]")
+        return value
+
+    @validator("delta_weight")
+    def check_delta(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
+        if not -1 <= value <= 1:
+            raise ValueError("delta_weight 必须在 [-1, 1]")
+        return value
+
+    @validator("notional")
+    def check_notional(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
+        if value < 0:
+            raise ValueError("notional 不能为负数")
+        return value
+
+    @validator("confidence")
+    def check_confidence(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
+        if not 0 <= value <= 1:
+            raise ValueError("confidence 必须在 [0, 1]")
         return value
 
 
 class ExposurePlannerModel(BaseModel):
     target_exposure: float
     allocation_plan: List[AllocationPlanItem]
-    constraints: List[str]
+    constraints: List[Union[str, ConstraintDetail]]
     data_gaps: List[str] = Field(default_factory=list)
+    current_exposure: Optional[float] = None
+    delta: Optional[float] = None
+    direction: Optional[str] = None
 
     @validator("target_exposure")
     def check_target(cls, value: float) -> float:
         if not 0 <= value <= 1:
             raise ValueError("target_exposure 必须在 [0, 1]")
+        return value
+
+    @validator("current_exposure")
+    def check_current(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
+        if not 0 <= value <= 1:
+            raise ValueError("current_exposure 必须在 [0, 1]")
+        return value
+
+    @validator("delta")
+    def check_delta_range(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
+        if not -1 <= value <= 1:
+            raise ValueError("delta 必须在 [-1, 1]")
         return value
 
 

@@ -52,7 +52,8 @@
       },
       "stock_classifier": {
         "prompt_file": "configs/prompts/deepseek_stock_actions.md",
-        "retries": 1
+        "retries": 1,
+        "max_tokens": 2000
       },
       "exposure_planner": {
         "prompt_file": "configs/prompts/deepseek_exposure_check.md",
@@ -60,7 +61,8 @@
       },
       "report_composer": {
         "prompt_file": "configs/prompts/deepseek_report_compose.md",
-        "retries": 0
+        "retries": 1,
+        "max_tokens": 2000
       }
     },
     "guardrails": {

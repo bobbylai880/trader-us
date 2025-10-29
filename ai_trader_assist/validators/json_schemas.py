@@ -242,6 +242,60 @@ STOCK_CLASSIFIER_SCHEMA = {
 EXPOSURE_PLANNER_SCHEMA = {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
+    "definitions": {
+        "ConstraintDetail": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+                "name": {"type": "string"},
+                "status": {"type": "string"},
+                "details": {"type": "string"},
+                "limit": {"type": "string"},
+                "action": {"type": "string"},
+            },
+            "additionalProperties": True,
+        },
+        "ConstraintEntry": {
+            "anyOf": [
+                {"type": "string"},
+                {"$ref": "#/definitions/ConstraintDetail"},
+            ]
+        },
+        "AllocationPlanItem": {
+            "type": "object",
+            "required": ["symbol"],
+            "properties": {
+                "symbol": {"type": "string"},
+                "weight": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                },
+                "target_weight": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1,
+                },
+                "delta_weight": {
+                    "type": "number",
+                    "minimum": -1,
+                    "maximum": 1,
+                },
+                "notional": {
+                    "type": "number",
+                    "minimum": 0,
+                },
+                "size_hint": {"type": "string"},
+                "direction": {"type": "string"},
+                "action": {"type": "string"},
+                "rationale": {"type": "string"},
+                "linked_constraint": {"type": "string"},
+                "confidence": {"type": "number"},
+                "notes": {"type": "string"},
+            },
+            "additionalProperties": True,
+        },
+    },
     "required": ["target_exposure", "allocation_plan", "constraints"],
     "properties": {
         "target_exposure": {
@@ -249,23 +303,25 @@ EXPOSURE_PLANNER_SCHEMA = {
             "minimum": 0,
             "maximum": 1,
         },
+        "current_exposure": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+        },
+        "delta": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 1,
+        },
+        "direction": {"type": "string"},
         "allocation_plan": {
             "type": "array",
-            "items": {
-                "type": "object",
-                "required": ["symbol", "weight"],
-                "properties": {
-                    "symbol": {"type": "string"},
-                    "weight": {
-                        "type": "number",
-                        "minimum": 0,
-                        "maximum": 1,
-                    },
-                    "rationale": {"type": "string"},
-                },
-            },
+            "items": {"$ref": "#/definitions/AllocationPlanItem"},
         },
-        "constraints": {"type": "array", "items": {"type": "string"}},
+        "constraints": {
+            "type": "array",
+            "items": {"$ref": "#/definitions/ConstraintEntry"},
+        },
         "data_gaps": {"type": "array", "items": {"type": "string"}},
     },
 }
