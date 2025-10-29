@@ -1,8 +1,4 @@
-"""Orchestrates the daily pre-market workflow.
-
-The base agent wires the macro risk engine, sector and stock scoring layers,
-position sizing module, and report builder into a single callable pipeline.
-"""
+"""Hybrid agent that can run either the legacy rules or the LLM pipeline."""
 from __future__ import annotations
 
 import logging
@@ -10,7 +6,7 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 from time import perf_counter
-from typing import Dict, List, Optional
+from typing import Dict, List, Mapping, Optional
 
 from ..decision_engine.stock_scoring import StockDecisionEngine
 from ..llm.analyzer import DeepSeekAnalyzer
@@ -19,6 +15,11 @@ from ..portfolio_manager.state import PortfolioState
 from ..report_builder.builder import DailyReportBuilder
 from ..risk_engine.macro_engine import MacroRiskEngine
 from ..utils import log_ok, log_result, log_step
+
+try:  # Optional import to avoid circular dependency in tests
+    from .orchestrator import LLMOrchestrator
+except ImportError:  # pragma: no cover - fallback when orchestrator missing
+    LLMOrchestrator = None  # type: ignore
 
 
 @dataclass
@@ -37,7 +38,7 @@ class PipelineContext:
 
 
 class BaseAgent:
-    """High level pipeline similar to the HKUDS/AI-Trader base mode."""
+    """High level pipeline coordinating either rule-engine or LLM logic."""
 
     def __init__(
         self,
@@ -48,6 +49,7 @@ class BaseAgent:
         portfolio_state: PortfolioState,
         report_builder: DailyReportBuilder,
         analyzer: Optional[DeepSeekAnalyzer] = None,
+        llm_orchestrator: Optional[LLMOrchestrator] = None,
         logger: Optional[logging.Logger] = None,
     ) -> None:
         self.config = config
@@ -57,6 +59,7 @@ class BaseAgent:
         self.portfolio_state = portfolio_state
         self.report_builder = report_builder
         self.analyzer = analyzer
+        self.llm_orchestrator = llm_orchestrator
         self.logger = logger
 
     def run(
@@ -66,29 +69,52 @@ class BaseAgent:
         sector_features: Dict[str, Dict],
         stock_features: Dict[str, Dict],
         premarket_flags: Optional[Dict[str, Dict]] = None,
+        trend_features: Optional[Dict] = None,
         news: Optional[Dict] = None,
         output_dir: Optional[Path] = None,
     ) -> PipelineContext:
-        """Execute the pipeline.
-
-        Parameters
-        ----------
-        trading_day: date
-            The trading date for the report.
-        market_features: Dict
-            Market wide metrics consumed by the macro risk engine.
-        sector_features: Dict[str, Dict]
-            Features per sector ETF.
-        stock_features: Dict[str, Dict]
-            Per stock technical and context signals.
-        premarket_flags: Dict[str, Dict], optional
-            Premarket anomaly scores used for risk adjustments.
-        output_dir: Path, optional
-            Directory where artefacts should be written.
-        """
+        """Execute the pipeline using either legacy rules or LLM orchestration."""
 
         stage_metrics: Dict[str, Dict[str, object]] = {}
 
+        if self.llm_orchestrator:
+            return self._run_llm_pipeline(
+                trading_day=trading_day,
+                market_features=market_features,
+                sector_features=sector_features,
+                stock_features=stock_features,
+                trend_features=trend_features or {},
+                premarket_flags=premarket_flags or {},
+                news=news or {},
+                output_dir=output_dir,
+                stage_metrics=stage_metrics,
+            )
+
+        return self._run_legacy_pipeline(
+            trading_day,
+            market_features,
+            sector_features,
+            stock_features,
+            premarket_flags,
+            news,
+            output_dir,
+            stage_metrics,
+        )
+
+    # ------------------------------------------------------------------
+    # Legacy rule engine
+    # ------------------------------------------------------------------
+    def _run_legacy_pipeline(
+        self,
+        trading_day: date,
+        market_features: Dict,
+        sector_features: Dict[str, Dict],
+        stock_features: Dict[str, Dict],
+        premarket_flags: Optional[Dict[str, Dict]],
+        news: Optional[Dict],
+        output_dir: Optional[Path],
+        stage_metrics: Dict[str, Dict[str, object]],
+    ) -> PipelineContext:
         risk_start = perf_counter()
         if self.logger:
             log_step(self.logger, "risk_engine", "Evaluating macro risk signals")
@@ -288,3 +314,227 @@ class BaseAgent:
             news=news,
             stage_metrics=stage_metrics,
         )
+
+    # ------------------------------------------------------------------
+    # LLM orchestrated pipeline
+    # ------------------------------------------------------------------
+    def _run_llm_pipeline(
+        self,
+        trading_day: date,
+        market_features: Dict,
+        sector_features: Dict[str, Dict],
+        stock_features: Dict[str, Dict],
+        trend_features: Dict,
+        premarket_flags: Dict[str, Dict],
+        news: Dict,
+        output_dir: Optional[Path],
+        stage_metrics: Dict[str, Dict[str, object]],
+    ) -> PipelineContext:
+        if not self.llm_orchestrator:  # pragma: no cover
+            raise RuntimeError("LLM orchestrator 未初始化")
+
+        payload = self._build_llm_payload(
+            trading_day,
+            market_features,
+            sector_features,
+            stock_features,
+            trend_features,
+            premarket_flags,
+            news,
+        )
+
+        if self.logger:
+            log_step(self.logger, "llm.orchestrator", "Invoking staged operators")
+
+        result = self.llm_orchestrator.run(
+            trading_day=trading_day,
+            payload=payload,
+            portfolio_state=self.portfolio_state,
+        )
+
+        stages = result.stages
+        safe_mode = stages.get("safe_mode")
+        market_view = stages.get("market_analyzer", {})
+        exposure_view = stages.get("exposure_planner", {})
+        report_view = stages.get("report_composer", {})
+
+        target_exposure = exposure_view.get("target_exposure")
+        if target_exposure is None:
+            target_exposure = self.config.get("limits", {}).get("max_exposure", 0.8)
+
+        risk_view = {
+            "risk_level": market_view.get("risk_level"),
+            "bias": market_view.get("bias"),
+            "target_exposure": target_exposure,
+        }
+
+        sector_scores = self._convert_sector_view(stages.get("sector_analyzer", {}))
+        stock_scores = self._convert_stock_view(
+            stages.get("stock_classifier", {}), stock_features
+        )
+
+        stage_metrics["risk_engine"] = {
+            "risk_level": risk_view.get("risk_level"),
+            "target_exposure": risk_view.get("target_exposure"),
+        }
+
+        stage_metrics["sector_scoring"] = {"count": len(sector_scores)}
+
+        stage_metrics["stock_scoring"] = {"count": len(stock_scores)}
+
+        sizing_start = perf_counter()
+        orders = self.sizer.generate_orders(
+            risk_view,
+            stock_scores,
+            self.portfolio_state,
+        )
+        if self.logger:
+            buy_notional = sum(order.get("notional", 0.0) for order in orders.get("buy", []))
+            log_result(
+                self.logger,
+                "position_sizer",
+                f"orders: buy={len(orders.get('buy', []))}, sell={len(orders.get('sell', []))}, buy_notional={buy_notional:.2f}",
+            )
+            log_ok(
+                self.logger,
+                "position_sizer",
+                f"Completed in {perf_counter() - sizing_start:.2f}s",
+            )
+        stage_metrics["position_sizer"] = {
+            "buy_orders": len(orders.get("buy", [])),
+            "sell_orders": len(orders.get("sell", [])),
+        }
+
+        report_json = report_view.get("sections", {}) if isinstance(report_view, Mapping) else {}
+        report_markdown = report_view.get("markdown", "") if isinstance(report_view, Mapping) else ""
+
+        llm_analysis = result.to_dict()
+
+        stage_metrics["llm"] = {
+            "safe_mode": bool(safe_mode),
+            "stages": list(stages.keys()),
+            "artifacts_dir": str(result.artifacts_dir),
+        }
+
+        if output_dir:
+            output_dir.mkdir(parents=True, exist_ok=True)
+            (output_dir / "report.json").write_text(
+                self.report_builder.dumps_json(report_json), encoding="utf-8"
+            )
+            (output_dir / "report.md").write_text(report_markdown, encoding="utf-8")
+            (output_dir / "llm_analysis.json").write_text(
+                self.report_builder.dumps_json(llm_analysis), encoding="utf-8"
+            )
+            (output_dir / "news_snapshot.json").write_text(
+                self.report_builder.dumps_json(news), encoding="utf-8"
+            )
+
+        return PipelineContext(
+            risk=risk_view,
+            sector_scores=sector_scores,
+            stock_scores=stock_scores,
+            orders=orders,
+            report_json=report_json,
+            report_markdown=report_markdown,
+            llm_analysis=llm_analysis,
+            news=news,
+            stage_metrics=stage_metrics,
+        )
+
+    def _build_llm_payload(
+        self,
+        trading_day: date,
+        market_features: Dict,
+        sector_features: Dict[str, Dict],
+        stock_features: Dict[str, Dict],
+        trend_features: Dict,
+        premarket_flags: Dict[str, Dict],
+        news: Dict,
+    ) -> Dict:
+        universe = self.config.get("universe", {})
+        schedule = self.config.get("schedule", {})
+
+        return {
+            "as_of": trading_day.isoformat(),
+            "timezone": schedule.get("tz"),
+            "universe": universe,
+            "features": {
+                "market": market_features,
+                "sectors": sector_features,
+                "stocks": stock_features,
+                "trend": trend_features,
+                "news": news,
+                "premarket": premarket_flags,
+            },
+            "constraints": {
+                "limits": self.config.get("limits", {}),
+                "risk": self.config.get("risk", {}),
+            },
+            "context": {
+                "positions_snapshot": self.portfolio_state.snapshot_dict(),
+            },
+        }
+
+    def _convert_sector_view(self, view: Mapping) -> List[Dict]:
+        results: List[Dict] = []
+        if not isinstance(view, Mapping):
+            return results
+        for rank, item in enumerate(view.get("leading", []) or []):
+            if not isinstance(item, Mapping):
+                continue
+            results.append(
+                {
+                    "symbol": item.get("symbol"),
+                    "category": "leading",
+                    "rank": rank,
+                    "evidence": item.get("evidence"),
+                }
+            )
+        for rank, item in enumerate(view.get("lagging", []) or []):
+            if not isinstance(item, Mapping):
+                continue
+            results.append(
+                {
+                    "symbol": item.get("symbol"),
+                    "category": "lagging",
+                    "rank": rank,
+                    "evidence": item.get("evidence"),
+                }
+            )
+        return results
+
+    def _convert_stock_view(
+        self, view: Mapping, stock_features: Mapping[str, Mapping]
+    ) -> List[Dict]:
+        if not isinstance(view, Mapping):
+            return []
+        categories = (
+            view.get("categories", {})
+            if isinstance(view.get("categories"), Mapping)
+            else {}
+        )
+        results: List[Dict] = []
+        for bucket in ("Buy", "Hold", "Reduce", "Avoid"):
+            for item in categories.get(bucket, []) or []:
+                if not isinstance(item, Mapping):
+                    continue
+                symbol = item.get("symbol")
+                feature = stock_features.get(symbol, {}) if isinstance(stock_features, Mapping) else {}
+                price = feature.get("price", 0.0)
+                atr_pct = feature.get("atr_pct", 0.02)
+                score = float(item.get("premarket_score", 0.0) or 0.0)
+                results.append(
+                    {
+                        "symbol": symbol,
+                        "action": bucket.lower(),
+                        "score": score,
+                        "price": price,
+                        "atr_pct": atr_pct,
+                        "confidence": score / 100.0 if score else 0.0,
+                        "drivers": item.get("drivers", []),
+                        "risks": item.get("risks", []),
+                        "momentum_strength": item.get("momentum_strength"),
+                        "trend_change": item.get("trend_change"),
+                    }
+                )
+        return results
