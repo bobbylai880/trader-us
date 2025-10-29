@@ -34,7 +34,6 @@
         "news_highlights": [
           {
             "title": "string",
-            "publisher": "string",
             "published": "ISO8601"
           }
         ],
@@ -64,6 +63,7 @@
 - `drivers` 至少列出 2 条关键指标（如 `RSI_norm`, `trend_slope`, `news_score`），明确数据数值和方向。
 - `risks` 针对高波动、盘前异动或负面新闻列出具体数值；若风险低，可写 "risk_low" 并给出依据。
 - `premarket_score` 来自盘前异动打分（0–1），没有数据时使用 `null`。
-- `news_highlights` 必须结合 `recent_news` 的 `content` 挑选 1–3 条要点，并在 `news_sentiment` 中给出 -1~1 的判断。
+- `news_highlights` 仅保留每只股票**最多 1 条**新闻，字段限于 `title` 与 `published`，并在 `news_sentiment` 中给出 -1~1 的判断。
+- 每个分类（Buy/Hold/Reduce/Avoid）最多返回 2 只股票，优先选择得分最高的候选。
 - 对每只股票补充 `trend_change`（strengthening/weakening/stable）、`momentum_strength`（0~1）以及 `trend_explanation`，确保引用 `trend_strength`、`momentum_10d`、`volatility_trend` 等量化证据。
 - `data_gaps` 无缺失时填 `[]`。

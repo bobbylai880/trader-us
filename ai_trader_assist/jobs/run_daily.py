@@ -24,6 +24,7 @@ from ..portfolio_manager.positions import (
     save_positions_snapshot,
 )
 from ..llm.analyzer import DeepSeekAnalyzer
+from ..llm.client import DeepSeekClient
 from ..position_sizer.sizer import PositionSizer
 from ..report_builder.builder import DailyReportBuilder
 from ..risk_engine.macro_engine import MacroRiskEngine
@@ -179,7 +180,17 @@ def main() -> None:
             key: resolve_path(project_root, path)
             for key, path in llm_config.get("prompt_files", {}).items()
         }
-        analyzer = DeepSeekAnalyzer(prompt_files=prompt_files) if prompt_files else None
+        base_prompt_path = llm_config.get("base_prompt")
+        analyzer = None
+        if prompt_files:
+            client = DeepSeekClient.from_env()
+            analyzer = DeepSeekAnalyzer(
+                prompt_files=prompt_files,
+                client=client,
+                base_prompt=resolve_path(project_root, base_prompt_path)
+                if base_prompt_path
+                else None,
+            )
         if analyzer:
             logger.info("加载 DeepSeek 提示词 (%d 个阶段)", len(prompt_files))
         else:

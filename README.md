@@ -52,7 +52,11 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
    cp .env.example .env
    ```
    - `FRED_API_KEY`：可选；若为空则尝试匿名访问（部分频率有限制）。
-   - `DEEPSEEK_API_KEY`：DeepSeek LLM 的访问令牌，用于盘前分析提示词调用。
+  - `DEEPSEEK_API_KEY`：DeepSeek LLM 的访问令牌，用于盘前分析提示词调用（必填）。
+  - `DEEPSEEK_MODEL`：可选，自定义 DeepSeek 模型名称，默认为 `deepseek-chat`。
+  - `DEEPSEEK_API_URL`：可选，自定义 API 入口地址，默认为官方 `https://api.deepseek.com/v1/chat/completions`。
+  - `DEEPSEEK_TIMEOUT`：可选，覆盖请求超时时间（秒），默认 30。
+  - `DEEPSEEK_MAX_TOKENS`：可选，限制每次生成的最大 Token 数，默认 1200，用于控制响应时长与 JSON 长度。
    - `TZ`：默认 `America/Los_Angeles`，用于统一时区。
 
 ---
@@ -72,6 +76,7 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 | `risk.earnings_blackout` | 是否在财报窗口自动加入黑名单。 |
 | `sizer.k1_stop/k2_target` | 止损与止盈的 ATR 系数。 |
 | `trend.*` | 趋势特征窗口（近 5/20 日斜率、10 日动量、均线、波动率窗口等）。 |
+| `llm.max_stock_payload` | 向 LLM 提供的个股数量上限（按评分降序截断，默认 4），避免提示词过长。 |
 | `logging.log_dir / operations_path / positions_path` | 日志输出与手工操作记录、持仓快照路径，可按需调整。 |
 | `schedule.*` | 每日关键节点（05:30 数据/06:10 报告等）。 |
 
@@ -227,16 +232,18 @@ LLM 推理拆分为四个分析阶段与一个终稿阶段，对应以下模板�
 
 `configs/base.json` 默认引用这些模板路径；如需自定义，可在派生配置中覆盖 `llm.prompt_files` 对应键值。
 
+- 为控制请求体大小与响应时长，系统仅向 LLM 发送按分数排序的前 4 只个股，并将每条新闻的 `summary`/`content` 裁剪至约 400 字符；可通过 `llm.max_stock_payload` 与 `DEEPSEEK_MAX_TOKENS` 自行调整。
+
 ### 输出结构规范
 
 - 所有 DeepSeek 提示词现统一要求 **JSON 输出**，禁止返回纯文本或 Markdown；通用准则收录在 `deepseek_base_prompt.md` 中。
 - `deepseek_market_overview.md`：返回包含 `risk_level`、`bias`、`summary`、`drivers`、`premarket_flags`、`news_sentiment`、`news_highlights`、`data_gaps` 的对象。
 - `deepseek_sector_analysis.md`：输出 `leading`、`lagging`、`focus_points`、`data_gaps` 字段，每个板块条目需附带量化证据与新闻摘要。
-- `deepseek_stock_actions.md`：以 `categories` 字典给出 Buy/Hold/Reduce/Avoid 列表，并列出 `drivers`、`risks`、`premarket_score`、`news_highlights`、`trend_change`、`momentum_strength`、`trend_explanation` 等客观指标。
+- `deepseek_stock_actions.md`：以 `categories` 字典给出 Buy/Hold/Reduce/Avoid 列表，并列出 `drivers`、`risks`、`premarket_score`、`news_highlights`（每股最多 1 条）、`trend_change`、`momentum_strength`、`trend_explanation` 等客观指标。
 - `deepseek_exposure_check.md`：返回敞口差异与 `allocation_plan`、`constraints` 建议，便于对接头寸引擎。
 - `deepseek_report_compose.md`：输出包含 `markdown` 正文与 `sections` 摘要（含 `news` 列表）的对象，同时合并所有数据缺口至 `data_gaps`。
 
-调用 DeepSeek 前，请确保 `.env` 或运行环境中设置了 `DEEPSEEK_API_KEY`。若需串联其他 LLM，可新增模板文件并在配置中覆盖 `llm.provider` 与 `llm.prompt_files`。
+调用 DeepSeek 前，请确保 `.env` 或运行环境中设置了 `DEEPSEEK_API_KEY`。可选变量 `DEEPSEEK_MODEL` 与 `DEEPSEEK_API_URL` 用于覆盖默认模型与接口地址。若 API 返回错误、超时或输出无法解析，流水线会抛出异常（不会再回退到模拟结果），请在定时任务中捕获并记录日志。
 
 若某些数据缺失或 API 访问失败，流水线会在报告末尾记录异常条目，确保人工注意补充或回溯。
 

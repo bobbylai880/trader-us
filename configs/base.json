@@ -28,13 +28,15 @@
   },
   "llm": {
     "provider": "deepseek",
+    "base_prompt": "configs/prompts/deepseek_base_prompt.md",
     "prompt_files": {
       "market_overview": "configs/prompts/deepseek_market_overview.md",
       "sector_analysis": "configs/prompts/deepseek_sector_analysis.md",
       "stock_actions": "configs/prompts/deepseek_stock_actions.md",
       "exposure_check": "configs/prompts/deepseek_exposure_check.md",
       "report_compose": "configs/prompts/deepseek_report_compose.md"
-    }
+    },
+    "max_stock_payload": 4
   },
   "logging": {
     "log_dir": "storage/logs",

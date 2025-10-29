@@ -105,11 +105,18 @@ class BaseAgent:
 
         llm_analysis = None
         if self.analyzer:
+            llm_config = self.config.get("llm", {})
+            max_stocks = llm_config.get("max_stock_payload")
+            llm_stocks = stock_scores
+            if max_stocks and len(stock_scores) > max_stocks:
+                llm_stocks = sorted(
+                    stock_scores, key=lambda item: item.get("score", 0.0), reverse=True
+                )[:max_stocks]
             llm_analysis = self.analyzer.run(
                 trading_day=trading_day,
                 risk=risk_view,
                 sector_scores=sector_scores,
-                stock_scores=stock_scores,
+                stock_scores=llm_stocks,
                 orders=orders,
                 portfolio_state=self.portfolio_state,
                 market_features=market_features,

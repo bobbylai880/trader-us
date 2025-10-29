@@ -126,6 +126,25 @@ NEGATIVE_KEYWORDS = {
 }
 
 
+def _normalize_news_payload(articles: List[Dict], limit_chars: int = 400) -> List[Dict]:
+    """Trim long news fields before passing to downstream consumers."""
+
+    trimmed: List[Dict] = []
+    for article in articles:
+        if not isinstance(article, dict):
+            continue
+        entry = {
+            "title": article.get("title", ""),
+            "summary": (article.get("summary") or "")[:limit_chars],
+            "content": (article.get("content") or "")[:limit_chars],
+            "publisher": article.get("publisher", ""),
+            "published": article.get("published", ""),
+            "link": article.get("link", ""),
+        }
+        trimmed.append(entry)
+    return trimmed
+
+
 def _news_sentiment_score(articles: List[Dict[str, str]]) -> float:
     if not articles:
         return 0.0
@@ -198,7 +217,9 @@ def prepare_feature_sets(
     market_symbols = ["SPY", "QQQ"]
     market_history = {"SPY": spy_history, "QQQ": qqq_history}
     market_news = {
-        symbol: yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
+        symbol: _normalize_news_payload(
+            yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
+        )
         for symbol in market_symbols
     }
 
@@ -208,7 +229,9 @@ def prepare_feature_sets(
         for symbol in sector_symbols
     }
     sector_news = {
-        symbol: yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
+        symbol: _normalize_news_payload(
+            yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
+        )
         for symbol in sector_symbols
     }
 
@@ -220,7 +243,9 @@ def prepare_feature_sets(
         for symbol in sorted_watchlist
     }
     stock_news = {
-        symbol: yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
+        symbol: _normalize_news_payload(
+            yf_client.fetch_news(symbol, lookback_days=7, as_of=as_of)
+        )
         for symbol in sorted_watchlist
     }
 
@@ -282,7 +307,7 @@ def prepare_feature_sets(
             "rs": relative_strength,
             "volume_trend": _volume_trend(volume),
             "news_score": _news_sentiment_score(news_articles),
-            "news": news_articles[:5],
+            "news": news_articles[:3],
             "trend_slope_5d": float(trend_meta.get("trend_slope_5d", 0.0)),
             "trend_slope_20d": float(trend_meta.get("trend_slope_20d", 0.0)),
             "momentum_10d": float(trend_meta.get("momentum_10d", 0.0)),
@@ -315,7 +340,7 @@ def prepare_feature_sets(
                 "atr_pct": 0.02,
                 "price": 0.0,
                 "news_score": 0.0,
-                "recent_news": news_articles[:5],
+                "recent_news": news_articles[:3],
                 "trend_slope_5d": float(trend_meta.get("trend_slope_5d", 0.0)),
                 "trend_slope_20d": float(trend_meta.get("trend_slope_20d", 0.0)),
                 "momentum_10d": float(trend_meta.get("momentum_10d", 0.0)),
@@ -365,7 +390,7 @@ def prepare_feature_sets(
             "atr_pct": _atr_pct(df),
             "price": price,
             "news_score": _news_sentiment_score(news_articles),
-            "recent_news": news_articles[:5],
+            "recent_news": news_articles[:3],
             "trend_slope_5d": float(trend_meta.get("trend_slope_5d", 0.0)),
             "trend_slope_20d": float(trend_meta.get("trend_slope_20d", 0.0)),
             "momentum_10d": float(trend_meta.get("momentum_10d", 0.0)),
@@ -397,21 +422,21 @@ def prepare_feature_sets(
     news_bundle = {
         "market": {
             "symbols": market_symbols,
-            "headlines": _aggregate_headlines(market_news),
+            "headlines": _aggregate_headlines(market_news, limit=4),
             "sentiment": _news_sentiment_score(
                 [article for articles in market_news.values() for article in articles]
             ),
         },
         "sectors": {
             symbol: {
-                "headlines": _aggregate_headlines({symbol: sector_news.get(symbol, [])}, 3),
+                "headlines": _aggregate_headlines({symbol: sector_news.get(symbol, [])}, 2),
                 "sentiment": _news_sentiment_score(sector_news.get(symbol, [])),
             }
             for symbol in sector_symbols
         },
         "stocks": {
             symbol: {
-                "headlines": stock_news.get(symbol, [])[:5],
+                "headlines": stock_news.get(symbol, [])[:3],
                 "sentiment": _news_sentiment_score(stock_news.get(symbol, [])),
             }
             for symbol in sorted_watchlist
