@@ -45,7 +45,7 @@ class LLMOperatorConfig:
     prompt_file: Path
     retries: int = 0
     temperature: float = 0.2
-    max_tokens: int = 12000
+    max_tokens: int = 8192
 
 
 @dataclass

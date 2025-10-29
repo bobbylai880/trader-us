@@ -41,7 +41,7 @@
     "model": "deepseek-chat",
     "api_url": "https://api.deepseek.com/v1/chat/completions",
     "timeout": 90,
-    "max_tokens": 12000,
+    "max_tokens": 8192,
     "temperature": 0.2,
     "base_prompt": "configs/prompts/deepseek_base_prompt.md",
     "prompt_files": {
@@ -64,17 +64,17 @@
       "stock_classifier": {
         "prompt_file": "configs/prompts/deepseek_stock_actions.md",
         "retries": 1,
-        "max_tokens": 12000
+        "max_tokens": 8192
       },
       "exposure_planner": {
         "prompt_file": "configs/prompts/deepseek_exposure_check.md",
         "retries": 1,
-        "max_tokens": 12000
+        "max_tokens": 8192
       },
       "report_composer": {
         "prompt_file": "configs/prompts/deepseek_report_compose.md",
         "retries": 1,
-        "max_tokens": 12000
+        "max_tokens": 8192
       }
     },
     "guardrails": {
