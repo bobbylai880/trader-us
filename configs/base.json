@@ -27,7 +27,11 @@
     "volatility_long": 20
   },
   "llm": {
-    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "api_url": "https://api.deepseek.com/v1/chat/completions",
+    "timeout": 30,
+    "max_tokens": 1200,
+    "temperature": 0.2,
     "base_prompt": "configs/prompts/deepseek_base_prompt.md",
     "prompt_files": {
       "market_overview": "configs/prompts/deepseek_market_overview.md",
@@ -36,7 +40,40 @@
       "exposure_check": "configs/prompts/deepseek_exposure_check.md",
       "report_compose": "configs/prompts/deepseek_report_compose.md"
     },
-    "max_stock_payload": 4
+    "max_stock_payload": 8,
+    "operators": {
+      "market_analyzer": {
+        "prompt_file": "configs/prompts/deepseek_market_overview.md",
+        "retries": 1
+      },
+      "sector_analyzer": {
+        "prompt_file": "configs/prompts/deepseek_sector_analysis.md",
+        "retries": 1
+      },
+      "stock_classifier": {
+        "prompt_file": "configs/prompts/deepseek_stock_actions.md",
+        "retries": 1,
+        "max_tokens": 2000
+      },
+      "exposure_planner": {
+        "prompt_file": "configs/prompts/deepseek_exposure_check.md",
+        "retries": 1
+      },
+      "report_composer": {
+        "prompt_file": "configs/prompts/deepseek_report_compose.md",
+        "retries": 1,
+        "max_tokens": 2000
+      }
+    },
+    "guardrails": {
+      "schema_validation": true,
+      "reject_on_hallucinated_tickers": true,
+      "max_retry": 2
+    },
+    "safe_mode": {
+      "on_llm_failure": "no_new_risk",
+      "max_exposure_cap": 0.4
+    }
   },
   "logging": {
     "log_dir": "storage/logs",
