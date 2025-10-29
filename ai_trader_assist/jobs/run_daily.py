@@ -123,7 +123,8 @@ def main() -> None:
         )
 
         fred_detected = "已检测" if os.getenv("FRED_API_KEY") else "缺失"
-        deepseek_detected = "已检测" if os.getenv("DEEPSEEK_API_KEY") else "缺失"
+        deepseek_key = os.getenv("DEEPSEEK_API_KEY")
+        deepseek_detected = "已检测" if deepseek_key else "缺失"
         log_result(
             logger,
             "run_daily",
@@ -216,7 +217,7 @@ def main() -> None:
         }
         base_prompt_path = llm_config.get("base_prompt")
         analyzer = None
-        if prompt_files:
+        if prompt_files and deepseek_key:
             client = DeepSeekClient.from_env()
             analyzer = DeepSeekAnalyzer(
                 prompt_files=prompt_files,
@@ -232,6 +233,8 @@ def main() -> None:
                 "llm",
                 f"DeepSeek prompts configured: {len(prompt_files)} stages",
             )
+        elif prompt_files and not deepseek_key:
+            log_result(logger, "llm", "Skipped (missing DEEPSEEK_API_KEY)")
         else:
             log_result(logger, "llm", "Skipped (no prompt files configured)")
 

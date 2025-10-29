@@ -103,8 +103,9 @@ class PortfolioState:
                 )
                 self.cash -= shares_int * price
             elif side == "sell":
-                position.shares = max(0, position.shares - shares_int)
-                self.cash += shares_int * price
+                sold_shares = min(position.shares, shares_int)
+                position.shares -= sold_shares
+                self.cash += sold_shares * price
             else:
                 raise ValueError(f"Unsupported action {side}")
             position.last_price = price
