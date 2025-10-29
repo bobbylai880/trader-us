@@ -4,7 +4,11 @@ from dataclasses import dataclass
 from typing import Mapping, Optional
 
 from .base import LLMOperator, LLMOperatorConfig
-from ..validators.pydantic_models import ReportComposerModel
+
+try:  # pragma: no cover - executed when Pydantic is installed
+    from ..validators.pydantic_models import ReportComposerModel
+except ImportError:  # pragma: no cover - fallback path when absent
+    ReportComposerModel = None  # type: ignore
 
 
 @dataclass

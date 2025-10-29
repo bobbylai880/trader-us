@@ -72,10 +72,20 @@ class SectorEvidenceDetail(BaseModel):
 SectorEvidence = Union[str, SectorEvidenceDetail]
 
 
+class FocusPointDetail(BaseModel):
+    topic: str
+    rationale: Optional[str] = None
+    risk: Optional[str] = None
+    action: Optional[str] = None
+
+
+FocusPoint = Union[str, FocusPointDetail]
+
+
 class SectorAnalyzerModel(BaseModel):
     leading: List[SectorEvidence]
     lagging: List[SectorEvidence]
-    focus_points: List[str] = Field(default_factory=list)
+    focus_points: List[FocusPoint] = Field(default_factory=list)
     data_gaps: List[str] = Field(default_factory=list)
 
 

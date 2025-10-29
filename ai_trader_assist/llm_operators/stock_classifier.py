@@ -4,7 +4,11 @@ from dataclasses import dataclass
 from typing import Mapping, Optional
 
 from .base import LLMOperator, LLMOperatorConfig
-from ..validators.pydantic_models import StockClassifierModel
+
+try:  # pragma: no cover - executed when Pydantic is present
+    from ..validators.pydantic_models import StockClassifierModel
+except ImportError:  # pragma: no cover - fallback without Pydantic
+    StockClassifierModel = None  # type: ignore
 
 
 @dataclass

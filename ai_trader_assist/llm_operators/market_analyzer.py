@@ -4,7 +4,11 @@ from dataclasses import dataclass
 from typing import Mapping, Optional
 
 from .base import LLMOperator, LLMOperatorConfig
-from ..validators.pydantic_models import MarketAnalyzerModel
+
+try:  # pragma: no cover - exercised when Pydantic is optional dependency
+    from ..validators.pydantic_models import MarketAnalyzerModel
+except ImportError:  # pragma: no cover - fallback when Pydantic missing
+    MarketAnalyzerModel = None  # type: ignore
 
 
 @dataclass

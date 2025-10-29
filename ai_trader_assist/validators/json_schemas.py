@@ -81,6 +81,23 @@ SECTOR_ANALYZER_SCHEMA = {
                 }
             ],
         },
+        "FocusPointDetail": {
+            "type": "object",
+            "required": ["topic"],
+            "properties": {
+                "topic": {"type": "string"},
+                "rationale": {"type": "string"},
+                "risk": {"type": "string"},
+                "action": {"type": "string"},
+            },
+            "additionalProperties": True,
+        },
+        "FocusPointEntry": {
+            "anyOf": [
+                {"type": "string"},
+                {"$ref": "#/definitions/FocusPointDetail"},
+            ]
+        },
         "SectorEntry": {
             "anyOf": [
                 {"type": "string"},
@@ -98,7 +115,10 @@ SECTOR_ANALYZER_SCHEMA = {
             "type": "array",
             "items": {"$ref": "#/definitions/SectorEntry"},
         },
-        "focus_points": {"type": "array", "items": {"type": "string"}},
+        "focus_points": {
+            "type": "array",
+            "items": {"$ref": "#/definitions/FocusPointEntry"},
+        },
         "data_gaps": {"type": "array", "items": {"type": "string"}},
     },
 }

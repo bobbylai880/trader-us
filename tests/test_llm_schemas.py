@@ -78,6 +78,21 @@ def test_sector_schema_accepts_structured_entries() -> None:
     validate(instance=payload, schema=SECTOR_ANALYZER_SCHEMA)
 
 
+def test_sector_schema_accepts_structured_focus_points() -> None:
+    payload = {
+        "leading": ["XLK 表现稳健"],
+        "lagging": ["XLE 受油价拖累"],
+        "focus_points": [
+            {
+                "topic": "科技板块相对强势",
+                "rationale": "XLK 5日动量领先且新闻情绪积极",
+            }
+        ],
+        "data_gaps": [],
+    }
+    validate(instance=payload, schema=SECTOR_ANALYZER_SCHEMA)
+
+
 def test_stock_classifier_requires_categories() -> None:
     payload = {
         "categories": {
