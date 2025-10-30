@@ -2,6 +2,8 @@
 import json
 from datetime import datetime, timedelta, timezone
 
+import pandas as pd
+
 from ai_trader_assist.data_collector import yf_client
 from ai_trader_assist.data_collector.yf_client import YahooFinanceClient
 
@@ -169,3 +171,25 @@ def test_fetch_news_rehydrates_cached_articles(tmp_path, monkeypatch):
     assert article["title"] == "Cached headline"
     assert article["content"]
     assert "未能获取新闻正文" in article["content"] or article["content"] == article["title"]
+
+
+def test_latest_price_handles_multiindex_close_column(tmp_path, monkeypatch):
+    client = YahooFinanceClient(cache_dir=tmp_path)
+
+    def fake_history(symbol, start, end, interval="1d", force=False):  # noqa: D401
+        index = pd.date_range(start="2025-10-20", periods=3, freq="B")
+        data = pd.DataFrame(
+            {
+                ("Close", symbol): [148.5, 149.2, 150.75],
+                ("Volume", symbol): [1_000_000, 1_100_000, 1_050_000],
+            },
+            index=index,
+        )
+        data.columns = pd.MultiIndex.from_tuples(data.columns)
+        return data
+
+    monkeypatch.setattr(client, "fetch_history", fake_history)
+
+    price = client.latest_price("AAPL")
+
+    assert price == 150.75
