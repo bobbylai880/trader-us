@@ -14,7 +14,7 @@ from uuid import uuid4
 
 from dotenv import load_dotenv
 
-from typing import List, Optional
+from typing import Any, List, Optional, Mapping, Sequence
 
 from ..agent.base_agent import BaseAgent
 from ..agent.orchestrator import LLMOrchestrator
@@ -33,6 +33,7 @@ from ..llm.analyzer import DeepSeekAnalyzer
 from ..llm.client import DeepSeekClient
 from ..position_sizer.sizer import PositionSizer
 from ..report_builder.hybrid_builder import HybridReportBuilder
+from ..report_builder.markdown_renderer import MarkdownRenderConfig
 from ..risk_engine.macro_engine import MacroRiskEngine
 from ..utils import log_ok, log_result, log_step, setup_logger
 
@@ -89,6 +90,12 @@ def main() -> None:
     project_root = Path(__file__).resolve().parents[2]
 
     config_path = resolve_path(project_root, args.config)
+
+    def to_relative(path: Path) -> str:
+        try:
+            return str(path.relative_to(project_root))
+        except ValueError:
+            return str(path)
     config = load_config(config_path)
 
     logging_cfg = config.get("logging", {})
@@ -129,6 +136,28 @@ def main() -> None:
             "input_hash": input_hash,
             "config_profile": config_profile,
         }
+
+        md_cfg = config.get("md", {})
+        renderer_kwargs: dict[str, Any] = {}
+        if "locale" in md_cfg:
+            renderer_kwargs["locale"] = md_cfg["locale"]
+        decimals_cfg = md_cfg.get("decimals", {}) if isinstance(md_cfg, dict) else {}
+        if isinstance(decimals_cfg, dict):
+            if "money" in decimals_cfg:
+                renderer_kwargs["decimals_money"] = int(decimals_cfg["money"])
+            if "percent" in decimals_cfg:
+                renderer_kwargs["decimals_percent"] = int(decimals_cfg["percent"])
+        if "max_rows_per_section" in md_cfg:
+            renderer_kwargs["max_rows_per_section"] = int(md_cfg["max_rows_per_section"])
+        if "hide_below_weight" in md_cfg:
+            renderer_kwargs["hide_below_weight"] = md_cfg["hide_below_weight"]
+        if "show_raw_json_appendix" in md_cfg:
+            renderer_kwargs["show_raw_json_appendix"] = bool(md_cfg["show_raw_json_appendix"])
+        if "raw_json_preview_lines" in md_cfg:
+            renderer_kwargs["raw_json_preview_lines"] = int(md_cfg["raw_json_preview_lines"])
+        if "news_highlights_visible" in md_cfg:
+            renderer_kwargs["news_highlights_visible"] = int(md_cfg["news_highlights_visible"])
+        renderer_config = MarkdownRenderConfig(**renderer_kwargs)
 
         operations_path = resolve_path(
             project_root, logging_cfg.get("operations_path", "storage/operations.jsonl")
@@ -238,6 +267,84 @@ def main() -> None:
         else:
             output_dir = project_root / "storage" / f"daily_{trading_day.isoformat()}"
         output_dir.mkdir(parents=True, exist_ok=True)
+        report_json_path = output_dir / "report.json"
+
+        reproduction_bits = [
+            "python -m ai_trader_assist.jobs.run_daily",
+            f"--config {to_relative(config_path)}",
+            f"--output-dir {to_relative(output_dir)}",
+            f"--date {trading_day.isoformat()}",
+        ]
+        reproduction_command = " ".join(reproduction_bits)
+        renderer_config.report_json_path = to_relative(report_json_path)
+        renderer_config.reproduction_command = reproduction_command
+
+        def count_news_articles(bundle: Mapping[str, Any]) -> int:
+            total = 0
+            if not isinstance(bundle, Mapping):
+                return total
+            market_news = bundle.get("market")
+            if isinstance(market_news, Mapping):
+                headlines = market_news.get("headlines")
+                if isinstance(headlines, Sequence):
+                    total += len(headlines)
+            for section in ("stocks", "sectors"):
+                section_payload = bundle.get(section)
+                if isinstance(section_payload, Mapping):
+                    for item in section_payload.values():
+                        if isinstance(item, Mapping):
+                            headlines = item.get("headlines")
+                            if isinstance(headlines, Sequence):
+                                total += len(headlines)
+            return total
+
+        artefact_summary = [
+            {
+                "name": operations_path.name,
+                "path": to_relative(operations_path),
+                "entries": len(operations),
+            },
+            {
+                "name": positions_path.name,
+                "path": to_relative(positions_path),
+                "entries": len(state.positions),
+            },
+            {
+                "name": "market_features.json",
+                "path": to_relative(output_dir / "market_features.json"),
+                "entries": len(market) if isinstance(market, Mapping) else 0,
+            },
+            {
+                "name": "sector_features.json",
+                "path": to_relative(output_dir / "sector_features.json"),
+                "entries": len(sectors) if isinstance(sectors, Sequence) else 0,
+            },
+            {
+                "name": "stock_features.json",
+                "path": to_relative(output_dir / "stock_features.json"),
+                "entries": len(stocks) if isinstance(stocks, Mapping) else 0,
+            },
+            {
+                "name": "premarket_flags.json",
+                "path": to_relative(output_dir / "premarket_flags.json"),
+                "entries": len(premarket) if isinstance(premarket, Mapping) else 0,
+            },
+            {
+                "name": "news_bundle.json",
+                "path": to_relative(output_dir / "news_bundle.json"),
+                "entries": count_news_articles(news_bundle),
+            },
+            {
+                "name": "trend_features.json",
+                "path": to_relative(output_dir / "trend_features.json"),
+                "entries": len(trend_bundle) if isinstance(trend_bundle, Mapping) else 0,
+            },
+            {
+                "name": "macro_flags.json",
+                "path": to_relative(output_dir / "macro_flags.json"),
+                "entries": len(macro_flags) if isinstance(macro_flags, Mapping) else 0,
+            },
+        ]
 
         analyzer: Optional[DeepSeekAnalyzer] = None
         deepseek_client: Optional[DeepSeekClient] = None
@@ -320,6 +427,14 @@ def main() -> None:
 
         logger.info("开始执行日常流程，输出目录: %s", output_dir)
 
+        report_meta = {
+            "appendix": {
+                "report_json_path": to_relative(report_json_path),
+                "reproduction_command": reproduction_command,
+            },
+            "artefact_summary": artefact_summary,
+        }
+
         context = agent.run(
             trading_day=trading_day,
             market_features=market,
@@ -331,6 +446,8 @@ def main() -> None:
             macro_flags=macro_flags,
             output_dir=output_dir,
             snapshot_meta=snapshot_meta,
+            renderer_config=renderer_config,
+            report_meta=report_meta,
         )
         phases_executed.extend(context.stage_metrics.keys())
 

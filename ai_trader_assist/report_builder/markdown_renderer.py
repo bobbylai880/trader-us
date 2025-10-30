@@ -65,7 +65,30 @@ class MarkdownRenderer:
 
         missing_sections.extend(self._collect_missing(data, ["market", "exposure", "allocation_plan", "positions"]))
 
-        toc = self._render_toc()
+        extra_section, _ = self._render_additional_sections(
+            data,
+            known_keys={
+                "as_of",
+                "date",
+                "snapshot_id",
+                "input_hash",
+                "config_profile",
+                "market",
+                "exposure",
+                "allocation_plan",
+                "positions",
+                "sectors",
+                "stocks",
+                "data_gaps",
+                "safe_mode",
+                "ai_summary",
+                "appendix",
+                "artefact_summary",
+            },
+        )
+        artefact_section, _ = self._render_artefact_summary(data.get("artefact_summary"))
+
+        toc = self._render_toc(include_additional=True, include_artefacts=True)
         lines.extend(toc)
 
         market_section = self._render_market(data.get("market"))
@@ -87,26 +110,8 @@ class MarkdownRenderer:
         stocks_section = self._render_stocks(data.get("stocks"))
         lines.extend(stocks_section)
 
-        extra_section = self._render_additional_sections(
-            data,
-            known_keys={
-                "as_of",
-                "date",
-                "snapshot_id",
-                "input_hash",
-                "config_profile",
-                "market",
-                "exposure",
-                "allocation_plan",
-                "positions",
-                "sectors",
-                "stocks",
-                "data_gaps",
-                "safe_mode",
-                "ai_summary",
-            },
-        )
         lines.extend(extra_section)
+        lines.extend(artefact_section)
 
         data_gaps_section = self._render_data_gaps(data.get("data_gaps"), missing_sections)
         lines.extend(data_gaps_section)
@@ -175,7 +180,7 @@ class MarkdownRenderer:
         lines.append("")
         return lines
 
-    def _render_toc(self) -> List[str]:
+    def _render_toc(self, *, include_additional: bool, include_artefacts: bool) -> List[str]:
         entries = [
             ("市场概览", "市场概览"),
             ("组合敞口", "组合敞口"),
@@ -183,10 +188,17 @@ class MarkdownRenderer:
             ("当前持仓", "当前持仓"),
             ("板块视图", "板块视图"),
             ("个股视图", "个股视图"),
-            ("附加信息", "附加信息"),
-            ("数据缺口与异常", "数据缺口与异常"),
-            ("附录", "附录"),
         ]
+        if include_additional:
+            entries.append(("附加信息", "附加信息"))
+        if include_artefacts:
+            entries.append(("产出摘要", "产出摘要"))
+        entries.extend(
+            [
+                ("数据缺口与异常", "数据缺口与异常"),
+                ("附录", "附录"),
+            ]
+        )
         lines = ["## 目录"]
         for label, anchor in entries:
             lines.append(f"- [{label}](#{anchor})")
@@ -464,7 +476,8 @@ class MarkdownRenderer:
             lines.append("")
             return lines
 
-        path_info = self.config.report_json_path or "未提供路径"
+        appendix_meta = report.get("appendix") if isinstance(report.get("appendix"), Mapping) else {}
+        path_info = appendix_meta.get("report_json_path") or self.config.report_json_path or "未提供路径"
         lines.append("<details>")
         lines.append("<summary>原始 JSON 预览</summary>")
         lines.append("")
@@ -478,7 +491,11 @@ class MarkdownRenderer:
             lines.append("…")
         lines.append("````")
 
-        command = self.config.reproduction_command or "python -m ai_trader_assist.jobs.run_daily --config configs/base.json --output-dir storage/daily_$(date +%F)"
+        command = (
+            appendix_meta.get("reproduction_command")
+            or self.config.reproduction_command
+            or "python -m ai_trader_assist.jobs.run_daily --config configs/base.json --output-dir storage/daily_$(date +%F)"
+        )
         lines.append("")
         lines.append("复现命令：")
         lines.append("```bash")
@@ -585,7 +602,7 @@ class MarkdownRenderer:
         report: Mapping[str, Any],
         *,
         known_keys: set[str],
-    ) -> List[str]:
+    ) -> tuple[List[str], bool]:
         extras: List[tuple[str, Any]] = []
         for key, value in report.items():
             if key in known_keys:
@@ -598,7 +615,7 @@ class MarkdownRenderer:
         if not extras:
             lines.append("无额外字段")
             lines.append("")
-            return lines
+            return lines, False
 
         for key, value in extras:
             lines.append(f"### {key}")
@@ -610,5 +627,36 @@ class MarkdownRenderer:
             else:
                 lines.append(str(value))
             lines.append("")
-        return lines
+        return lines, True
+
+    def _render_artefact_summary(self, artefacts: Any) -> tuple[List[str], bool]:
+        lines: List[str] = ["## 产出摘要", ""]
+        if not isinstance(artefacts, Sequence) or isinstance(artefacts, (str, bytes)):
+            lines.append("无可用摘要")
+            lines.append("")
+            return lines, False
+
+        rows: List[str] = []
+        for item in artefacts:
+            if not isinstance(item, Mapping):
+                continue
+            name = item.get("name") or item.get("label") or item.get("file") or "—"
+            path = item.get("path") or item.get("location") or "—"
+            entries = item.get("entries")
+            if isinstance(entries, (int, float)):
+                count = f"{int(entries)}"
+            else:
+                count = str(entries) if entries not in (None, "") else "—"
+            rows.append(f"| {name} | {path} | {count} |")
+
+        if not rows:
+            lines.append("无可用摘要")
+            lines.append("")
+            return lines, False
+
+        header = ["| 名称 | 路径 | 条目数 |", "|---|---|---:|"]
+        lines.extend(header)
+        lines.extend(rows)
+        lines.append("")
+        return lines, True
 

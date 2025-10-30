@@ -14,6 +14,17 @@ def build_sample_report() -> Dict:
         "snapshot_id": "c68b",
         "input_hash": "sha256:abc123",
         "config_profile": "baseline",
+        "appendix": {
+            "report_json_path": "storage/daily_2025-10-30/report.json",
+            "reproduction_command": "python -m ai_trader_assist.jobs.run_daily --config configs/base.json --output-dir storage/daily_2025-10-30 --date 2025-10-30",
+        },
+        "artefact_summary": [
+            {
+                "name": "operations.jsonl",
+                "path": "storage/operations.jsonl",
+                "entries": 12,
+            }
+        ],
         "market": {
             "risk_level": "medium",
             "bias": "slightly_bullish",
@@ -99,6 +110,9 @@ def test_markdown_renderer_renders_full_report() -> None:
     assert "NVDA" in markdown and "AAPL" in markdown
     assert "AI 总结" in markdown
     assert "无额外字段" in markdown
+    assert "## 产出摘要" in markdown
+    assert "operations.jsonl" in markdown
+    assert "复现命令" in markdown
 
 
 def test_markdown_renderer_fold_behavior() -> None:

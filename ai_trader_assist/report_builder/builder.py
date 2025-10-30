@@ -35,6 +35,8 @@ class DailyReportBuilder:
         snapshot_meta: Optional[Dict[str, Any]] = None,
         safe_mode: Optional[Dict[str, Any]] = None,
         llm_summary: Optional[Dict[str, Any]] = None,
+        renderer_config: Optional[MarkdownRenderConfig] = None,
+        report_meta: Optional[Mapping[str, Any]] = None,
     ) -> Tuple[Dict, str]:
         payload = self.build_payload(
             trading_day=trading_day,
@@ -48,8 +50,9 @@ class DailyReportBuilder:
             snapshot_meta=snapshot_meta,
             safe_mode=safe_mode,
             llm_summary=llm_summary,
+            report_meta=report_meta,
         )
-        renderer = MarkdownRenderer(MarkdownRenderConfig())
+        renderer = MarkdownRenderer(renderer_config or MarkdownRenderConfig())
         markdown = renderer.render(payload)
         return payload, markdown
 
@@ -70,6 +73,7 @@ class DailyReportBuilder:
         snapshot_meta: Optional[Mapping[str, Any]] = None,
         safe_mode: Optional[Mapping[str, Any]] = None,
         llm_summary: Optional[Mapping[str, Any]] = None,
+        report_meta: Optional[Mapping[str, Any]] = None,
     ) -> Dict[str, Any]:
         snapshot_meta = snapshot_meta or {}
         market_section = self._build_market_section(risk, news, premarket_flags)
@@ -107,6 +111,19 @@ class DailyReportBuilder:
 
         if news and "artefacts" in news:
             payload["artefacts"] = news["artefacts"]
+
+        if report_meta:
+            appendix = report_meta.get("appendix") if isinstance(report_meta, Mapping) else None
+            if isinstance(appendix, Mapping):
+                payload["appendix"] = dict(appendix)
+
+            artefact_summary = report_meta.get("artefact_summary") if isinstance(report_meta, Mapping) else None
+            if isinstance(artefact_summary, Sequence):
+                payload["artefact_summary"] = [
+                    dict(item)
+                    for item in artefact_summary
+                    if isinstance(item, Mapping)
+                ]
 
         return payload
 

@@ -58,6 +58,8 @@ class HybridReportBuilder(DailyReportBuilder):
         premarket_flags: Optional[Dict[str, Dict]] = None,
         snapshot_meta: Optional[Dict[str, Any]] = None,
         safe_mode: Optional[Dict[str, Any]] = None,
+        renderer_config: Optional[MarkdownRenderConfig] = None,
+        report_meta: Optional[Mapping[str, Any]] = None,
     ) -> Tuple[Dict, str]:
         report_json = self.build_payload(
             trading_day=trading_day,
@@ -71,8 +73,9 @@ class HybridReportBuilder(DailyReportBuilder):
             snapshot_meta=snapshot_meta,
             safe_mode=safe_mode,
             llm_summary=llm_summary,
+            report_meta=report_meta,
         )
-        renderer = MarkdownRenderer(MarkdownRenderConfig())
+        renderer = MarkdownRenderer(renderer_config or MarkdownRenderConfig())
         markdown = renderer.render(report_json)
         return report_json, markdown
 
@@ -90,6 +93,7 @@ class HybridReportBuilder(DailyReportBuilder):
         snapshot_meta: Optional[Mapping[str, Any]] = None,
         safe_mode: Optional[Mapping[str, Any]] = None,
         llm_summary: Optional[Mapping[str, Any]] = None,
+        report_meta: Optional[Mapping[str, Any]] = None,
     ) -> Dict[str, Any]:
         payload = super().build_payload(
             trading_day=trading_day,
@@ -103,6 +107,7 @@ class HybridReportBuilder(DailyReportBuilder):
             snapshot_meta=snapshot_meta,
             safe_mode=safe_mode,
             llm_summary=llm_summary,
+            report_meta=report_meta,
         )
 
         summary_payload = {"text": "", "key_points": []}
