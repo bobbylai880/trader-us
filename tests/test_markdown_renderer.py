@@ -98,6 +98,7 @@ def test_markdown_renderer_renders_full_report() -> None:
     assert "组合敞口" in markdown
     assert "NVDA" in markdown and "AAPL" in markdown
     assert "AI 总结" in markdown
+    assert "无额外字段" in markdown
 
 
 def test_markdown_renderer_fold_behavior() -> None:
@@ -152,3 +153,13 @@ def test_markdown_renderer_missing_fields_warning() -> None:
 
     assert "数据校验失败" in markdown
     assert "字段缺失：market" in markdown
+
+
+def test_markdown_renderer_additional_fields_section() -> None:
+    report = build_sample_report()
+    report["trend_overview"] = [{"symbol": "NVDA", "trend": "up"}]
+    markdown = MarkdownRenderer(MarkdownRenderConfig()).render(report)
+
+    assert "## 附加信息" in markdown
+    assert "### trend_overview" in markdown
+    assert '"trend": "up"' in markdown

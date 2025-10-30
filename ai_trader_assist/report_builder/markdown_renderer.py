@@ -30,6 +30,7 @@ class MarkdownRenderConfig:
     raw_json_preview_lines: int = 40
     report_json_path: Optional[str] = None
     reproduction_command: Optional[str] = None
+    news_highlights_visible: int = 5
 
     def money(self, value: float | int | str | None, prefix: str = "$") -> str:
         number = _decimalize(value)
@@ -86,6 +87,27 @@ class MarkdownRenderer:
         stocks_section = self._render_stocks(data.get("stocks"))
         lines.extend(stocks_section)
 
+        extra_section = self._render_additional_sections(
+            data,
+            known_keys={
+                "as_of",
+                "date",
+                "snapshot_id",
+                "input_hash",
+                "config_profile",
+                "market",
+                "exposure",
+                "allocation_plan",
+                "positions",
+                "sectors",
+                "stocks",
+                "data_gaps",
+                "safe_mode",
+                "ai_summary",
+            },
+        )
+        lines.extend(extra_section)
+
         data_gaps_section = self._render_data_gaps(data.get("data_gaps"), missing_sections)
         lines.extend(data_gaps_section)
 
@@ -117,15 +139,20 @@ class MarkdownRenderer:
 
         safe_mode = data.get("safe_mode") or {}
         if isinstance(safe_mode, Mapping) and safe_mode:
-            active = safe_mode.get("active", True)
+            active = bool(safe_mode.get("active", True))
             if active:
                 reason = safe_mode.get("reason", "未提供原因")
                 impact = safe_mode.get("impact") or safe_mode.get("policy")
-                details = f"⚠️ **Safe Mode 启用**：{reason}"
+                details = f"> ⚠️ **Safe Mode 启用**：{reason}"
                 if impact:
                     details += f"（影响：{impact}）"
-            header_lines.append(details)
-            header_lines.append("")
+                header_lines.append(details)
+                header_lines.append("")
+            else:
+                note = safe_mode.get("note") or safe_mode.get("reason")
+                if note:
+                    header_lines.append(f"> ℹ️ Safe Mode 已禁用：{note}")
+                    header_lines.append("")
 
         ai_summary = data.get("ai_summary")
         if isinstance(ai_summary, Mapping):
@@ -156,6 +183,7 @@ class MarkdownRenderer:
             ("当前持仓", "当前持仓"),
             ("板块视图", "板块视图"),
             ("个股视图", "个股视图"),
+            ("附加信息", "附加信息"),
             ("数据缺口与异常", "数据缺口与异常"),
             ("附录", "附录"),
         ]
@@ -489,21 +517,26 @@ class MarkdownRenderer:
 
     def _render_news_highlights(self, highlights: Sequence[Mapping[str, Any]]) -> tuple[List[str], bool]:
         count = len(highlights)
-        summary = f"重点新闻（{count} 条)"
-        if count <= self.config.max_rows_per_section:
+        if count == 0:
+            return [], False
+
+        limit = max(
+            1,
+            min(self.config.news_highlights_visible, self.config.max_rows_per_section),
+        )
+
+        if count <= limit:
+            summary = f"重点新闻（{count} 条）"
             lines = ["<details>", f"<summary>{summary}</summary>", ""]
             for item in highlights:
                 lines.append(self._format_news_line(item))
             lines.append("</details>")
             return lines, False
-        limit = self.config.max_rows_per_section
+
         primary = highlights[:limit]
         folded = highlights[limit:]
-        lines = [
-            "<details>",
-            f"<summary>{summary} · 已折叠 {len(folded)} 项</summary>",
-            "",
-        ]
+        summary = f"重点新闻（{count} 条，已折叠 {len(folded)} 项）"
+        lines = ["<details>", f"<summary>{summary}</summary>", ""]
         for item in primary:
             lines.append(self._format_news_line(item))
         lines.append("<details>")
@@ -546,4 +579,36 @@ class MarkdownRenderer:
             if key not in data or data.get(key) in (None, {}, []):
                 missing.append(f"字段缺失：{key}")
         return missing
+
+    def _render_additional_sections(
+        self,
+        report: Mapping[str, Any],
+        *,
+        known_keys: set[str],
+    ) -> List[str]:
+        extras: List[tuple[str, Any]] = []
+        for key, value in report.items():
+            if key in known_keys:
+                continue
+            if value in (None, "", [], {}):
+                continue
+            extras.append((key, value))
+
+        lines: List[str] = ["## 附加信息", ""]
+        if not extras:
+            lines.append("无额外字段")
+            lines.append("")
+            return lines
+
+        for key, value in extras:
+            lines.append(f"### {key}")
+            if isinstance(value, (Mapping, Sequence)) and not isinstance(value, (str, bytes)):
+                pretty = json.dumps(value, indent=2, ensure_ascii=False)
+                lines.append("```json")
+                lines.extend(pretty.splitlines())
+                lines.append("```")
+            else:
+                lines.append(str(value))
+            lines.append("")
+        return lines
 
