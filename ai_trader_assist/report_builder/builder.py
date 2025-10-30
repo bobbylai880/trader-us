@@ -387,4 +387,4 @@ class DailyReportBuilder:
     def dumps_json(payload: Dict) -> str:
         import json
 
-        return json.dumps(payload, indent=2)
+        return json.dumps(payload, indent=2, ensure_ascii=False)
