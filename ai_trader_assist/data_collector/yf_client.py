@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, Iterable, List, Mapping, Optional
 
 import numpy as np
 import pandas as pd
@@ -98,7 +98,14 @@ class YahooFinanceClient:
                 "synthetic_articles": 0,
                 "company_queries": 0,
             },
+            "quotes": {
+                "requests": 0,
+                "cache_hits": 0,
+                "symbols": set(),
+                "failures": 0,
+            },
         }
+        self._quote_cache: Dict[str, Dict[str, object]] = {}
 
     # ------------------------------------------------------------------
     # Price history helpers
@@ -217,7 +224,195 @@ class YahooFinanceClient:
         history = self.fetch_history(symbol, start=start, end=end, interval="1d")
         if history.empty or "Close" not in history or history["Close"].empty:
             return None
-        return float(history["Close"].iloc[-1])
+        last_close = history["Close"].iloc[-1]
+        if isinstance(last_close, pd.Series):
+            last_close = last_close.squeeze()
+            if isinstance(last_close, pd.Series):
+                # Multi-ticker frames may still return a Series even after
+                # squeezing; fall back to the first non-null value.
+                last_close = last_close.dropna().to_numpy()
+                if last_close.size == 0:
+                    return None
+                last_close = last_close[0]
+        if pd.isna(last_close):
+            return None
+        return float(last_close)
+
+    # ------------------------------------------------------------------
+    # Quote helpers (pre/post market)
+    # ------------------------------------------------------------------
+
+    def _quote_cache_valid(self, cache_entry: Dict[str, object], freshness: int) -> bool:
+        cached_at = cache_entry.get("_cached_at")
+        if not isinstance(cached_at, datetime):
+            return False
+        horizon = datetime.now(timezone.utc) - timedelta(seconds=freshness)
+        return cached_at >= horizon
+
+    def fetch_quotes(
+        self,
+        symbols: Iterable[str],
+        freshness: int = 300,
+        force: bool = False,
+    ) -> Dict[str, Dict[str, object]]:
+        """Fetch quote snapshots for the provided symbols.
+
+        Parameters
+        ----------
+        symbols:
+            Iterable of ticker symbols to query.
+        freshness:
+            Cache freshness horizon in seconds. Entries newer than this will be
+            reused to avoid repeated HTTP calls when orchestrating a large
+            universe.
+        force:
+            If ``True`` the cache is bypassed and quotes are re-fetched.
+        """
+
+        stats = self.stats["quotes"]
+        unique_symbols = sorted({symbol.upper() for symbol in symbols if symbol})
+        if not unique_symbols:
+            return {}
+
+        results: Dict[str, Dict[str, object]] = {}
+        to_fetch: List[str] = []
+        for symbol in unique_symbols:
+            cached = self._quote_cache.get(symbol)
+            if (
+                not force
+                and cached
+                and self._quote_cache_valid(cached, freshness=freshness)
+            ):
+                stats["cache_hits"] += 1
+                results[symbol] = cached["data"]  # type: ignore[index]
+            else:
+                to_fetch.append(symbol)
+
+        if to_fetch:
+            chunk_size = 20
+            url = "https://query1.finance.yahoo.com/v7/finance/quote"
+            now = datetime.now(timezone.utc)
+            for idx in range(0, len(to_fetch), chunk_size):
+                batch = to_fetch[idx : idx + chunk_size]
+                params = {"symbols": ",".join(batch)}
+                stats["requests"] += 1
+                try:
+                    response = requests.get(url, params=params, timeout=10)
+                    response.raise_for_status()
+                    payload = response.json()
+                    entries = (
+                        payload.get("quoteResponse", {}).get("result", [])
+                        if isinstance(payload, dict)
+                        else []
+                    )
+                except Exception:
+                    stats["failures"] += len(batch)
+                    continue
+
+                for entry in entries:
+                    if not isinstance(entry, dict):
+                        continue
+                    symbol = entry.get("symbol")
+                    if not symbol:
+                        continue
+                    normalised = {
+                        key: entry.get(key)
+                        for key in (
+                            "symbol",
+                            "regularMarketPreviousClose",
+                            "preMarketPrice",
+                            "preMarketChange",
+                            "preMarketChangePercent",
+                            "preMarketTime",
+                            "preMarketVolume",
+                            "postMarketPrice",
+                            "postMarketChange",
+                            "postMarketChangePercent",
+                            "regularMarketVolume",
+                        )
+                    }
+                    stats["symbols"].add(symbol)
+                    cache_payload = {"_cached_at": now, "data": normalised}
+                    self._quote_cache[symbol] = cache_payload
+                    results[symbol] = normalised
+
+        missing = set(unique_symbols) - set(results.keys())
+        for symbol in missing:
+            # Fallback to synthetic quote derived from the latest daily close so
+            # downstream metrics remain populated when the quote endpoint is not
+            # reachable (e.g. during offline test runs).
+            stats["failures"] += 1
+            latest = self.latest_price(symbol)
+            if latest is None:
+                continue
+            placeholder = {
+                "symbol": symbol,
+                "regularMarketPreviousClose": latest,
+                "preMarketPrice": latest,
+                "preMarketChange": 0.0,
+                "preMarketChangePercent": 0.0,
+                "preMarketTime": None,
+                "preMarketVolume": 0,
+                "regularMarketVolume": None,
+                "postMarketPrice": None,
+                "postMarketChange": None,
+                "postMarketChangePercent": None,
+            }
+            self._quote_cache[symbol] = {
+                "_cached_at": datetime.now(timezone.utc),
+                "data": placeholder,
+            }
+            results[symbol] = placeholder
+
+        return results
+
+    def fetch_premarket_snapshot(
+        self,
+        symbols: Iterable[str],
+        freshness: int = 300,
+        force: bool = False,
+    ) -> Dict[str, Dict[str, object]]:
+        """Return a simplified premarket snapshot for each symbol."""
+
+        def _to_float(value: object) -> Optional[float]:
+            if value is None:
+                return None
+            try:
+                return float(value)
+            except (TypeError, ValueError):
+                return None
+
+        quotes = self.fetch_quotes(symbols, freshness=freshness, force=force)
+        snapshot: Dict[str, Dict[str, object]] = {}
+        for symbol, quote in quotes.items():
+            pre_price = _to_float(quote.get("preMarketPrice")) if isinstance(quote, Mapping) else None
+            prev_close = _to_float(
+                quote.get("regularMarketPreviousClose") if isinstance(quote, Mapping) else None
+            )
+            change = _to_float(quote.get("preMarketChange")) if isinstance(quote, Mapping) else None
+            change_pct = _to_float(
+                quote.get("preMarketChangePercent") if isinstance(quote, Mapping) else None
+            )
+            volume = _to_float(quote.get("preMarketVolume")) if isinstance(quote, Mapping) else None
+            regular_volume = _to_float(
+                quote.get("regularMarketVolume") if isinstance(quote, Mapping) else None
+            )
+            timestamp = quote.get("preMarketTime") if isinstance(quote, Mapping) else None
+            if isinstance(timestamp, (int, float)):
+                try:
+                    timestamp = datetime.fromtimestamp(timestamp, tz=timezone.utc).isoformat()
+                except Exception:
+                    timestamp = None
+            snapshot[symbol] = {
+                "price": pre_price,
+                "prev_close": prev_close,
+                "change": change,
+                "change_pct": change_pct,
+                "volume": volume,
+                "regular_volume": regular_volume,
+                "timestamp": timestamp,
+            }
+        return snapshot
 
     # ------------------------------------------------------------------
     # News helpers
@@ -733,7 +928,7 @@ class YahooFinanceClient:
         """Return a serialisable copy of the collected statistics."""
 
         snapshot = deepcopy(self.stats)
-        for section in ("history", "news"):
+        for section in ("history", "news", "quotes"):
             section_data = snapshot.get(section, {})
             symbols = section_data.get("symbols", set())
             section_data["symbols"] = sorted(symbols)
