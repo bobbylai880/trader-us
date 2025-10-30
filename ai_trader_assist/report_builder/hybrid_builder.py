@@ -3,12 +3,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from pydantic import BaseModel, Field, ValidationError
 
 from ..portfolio_manager.state import PortfolioState
 from .builder import DailyReportBuilder
+from .markdown_renderer import MarkdownRenderConfig, MarkdownRenderer
 
 
 class LLMReportSummary(BaseModel):
@@ -54,8 +55,13 @@ class HybridReportBuilder(DailyReportBuilder):
         portfolio_state: PortfolioState,
         llm_summary: Optional[Dict[str, Any]] = None,
         news: Optional[Dict] = None,
+        premarket_flags: Optional[Dict[str, Dict]] = None,
+        snapshot_meta: Optional[Dict[str, Any]] = None,
+        safe_mode: Optional[Dict[str, Any]] = None,
+        renderer_config: Optional[MarkdownRenderConfig] = None,
+        report_meta: Optional[Mapping[str, Any]] = None,
     ) -> Tuple[Dict, str]:
-        report_json, markdown = super().build(
+        report_json = self.build_payload(
             trading_day=trading_day,
             risk=risk,
             sectors=sectors,
@@ -63,25 +69,54 @@ class HybridReportBuilder(DailyReportBuilder):
             orders=orders,
             portfolio_state=portfolio_state,
             news=news,
+            premarket_flags=premarket_flags,
+            snapshot_meta=snapshot_meta,
+            safe_mode=safe_mode,
+            llm_summary=llm_summary,
+            report_meta=report_meta,
+        )
+        renderer = MarkdownRenderer(renderer_config or MarkdownRenderConfig())
+        markdown = renderer.render(report_json)
+        return report_json, markdown
+
+    def build_payload(
+        self,
+        *,
+        trading_day: date,
+        risk: Mapping[str, Any],
+        sectors: Sequence[Mapping[str, Any]],
+        stock_scores: Sequence[Mapping[str, Any]],
+        orders: Mapping[str, Sequence[Mapping[str, Any]]],
+        portfolio_state: PortfolioState,
+        news: Optional[Mapping[str, Any]] = None,
+        premarket_flags: Optional[Mapping[str, Mapping[str, Any]]] = None,
+        snapshot_meta: Optional[Mapping[str, Any]] = None,
+        safe_mode: Optional[Mapping[str, Any]] = None,
+        llm_summary: Optional[Mapping[str, Any]] = None,
+        report_meta: Optional[Mapping[str, Any]] = None,
+    ) -> Dict[str, Any]:
+        payload = super().build_payload(
+            trading_day=trading_day,
+            risk=risk,
+            sectors=sectors,
+            stock_scores=stock_scores,
+            orders=orders,
+            portfolio_state=portfolio_state,
+            news=news,
+            premarket_flags=premarket_flags,
+            snapshot_meta=snapshot_meta,
+            safe_mode=safe_mode,
+            llm_summary=llm_summary,
+            report_meta=report_meta,
         )
 
-        summary_model: Optional[LLMReportSummary] = None
+        summary_payload = {"text": "", "key_points": []}
         if llm_summary:
             try:
-                summary_model = LLMReportSummary.parse_obj(llm_summary)
+                model = LLMReportSummary.parse_obj(llm_summary)
             except ValidationError:
-                summary_model = None
-
-        ai_summary_payload = {"text": "", "key_points": []}
-        if summary_model:
-            ai_summary_payload = summary_model.as_payload()
-            if summary_model.summary_text.strip() or summary_model.key_points:
-                markdown_lines = markdown.rstrip("\n").split("\n")
-                insert_index = 1 if len(markdown_lines) > 1 else len(markdown_lines)
-                summary_lines = [""] + summary_model.to_markdown_lines() + [""]
-                for line in reversed(summary_lines):
-                    markdown_lines.insert(insert_index, line)
-                markdown = "\n".join(markdown_lines) + "\n"
-
-        report_json["ai_summary"] = ai_summary_payload
-        return report_json, markdown
+                model = None
+            else:
+                summary_payload = model.as_payload()
+        payload["ai_summary"] = summary_payload
+        return payload
