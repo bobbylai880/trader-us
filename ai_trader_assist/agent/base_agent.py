@@ -1,12 +1,13 @@
 """Hybrid agent that can run either the legacy rules or the LLM pipeline."""
 from __future__ import annotations
 
+import inspect
 import logging
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 from time import perf_counter
-from typing import Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from ..decision_engine.stock_scoring import StockDecisionEngine
 from ..llm.analyzer import DeepSeekAnalyzer
@@ -217,35 +218,8 @@ class BaseAgent:
             "sell_orders": len(orders.get("sell", [])),
         }
 
-        report_start = perf_counter()
-        if self.logger:
-            log_step(self.logger, "report_builder", "Composing JSON and Markdown reports")
-        report_json, report_markdown = self.report_builder.build(
-            trading_day=trading_day,
-            risk=risk_view,
-            sectors=sector_scores,
-            stock_scores=stock_scores,
-            orders=orders,
-            portfolio_state=self.portfolio_state,
-            news=news,
-        )
-        if self.logger:
-            log_result(
-                self.logger,
-                "report_builder",
-                f"report_sections={len(report_json)}, markdown_chars={len(report_markdown)}",
-            )
-            log_ok(
-                self.logger,
-                "report_builder",
-                f"Completed in {perf_counter() - report_start:.2f}s",
-            )
-        stage_metrics["report_builder"] = {
-            "sections": len(report_json),
-            "markdown_length": len(report_markdown),
-        }
-
         llm_analysis = None
+        llm_summary_payload: Optional[Dict[str, Any]] = None
         if self.analyzer:
             llm_start = perf_counter()
             llm_config = self.config.get("llm", {})
@@ -278,6 +252,69 @@ class BaseAgent:
                     "llm",
                     f"Outputs: {', '.join(sorted(llm_analysis.keys()))}",
                 )
+            llm_summary_payload = self._build_llm_summary_payload(llm_analysis)
+
+        if self.analyzer:
+            if self.logger:
+                log_ok(
+                    self.logger,
+                    "llm",
+                    f"Completed in {perf_counter() - llm_start:.2f}s",
+                )
+            stage_metrics["llm"] = {
+                "stocks": len(llm_stocks),
+                "has_summary": bool(
+                    llm_summary_payload
+                    and (
+                        llm_summary_payload.get("summary_text")
+                        or llm_summary_payload.get("key_points")
+                    )
+                ),
+            }
+        else:
+            if self.logger:
+                log_result(self.logger, "llm", "Skipped")
+            stage_metrics["llm"] = {"status": "skipped"}
+
+        report_start = perf_counter()
+        if self.logger:
+            log_step(self.logger, "report_builder", "Composing JSON and Markdown reports")
+        build_kwargs = {
+            "trading_day": trading_day,
+            "risk": risk_view,
+            "sectors": sector_scores,
+            "stock_scores": stock_scores,
+            "orders": orders,
+            "portfolio_state": self.portfolio_state,
+            "news": news,
+        }
+        build_params = inspect.signature(self.report_builder.build).parameters
+        if "llm_summary" in build_params:
+            build_kwargs["llm_summary"] = llm_summary_payload
+        report_json, report_markdown = self.report_builder.build(**build_kwargs)
+        if self.logger:
+            log_result(
+                self.logger,
+                "report_builder",
+                f"report_sections={len(report_json)}, markdown_chars={len(report_markdown)}",
+            )
+            log_ok(
+                self.logger,
+                "report_builder",
+                f"Completed in {perf_counter() - report_start:.2f}s",
+            )
+        ai_summary = report_json.get("ai_summary", {})
+        stage_metrics["report_builder"] = {
+            "sections": len(report_json),
+            "markdown_length": len(report_markdown),
+            "ai_summary": bool(
+                isinstance(ai_summary, Mapping)
+                and (
+                    (ai_summary.get("text") or "").strip()
+                    or (ai_summary.get("key_points") or [])
+                )
+            ),
+        }
 
         if output_dir:
             output_dir.mkdir(parents=True, exist_ok=True)
@@ -294,20 +331,6 @@ class BaseAgent:
                     self.report_builder.dumps_json(news), encoding="utf-8"
                 )
 
-        if self.analyzer and self.logger:
-            log_ok(
-                self.logger,
-                "llm",
-                f"Completed in {perf_counter() - llm_start:.2f}s",
-            )
-            stage_metrics["llm"] = {
-                "stocks": len(llm_stocks),
-            }
-        elif not self.analyzer:
-            if self.logger:
-                log_result(self.logger, "llm", "Skipped")
-            stage_metrics["llm"] = {"status": "skipped"}
-
         return PipelineContext(
             risk=risk_view,
             sector_scores=sector_scores,
@@ -320,6 +343,104 @@ class BaseAgent:
             macro_flags=macro_flags,
             stage_metrics=stage_metrics,
         )
+
+    @staticmethod
+    def _build_llm_summary_payload(llm_analysis: Optional[Mapping]) -> Optional[Dict[str, Any]]:
+        """Extract a condensed AI summary from analyzer outputs."""
+
+        if not isinstance(llm_analysis, Mapping):
+            return None
+
+        summary_text = ""
+        key_points: List[str] = []
+        seen: set[str] = set()
+
+        def add_point(value: Any) -> None:
+            if value is None:
+                return
+            text = str(value).strip()
+            if not text or text in seen:
+                return
+            key_points.append(text)
+            seen.add(text)
+
+        report_stage = llm_analysis.get("report_compose")
+        if isinstance(report_stage, Mapping):
+            sections = report_stage.get("sections")
+            if isinstance(sections, Mapping):
+                for candidate_key in ("summary", "market"):
+                    candidate = sections.get(candidate_key)
+                    if isinstance(candidate, str) and candidate.strip():
+                        summary_text = candidate.strip()
+                        break
+
+                exposure_note = sections.get("exposure")
+                if isinstance(exposure_note, str):
+                    add_point(exposure_note)
+
+                alerts = sections.get("alerts")
+                if isinstance(alerts, list):
+                    for alert in alerts:
+                        if isinstance(alert, str):
+                            add_point(alert)
+
+                actions = sections.get("actions")
+                if isinstance(actions, list):
+                    for action in actions:
+                        if not isinstance(action, Mapping):
+                            continue
+                        symbol = str(action.get("symbol", "")).strip()
+                        action_label = str(action.get("action", "")).strip()
+                        detail = (
+                            action.get("detail")
+                            or action.get("rationale")
+                            or action.get("reason")
+                        )
+                        fragments = [fragment for fragment in (symbol, action_label) if fragment]
+                        if detail:
+                            fragments.append(str(detail).strip())
+                        if fragments:
+                            add_point(" - ".join(fragments))
+
+        market_stage = llm_analysis.get("market_overview")
+        if isinstance(market_stage, Mapping):
+            if not summary_text:
+                summary_candidate = market_stage.get("summary")
+                if isinstance(summary_candidate, str) and summary_candidate.strip():
+                    summary_text = summary_candidate.strip()
+
+            drivers = market_stage.get("drivers")
+            if isinstance(drivers, list):
+                for driver in drivers:
+                    if not isinstance(driver, Mapping):
+                        continue
+                    factor = str(driver.get("factor", "")).strip()
+                    direction = str(driver.get("direction", "")).strip()
+                    evidence = str(driver.get("evidence", "")).strip()
+                    fragments = [fragment for fragment in (factor, direction) if fragment]
+                    if evidence:
+                        fragments.append(evidence)
+                    if fragments:
+                        add_point(" - ".join(fragments))
+
+            highlights = market_stage.get("news_highlights")
+            if isinstance(highlights, list):
+                for highlight in highlights:
+                    if isinstance(highlight, Mapping):
+                        title = str(highlight.get("title", "")).strip()
+                        publisher = str(highlight.get("publisher", "")).strip()
+                        if title:
+                            label = f"{title}{f' ({publisher})' if publisher else ''}"
+                            add_point(label)
+
+        cleaned_points = key_points[:5]
+        if not summary_text and not cleaned_points:
+            return None
+
+        return {
+            "summary_text": summary_text,
+            "key_points": cleaned_points,
+        }
 
     # ------------------------------------------------------------------
     # LLM orchestrated pipeline
