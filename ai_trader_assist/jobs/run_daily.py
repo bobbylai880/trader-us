@@ -9,6 +9,8 @@ from datetime import datetime
 from pathlib import Path
 from time import perf_counter
 from zoneinfo import ZoneInfo
+from hashlib import sha256
+from uuid import uuid4
 
 from dotenv import load_dotenv
 
@@ -116,6 +118,17 @@ def main() -> None:
         else:
             now = datetime.now(tzinfo)
             trading_day = now.date()
+
+        snapshot_id = uuid4().hex
+        config_profile = config.get("profile") or config.get("name")
+        config_payload = json.dumps(config, sort_keys=True, ensure_ascii=False).encode("utf-8")
+        input_hash = f"sha256:{sha256(config_payload).hexdigest()}"
+        snapshot_meta = {
+            "snapshot_id": snapshot_id,
+            "as_of": now.isoformat(),
+            "input_hash": input_hash,
+            "config_profile": config_profile,
+        }
 
         operations_path = resolve_path(
             project_root, logging_cfg.get("operations_path", "storage/operations.jsonl")
@@ -317,6 +330,7 @@ def main() -> None:
             news=news_bundle,
             macro_flags=macro_flags,
             output_dir=output_dir,
+            snapshot_meta=snapshot_meta,
         )
         phases_executed.extend(context.stage_metrics.keys())
 
@@ -343,6 +357,10 @@ def main() -> None:
             )
             (output_dir / "macro_flags.json").write_text(
                 json.dumps(macro_flags, indent=2), encoding="utf-8"
+            )
+            (output_dir / "snapshot_meta.json").write_text(
+                json.dumps(snapshot_meta, indent=2, ensure_ascii=False),
+                encoding="utf-8",
             )
 
         save_positions_snapshot(positions_path, state, trading_day)
