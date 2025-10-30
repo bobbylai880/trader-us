@@ -30,7 +30,7 @@ from ..portfolio_manager.positions import (
 from ..llm.analyzer import DeepSeekAnalyzer
 from ..llm.client import DeepSeekClient
 from ..position_sizer.sizer import PositionSizer
-from ..report_builder.builder import DailyReportBuilder
+from ..report_builder.hybrid_builder import HybridReportBuilder
 from ..risk_engine.macro_engine import MacroRiskEngine
 from ..utils import log_ok, log_result, log_step, setup_logger
 
@@ -299,7 +299,7 @@ def main() -> None:
             stock_engine=StockDecisionEngine(),
             sizer=PositionSizer(config["limits"], config["sizer"]),
             portfolio_state=state,
-            report_builder=DailyReportBuilder(config["sizer"]),
+            report_builder=HybridReportBuilder(config["sizer"]),
             analyzer=analyzer,
             llm_orchestrator=llm_orchestrator,
             logger=logger,
