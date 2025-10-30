@@ -1,3 +1,4 @@
+import json
 from datetime import date
 from pathlib import Path
 
@@ -16,8 +17,161 @@ def _prompt_paths() -> dict:
     }
 
 
+class _StubDeepSeekClient:
+    def __init__(self, responses):
+        self.responses = responses
+        self.calls = []
+
+    def chat(self, messages, stage, temperature=0.0, max_tokens=2048):  # noqa: D401
+        self.calls.append({"stage": stage, "messages": messages})
+        return self.responses[stage], {
+            "prompt_tokens": 10,
+            "completion_tokens": 20,
+            "total_tokens": 30,
+        }
+
+
 def test_analyzer_emits_structured_outputs():
-    analyzer = DeepSeekAnalyzer(prompt_files=_prompt_paths())
+    responses = {
+        "market_overview": json.dumps(
+            {
+                "risk_level": "low",
+                "bias": "bullish",
+                "summary": "风险低、科技带动。",
+                "drivers": [
+                    {
+                        "factor": "RS_QQQ",
+                        "evidence": "RS_QQQ=0.08",
+                        "direction": "supports_risk_down",
+                    }
+                ],
+                "premarket_flags": [],
+                "news_sentiment": 0.4,
+                "news_highlights": [
+                    {
+                        "title": "指数高开，科技板块领涨",
+                        "publisher": "Newswire",
+                        "published": "2025-10-27T12:00:00+00:00",
+                        "summary": "科技股领涨",
+                    }
+                ],
+                "data_gaps": [],
+            },
+            ensure_ascii=False,
+        ),
+        "sector_analysis": json.dumps(
+            {
+                "leading": [
+                    {
+                        "sector": "XLK",
+                        "composite_score": 0.25,
+                        "evidence": {
+                            "mom5": 0.05,
+                            "mom20": 0.1,
+                            "rs_z": 0.08,
+                            "volume_trend": 0.15,
+                            "news_score": 0.0,
+                        },
+                        "comment": "5日动量+0.05、RS+0.08",
+                        "news_sentiment": 0.6,
+                        "news_highlights": [
+                            {
+                                "title": "半导体资本开支预期上调",
+                                "publisher": "TechDaily",
+                                "published": "2025-10-27T11:00:00+00:00",
+                                "summary": "支出提升",
+                            }
+                        ],
+                    }
+                ],
+                "lagging": [],
+                "focus_points": [],
+                "data_gaps": [],
+            },
+            ensure_ascii=False,
+        ),
+        "stock_actions": json.dumps(
+            {
+                "categories": {
+                    "Buy": [
+                        {
+                            "symbol": "AAPL",
+                            "action": "buy",
+                            "trend_change": "uptrend",
+                            "momentum_strength": 0.8,
+                            "drivers": [{"metric": "RSI_norm", "value": 0.7}],
+                            "news_highlights": [
+                                {
+                                    "title": "苹果发布新品引发预订热潮",
+                                    "publisher": "MarketWatch",
+                                    "published": "2025-10-26T20:00:00+00:00",
+                                    "summary": "新品热销",
+                                }
+                            ],
+                            "position_shares": 0.0,
+                        }
+                    ],
+                    "Hold": [],
+                    "Reduce": [
+                        {
+                            "symbol": "AMD",
+                            "position_shares": 4.0,
+                            "trend_change": "flat",
+                            "momentum_strength": 0.4,
+                        }
+                    ],
+                    "Avoid": [
+                        {
+                            "symbol": "MSFT",
+                            "trend_change": "downtrend",
+                            "momentum_strength": 0.2,
+                        }
+                    ],
+                },
+                "data_gaps": [],
+            },
+            ensure_ascii=False,
+        ),
+        "exposure_check": json.dumps(
+            {
+                "direction": "increase",
+                "delta": 0.64,
+                "allocation_plan": [
+                    {"symbol": "AAPL", "notional": 950.0, "action": "buy"}
+                ],
+                "constraints": [],
+            },
+            ensure_ascii=False,
+        ),
+        "report_compose": json.dumps(
+            {
+                "markdown": "📆 2025-10-27 盘前报告\n市场稳健。",
+                "sections": {
+                    "market": "风险低",
+                    "sectors": "科技领先",
+                    "stocks": "AAPL 关注",
+                    "exposure": "准备加仓",
+                    "news": [
+                        {
+                            "symbol": "SPY",
+                            "title": "指数高开，科技板块领涨",
+                            "publisher": "Newswire",
+                            "published": "2025-10-27T12:00:00+00:00",
+                        }
+                    ],
+                },
+                "data_gaps": [],
+            },
+            ensure_ascii=False,
+        ),
+    }
+
+    client = _StubDeepSeekClient(responses)
+    analyzer = DeepSeekAnalyzer(
+        prompt_files=_prompt_paths(),
+        client=client,
+        base_prompt=Path("configs/prompts/deepseek_base_prompt.md"),
+    )
     portfolio = PortfolioState(
         cash=10000.0,
         positions=[Position(symbol="AMD", shares=4, avg_cost=120.0, last_price=130.0)],
@@ -56,6 +210,7 @@ def test_analyzer_emits_structured_outputs():
             "confidence": 0.82,
             "atr_pct": 0.02,
             "price": 190.0,
+            "position_shares": 0.0,
             "features": {
                 "rsi_norm": 0.7,
                 "macd_signal": 0.05,
@@ -63,6 +218,12 @@ def test_analyzer_emits_structured_outputs():
                 "volume_score": 0.2,
                 "structure_score": 0.03,
                 "risk_modifier": 0.0,
+                "trend_strength": 0.4,
+                "momentum_state": "strengthening",
+                "momentum_10d": 0.06,
+                "volatility_trend": 0.9,
+                "trend_score": 0.7,
+                "position_shares": 0.0,
             },
         },
         {
@@ -72,6 +233,7 @@ def test_analyzer_emits_structured_outputs():
             "confidence": 0.4,
             "atr_pct": 0.04,
             "price": 320.0,
+            "position_shares": 0.0,
             "features": {
                 "rsi_norm": 0.5,
                 "macd_signal": 0.01,
@@ -79,6 +241,35 @@ def test_analyzer_emits_structured_outputs():
                 "volume_score": -0.05,
                 "structure_score": 0.01,
                 "risk_modifier": 0.0,
+                "trend_strength": -0.2,
+                "momentum_state": "weakening",
+                "momentum_10d": -0.03,
+                "volatility_trend": 1.3,
+                "trend_score": 0.3,
+                "position_shares": 0.0,
+            },
+        },
+        {
+            "symbol": "AMD",
+            "score": 0.35,
+            "action": "reduce",
+            "confidence": 0.35,
+            "atr_pct": 0.06,
+            "price": 130.0,
+            "position_shares": 4.0,
+            "features": {
+                "rsi_norm": 0.55,
+                "macd_signal": -0.01,
+                "trend_slope": -0.003,
+                "volume_score": 0.05,
+                "structure_score": -0.02,
+                "risk_modifier": 0.0,
+                "trend_strength": -0.3,
+                "momentum_state": "rolling_over",
+                "momentum_10d": -0.04,
+                "volatility_trend": 1.4,
+                "trend_score": 0.25,
+                "position_shares": 4.0,
             },
         },
     ]
@@ -148,6 +339,16 @@ def test_analyzer_emits_structured_outputs():
                 "headlines": [],
                 "sentiment": -0.1,
             },
+            "AMD": {
+                "headlines": [
+                    {
+                        "title": "AMD faces competitive pricing pressure",
+                        "publisher": "SemiNews",
+                        "published": "2025-10-25T18:00:00+00:00",
+                    }
+                ],
+                "sentiment": -0.3,
+            },
         },
     }
 
@@ -178,6 +379,12 @@ def test_analyzer_emits_structured_outputs():
     assert stock_view["categories"]["Buy"]
     assert stock_view["categories"]["Buy"][0]["drivers"]
     assert stock_view["categories"]["Buy"][0]["news_highlights"]
+    assert "trend_change" in stock_view["categories"]["Buy"][0]
+    assert all(item["position_shares"] > 0 for item in stock_view["categories"]["Reduce"])
+    assert all(
+        item["symbol"] != "MSFT"
+        for item in stock_view["categories"]["Reduce"]
+    ), "Non-held symbols should not appear in Reduce"
 
     exposure_view = payload["exposure_check"]
     assert exposure_view["direction"] in {"increase", "maintain", "decrease"}
@@ -194,3 +401,48 @@ def test_analyzer_emits_structured_outputs():
             "published": "2025-10-27T12:00:00+00:00",
         }
     ]
+
+    usage = payload["usage"]
+    assert usage["market_overview"]["total_tokens"] == 30
+
+    assert [call["stage"] for call in client.calls] == [
+        "market_overview",
+        "sector_analysis",
+        "stock_actions",
+        "exposure_check",
+        "report_compose",
+    ]
+
+
+def test_analyzer_strips_markdown_wrappers():
+    responses = {stage: "```json\n{}\n```" for stage in _prompt_paths().keys()}
+    client = _StubDeepSeekClient(responses)
+    analyzer = DeepSeekAnalyzer(
+        prompt_files=_prompt_paths(),
+        client=client,
+        base_prompt=Path("configs/prompts/deepseek_base_prompt.md"),
+    )
+
+    portfolio = PortfolioState(cash=0.0, positions=[])
+
+    payload = analyzer.run(
+        trading_day=date(2025, 10, 27),
+        risk={},
+        sector_scores=[],
+        stock_scores=[],
+        orders={},
+        portfolio_state=portfolio,
+        market_features={},
+        premarket_flags={},
+        news={},
+    )
+
+    for stage in (
+        "market_overview",
+        "sector_analysis",
+        "stock_actions",
+        "exposure_check",
+        "report_compose",
+    ):
+        assert stage in payload
+        assert payload[stage] == {}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Dict, Iterable, List, Optional
 
 
@@ -24,11 +25,13 @@ class PortfolioState:
         cash: float = 0.0,
         positions: Optional[Iterable[Position]] = None,
         latest_prices: Optional[Dict[str, float]] = None,
+        last_updated: Optional[str] = None,
     ) -> None:
         self.cash = float(cash)
         self.positions: List[Position] = list(positions or [])
         self.latest_prices = {k.upper(): float(v) for k, v in (latest_prices or {}).items()}
         self._apply_latest_prices()
+        self.last_updated = last_updated
 
     def _apply_latest_prices(self) -> None:
         for position in self.positions:
@@ -69,22 +72,63 @@ class PortfolioState:
         positions = {p.symbol.upper(): p for p in self.positions}
         for action in actions:
             symbol = action["symbol"].upper()
-            shares = int(action["shares"])
-            price = float(action["price"])
-            side = action["action"]
+            side = action["action"].lower()
+
+            raw_shares = action.get("shares")
+            if raw_shares is None:
+                raw_shares = action.get("quantity")
+
+            shares = float(raw_shares or 0.0)
+            price = float(action.get("price", 0.0)) if side != "hold" else float(action.get("price", 0.0) or 0.0)
+
+            if side == "hold":
+                continue
+
+            if side == "reduce":
+                side = "sell"
+
+            if shares <= 0:
+                continue
+
             position = positions.setdefault(
                 symbol, Position(symbol=symbol, shares=0, avg_cost=0.0)
             )
+            shares_int = int(shares)
+
             if side == "buy":
-                total_cost = position.avg_cost * position.shares + shares * price
-                position.shares += shares
-                position.avg_cost = total_cost / position.shares if position.shares else 0.0
-                self.cash -= shares * price
+                total_cost = position.avg_cost * position.shares + shares_int * price
+                position.shares += shares_int
+                position.avg_cost = (
+                    total_cost / position.shares if position.shares else 0.0
+                )
+                self.cash -= shares_int * price
             elif side == "sell":
-                position.shares = max(0, position.shares - shares)
-                self.cash += shares * price
+                position.shares = max(0, position.shares - shares_int)
+                self.cash += shares_int * price
             else:
                 raise ValueError(f"Unsupported action {side}")
             position.last_price = price
         self.positions = [p for p in positions.values() if p.shares > 0]
         self._apply_latest_prices()
+
+    def update_last_updated(self, timestamp: datetime) -> None:
+        self.last_updated = timestamp.isoformat()
+
+    def snapshot_dict(self) -> Dict:
+        """Return a serialisable snapshot used by the LLM orchestrator."""
+
+        return {
+            "cash": self.cash,
+            "equity": self.total_equity,
+            "exposure": self.current_exposure,
+            "positions": [
+                {
+                    "symbol": position.symbol,
+                    "shares": position.shares,
+                    "avg_cost": position.avg_cost,
+                    "last_price": position.last_price,
+                }
+                for position in self.positions
+            ],
+            "last_updated": self.last_updated,
+        }

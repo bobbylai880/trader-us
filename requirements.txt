@@ -4,3 +4,6 @@ numpy
 python-dotenv
 requests
 pytz
+jsonschema
+pydantic
+json5
