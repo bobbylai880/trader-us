@@ -1,7 +1,7 @@
 import pytest
 
 from ai_trader_assist.decision_engine.stock_scoring import StockDecisionEngine
-from ai_trader_assist.feature_engineering.pipeline import _premarket_score
+from ai_trader_assist.feature_engineering.pipeline import _premarket_score, _structure_score
 
 
 def test_premarket_score_clamped_to_unit_interval() -> None:
@@ -49,3 +49,16 @@ def test_stock_scoring_uses_normalised_premarket_penalty() -> None:
     assert penalised["score"] == pytest.approx(expected_penalised, rel=1e-5)
     assert penalised["score"] < neutral["score"]
     assert penalised["premarket"] == pytest.approx(0.8)
+
+
+def test_structure_score_ignores_nan_components() -> None:
+    price = 100.0
+    ma_values = [float("nan"), 95.0, float("inf"), 0.0]
+
+    score = _structure_score(price, ma_values)
+
+    expected = price / 95.0 - 1.0
+    assert score == pytest.approx(expected)
+
+    zero_score = _structure_score(float("nan"), [95.0])
+    assert zero_score == 0.0

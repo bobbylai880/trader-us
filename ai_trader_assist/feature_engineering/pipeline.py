@@ -18,6 +18,30 @@ from . import indicators
 from .trend_features import compute_trend_features
 
 
+def _is_finite(value: Any) -> bool:
+    """Return True if *value* can be represented as a finite float."""
+
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return False
+    return math.isfinite(number)
+
+
+def _safe_float(value: Any, default: float = 0.0) -> float:
+    """Convert to float while guarding against None/NaN/inf values."""
+
+    if value is None:
+        return default
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return default
+    if not math.isfinite(number):
+        return default
+    return number
+
+
 def _default_macro_series() -> Dict[str, Dict[str, object]]:
     return {
         "CPIAUCSL": {"label": "CPI YoY"},
@@ -55,7 +79,10 @@ def _fetch_history(
 def _latest_close(df: pd.DataFrame) -> float:
     if "Close" not in df or df["Close"].empty:
         return 0.0
-    return float(df["Close"].iloc[-1])
+    series = df["Close"].dropna()
+    if series.empty:
+        return 0.0
+    return float(series.iloc[-1])
 
 
 def _pct_change(series: pd.Series, periods: int) -> float:
@@ -114,6 +141,24 @@ def _premarket_score(dev: float, vol_ratio: float, sentiment: float) -> float:
 
     score = (dev_component * 0.4) + (vol_component * 0.4) + (sentiment_component * 0.2)
     return round(score, 4)
+
+
+def _structure_score(price: float, moving_averages: Iterable[float]) -> float:
+    if not _is_finite(price) or math.isclose(price, 0.0):
+        return 0.0
+
+    components: List[float] = []
+    for ma in moving_averages:
+        if not _is_finite(ma):
+            continue
+        if math.isclose(float(ma), 0.0):
+            continue
+        components.append(float(price / float(ma) - 1.0))
+
+    if not components:
+        return 0.0
+
+    return float(np.mean(components))
 
 
 def _compute_vix_metrics(vix_history: pd.DataFrame) -> Dict[str, float]:
@@ -528,8 +573,10 @@ def prepare_feature_sets(
     stock_features: Dict[str, Dict] = {}
     premarket_flags: Dict[str, Dict] = {}
     for symbol, df in stock_data.items():
-        close = df.get("Close")
-        volume = df.get("Volume")
+        raw_close = df.get("Close")
+        raw_volume = df.get("Volume")
+        close = raw_close.dropna() if isinstance(raw_close, pd.Series) else pd.Series(dtype=float)
+        volume = raw_volume.dropna() if isinstance(raw_volume, pd.Series) else pd.Series(dtype=float)
         price = _latest_close(df)
         news_articles = stock_news.get(symbol, [])
         news_sentiment = _news_sentiment_score(news_articles)
@@ -537,27 +584,18 @@ def prepare_feature_sets(
         position = state.get_position(symbol)
         held_shares = float(position.shares) if position else 0.0
         held_value = float(position.market_value) if position else 0.0
-        premarket_meta = premarket_snapshot.get(symbol, {})
-        premarket_price = float(premarket_meta.get("price")) if premarket_meta.get("price") else 0.0
-        premarket_volume = float(premarket_meta.get("volume")) if premarket_meta.get("volume") else 0.0
-        premarket_prev_close = (
-            float(premarket_meta.get("prev_close"))
-            if premarket_meta.get("prev_close")
-            else 0.0
-        )
-        premarket_change_pct = (
-            float(premarket_meta.get("change_pct"))
-            if premarket_meta.get("change_pct")
-            else 0.0
-        )
+        premarket_meta = premarket_snapshot.get(symbol, {}) or {}
+        premarket_price = _safe_float(premarket_meta.get("price"))
+        premarket_volume = _safe_float(premarket_meta.get("volume"))
+        premarket_prev_close = _safe_float(premarket_meta.get("prev_close"))
+        premarket_change_pct = _safe_float(premarket_meta.get("change_pct"))
         premarket_timestamp = premarket_meta.get("timestamp")
-        if close is None or close.empty or price == 0:
+        if close.empty or not _is_finite(price) or math.isclose(price, 0.0):
             dev = 0.0
             basis_close = 0.0
-            if premarket_price and premarket_prev_close:
+            if _is_finite(premarket_price) and _is_finite(premarket_prev_close) and not math.isclose(premarket_prev_close, 0.0):
                 basis_close = premarket_prev_close
-                if basis_close:
-                    dev = abs(premarket_price - basis_close) / basis_close
+                dev = abs(premarket_price - basis_close) / basis_close
             vol_ratio = 0.0
             premarket_flags[symbol] = {
                 "dev": dev,
@@ -607,21 +645,24 @@ def prepare_feature_sets(
         trend_slope = float((slope_val.iloc[-1] if not slope_val.empty else 0.0) / price)
 
         volume_score = 0.0
-        if volume is not None and not volume.empty:
-            vol20 = volume.tail(20).mean()
-            if vol20:
-                volume_score = float(volume.iloc[-1] / vol20 - 1.0)
+        if not volume.empty:
+            vol20_series = volume.tail(20)
+            vol20 = _safe_float(vol20_series.mean())
+            latest_volume = _safe_float(volume.iloc[-1])
+            if vol20 > 0 and latest_volume > 0:
+                volume_score = float(latest_volume / vol20 - 1.0)
 
         ma50 = close.rolling(window=50, min_periods=50).mean()
         ma200 = close.rolling(window=200, min_periods=200).mean()
-        structure_components = []
-        if not ma50.empty and not math.isclose(float(ma50.iloc[-1]), 0.0):
-            structure_components.append(float(price / ma50.iloc[-1] - 1.0))
-        if not ma200.empty and not math.isclose(float(ma200.iloc[-1]), 0.0):
-            structure_components.append(float(price / ma200.iloc[-1] - 1.0))
-        structure_score = float(np.mean(structure_components)) if structure_components else 0.0
+        ma50_latest = float(ma50.iloc[-1]) if not ma50.empty else float("nan")
+        ma200_latest = float(ma200.iloc[-1]) if not ma200.empty else float("nan")
+        structure_score = _structure_score(price, [ma50_latest, ma200_latest])
 
-        risk_modifier = -0.05 if structure_components and structure_components[0] < 0 else 0.0
+        structure_50d = 0.0
+        if _is_finite(ma50_latest) and not math.isclose(ma50_latest, 0.0):
+            structure_50d = float(price / ma50_latest - 1.0)
+
+        risk_modifier = -0.05 if structure_50d < 0 else 0.0
 
         stock_features[symbol] = {
             "rsi_norm": rsi_norm,
@@ -651,25 +692,27 @@ def prepare_feature_sets(
 
         dev = 0.0
         basis_close = 0.0
-        if premarket_price and premarket_prev_close:
+        if _is_finite(premarket_price) and _is_finite(premarket_prev_close) and not math.isclose(premarket_prev_close, 0.0):
             basis_close = premarket_prev_close
-            if basis_close:
-                dev = abs(premarket_price - basis_close) / basis_close
+            dev = abs(premarket_price - basis_close) / basis_close
         elif len(close) > 1:
-            basis_close = float(close.iloc[-2])
-            if basis_close:
+            prev_close = _safe_float(close.iloc[-2])
+            if prev_close > 0:
+                basis_close = prev_close
                 dev = abs(price - basis_close) / basis_close
 
         vol_ratio = 0.0
         vol20 = 0.0
-        if volume is not None and not volume.empty:
-            vol20 = float(volume.tail(20).mean()) if len(volume) >= 20 else float(volume.mean())
-        if premarket_volume and vol20:
+        if not volume.empty:
+            vol20_series = volume.tail(20) if len(volume) >= 20 else volume
+            vol20 = _safe_float(vol20_series.mean())
+        if premarket_volume > 0 and vol20 > 0:
             baseline = max(vol20 / 10.0, 1.0)
             vol_ratio = float(premarket_volume / baseline)
-        elif volume is not None and not volume.empty and vol20:
-            latest_volume = float(volume.iloc[-1]) if len(volume) else 0.0
-            vol_ratio = float(latest_volume / vol20) if vol20 else 0.0
+        elif not volume.empty and vol20 > 0:
+            latest_volume = _safe_float(volume.iloc[-1])
+            if latest_volume > 0:
+                vol_ratio = float(latest_volume / vol20)
 
         sentiment = news_sentiment
         premarket_flags[symbol] = {
