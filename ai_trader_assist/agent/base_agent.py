@@ -14,6 +14,7 @@ from ..llm.analyzer import DeepSeekAnalyzer
 from ..position_sizer.sizer import PositionSizer
 from ..portfolio_manager.state import PortfolioState
 from ..report_builder.builder import DailyReportBuilder
+from ..report_builder.markdown_renderer import MarkdownRenderConfig
 from ..risk_engine.macro_engine import MacroRiskEngine
 from ..utils import log_ok, log_result, log_step
 
@@ -37,6 +38,7 @@ class PipelineContext:
     news: Optional[Dict]
     macro_flags: Optional[Dict[str, Dict]]
     stage_metrics: Dict[str, Dict]
+    report_meta: Optional[Dict[str, Any]] = None
 
 
 class BaseAgent:
@@ -75,6 +77,9 @@ class BaseAgent:
         macro_flags: Optional[Dict[str, Dict]] = None,
         news: Optional[Dict] = None,
         output_dir: Optional[Path] = None,
+        snapshot_meta: Optional[Dict[str, Any]] = None,
+        renderer_config: Optional[MarkdownRenderConfig] = None,
+        report_meta: Optional[Mapping[str, Any]] = None,
     ) -> PipelineContext:
         """Execute the pipeline using either legacy rules or LLM orchestration."""
 
@@ -92,6 +97,9 @@ class BaseAgent:
                 news=news or {},
                 output_dir=output_dir,
                 stage_metrics=stage_metrics,
+                snapshot_meta=snapshot_meta,
+                renderer_config=renderer_config,
+                report_meta=report_meta,
             )
 
         return self._run_legacy_pipeline(
@@ -104,6 +112,9 @@ class BaseAgent:
             news,
             output_dir,
             stage_metrics,
+            snapshot_meta,
+            renderer_config,
+            report_meta,
         )
 
     # ------------------------------------------------------------------
@@ -120,7 +131,11 @@ class BaseAgent:
         news: Optional[Dict],
         output_dir: Optional[Path],
         stage_metrics: Dict[str, Dict[str, object]],
+        snapshot_meta: Optional[Dict[str, Any]],
+        renderer_config: Optional[MarkdownRenderConfig],
+        report_meta: Optional[Mapping[str, Any]],
     ) -> PipelineContext:
+        safe_mode: Optional[Dict[str, Any]] = None
         risk_start = perf_counter()
         if self.logger:
             log_step(self.logger, "risk_engine", "Evaluating macro risk signals")
@@ -287,10 +302,17 @@ class BaseAgent:
             "orders": orders,
             "portfolio_state": self.portfolio_state,
             "news": news,
+            "premarket_flags": premarket_flags,
+            "snapshot_meta": snapshot_meta,
+            "safe_mode": safe_mode,
         }
         build_params = inspect.signature(self.report_builder.build).parameters
         if "llm_summary" in build_params:
             build_kwargs["llm_summary"] = llm_summary_payload
+        if "renderer_config" in build_params and renderer_config is not None:
+            build_kwargs["renderer_config"] = renderer_config
+        if "report_meta" in build_params and report_meta is not None:
+            build_kwargs["report_meta"] = report_meta
         report_json, report_markdown = self.report_builder.build(**build_kwargs)
         if self.logger:
             log_result(
@@ -342,6 +364,7 @@ class BaseAgent:
             news=news,
             macro_flags=macro_flags,
             stage_metrics=stage_metrics,
+            report_meta=dict(report_meta) if isinstance(report_meta, Mapping) else None,
         )
 
     @staticmethod
@@ -457,9 +480,15 @@ class BaseAgent:
         news: Dict,
         output_dir: Optional[Path],
         stage_metrics: Dict[str, Dict[str, object]],
+        snapshot_meta: Optional[Dict[str, Any]],
+        renderer_config: Optional[MarkdownRenderConfig],
+        report_meta: Optional[Mapping[str, Any]],
     ) -> PipelineContext:
         if not self.llm_orchestrator:  # pragma: no cover
             raise RuntimeError("LLM orchestrator 未初始化")
+
+        _ = renderer_config  # renderer config not applied in LLM pipeline
+        _ = report_meta
 
         payload = self._build_llm_payload(
             trading_day,
