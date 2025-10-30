@@ -12,6 +12,17 @@
     "cooling_days": 3,
     "earnings_blackout": true
   },
+  "risk_constraints": {
+    "risk_budget": {
+      "daily_loss_limit_pct": 0.02,
+      "weekly_loss_limit_pct": 0.05,
+      "max_drawdown_pct": 0.12
+    },
+    "var_limits": {
+      "portfolio_var_95_pct": 0.025,
+      "portfolio_var_99_pct": 0.04
+    }
+  },
   "sizer": {
     "atr_eps": 0.0001,
     "k1_stop": 1.5,

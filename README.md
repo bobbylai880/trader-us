@@ -74,6 +74,8 @@ AI Trader Assist 是一个参考 HKUDS/AI-Trader Base 模式实现的**半自动
 | `limits.min_ticket` | 最小加仓预算，低于该金额则跳过买入。 |
 | `risk.cooling_days` | 连续亏损后冷却期天数。 |
 | `risk.earnings_blackout` | 是否在财报窗口自动加入黑名单。 |
+| `risk_constraints.risk_budget` | 风险预算配置（如日/周亏损上限、最大回撤），提供给 LLM 仓位审查阶段引用。 |
+| `risk_constraints.var_limits` | 组合 VaR/CVaR 限制（自定义键值对，例如 `portfolio_var_95_pct`），用于提示词中的风险约束。 |
 | `sizer.k1_stop/k2_target` | 止损与止盈的 ATR 系数。 |
 | `trend.*` | 趋势特征窗口（近 5/20 日斜率、10 日动量、均线、波动率窗口等）。 |
 | `macro.*` | FRED 指标配置与回溯天数，可在 `series` 中增删宏观序列或调整 `lookback_days`。 |

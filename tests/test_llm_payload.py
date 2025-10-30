@@ -18,6 +18,7 @@ def build_agent(state: PortfolioState) -> BaseAgent:
         "limits": {},
         "risk": {},
         "sizer": {},
+        "risk_constraints": {},
     }
     return BaseAgent(
         config=config,
@@ -53,6 +54,11 @@ def test_llm_payload_includes_portfolio_summary() -> None:
 
     context = payload["context"]
     positions = context["current_positions"]
+
+    risk_constraints = payload["risk_constraints"]
+    assert risk_constraints["portfolio_context"]["current_exposure"] == pytest.approx(
+        state.current_exposure
+    )
 
     assert context["portfolio_value"] == pytest.approx(state.total_equity)
     assert "AAPL" in positions and "TSLA" in positions

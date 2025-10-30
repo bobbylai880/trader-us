@@ -321,6 +321,7 @@ class LLMOrchestrator:
             "as_of": payload.get("as_of"),
             "portfolio": state.snapshot_dict(),
             "constraints": payload.get("constraints", {}),
+            "risk_constraints": payload.get("risk_constraints", {}),
             "context": payload.get("context", {}),
             "stock_view": stage_results.get("stock_classifier", {}),
             "market_view": stage_results.get("market_analyzer", {}),
@@ -357,6 +358,7 @@ class LLMOrchestrator:
             "positions_snapshot": context.get("positions_snapshot", {}),
             "news_digest": news_digest,
             "news": news_digest,
+            "risk_constraints": payload.get("risk_constraints", {}),
             "data_gaps": data_gaps,
         }
 
