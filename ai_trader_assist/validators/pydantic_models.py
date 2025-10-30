@@ -166,13 +166,31 @@ class ConstraintDetail(BaseModel):
     action: Optional[str] = None
 
 
+class SizeHint(BaseModel):
+    currency_value: float
+    shares: int
+    holding_change: str
+
+    @validator("shares")
+    def check_shares(cls, value: int) -> int:
+        if value < 0:
+            raise ValueError("shares 不能为负数")
+        return value
+
+    @validator("currency_value")
+    def check_currency_value(cls, value: float) -> float:
+        if value < 0:
+            raise ValueError("currency_value 不能为负数")
+        return value
+
+
 class AllocationPlanItem(BaseModel):
     symbol: str
     weight: Optional[float] = None
     target_weight: Optional[float] = None
     delta_weight: Optional[float] = None
     notional: Optional[float] = None
-    size_hint: Optional[str] = None
+    size_hint: Optional[SizeHint] = None
     direction: Optional[str] = None
     action: Optional[str] = None
     rationale: Optional[str] = None
