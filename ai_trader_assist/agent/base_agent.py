@@ -250,6 +250,7 @@ class BaseAgent:
                     "llm",
                     f"Running staged analysis ({len(llm_stocks)} stocks)",
                 )
+            risk_constraints = self._compile_risk_constraints(self.portfolio_state)
             llm_analysis = self.analyzer.run(
                 trading_day=trading_day,
                 risk=risk_view,
@@ -260,6 +261,7 @@ class BaseAgent:
                 market_features=market_features,
                 premarket_flags=premarket_flags or {},
                 news=news,
+                risk_constraints=risk_constraints,
             )
             if self.logger and llm_analysis:
                 log_result(
@@ -633,6 +635,7 @@ class BaseAgent:
                 "limits": self.config.get("limits", {}),
                 "risk": self.config.get("risk", {}),
             },
+            "risk_constraints": self._compile_risk_constraints(self.portfolio_state),
             "context": {
                 "positions_snapshot": self.portfolio_state.snapshot_dict(),
                 "current_positions": positions_summary,
@@ -667,6 +670,55 @@ class BaseAgent:
             }
 
         return summary, equity
+
+    def _compile_risk_constraints(self, state: PortfolioState) -> Dict[str, Any]:
+        """Return a normalised snapshot of risk budget and VaR limits for LLM use."""
+
+        config_constraints = self.config.get("risk_constraints", {})
+        compiled: Dict[str, Any] = {}
+
+        if isinstance(config_constraints, Mapping):
+            risk_budget_cfg = config_constraints.get("risk_budget")
+            if isinstance(risk_budget_cfg, Mapping):
+                compiled["risk_budget"] = {
+                    key: float(value) if isinstance(value, (int, float)) else value
+                    for key, value in risk_budget_cfg.items()
+                }
+
+            var_limits_cfg = config_constraints.get("var_limits")
+            if isinstance(var_limits_cfg, Mapping):
+                compiled["var_limits"] = {
+                    key: float(value) if isinstance(value, (int, float)) else value
+                    for key, value in var_limits_cfg.items()
+                }
+
+            for key, value in config_constraints.items():
+                if key in {"risk_budget", "var_limits"}:
+                    continue
+                compiled[key] = value
+
+        limits_cfg = self.config.get("limits", {})
+        portfolio_context = {
+            "current_exposure": state.current_exposure,
+            "total_equity": state.total_equity,
+        }
+
+        if isinstance(limits_cfg, Mapping):
+            max_exposure = limits_cfg.get("max_exposure")
+            if isinstance(max_exposure, (int, float)):
+                portfolio_context["max_exposure"] = float(max_exposure)
+            elif max_exposure is not None:
+                portfolio_context["max_exposure"] = max_exposure
+
+            max_single = limits_cfg.get("max_single_weight")
+            if isinstance(max_single, (int, float)):
+                portfolio_context["max_single_weight"] = float(max_single)
+            elif max_single is not None:
+                portfolio_context["max_single_weight"] = max_single
+
+        compiled["portfolio_context"] = portfolio_context
+
+        return compiled
 
     def _convert_sector_view(self, view: Mapping) -> List[Dict]:
         results: List[Dict] = []

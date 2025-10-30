@@ -69,6 +69,8 @@ ai_trader_assist/
 | `limits.min_ticket` | 最小加仓预算，低于该金额则跳过买入。 |
 | `risk.cooling_days` | 连续亏损后冷却期天数。 |
 | `risk.earnings_blackout` | 是否在财报窗口自动加入黑名单。 |
+| `risk_constraints.risk_budget` | 风险预算配置（如日/周亏损上限、最大回撤），供 LLM 仓位规划引用。 |
+| `risk_constraints.var_limits` | 组合 VaR/CVaR 限制（键值对形式，例 `portfolio_var_95_pct`），提示词可据此评估风险敞口。 |
 | `sizer.k1_stop/k2_target` | 止损与止盈的 ATR 系数。 |
 | `schedule.*` | 每日关键节点（05:30 数据/06:10 报告等）。 |
 
