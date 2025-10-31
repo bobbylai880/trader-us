@@ -383,37 +383,13 @@ class YahooFinanceClient:
                         # Reuse stale cache content when a fresh response could
                         # not be obtained (e.g. offline execution).
                         results[symbol] = stale_cache[symbol]["data"]  # type: ignore[index]
+                    else:
+                        # Ensure the caller receives an explicit placeholder
+                        # rather than synthetic pricing information when fresh
+                        # data is unavailable.
+                        results[symbol] = {}
                 if sleep_interval > 0 and index < len(to_fetch) - 1:
                     time.sleep(sleep_interval)
-
-        missing = set(unique_symbols) - set(results.keys())
-        for symbol in missing:
-            # Fallback to synthetic quote derived from the latest daily close so
-            # downstream metrics remain populated when the quote endpoint is not
-            # reachable (e.g. during offline test runs).
-            stats["failures"] += 1
-            latest = self.latest_price(symbol)
-            if latest is None:
-                continue
-            placeholder = {
-                "symbol": symbol,
-                "regularMarketPreviousClose": latest,
-                "regularMarketPrice": latest,
-                "preMarketPrice": latest,
-                "preMarketChange": 0.0,
-                "preMarketChangePercent": 0.0,
-                "preMarketTime": None,
-                "preMarketVolume": 0,
-                "regularMarketVolume": None,
-                "postMarketPrice": None,
-                "postMarketChange": None,
-                "postMarketChangePercent": None,
-            }
-            self._quote_cache[symbol] = {
-                "_cached_at": datetime.now(timezone.utc),
-                "data": placeholder,
-            }
-            results[symbol] = placeholder
 
         return results
 
