@@ -293,6 +293,11 @@ def test_analyzer_emits_structured_outputs():
         "VIX_Z": -0.9,
         "PUTCALL_Z": -0.3,
         "BREADTH": 0.6,
+        "pcr_total": 0.81,
+        "pcr_index": 1.03,
+        "pcr_equity": 0.65,
+        "pcr_trade_date": "2025-10-24",
+        "data_gaps": [],
     }
     premarket_flags = {
         "AAPL": {"dev": 0.04, "vol_ratio": 1.8, "score": 0.35},

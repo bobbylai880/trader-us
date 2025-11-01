@@ -19,6 +19,7 @@ from typing import Any, List, Optional, Mapping, Sequence
 from ..agent.base_agent import BaseAgent
 from ..agent.orchestrator import LLMOrchestrator
 from ..agent.safe_mode import SafeModeConfig
+from ..data_collector.cboe_client import CboeClient
 from ..data_collector.fred_client import FredClient
 from ..data_collector.yf_client import YahooFinanceClient
 from ..decision_engine.stock_scoring import StockDecisionEngine
@@ -205,6 +206,7 @@ def main() -> None:
             cache_dir=project_root / "storage" / "cache" / "fred",
             logger=logger,
         )
+        cboe_client = CboeClient(logger=logger)
 
         (
             market,
@@ -220,6 +222,7 @@ def main() -> None:
             state=state,
             yf_client=yf_client,
             fred_client=fred_client,
+            cboe_client=cboe_client,
             trading_day=now,
             logger=logger,
         )
