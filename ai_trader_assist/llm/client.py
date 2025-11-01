@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass
-from typing import Dict, List, Mapping
+from typing import Dict, List, Mapping, Optional
 
 import requests
 
@@ -94,3 +94,39 @@ class DeepSeekClient:
             usage = {}
 
         return content, usage
+
+
+def get_model_for_operator(
+    operator_name: str,
+    operator_config: Mapping[str, object],
+    base_model: Optional[str] = None,
+) -> str:
+    """Resolve the DeepSeek model for a specific operator stage.
+
+    The resolution order is:
+
+    1. Stage-specific environment variable ``DEEPSEEK_MODEL_<STAGE>``.
+    2. ``model`` defined inside the operator configuration (e.g. ``base.json``).
+    3. Global ``DEEPSEEK_MODEL`` environment variable.
+    4. ``base_model`` argument provided by the caller, falling back to
+       ``"deepseek-chat"`` when absent.
+    """
+
+    stage_env_var = f"DEEPSEEK_MODEL_{operator_name.upper()}"
+    stage_model = os.getenv(stage_env_var)
+    if stage_model:
+        return stage_model
+
+    if isinstance(operator_config, Mapping):
+        configured = operator_config.get("model")
+        if isinstance(configured, str) and configured.strip():
+            return configured.strip()
+
+    global_model = os.getenv("DEEPSEEK_MODEL")
+    if global_model:
+        return global_model
+
+    if base_model and base_model.strip():
+        return base_model.strip()
+
+    return "deepseek-chat"
