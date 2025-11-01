@@ -7,3 +7,5 @@ pytz
 jsonschema
 pydantic
 json5
+beautifulsoup4
+lxml

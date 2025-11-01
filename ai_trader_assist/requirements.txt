@@ -4,3 +4,5 @@ numpy
 python-dotenv
 requests
 pytz
+beautifulsoup4
+lxml

@@ -1,18 +1,20 @@
 """Hybrid agent that can run either the legacy rules or the LLM pipeline."""
 from __future__ import annotations
 
+import inspect
 import logging
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 from time import perf_counter
-from typing import Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from ..decision_engine.stock_scoring import StockDecisionEngine
 from ..llm.analyzer import DeepSeekAnalyzer
 from ..position_sizer.sizer import PositionSizer
 from ..portfolio_manager.state import PortfolioState
 from ..report_builder.builder import DailyReportBuilder
+from ..report_builder.markdown_renderer import MarkdownRenderConfig
 from ..risk_engine.macro_engine import MacroRiskEngine
 from ..utils import log_ok, log_result, log_step
 
@@ -36,6 +38,7 @@ class PipelineContext:
     news: Optional[Dict]
     macro_flags: Optional[Dict[str, Dict]]
     stage_metrics: Dict[str, Dict]
+    report_meta: Optional[Dict[str, Any]] = None
 
 
 class BaseAgent:
@@ -74,6 +77,9 @@ class BaseAgent:
         macro_flags: Optional[Dict[str, Dict]] = None,
         news: Optional[Dict] = None,
         output_dir: Optional[Path] = None,
+        snapshot_meta: Optional[Dict[str, Any]] = None,
+        renderer_config: Optional[MarkdownRenderConfig] = None,
+        report_meta: Optional[Mapping[str, Any]] = None,
     ) -> PipelineContext:
         """Execute the pipeline using either legacy rules or LLM orchestration."""
 
@@ -91,6 +97,9 @@ class BaseAgent:
                 news=news or {},
                 output_dir=output_dir,
                 stage_metrics=stage_metrics,
+                snapshot_meta=snapshot_meta,
+                renderer_config=renderer_config,
+                report_meta=report_meta,
             )
 
         return self._run_legacy_pipeline(
@@ -103,6 +112,9 @@ class BaseAgent:
             news,
             output_dir,
             stage_metrics,
+            snapshot_meta,
+            renderer_config,
+            report_meta,
         )
 
     # ------------------------------------------------------------------
@@ -119,7 +131,11 @@ class BaseAgent:
         news: Optional[Dict],
         output_dir: Optional[Path],
         stage_metrics: Dict[str, Dict[str, object]],
+        snapshot_meta: Optional[Dict[str, Any]],
+        renderer_config: Optional[MarkdownRenderConfig],
+        report_meta: Optional[Mapping[str, Any]],
     ) -> PipelineContext:
+        safe_mode: Optional[Dict[str, Any]] = None
         risk_start = perf_counter()
         if self.logger:
             log_step(self.logger, "risk_engine", "Evaluating macro risk signals")
@@ -217,35 +233,8 @@ class BaseAgent:
             "sell_orders": len(orders.get("sell", [])),
         }
 
-        report_start = perf_counter()
-        if self.logger:
-            log_step(self.logger, "report_builder", "Composing JSON and Markdown reports")
-        report_json, report_markdown = self.report_builder.build(
-            trading_day=trading_day,
-            risk=risk_view,
-            sectors=sector_scores,
-            stock_scores=stock_scores,
-            orders=orders,
-            portfolio_state=self.portfolio_state,
-            news=news,
-        )
-        if self.logger:
-            log_result(
-                self.logger,
-                "report_builder",
-                f"report_sections={len(report_json)}, markdown_chars={len(report_markdown)}",
-            )
-            log_ok(
-                self.logger,
-                "report_builder",
-                f"Completed in {perf_counter() - report_start:.2f}s",
-            )
-        stage_metrics["report_builder"] = {
-            "sections": len(report_json),
-            "markdown_length": len(report_markdown),
-        }
-
         llm_analysis = None
+        llm_summary_payload: Optional[Dict[str, Any]] = None
         if self.analyzer:
             llm_start = perf_counter()
             llm_config = self.config.get("llm", {})
@@ -261,6 +250,7 @@ class BaseAgent:
                     "llm",
                     f"Running staged analysis ({len(llm_stocks)} stocks)",
                 )
+            risk_constraints = self._compile_risk_constraints(self.portfolio_state)
             llm_analysis = self.analyzer.run(
                 trading_day=trading_day,
                 risk=risk_view,
@@ -271,6 +261,7 @@ class BaseAgent:
                 market_features=market_features,
                 premarket_flags=premarket_flags or {},
                 news=news,
+                risk_constraints=risk_constraints,
             )
             if self.logger and llm_analysis:
                 log_result(
@@ -278,6 +269,76 @@ class BaseAgent:
                     "llm",
                     f"Outputs: {', '.join(sorted(llm_analysis.keys()))}",
                 )
+            llm_summary_payload = self._build_llm_summary_payload(llm_analysis)
+
+        if self.analyzer:
+            if self.logger:
+                log_ok(
+                    self.logger,
+                    "llm",
+                    f"Completed in {perf_counter() - llm_start:.2f}s",
+                )
+            stage_metrics["llm"] = {
+                "stocks": len(llm_stocks),
+                "has_summary": bool(
+                    llm_summary_payload
+                    and (
+                        llm_summary_payload.get("summary_text")
+                        or llm_summary_payload.get("key_points")
+                    )
+                ),
+            }
+        else:
+            if self.logger:
+                log_result(self.logger, "llm", "Skipped")
+            stage_metrics["llm"] = {"status": "skipped"}
+
+        report_start = perf_counter()
+        if self.logger:
+            log_step(self.logger, "report_builder", "Composing JSON and Markdown reports")
+        build_kwargs = {
+            "trading_day": trading_day,
+            "risk": risk_view,
+            "sectors": sector_scores,
+            "stock_scores": stock_scores,
+            "orders": orders,
+            "portfolio_state": self.portfolio_state,
+            "news": news,
+            "premarket_flags": premarket_flags,
+            "snapshot_meta": snapshot_meta,
+            "safe_mode": safe_mode,
+        }
+        build_params = inspect.signature(self.report_builder.build).parameters
+        if "llm_summary" in build_params:
+            build_kwargs["llm_summary"] = llm_summary_payload
+        if "renderer_config" in build_params and renderer_config is not None:
+            build_kwargs["renderer_config"] = renderer_config
+        if "report_meta" in build_params and report_meta is not None:
+            build_kwargs["report_meta"] = report_meta
+        report_json, report_markdown = self.report_builder.build(**build_kwargs)
+        if self.logger:
+            log_result(
+                self.logger,
+                "report_builder",
+                f"report_sections={len(report_json)}, markdown_chars={len(report_markdown)}",
+            )
+            log_ok(
+                self.logger,
+                "report_builder",
+                f"Completed in {perf_counter() - report_start:.2f}s",
+            )
+        ai_summary = report_json.get("ai_summary", {})
+        stage_metrics["report_builder"] = {
+            "sections": len(report_json),
+            "markdown_length": len(report_markdown),
+            "ai_summary": bool(
+                isinstance(ai_summary, Mapping)
+                and (
+                    (ai_summary.get("text") or "").strip()
+                    or (ai_summary.get("key_points") or [])
+                )
+            ),
+        }
 
         if output_dir:
             output_dir.mkdir(parents=True, exist_ok=True)
@@ -294,20 +355,6 @@ class BaseAgent:
                     self.report_builder.dumps_json(news), encoding="utf-8"
                 )
 
-        if self.analyzer and self.logger:
-            log_ok(
-                self.logger,
-                "llm",
-                f"Completed in {perf_counter() - llm_start:.2f}s",
-            )
-            stage_metrics["llm"] = {
-                "stocks": len(llm_stocks),
-            }
-        elif not self.analyzer:
-            if self.logger:
-                log_result(self.logger, "llm", "Skipped")
-            stage_metrics["llm"] = {"status": "skipped"}
-
         return PipelineContext(
             risk=risk_view,
             sector_scores=sector_scores,
@@ -319,7 +366,106 @@ class BaseAgent:
             news=news,
             macro_flags=macro_flags,
             stage_metrics=stage_metrics,
+            report_meta=dict(report_meta) if isinstance(report_meta, Mapping) else None,
         )
+
+    @staticmethod
+    def _build_llm_summary_payload(llm_analysis: Optional[Mapping]) -> Optional[Dict[str, Any]]:
+        """Extract a condensed AI summary from analyzer outputs."""
+
+        if not isinstance(llm_analysis, Mapping):
+            return None
+
+        summary_text = ""
+        key_points: List[str] = []
+        seen: set[str] = set()
+
+        def add_point(value: Any) -> None:
+            if value is None:
+                return
+            text = str(value).strip()
+            if not text or text in seen:
+                return
+            key_points.append(text)
+            seen.add(text)
+
+        report_stage = llm_analysis.get("report_compose")
+        if isinstance(report_stage, Mapping):
+            sections = report_stage.get("sections")
+            if isinstance(sections, Mapping):
+                for candidate_key in ("summary", "market"):
+                    candidate = sections.get(candidate_key)
+                    if isinstance(candidate, str) and candidate.strip():
+                        summary_text = candidate.strip()
+                        break
+
+                exposure_note = sections.get("exposure")
+                if isinstance(exposure_note, str):
+                    add_point(exposure_note)
+
+                alerts = sections.get("alerts")
+                if isinstance(alerts, list):
+                    for alert in alerts:
+                        if isinstance(alert, str):
+                            add_point(alert)
+
+                actions = sections.get("actions")
+                if isinstance(actions, list):
+                    for action in actions:
+                        if not isinstance(action, Mapping):
+                            continue
+                        symbol = str(action.get("symbol", "")).strip()
+                        action_label = str(action.get("action", "")).strip()
+                        detail = (
+                            action.get("detail")
+                            or action.get("rationale")
+                            or action.get("reason")
+                        )
+                        fragments = [fragment for fragment in (symbol, action_label) if fragment]
+                        if detail:
+                            fragments.append(str(detail).strip())
+                        if fragments:
+                            add_point(" - ".join(fragments))
+
+        market_stage = llm_analysis.get("market_overview")
+        if isinstance(market_stage, Mapping):
+            if not summary_text:
+                summary_candidate = market_stage.get("summary")
+                if isinstance(summary_candidate, str) and summary_candidate.strip():
+                    summary_text = summary_candidate.strip()
+
+            drivers = market_stage.get("drivers")
+            if isinstance(drivers, list):
+                for driver in drivers:
+                    if not isinstance(driver, Mapping):
+                        continue
+                    factor = str(driver.get("factor", "")).strip()
+                    direction = str(driver.get("direction", "")).strip()
+                    evidence = str(driver.get("evidence", "")).strip()
+                    fragments = [fragment for fragment in (factor, direction) if fragment]
+                    if evidence:
+                        fragments.append(evidence)
+                    if fragments:
+                        add_point(" - ".join(fragments))
+
+            highlights = market_stage.get("news_highlights")
+            if isinstance(highlights, list):
+                for highlight in highlights:
+                    if isinstance(highlight, Mapping):
+                        title = str(highlight.get("title", "")).strip()
+                        publisher = str(highlight.get("publisher", "")).strip()
+                        if title:
+                            label = f"{title}{f' ({publisher})' if publisher else ''}"
+                            add_point(label)
+
+        cleaned_points = key_points[:5]
+        if not summary_text and not cleaned_points:
+            return None
+
+        return {
+            "summary_text": summary_text,
+            "key_points": cleaned_points,
+        }
 
     # ------------------------------------------------------------------
     # LLM orchestrated pipeline
@@ -336,9 +482,15 @@ class BaseAgent:
         news: Dict,
         output_dir: Optional[Path],
         stage_metrics: Dict[str, Dict[str, object]],
+        snapshot_meta: Optional[Dict[str, Any]],
+        renderer_config: Optional[MarkdownRenderConfig],
+        report_meta: Optional[Mapping[str, Any]],
     ) -> PipelineContext:
         if not self.llm_orchestrator:  # pragma: no cover
             raise RuntimeError("LLM orchestrator 未初始化")
+
+        _ = renderer_config  # renderer config not applied in LLM pipeline
+        _ = report_meta
 
         payload = self._build_llm_payload(
             trading_day,
@@ -466,23 +618,37 @@ class BaseAgent:
 
         positions_summary, portfolio_value = self._summarize_current_positions()
 
+        features = {
+            "market": market_features,
+            "sectors": sector_features,
+            "stocks": stock_features,
+            "trend": trend_features,
+            "news": news,
+            "premarket": premarket_flags,
+            "macro_flags": macro_flags,
+        }
+
+        feature_gaps: List[str] = []
+        market_gaps = None
+        if isinstance(market_features, Mapping):
+            market_gaps = market_features.get("data_gaps")
+        if isinstance(market_gaps, Sequence) and not isinstance(market_gaps, (str, bytes)):
+            for item in market_gaps:
+                if isinstance(item, str):
+                    feature_gaps.append(item)
+
+        features["data_gaps"] = feature_gaps
+
         return {
             "as_of": trading_day.isoformat(),
             "timezone": schedule.get("tz"),
             "universe": universe,
-            "features": {
-                "market": market_features,
-                "sectors": sector_features,
-                "stocks": stock_features,
-                "trend": trend_features,
-                "news": news,
-                "premarket": premarket_flags,
-                "macro_flags": macro_flags,
-            },
+            "features": features,
             "constraints": {
                 "limits": self.config.get("limits", {}),
                 "risk": self.config.get("risk", {}),
             },
+            "risk_constraints": self._compile_risk_constraints(self.portfolio_state),
             "context": {
                 "positions_snapshot": self.portfolio_state.snapshot_dict(),
                 "current_positions": positions_summary,
@@ -517,6 +683,55 @@ class BaseAgent:
             }
 
         return summary, equity
+
+    def _compile_risk_constraints(self, state: PortfolioState) -> Dict[str, Any]:
+        """Return a normalised snapshot of risk budget and VaR limits for LLM use."""
+
+        config_constraints = self.config.get("risk_constraints", {})
+        compiled: Dict[str, Any] = {}
+
+        if isinstance(config_constraints, Mapping):
+            risk_budget_cfg = config_constraints.get("risk_budget")
+            if isinstance(risk_budget_cfg, Mapping):
+                compiled["risk_budget"] = {
+                    key: float(value) if isinstance(value, (int, float)) else value
+                    for key, value in risk_budget_cfg.items()
+                }
+
+            var_limits_cfg = config_constraints.get("var_limits")
+            if isinstance(var_limits_cfg, Mapping):
+                compiled["var_limits"] = {
+                    key: float(value) if isinstance(value, (int, float)) else value
+                    for key, value in var_limits_cfg.items()
+                }
+
+            for key, value in config_constraints.items():
+                if key in {"risk_budget", "var_limits"}:
+                    continue
+                compiled[key] = value
+
+        limits_cfg = self.config.get("limits", {})
+        portfolio_context = {
+            "current_exposure": state.current_exposure,
+            "total_equity": state.total_equity,
+        }
+
+        if isinstance(limits_cfg, Mapping):
+            max_exposure = limits_cfg.get("max_exposure")
+            if isinstance(max_exposure, (int, float)):
+                portfolio_context["max_exposure"] = float(max_exposure)
+            elif max_exposure is not None:
+                portfolio_context["max_exposure"] = max_exposure
+
+            max_single = limits_cfg.get("max_single_weight")
+            if isinstance(max_single, (int, float)):
+                portfolio_context["max_single_weight"] = float(max_single)
+            elif max_single is not None:
+                portfolio_context["max_single_weight"] = max_single
+
+        compiled["portfolio_context"] = portfolio_context
+
+        return compiled
 
     def _convert_sector_view(self, view: Mapping) -> List[Dict]:
         results: List[Dict] = []

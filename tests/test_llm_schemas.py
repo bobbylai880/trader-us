@@ -260,7 +260,11 @@ def test_exposure_planner_accepts_structured_plan_items() -> None:
             {
                 "symbol": "AMD",
                 "action": "buy",
-                "size_hint": "加仓 ~USD 3k",
+                "size_hint": {
+                    "currency_value": 3000,
+                    "shares": 14,
+                    "holding_change": "0% → 29.7%",
+                },
                 "rationale": "趋势最强且权重低",
                 "linked_constraint": "单股权重限制25%",
             },

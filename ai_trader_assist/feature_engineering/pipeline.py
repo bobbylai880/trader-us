@@ -10,6 +10,7 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Tuple, Union
 import numpy as np
 import pandas as pd
 
+from ..data_collector.cboe_client import CboeClient
 from ..data_collector.fred_client import FredClient
 from ..data_collector.yf_client import YahooFinanceClient
 from ..portfolio_manager.state import PortfolioState
@@ -301,6 +302,7 @@ def prepare_feature_sets(
     yf_client: YahooFinanceClient,
     fred_client: FredClient,
     trading_day: Union[date, datetime],
+    cboe_client: Optional[CboeClient] = None,
     logger: Optional[logging.Logger] = None,
 ) -> Tuple[
     Dict,
@@ -383,6 +385,61 @@ def prepare_feature_sets(
     vix_z = float(vix_metrics["vix_zscore"])
     vix_value = float(vix_metrics["vix_value"])
 
+    pcr_total: Optional[float] = None
+    pcr_index: Optional[float] = None
+    pcr_equity: Optional[float] = None
+    pcr_trade_date: Optional[str] = None
+    market_data_gaps: List[str] = []
+    cboe_stats: Dict[str, object] = {}
+
+    if cboe_client:
+        try:
+            trade_dt, sections = cboe_client.fetch_put_call_ratios()
+        except Exception as exc:  # pragma: no cover - network failure path
+            market_data_gaps.append("put/call ratio具体数值缺失")
+            if logger:
+                log_result(
+                    logger,
+                    "data_collector",
+                    f"cboe: failed to fetch put/call ratios ({exc})",
+                )
+        else:
+            if trade_dt:
+                pcr_trade_date = trade_dt.date().isoformat()
+
+            def _extract_ratio(record: Optional[Mapping[str, object]]) -> Optional[float]:
+                if not isinstance(record, Mapping):
+                    return None
+                value = record.get("pc_ratio")
+                try:
+                    return float(value) if value is not None else None
+                except (TypeError, ValueError):
+                    return None
+
+            pcr_total = _extract_ratio(sections.get("total"))
+            pcr_index = _extract_ratio(sections.get("index"))
+            pcr_equity = _extract_ratio(sections.get("equity"))
+
+            if any(ratio is None for ratio in (pcr_total, pcr_index, pcr_equity)):
+                market_data_gaps.append("put/call ratio具体数值缺失")
+
+            if logger:
+                log_result(
+                    logger,
+                    "data_collector",
+                    "cboe: trade_date=%s, total=%s, index=%s, equity=%s"
+                    % (
+                        pcr_trade_date or "n/a",
+                        "%.2f" % pcr_total if isinstance(pcr_total, (int, float)) else "n/a",
+                        "%.2f" % pcr_index if isinstance(pcr_index, (int, float)) else "n/a",
+                        "%.2f" % pcr_equity if isinstance(pcr_equity, (int, float)) else "n/a",
+                    ),
+                )
+        finally:
+            cboe_stats = cboe_client.snapshot_stats()
+    else:
+        market_data_gaps.append("put/call ratio具体数值缺失")
+
     put_call_z = 0.0
     start_str = (start.date()).isoformat()
     put_call_df = fred_client.fetch_series("PUTCALL", start=start_str)
@@ -458,6 +515,9 @@ def prepare_feature_sets(
         "news_synthetic": news_stats.get("synthetic_articles", 0),
         "fred_series": fred_stats.get("series_count", 0),
         "fred_cache_hits": fred_stats.get("cache_hits", 0),
+        "cboe_requests": cboe_stats.get("requests", 0),
+        "cboe_success": cboe_stats.get("success", 0),
+        "cboe_failures": cboe_stats.get("failures", 0),
         "duration": data_duration,
     }
 
@@ -509,6 +569,17 @@ def prepare_feature_sets(
                     fred_stats.get("cache_hits", 0),
                 ),
             )
+        if cboe_stats.get("requests"):
+            log_result(
+                logger,
+                "data_collector",
+                "cboe: requests=%d, success=%d, failures=%d"
+                % (
+                    cboe_stats.get("requests", 0),
+                    cboe_stats.get("success", 0),
+                    cboe_stats.get("failures", 0),
+                ),
+            )
         log_ok(logger, "data_collector", f"Completed in {data_duration:.2f}s")
 
     if logger:
@@ -526,6 +597,8 @@ def prepare_feature_sets(
     sector_trends = compute_trend_features(sector_data, config=trend_config)
     stock_trends = compute_trend_features(stock_data, config=trend_config)
 
+    market_data_gaps = list(dict.fromkeys(market_data_gaps))
+
     market_features = {
         "RS_SPY": rs_spy,
         "RS_QQQ": rs_qqq,
@@ -536,6 +609,11 @@ def prepare_feature_sets(
         "vix_value": vix_value,
         "vix_zscore": vix_z,
         "breadth_details": breadth_details,
+        "pcr_total": pcr_total,
+        "pcr_index": pcr_index,
+        "pcr_equity": pcr_equity,
+        "pcr_trade_date": pcr_trade_date,
+        "data_gaps": market_data_gaps,
     }
     if macro_flags:
         market_features["macro_flags"] = macro_flags

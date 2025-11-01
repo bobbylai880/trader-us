@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import time
 from copy import deepcopy
 from datetime import datetime, timedelta, timezone
 from html import unescape
@@ -249,11 +250,79 @@ class YahooFinanceClient:
         horizon = datetime.now(timezone.utc) - timedelta(seconds=freshness)
         return cached_at >= horizon
 
+    def _fetch_ticker_info(
+        self,
+        symbol: str,
+        *,
+        use_yfinance: bool = True,
+    ) -> Optional[Dict[str, object]]:
+        """Return a normalised quote payload for ``symbol`` via yfinance.
+
+        Parameters
+        ----------
+        symbol:
+            The ticker symbol to fetch.
+        use_yfinance:
+            When ``False`` or when :mod:`yfinance` is not available, no network
+            request is attempted and ``None`` is returned.
+        """
+
+        if not use_yfinance or yf is None:
+            return None
+
+        try:
+            ticker = yf.Ticker(symbol)
+        except Exception:
+            return None
+
+        info: Mapping[str, object]
+        try:
+            raw_info = ticker.info or {}
+        except Exception:
+            raw_info = {}
+
+        info = raw_info if isinstance(raw_info, Mapping) else {}
+        if not info:
+            alt_info = {}
+            getter = getattr(ticker, "get_info", None)
+            if callable(getter):
+                try:
+                    alt_info = getter() or {}
+                except Exception:
+                    alt_info = {}
+            if isinstance(alt_info, Mapping) and alt_info:
+                info = alt_info
+            else:
+                fast_info = getattr(ticker, "fast_info", None)
+                if isinstance(fast_info, Mapping) and fast_info:
+                    info = fast_info
+
+        if not isinstance(info, Mapping) or not info:
+            return None
+
+        return {
+            "symbol": info.get("symbol", symbol),
+            "regularMarketPreviousClose": info.get("regularMarketPreviousClose"),
+            "regularMarketPrice": info.get("regularMarketPrice"),
+            "preMarketPrice": info.get("preMarketPrice"),
+            "preMarketChange": info.get("preMarketChange"),
+            "preMarketChangePercent": info.get("preMarketChangePercent"),
+            "preMarketTime": info.get("preMarketTime"),
+            "preMarketVolume": info.get("preMarketVolume"),
+            "postMarketPrice": info.get("postMarketPrice"),
+            "postMarketChange": info.get("postMarketChange"),
+            "postMarketChangePercent": info.get("postMarketChangePercent"),
+            "regularMarketVolume": info.get("regularMarketVolume"),
+        }
+
     def fetch_quotes(
         self,
         symbols: Iterable[str],
         freshness: int = 300,
         force: bool = False,
+        *,
+        use_yfinance: bool = True,
+        sleep_interval: float = 0.5,
     ) -> Dict[str, Dict[str, object]]:
         """Fetch quote snapshots for the provided symbols.
 
@@ -267,6 +336,13 @@ class YahooFinanceClient:
             universe.
         force:
             If ``True`` the cache is bypassed and quotes are re-fetched.
+        use_yfinance:
+            When ``True`` (default) price snapshots are sourced through
+            :mod:`yfinance`. When ``False`` the method relies exclusively on
+            cached or synthetic fallbacks.
+        sleep_interval:
+            Optional delay (in seconds) between successive symbol fetches to
+            mitigate upstream rate limiting.
         """
 
         stats = self.stats["quotes"]
@@ -276,6 +352,7 @@ class YahooFinanceClient:
 
         results: Dict[str, Dict[str, object]] = {}
         to_fetch: List[str] = []
+        stale_cache: Dict[str, Dict[str, object]] = {}
         for symbol in unique_symbols:
             cached = self._quote_cache.get(symbol)
             if (
@@ -287,82 +364,32 @@ class YahooFinanceClient:
                 results[symbol] = cached["data"]  # type: ignore[index]
             else:
                 to_fetch.append(symbol)
+                if cached:
+                    stale_cache[symbol] = cached
 
         if to_fetch:
-            chunk_size = 20
-            url = "https://query1.finance.yahoo.com/v7/finance/quote"
             now = datetime.now(timezone.utc)
-            for idx in range(0, len(to_fetch), chunk_size):
-                batch = to_fetch[idx : idx + chunk_size]
-                params = {"symbols": ",".join(batch)}
+            for index, symbol in enumerate(to_fetch):
                 stats["requests"] += 1
-                try:
-                    response = requests.get(url, params=params, timeout=10)
-                    response.raise_for_status()
-                    payload = response.json()
-                    entries = (
-                        payload.get("quoteResponse", {}).get("result", [])
-                        if isinstance(payload, dict)
-                        else []
-                    )
-                except Exception:
-                    stats["failures"] += len(batch)
-                    continue
-
-                for entry in entries:
-                    if not isinstance(entry, dict):
-                        continue
-                    symbol = entry.get("symbol")
-                    if not symbol:
-                        continue
-                    normalised = {
-                        key: entry.get(key)
-                        for key in (
-                            "symbol",
-                            "regularMarketPreviousClose",
-                            "preMarketPrice",
-                            "preMarketChange",
-                            "preMarketChangePercent",
-                            "preMarketTime",
-                            "preMarketVolume",
-                            "postMarketPrice",
-                            "postMarketChange",
-                            "postMarketChangePercent",
-                            "regularMarketVolume",
-                        )
-                    }
+                payload = self._fetch_ticker_info(symbol, use_yfinance=use_yfinance)
+                if payload:
                     stats["symbols"].add(symbol)
-                    cache_payload = {"_cached_at": now, "data": normalised}
+                    cache_payload = {"_cached_at": now, "data": payload}
                     self._quote_cache[symbol] = cache_payload
-                    results[symbol] = normalised
-
-        missing = set(unique_symbols) - set(results.keys())
-        for symbol in missing:
-            # Fallback to synthetic quote derived from the latest daily close so
-            # downstream metrics remain populated when the quote endpoint is not
-            # reachable (e.g. during offline test runs).
-            stats["failures"] += 1
-            latest = self.latest_price(symbol)
-            if latest is None:
-                continue
-            placeholder = {
-                "symbol": symbol,
-                "regularMarketPreviousClose": latest,
-                "preMarketPrice": latest,
-                "preMarketChange": 0.0,
-                "preMarketChangePercent": 0.0,
-                "preMarketTime": None,
-                "preMarketVolume": 0,
-                "regularMarketVolume": None,
-                "postMarketPrice": None,
-                "postMarketChange": None,
-                "postMarketChangePercent": None,
-            }
-            self._quote_cache[symbol] = {
-                "_cached_at": datetime.now(timezone.utc),
-                "data": placeholder,
-            }
-            results[symbol] = placeholder
+                    results[symbol] = payload
+                else:
+                    stats["failures"] += 1
+                    if symbol in stale_cache:
+                        # Reuse stale cache content when a fresh response could
+                        # not be obtained (e.g. offline execution).
+                        results[symbol] = stale_cache[symbol]["data"]  # type: ignore[index]
+                    else:
+                        # Ensure the caller receives an explicit placeholder
+                        # rather than synthetic pricing information when fresh
+                        # data is unavailable.
+                        results[symbol] = {}
+                if sleep_interval > 0 and index < len(to_fetch) - 1:
+                    time.sleep(sleep_interval)
 
         return results
 

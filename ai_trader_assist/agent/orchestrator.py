@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
 from pathlib import Path
 from typing import Dict, List, Mapping, Optional, Sequence, Tuple
@@ -21,7 +21,7 @@ from ..llm_operators.market_analyzer import MarketAnalyzerOperator
 from ..llm_operators.report_composer import ReportComposerOperator
 from ..llm_operators.sector_analyzer import SectorAnalyzerOperator
 from ..llm_operators.stock_classifier import StockClassifierOperator
-from ..llm.client import DeepSeekClient
+from ..llm.client import DeepSeekClient, get_model_for_operator
 from ..portfolio_manager.state import PortfolioState
 from ..validators.json_schemas import SCHEMAS
 
@@ -219,9 +219,15 @@ class LLMOrchestrator:
                 temperature=float(config_dict.get("temperature", temperature)),
                 max_tokens=int(config_dict.get("max_tokens", max_tokens)),
             )
+            stage_model = get_model_for_operator(
+                stage,
+                config_dict,
+                base_model=self.client.model,
+            )
+            stage_client = replace(self.client, model=stage_model)
             operators[stage] = cls(
                 config=operator_config,
-                client=self.client,
+                client=stage_client,
                 schema=SCHEMAS[stage],
                 base_prompt=self._base_prompt_text,
                 logger=self.logger,
@@ -321,6 +327,7 @@ class LLMOrchestrator:
             "as_of": payload.get("as_of"),
             "portfolio": state.snapshot_dict(),
             "constraints": payload.get("constraints", {}),
+            "risk_constraints": payload.get("risk_constraints", {}),
             "context": payload.get("context", {}),
             "stock_view": stage_results.get("stock_classifier", {}),
             "market_view": stage_results.get("market_analyzer", {}),
@@ -357,6 +364,7 @@ class LLMOrchestrator:
             "positions_snapshot": context.get("positions_snapshot", {}),
             "news_digest": news_digest,
             "news": news_digest,
+            "risk_constraints": payload.get("risk_constraints", {}),
             "data_gaps": data_gaps,
         }
 

@@ -261,6 +261,16 @@ EXPOSURE_PLANNER_SCHEMA = {
                 {"$ref": "#/definitions/ConstraintDetail"},
             ]
         },
+        "SizeHint": {
+            "type": "object",
+            "required": ["currency_value", "shares", "holding_change"],
+            "properties": {
+                "currency_value": {"type": "number"},
+                "shares": {"type": "integer"},
+                "holding_change": {"type": "string"},
+            },
+            "additionalProperties": False,
+        },
         "AllocationPlanItem": {
             "type": "object",
             "required": ["symbol"],
@@ -285,7 +295,7 @@ EXPOSURE_PLANNER_SCHEMA = {
                     "type": "number",
                     "minimum": 0,
                 },
-                "size_hint": {"type": "string"},
+                "size_hint": {"$ref": "#/definitions/SizeHint"},
                 "direction": {"type": "string"},
                 "action": {"type": "string"},
                 "rationale": {"type": "string"},

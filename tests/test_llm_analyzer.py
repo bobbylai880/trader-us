@@ -293,10 +293,20 @@ def test_analyzer_emits_structured_outputs():
         "VIX_Z": -0.9,
         "PUTCALL_Z": -0.3,
         "BREADTH": 0.6,
+        "pcr_total": 0.81,
+        "pcr_index": 1.03,
+        "pcr_equity": 0.65,
+        "pcr_trade_date": "2025-10-24",
+        "data_gaps": [],
     }
     premarket_flags = {
         "AAPL": {"dev": 0.04, "vol_ratio": 1.8, "score": 0.35},
         "MSFT": {"dev": 0.01, "vol_ratio": 0.9, "score": 0.05},
+    }
+
+    risk_constraints = {
+        "risk_budget": {"daily_loss_limit_pct": 0.02, "weekly_loss_limit_pct": 0.05},
+        "var_limits": {"portfolio_var_95_pct": 0.025, "portfolio_var_99_pct": 0.04},
     }
 
     news_bundle = {
@@ -362,6 +372,7 @@ def test_analyzer_emits_structured_outputs():
         market_features=market_features,
         premarket_flags=premarket_flags,
         news=news_bundle,
+        risk_constraints=risk_constraints,
     )
 
     market_view = payload["market_overview"]
@@ -389,6 +400,11 @@ def test_analyzer_emits_structured_outputs():
     exposure_view = payload["exposure_check"]
     assert exposure_view["direction"] in {"increase", "maintain", "decrease"}
     assert isinstance(exposure_view["allocation_plan"], list)
+
+    exposure_call = next(call for call in client.calls if call["stage"] == "exposure_check")
+    exposure_prompt = exposure_call["messages"][-1]["content"]
+    assert "\"risk_constraints\"" in exposure_prompt
+    assert "portfolio_var_95_pct" in exposure_prompt
 
     report_view = payload["report_compose"]
     assert report_view["sections"]["market"].startswith("风险")

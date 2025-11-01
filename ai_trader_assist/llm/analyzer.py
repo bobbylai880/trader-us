@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 from time import perf_counter
-from typing import Dict, List, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from .client import DeepSeekClient
 from ..portfolio_manager.state import PortfolioState
@@ -67,6 +67,7 @@ class DeepSeekAnalyzer:
         market_features: Dict,
         premarket_flags: Dict[str, Dict],
         news: Optional[Dict] = None,
+        risk_constraints: Optional[Mapping[str, Any]] = None,
     ) -> Dict:
         self._usage = {}
         news_bundle = news or {}
@@ -104,6 +105,7 @@ class DeepSeekAnalyzer:
                 "risk": risk,
                 "portfolio": _portfolio_snapshot(portfolio_state),
                 "orders": orders,
+                "risk_constraints": risk_constraints or {},
             },
         )
         report_view = self._invoke(
