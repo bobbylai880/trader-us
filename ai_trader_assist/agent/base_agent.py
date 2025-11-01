@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 from time import perf_counter
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from ..decision_engine.stock_scoring import StockDecisionEngine
 from ..llm.analyzer import DeepSeekAnalyzer
@@ -618,19 +618,32 @@ class BaseAgent:
 
         positions_summary, portfolio_value = self._summarize_current_positions()
 
+        features = {
+            "market": market_features,
+            "sectors": sector_features,
+            "stocks": stock_features,
+            "trend": trend_features,
+            "news": news,
+            "premarket": premarket_flags,
+            "macro_flags": macro_flags,
+        }
+
+        feature_gaps: List[str] = []
+        market_gaps = None
+        if isinstance(market_features, Mapping):
+            market_gaps = market_features.get("data_gaps")
+        if isinstance(market_gaps, Sequence) and not isinstance(market_gaps, (str, bytes)):
+            for item in market_gaps:
+                if isinstance(item, str):
+                    feature_gaps.append(item)
+
+        features["data_gaps"] = feature_gaps
+
         return {
             "as_of": trading_day.isoformat(),
             "timezone": schedule.get("tz"),
             "universe": universe,
-            "features": {
-                "market": market_features,
-                "sectors": sector_features,
-                "stocks": stock_features,
-                "trend": trend_features,
-                "news": news,
-                "premarket": premarket_flags,
-                "macro_flags": macro_flags,
-            },
+            "features": features,
             "constraints": {
                 "limits": self.config.get("limits", {}),
                 "risk": self.config.get("risk", {}),

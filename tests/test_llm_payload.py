@@ -55,6 +55,8 @@ def test_llm_payload_includes_portfolio_summary() -> None:
     context = payload["context"]
     positions = context["current_positions"]
 
+    assert payload["features"]["data_gaps"] == []
+
     risk_constraints = payload["risk_constraints"]
     assert risk_constraints["portfolio_context"]["current_exposure"] == pytest.approx(
         state.current_exposure
