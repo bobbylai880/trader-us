@@ -1,0 +1,65 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "trading-orchestrator": {
+      "mode": "primary",
+      "description": "美股投资分析助手 - 对话入口，语义路由，任务分发，结果汇总",
+      "model": "antigravity-tools/gemini-3-pro-high",
+      "file": ".opencode/agents/trading-orchestrator.md",
+      "temperature": 0.2,
+      "permission": {
+        "task": {
+          "trading-*": "allow"
+        },
+        "skill": {
+          "*": "allow"
+        }
+      }
+    },
+    "trading-data-analyst": {
+      "mode": "subagent",
+      "description": "数据采集与分析专家 - 市场、板块、个股数据分析",
+      "model": "antigravity-tools/gemini-3-flash",
+      "file": ".opencode/agents/trading-data-analyst.md",
+      "temperature": 0.1,
+      "tools": {
+        "write": false,
+        "edit": false
+      }
+    },
+    "trading-risk-manager": {
+      "mode": "subagent",
+      "description": "风险管理专家 - 仓位规划、止损计算、敞口管理",
+      "model": "antigravity-tools/gemini-3-pro-high",
+      "file": ".opencode/agents/trading-risk-manager.md",
+      "temperature": 0.1
+    },
+    "trading-portfolio-manager": {
+      "mode": "subagent",
+      "description": "持仓管理专家 - 操作录入、持仓查询、复盘分析",
+      "model": "antigravity-tools/gemini-3-flash",
+      "file": ".opencode/agents/trading-portfolio-manager.md",
+      "temperature": 0.1
+    },
+    "trading-report-composer": {
+      "mode": "subagent",
+      "description": "报告生成专家 - 生成分析报告、解释决策、回答问题",
+      "model": "antigravity-tools/gemini-3-pro-high",
+      "file": ".opencode/agents/trading-report-composer.md",
+      "temperature": 0.3,
+      "tools": {
+        "write": true
+      }
+    }
+  },
+  "mcp": {
+    "trader-mcp": {
+      "type": "local",
+      "command": ["python", "-m", "ai_trader_assist.mcp_server"],
+      "environment": {
+        "PYTHONPATH": "."
+      },
+      "enabled": true
+    }
+  }
+}
