@@ -3,15 +3,181 @@
     "sectors": ["XLK", "XLC", "XLF", "XLE", "XLV", "XLY", "XLP", "XLU", "XLB", "XLRE"],
     "watchlist": ["AAPL", "MSFT", "NVDA", "AMZN", "META", "AMD"]
   },
+
+  "market_regimes": {
+    "_comment": "市场状态识别和自适应参数配置",
+    "use_smoothing": true,
+    "smoothing_periods": 3,
+    "detection": {
+      "weights": {
+        "sma200_position": 1.0,
+        "sma50_position": 0.8,
+        "sma50_slope": 1.0,
+        "breadth": 1.0,
+        "nh_nl_ratio": 0.8,
+        "vix_structure": 0.8,
+        "momentum": 0.6
+      },
+      "thresholds": {
+        "bull_score": 4.0,
+        "bear_score": 2.0,
+        "strong_trend": 5.0,
+        "sma_slope_threshold": 0.001,
+        "breadth_bullish": 0.6,
+        "breadth_bearish": 0.4,
+        "nh_nl_bullish": 2.0,
+        "nh_nl_bearish": 0.5,
+        "vix_high": 25.0,
+        "vix_extreme": 35.0
+      }
+    },
+    "bull_trend": {
+      "max_exposure": 0.92,
+      "max_single_weight": 0.28,
+      "buy_threshold": 0.52,
+      "hold_threshold": 0.38,
+      "reduce_threshold": 0.32,
+      "stop_atr_mult": 2.2,
+      "target_atr_mult": 4.0,
+      "trailing_stop_pct": 0.12,
+      "position_size_factor": 1.25,
+      "scoring_weights": {
+        "trend": 0.32,
+        "momentum": 0.28,
+        "relative_strength": 0.20,
+        "volume": 0.08,
+        "structure": 0.02,
+        "news": 0.10,
+        "mean_reversion": 0.00
+      }
+    },
+    "bull_pullback": {
+      "max_exposure": 0.75,
+      "max_single_weight": 0.20,
+      "buy_threshold": 0.50,
+      "hold_threshold": 0.40,
+      "reduce_threshold": 0.35,
+      "stop_atr_mult": 1.5,
+      "target_atr_mult": 2.5,
+      "trailing_stop_pct": 0.08,
+      "position_size_factor": 1.0,
+      "scoring_weights": {
+        "trend": 0.20,
+        "momentum": 0.15,
+        "relative_strength": 0.25,
+        "volume": 0.15,
+        "structure": 0.10,
+        "news": 0.10,
+        "mean_reversion": 0.05
+      }
+    },
+    "range_bound": {
+      "max_exposure": 0.55,
+      "max_single_weight": 0.15,
+      "buy_threshold": 0.60,
+      "hold_threshold": 0.48,
+      "reduce_threshold": 0.42,
+      "stop_atr_mult": 1.3,
+      "target_atr_mult": 2.2,
+      "trailing_stop_pct": 0.07,
+      "position_size_factor": 0.85,
+      "scoring_weights": {
+        "trend": 0.12,
+        "momentum": 0.18,
+        "relative_strength": 0.18,
+        "volume": 0.12,
+        "structure": 0.15,
+        "news": 0.10,
+        "mean_reversion": 0.15
+      }
+    },
+    "bear_rally": {
+      "max_exposure": 0.40,
+      "max_single_weight": 0.12,
+      "buy_threshold": 0.70,
+      "hold_threshold": 0.55,
+      "reduce_threshold": 0.50,
+      "stop_atr_mult": 1.0,
+      "target_atr_mult": 1.5,
+      "trailing_stop_pct": 0.05,
+      "position_size_factor": 0.6,
+      "scoring_weights": {
+        "trend": 0.10,
+        "momentum": 0.20,
+        "relative_strength": 0.20,
+        "volume": 0.15,
+        "structure": 0.10,
+        "news": 0.15,
+        "mean_reversion": 0.10
+      }
+    },
+    "bear_trend": {
+      "max_exposure": 0.30,
+      "max_single_weight": 0.10,
+      "buy_threshold": 0.80,
+      "hold_threshold": 0.60,
+      "reduce_threshold": 0.55,
+      "stop_atr_mult": 0.8,
+      "target_atr_mult": 1.2,
+      "trailing_stop_pct": 0.04,
+      "position_size_factor": 0.5,
+      "scoring_weights": {
+        "trend": 0.05,
+        "momentum": 0.10,
+        "relative_strength": 0.15,
+        "volume": 0.10,
+        "structure": 0.10,
+        "news": 0.15,
+        "mean_reversion": 0.35
+      }
+    }
+  },
+
+  "macro_risk": {
+    "_comment": "宏观风险评估配置",
+    "weights": {
+      "RS_SPY": 1.2,
+      "RS_QQQ": 1.0,
+      "VIX_Z": -1.1,
+      "PUTCALL_Z": -0.9,
+      "BREADTH": 0.8,
+      "MOMENTUM": 0.6,
+      "SMA_POSITION": 0.8
+    },
+    "risk_thresholds": {
+      "high_risk": 0.33,
+      "medium_risk": 0.66
+    },
+    "vix_thresholds": {
+      "normal": 18.0,
+      "elevated": 22.0,
+      "high": 28.0,
+      "extreme": 35.0
+    }
+  },
+
+  "scoring": {
+    "_comment": "个股评分配置（默认值，会被 market_regimes 覆盖）",
+    "buy_threshold": 0.60,
+    "hold_threshold": 0.45,
+    "reduce_threshold": 0.40,
+    "premarket_penalty_weight": 0.25,
+    "volatility_penalty_factor": 0.10,
+    "news_bonus_factor": 0.08
+  },
+
   "limits": {
+    "_comment": "仓位限制（默认值，会被 market_regimes 覆盖）",
     "max_exposure": 0.85,
     "max_single_weight": 0.25,
     "min_ticket": 200
   },
+
   "risk": {
     "cooling_days": 3,
     "earnings_blackout": true
   },
+
   "risk_constraints": {
     "risk_budget": {
       "daily_loss_limit_pct": 0.02,
@@ -23,11 +189,14 @@
       "portfolio_var_99_pct": 0.04
     }
   },
+
   "sizer": {
+    "_comment": "仓位计算（默认值，会被 market_regimes 覆盖）",
     "atr_eps": 0.0001,
     "k1_stop": 1.5,
     "k2_target": 2.5
   },
+
   "trend": {
     "window_short": 5,
     "window_long": 20,
@@ -37,6 +206,7 @@
     "volatility_short": 5,
     "volatility_long": 20
   },
+
   "macro": {
     "lookback_days": 730,
     "series": {
@@ -48,6 +218,7 @@
       "INDPRO": {"label": "Industrial Production"}
     }
   },
+
   "llm": {
     "model": "deepseek-chat",
     "api_url": "https://api.deepseek.com/v1/chat/completions",
@@ -98,11 +269,13 @@
       "max_exposure_cap": 0.4
     }
   },
+
   "logging": {
     "log_dir": "storage/logs",
     "operations_path": "storage/operations.jsonl",
     "positions_path": "storage/positions.json"
   },
+
   "schedule": {
     "premarket_check": "05:30",
     "report_time": "06:10",
