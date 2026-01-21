@@ -69,7 +69,7 @@ class _ArticleTextExtractor(HTMLParser):
 
 
 class YahooFinanceClient:
-    def __init__(self, cache_dir: Optional[Path] = None) -> None:
+    def __init__(self, cache_dir: Optional[Path] = None, use_pg_cache: bool = True) -> None:
         self.cache_dir = cache_dir or Path("storage/cache/yf")
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self._company_name_cache: Dict[str, Optional[str]] = {}
@@ -83,6 +83,7 @@ class YahooFinanceClient:
             "history": {
                 "requests": 0,
                 "cache_hits": 0,
+                "pg_cache_hits": 0,
                 "rows": 0,
                 "symbols": set(),
                 "synthetic_fallbacks": 0,
@@ -107,6 +108,15 @@ class YahooFinanceClient:
             },
         }
         self._quote_cache: Dict[str, Dict[str, object]] = {}
+        
+        self._use_pg_cache = use_pg_cache
+        self._pg_db = None
+        if use_pg_cache:
+            try:
+                from .pg_client import get_db
+                self._pg_db = get_db()
+            except Exception:
+                self._use_pg_cache = False
 
     # ------------------------------------------------------------------
     # Price history helpers
@@ -171,12 +181,34 @@ class YahooFinanceClient:
         stats = self.stats["history"]
         stats["requests"] += 1
         stats["symbols"].add(symbol)
+        
+        start_date = start.date() if hasattr(start, 'date') else start
+        end_date = end.date() if hasattr(end, 'date') else end
+        
+        if self._use_pg_cache and self._pg_db and interval == "1d" and not force:
+            try:
+                pg_data = self._pg_db.get_daily_prices_single(symbol, start_date, end_date)
+                if not pg_data.empty and len(pg_data) > 0:
+                    pg_data = pg_data.set_index("trade_date")
+                    pg_data.index = pd.to_datetime(pg_data.index)
+                    pg_data = pg_data.rename(columns={
+                        "open": "Open", "high": "High", "low": "Low",
+                        "close": "Close", "adj_close": "Adj Close", "volume": "Volume"
+                    })
+                    pg_data = pg_data[["Open", "High", "Low", "Close", "Adj Close", "Volume"]]
+                    stats["pg_cache_hits"] += 1
+                    stats["rows"] += len(pg_data)
+                    return pg_data
+            except Exception:
+                pass
+        
         cache_path = self._cache_path(symbol, start, end, interval)
         if cache_path.exists() and not force:
             try:
                 data = pd.read_parquet(cache_path)
                 stats["cache_hits"] += 1
                 stats["rows"] += len(data)
+                self._save_to_pg_cache(symbol, data)
                 return data
             except Exception:
                 cache_path.unlink(missing_ok=True)
@@ -216,8 +248,25 @@ class YahooFinanceClient:
             data.to_parquet(cache_path)
         except Exception:
             pass
+        
+        self._save_to_pg_cache(symbol, data)
         stats["rows"] += len(data)
         return data
+    
+    def _save_to_pg_cache(self, symbol: str, data: pd.DataFrame) -> None:
+        """Save data to PostgreSQL cache if available."""
+        if not self._use_pg_cache or self._pg_db is None or data.empty:
+            return
+        try:
+            df = data.reset_index()
+            df["symbol"] = symbol
+            df = df.rename(columns={
+                "Date": "trade_date", "Open": "open", "High": "high",
+                "Low": "low", "Close": "close", "Adj Close": "adj_close", "Volume": "volume"
+            })
+            self._pg_db.upsert_daily_prices(df)
+        except Exception:
+            pass
 
     def latest_price(self, symbol: str) -> Optional[float]:
         end = datetime.utcnow()

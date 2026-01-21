@@ -9,3 +9,5 @@ pydantic
 json5
 beautifulsoup4
 lxml
+psycopg2-binary
+pyarrow

@@ -1,8 +1,29 @@
 __pycache__/
 *.pyc
-.env
 .venv/
+*.bak
+
+# 敏感配置文件
+.env
+*.local.json
+
+# 数据存储
 storage/cache/
 storage/daily_*/
 storage/logs/
-*.bak
+storage/operations.jsonl
+storage/positions.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 测试输出
+.pytest_cache/
+.coverage
+htmlcov/
+
+# macOS
+.DS_Store
