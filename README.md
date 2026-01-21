@@ -1,13 +1,14 @@
 # AI Trader Assist
 
-> **自适应美股量化交易系统** — 基于市场状态识别的多策略切换引擎 + 动态选股
+> **自适应美股量化交易系统** — 基于市场状态识别的多策略切换引擎 + 分层决策框架
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![PostgreSQL 18](https://img.shields.io/badge/PostgreSQL-18-336791.svg)](https://www.postgresql.org/)
-[![2Y Backtest](https://img.shields.io/badge/2Y%20Return-+41.91%25-brightgreen.svg)](#回测验证)
-[![Sharpe Ratio](https://img.shields.io/badge/Sharpe-1.57-blue.svg)](#回测验证)
+[![3Y Backtest](https://img.shields.io/badge/3Y%20Return-+90.43%25-brightgreen.svg)](#回测验证)
+[![Sharpe Ratio](https://img.shields.io/badge/Sharpe-1.43-blue.svg)](#回测验证)
+[![Max Drawdown](https://img.shields.io/badge/MaxDD-12.56%25-orange.svg)](#回测验证)
 
-**2年回测成果 (2024-2026)**: 收益率 **+41.91%** (vs SPY +43.07%)，夏普比率 **1.57**，胜率 **54.1%**
+**3年回测成果 (2023-2026)**: 收益率 **+90.43%** (vs SPY +81.62%)，夏普比率 **1.43**，最大回撤 **12.56%**
 
 ---
 
@@ -16,7 +17,7 @@
 - [系统特性](#系统特性)
 - [快速开始](#快速开始)
 - [系统架构](#系统架构)
-- [动态选股系统](#动态选股系统)
+- [策略演进](#策略演进)
 - [回测验证](#回测验证)
 - [配置说明](#配置说明)
 - [开发指南](#开发指南)
@@ -29,19 +30,20 @@
 
 | 特性 | 说明 |
 |------|------|
-| **市场状态识别** | 5种市场状态自动识别 (牛市/震荡/熊市等) |
-| **策略自动切换** | 根据市场状态切换三套策略参数 |
-| **动态选股** | 分层股票池 (Core/Rotation/Candidate) + 板块轮动 |
-| **PostgreSQL 18** | 高性能数据存储，支持 UUIDv7、VIRTUAL 列 |
+| **市场状态识别** | 3种市场状态自动识别 (Offensive/Neutral/Defensive) |
+| **分层决策框架** | 宏观趋势(月度) → 板块轮动(双周) → 个股精选 |
+| **科技龙头聚焦** | Offensive 模式优先配置 NVDA/META/GOOGL/AMZN 等 |
+| **PostgreSQL 18** | 高性能数据存储，支持 84,590+ 行日线数据 |
 | **LLM 分析** | DeepSeek 5阶段推理流水线 |
 
-### 三套自适应策略
+### V5 融合策略特点
 
-| 策略 | 市场状态 | 最大仓位 | 止损 | 特点 |
-|------|----------|----------|------|------|
-| 🐂 **趋势跟踪** | 牛市 | 95% | 15% | 禁用止盈，让利润奔跑 |
-| 📊 **均值回归** | 震荡 | 60% | 8% | 高抛低吸，布林带出场 |
-| 🐻 **防御保守** | 熊市 | 30% | 5% | 严格止损，低仓位运行 |
+| 特性 | 说明 |
+|------|------|
+| 🚀 **放宽进攻阈值** | score ≥ 2 即进入 Offensive 模式 (81% 时间) |
+| 📅 **双周板块轮动** | 减少频繁交易，降低交易成本 |
+| 📈 **宽松止损 18%** | 让利润充分奔跑，禁用止盈 |
+| 🎯 **科技龙头优先** | Offensive 模式聚焦 10 只科技龙头 |
 
 ---
 
@@ -101,49 +103,40 @@ PYTHONPATH=. python scripts/load_historical_data.py --years 3
 ### 4. 运行回测
 
 ```bash
-# 固定股票池回测
-PYTHONPATH=. python scripts/run_backtest_2y.py
+# V5 融合策略回测 (推荐)
+PYTHONPATH=. python scripts/run_backtest_v5.py
 
-# 动态选股回测
-PYTHONPATH=. python scripts/run_dynamic_backtest.py
+# V3 趋势跟踪回测
+PYTHONPATH=. python scripts/run_backtest_v3.py
+
+# V4 分层决策回测
+PYTHONPATH=. python scripts/run_backtest_v4.py
 ```
 
 ---
 
 ## 系统架构
 
+### V5 分层决策框架
+
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│                    PostgreSQL 18 数据层                           │
-│         daily_prices / indicators / sector_holdings               │
-└─────────────────────────┬────────────────────────────────────────┘
-                          │
-                  (周频 + 日频微调)
-                          │
-┌─────────────────────────▼────────────────────────────────────────┐
-│                    UniverseBuilder (动态选股)                     │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
-│  │  Core Pool  │  │ Rotation    │  │ Candidate   │              │
-│  │  (8只常驻)  │  │ Pool (18只) │  │ Pool (12只) │              │
-│  └─────────────┘  └─────────────┘  └─────────────┘              │
-└─────────────────────────┬────────────────────────────────────────┘
-                          │
-                          ▼
-┌──────────────────────────────────────────────────────────────────┐
-│              MarketRegimeDetector (市场状态识别)                  │
-│         bull_trend / range_bound / bear_trend                     │
-└─────────────────────────┬────────────────────────────────────────┘
-                          │
-                          ▼
-┌──────────────────────────────────────────────────────────────────┐
-│              AdaptiveStrategyEngine (策略切换)                    │
-│         趋势跟踪 / 均值回归 / 防御保守                             │
-└─────────────────────────┬────────────────────────────────────────┘
-                          │
-                          ▼
-┌──────────────────────────────────────────────────────────────────┐
-│         PositionSizer + RiskConstraints + Report                  │
-└──────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│ 第一层: 宏观趋势 (月度回顾)                                    │
+│   - VIX 水平与趋势 (阈值放宽: <18 贪婪, <22 正常)              │
+│   - SPY 动量 + SMA50 位置                                    │
+│   - 新闻情绪聚合                                              │
+│   → 输出: 市场倾向 (Offensive/Neutral/Defensive) + 目标仓位    │
+├─────────────────────────────────────────────────────────────┤
+│ 第二层: 板块轮动 (双周调整)                                    │
+│   - 11个板块ETF相对强度排名                                   │
+│   - Offensive: Top 4 板块 | Neutral: Top 3 | Defensive: Top 2 │
+│   → 输出: 强势板块列表                                        │
+├─────────────────────────────────────────────────────────────┤
+│ 第三层: 个股精选                                              │
+│   - Offensive 模式: 优先科技龙头 (NVDA/META/GOOGL/AMZN...)    │
+│   - 板块内动量排名 + 技术过滤                                  │
+│   → 输出: 每板块 Top 2 个股                                   │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### 目录结构
@@ -160,15 +153,18 @@ trader/
 │   ├── portfolio_manager/      # 持仓管理
 │   ├── position_sizer/         # 仓位计算
 │   ├── risk_engine/            # 风险引擎
-│   ├── universe/               # 动态选股模块 (NEW)
+│   ├── universe/               # 动态选股模块
 │   └── jobs/                   # 调度脚本
 ├── configs/                    # 配置文件
 ├── scripts/                    # 运行脚本
-│   ├── init_pg18_schema.sql    # PostgreSQL 18 Schema
-│   ├── load_historical_data.py # 历史数据导入
-│   ├── run_backtest_2y.py      # 固定池回测
-│   └── run_dynamic_backtest.py # 动态选股回测
+│   ├── run_backtest_v5.py      # V5 融合策略 (推荐)
+│   ├── run_backtest_v4.py      # V4 分层决策
+│   ├── run_backtest_v3.py      # V3 趋势跟踪
+│   └── load_news_data.py       # 新闻数据导入
 ├── storage/                    # 数据存储
+│   ├── backtest_3y_v5/         # V5 回测结果
+│   ├── backtest_3y_v4/         # V4 回测结果
+│   └── backtest_3y_v3/         # V3 回测结果
 ├── tests/                      # 测试用例
 ├── .env.example                # 环境变量模板
 └── requirements.txt            # Python 依赖
@@ -176,66 +172,64 @@ trader/
 
 ---
 
-## 动态选股系统
+## 策略演进
 
-### 分层股票池
+### 从 V1 到 V5 的迭代历程
 
-| 池类型 | 规模 | 更新频率 | 作用 |
-|--------|------|----------|------|
-| **Core Pool** | 8只 | 季度 | 龙头股常驻 (AAPL, MSFT, NVDA, GOOGL...) |
-| **Rotation Pool** | 15-18只 | 周频 | 板块轮动，捕捉市场主线 |
-| **Candidate Pool** | 10-12只 | 日频 | 发现新兴强势股 |
+| 版本 | 策略名称 | 核心思路 | 问题 |
+|------|----------|----------|------|
+| V1 | 均值回归 | RSI 超卖买入，超买卖出 | 牛市中频繁止盈，错失大行情 |
+| V2 | 动量策略 | 追涨强势股 | 回撤较大，震荡市表现差 |
+| V3 | 趋势跟踪 | SPY>SMA50 才开仓，跟踪止损 15% | 收益最高但回撤偏大 |
+| V4 | 分层决策 | 宏观→板块→个股三层框架 | 过于保守，仓位利用不足 |
+| **V5** | **融合策略** | **V3趋势跟踪 + V4分层框架** | **最优风险调整收益** |
 
-### 板块轮动逻辑
+### V5 核心优化
 
-```python
-# 板块强度评分
-sector_score = 0.5 * ret_20d + 0.3 * rs_vs_spy + 0.2 * ret_5d
-
-# 牛市: Top 4 板块
-# 震荡: Top 2 板块
-# 熊市: 防御板块优先 (XLP, XLV, XLU)
-```
-
-### 选股标准 (按市场状态)
-
-| 状态 | 筛选条件 |
-|------|----------|
-| **牛市** | 动量 > 2%, 放量确认, 价格在SMA50之上 |
-| **震荡** | RSI 30-50, 趋势结构完整, 接近布林带下沿 |
-| **熊市** | 相对强势, 低波动, 防御板块优先 |
+1. **放宽进攻阈值**: score ≥ 2 即进入 Offensive (原需 ≥ 3)
+2. **延长板块周期**: 周度 → 双周，减少频繁轮动
+3. **宽松止损**: 15% → 18%，让利润奔跑
+4. **聚焦科技龙头**: Offensive 模式优先配置 TECH_LEADERS
 
 ---
 
 ## 回测验证
 
-### 动态选股 vs 固定池对比 (2024-01 ~ 2026-01)
+### 策略对比 (2023-01 ~ 2026-01, 3年)
 
-| 指标 | 动态选股 | 固定池 | 差异 |
-|------|----------|--------|------|
-| **总收益率** | **+41.91%** | +30.86% | **+11.05%** ✅ |
-| **年化收益** | **+19.20%** | +14.45% | +4.75% |
-| **夏普比率** | **1.57** | 1.34 | +0.23 |
-| **胜率** | **54.1%** | 47.5% | +6.6% |
-| **最大回撤** | 12.71% | 10.03% | +2.68% |
-| **SPY收益** | +43.07% | +43.07% | - |
+| 指标 | V3 趋势跟踪 | V4 分层决策 | **V5 融合策略** |
+|------|-------------|-------------|-----------------|
+| **总收益率** | +117.02% | +40.65% | **+90.43%** |
+| **年化收益** | +29.05% | +11.88% | **+23.61%** |
+| **Alpha** | +35.40% | -40.98% | **+8.80%** |
+| **夏普比率** | 1.32 | 0.89 | **1.43** ✅ |
+| **最大回撤** | 16.10% | 13.69% | **12.56%** ✅ |
+| **盈亏比** | - | - | **2.47** |
+| **总交易** | - | - | 64 笔 |
 
-### 交易来源分布
+### V5 宏观状态分布
 
-| 池类型 | 占比 | 说明 |
-|--------|------|------|
-| **Core (核心池)** | 60.6% | 龙头股稳定贡献 |
-| **Candidate (观察池)** | 24.2% | 新兴强势股 |
-| **Rotation (轮动池)** | 15.2% | 板块轮动捕捉 |
+| 状态 | 月份数 | 占比 | 目标仓位 |
+|------|--------|------|----------|
+| **Offensive** | 30 | 81% | 95% |
+| **Neutral** | 5 | 14% | 70% |
+| **Defensive** | 2 | 5% | 30% |
+
+### V5 交易来源分布
+
+| 来源 | 交易数 | 说明 |
+|------|--------|------|
+| **Tech Leader** | 14 笔 | 科技龙头 (NVDA, META, AMD...) |
+| **Sector Rotation** | 21 笔 | 板块轮动选股 |
 
 ### 最大盈利交易
 
 | 日期 | 股票 | 来源 | 盈亏 | 收益率 |
 |------|------|------|------|--------|
-| 2025-11-18 | GOOGL | Core | **+$10,660** | +84.3% |
-| 2024-04-17 | NVDA | Core | +$5,806 | +36.4% |
-| 2025-11-18 | AAPL | Core | +$5,341 | +30.7% |
-| 2024-08-28 | SBUX | Candidate | +$4,988 | +23.7% |
+| 2023-09-21 | NVDA | Tech Leader | **+$15,477** | +95.9% |
+| 2025-12-17 | AVGO | Sector Rotation | +$13,889 | +69.4% |
+| 2025-03-13 | COST | Sector Rotation | +$11,193 | +81.4% |
+| 2024-04-04 | AMD | Tech Leader | +$9,686 | +53.8% |
 
 ---
 
@@ -272,12 +266,12 @@ TZ=America/Los_Angeles
   "universe": {
     "indices": ["SPY", "QQQ", "DIA", "IWM"],
     "sectors": ["XLK", "XLF", "XLV", "XLE", "XLY", "XLP", "XLI", "XLB", "XLU", "XLRE", "XLC"],
-    "watchlist": ["NVDA", "AAPL", "MSFT", "AMZN", "META", "AMD", "GOOGL", "TSLA"]
+    "tech_leaders": ["NVDA", "META", "GOOGL", "AMZN", "MSFT", "AAPL", "AMD", "AVGO", "NFLX", "TSLA"]
   },
   "limits": {
     "max_exposure": 0.95,
-    "max_single_weight": 0.40,
-    "min_ticket": 1000
+    "max_single_weight": 0.20,
+    "trailing_stop": 0.18
   }
 }
 ```
@@ -292,28 +286,35 @@ TZ=America/Los_Angeles
 # 运行所有测试
 pytest tests -q
 
-# 测试 UniverseBuilder
-PYTHONPATH=. python scripts/test_universe_builder.py
+# 运行 V5 回测
+PYTHONPATH=. python scripts/run_backtest_v5.py
 ```
 
-### 添加新策略
+### 策略参数调优
 
 ```python
-# 在 ai_trader_assist/backtest/regime_strategies.py 中添加
-NEW_STRATEGY = StrategyConfig(
-    mode=StrategyMode.NEW_MODE,
-    max_exposure=0.70,
-    # ... 其他参数
-)
+# 在 scripts/run_backtest_v5.py 中调整
+
+# 宏观阈值 (放宽进攻)
+if score >= 2:  # 可调整为 1 或 3
+    regime = "offensive"
+
+# 止损阈值 (宽松止损)
+if drawdown > 0.18:  # 可调整为 0.15 或 0.20
+    to_sell.append((sym, f"跟踪止损"))
+
+# 科技龙头列表
+TECH_LEADERS = ["NVDA", "META", "GOOGL", ...]
 ```
 
-### 扩展选股逻辑
+### 添加新板块
 
 ```python
-# 在 ai_trader_assist/universe/builder.py 中修改
-def _build_fast_universe(self, trade_date, regime):
-    # 添加自定义筛选逻辑
-    ...
+# 在 SECTOR_STOCKS 中添加
+SECTOR_STOCKS = {
+    "XLK": ["AAPL", "MSFT", ...],
+    "NEW_SECTOR": ["STOCK1", "STOCK2", ...],
+}
 ```
 
 ---
