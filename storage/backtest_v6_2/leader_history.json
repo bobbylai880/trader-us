@@ -1,0 +1,3104 @@
+[
+  {
+    "date": "2022-01-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "AAPL",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "UNH",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "AMD",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "PFE",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "LOW",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "HD",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2022-02-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "XOM",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "COP",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "CVX",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "WFC",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "MS",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "PFE",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2022-03-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "CVX",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "COP",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "XOM",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 8,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "LLY",
+        "score": 8,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "UNH",
+        "score": 7,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "VZ",
+        "score": 4,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "WFC",
+        "score": 4,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 3,
+        "rrg": -2,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2022-04-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "LLY",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "CVX",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "UNH",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "XOM",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "COP",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 8,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 5,
+        "rrg": 0,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2022-05-02",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "XOM",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "CVX",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "LLY",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "COP",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "T",
+        "score": 3,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 3,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 1,
+        "rrg": -2,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "MCD",
+        "score": 0,
+        "rrg": -2,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2022-06-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "COP",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "T",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "XOM",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "CVX",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "PFE",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "MCD",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 4,
+        "rrg": 0,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2022-07-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "MRK",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "UNH",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "T",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MCD",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "XOM",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "VZ",
+        "score": 3,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 3,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "COP",
+        "score": 3,
+        "rrg": 1,
+        "sector": "XLE"
+      }
+    ]
+  },
+  {
+    "date": "2022-08-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "ORCL",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "MCD",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "UNH",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 8,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 8,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 8,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "LLY",
+        "score": 8,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 7,
+        "rrg": 3,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2022-09-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "TSLA",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "MCD",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "UNH",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "LLY",
+        "score": 4,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 3,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 3,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MRK",
+        "score": 3,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "DIS",
+        "score": 2,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "XOM",
+        "score": 2,
+        "rrg": -2,
+        "sector": "XLE"
+      }
+    ]
+  },
+  {
+    "date": "2022-10-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "COP",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 6,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "XOM",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "CVX",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "UNH",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "LLY",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "MRK",
+        "score": 4,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 3,
+        "rrg": -2,
+        "sector": "XLC"
+      }
+    ]
+  },
+  {
+    "date": "2022-11-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "XOM",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "COP",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "JPM",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "MRK",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "CVX",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "WFC",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "GS",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "UNH",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 8,
+        "rrg": -2,
+        "sector": "XLC"
+      }
+    ]
+  },
+  {
+    "date": "2022-12-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "MRK",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "JPM",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "GS",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "PFE",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "CVX",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 10,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TJX",
+        "score": 10,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "XOM",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2023-01-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "JPM",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "BLK",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "PFE",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "T",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NKE",
+        "score": 7,
+        "rrg": -2,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GS",
+        "score": 7,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "LLY",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 6,
+        "rrg": -2,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLC"
+      }
+    ]
+  },
+  {
+    "date": "2023-02-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "CMCSA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NKE",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "LOW",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2023-03-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "CRM",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "JPM",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "MS",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 4,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MCD",
+        "score": 4,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "NKE",
+        "score": 4,
+        "rrg": 1,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2023-04-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "AAPL",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "MSFT",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2023-05-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "META",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "MSFT",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "CMCSA",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MCD",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2023-06-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "MSFT",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2023-07-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "TSLA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "LOW",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "CMCSA",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLC"
+      }
+    ]
+  },
+  {
+    "date": "2023-08-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "META",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "COP",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "WFC",
+        "score": 8,
+        "rrg": 0,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2023-09-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "LLY",
+        "score": 10,
+        "rrg": 0,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "META",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TJX",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2023-10-02",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "UNH",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "META",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "XOM",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "COP",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "CVX",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "JPM",
+        "score": 4,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "INTC",
+        "score": 3,
+        "rrg": -2,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2023-11-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "MSFT",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "INTC",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "T",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "VZ",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "COP",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLE"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "AMD",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "CRM",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "INTC",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "BAC",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "WFC",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "JPM",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "DIS",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLC"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-02",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "BAC",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "JPM",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "WFC",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMD",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "INTC",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "VZ",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "HD",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2024-02-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NFLX",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "META",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMD",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "VZ",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "JPM",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2024-03-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "DIS",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "LOW",
+        "score": 8,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "LLY",
+        "score": 8,
+        "rrg": -2,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "HD",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2024-04-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "DIS",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "BAC",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "WFC",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "JPM",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2024-05-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "WFC",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "GS",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "BAC",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "XOM",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "CVX",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "COP",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 4,
+        "rrg": -2,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 3,
+        "rrg": 0,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2024-06-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "GOOGL",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 8,
+        "rrg": -2,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TJX",
+        "score": 6,
+        "rrg": -2,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "BAC",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "GS",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "MS",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "XOM",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLE"
+      }
+    ]
+  },
+  {
+    "date": "2024-07-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "AAPL",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 10,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "LLY",
+        "score": 8,
+        "rrg": 0,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "TJX",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2024-08-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "UNH",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "T",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "BLK",
+        "score": 6,
+        "rrg": -2,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TJX",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GS",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2024-09-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "JPM",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "UNH",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "BLK",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "BAC",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 8,
+        "rrg": -2,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "HD",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2024-10-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "T",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "HD",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "LOW",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "META",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "CMCSA",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MCD",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "UNH",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "BLK",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 8,
+        "rrg": 3,
+        "sector": "XLV"
+      }
+    ]
+  },
+  {
+    "date": "2024-11-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "MS",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "CRM",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "WFC",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLC"
+      }
+    ]
+  },
+  {
+    "date": "2024-12-02",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "CRM",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "DIS",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "WFC",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "MS",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "BAC",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2025-01-02",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "AVGO",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "WFC",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "JPM",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "GS",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2025-02-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "META",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "JPM",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "WFC",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "GS",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2025-03-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "T",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "LLY",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "VZ",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 6,
+        "rrg": -2,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "WFC",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "JPM",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 4,
+        "rrg": -2,
+        "sector": "XLK"
+      }
+    ]
+  },
+  {
+    "date": "2025-04-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "T",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "CVX",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "VZ",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "XOM",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "COP",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "JPM",
+        "score": 8,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "WFC",
+        "score": 8,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "UNH",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 7,
+        "rrg": 1,
+        "sector": "XLV"
+      }
+    ]
+  },
+  {
+    "date": "2025-05-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NFLX",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MSFT",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "T",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "VZ",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MCD",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "TJX",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "JPM",
+        "score": 6,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "WFC",
+        "score": 6,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 5,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "GS",
+        "score": 4,
+        "rrg": 3,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2025-06-02",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "MCD",
+        "score": 7,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "META",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "DIS",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "JPM",
+        "score": 5,
+        "rrg": 0,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2025-07-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "DIS",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "META",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NKE",
+        "score": 10,
+        "rrg": 0,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GS",
+        "score": 10,
+        "rrg": 0,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "MS",
+        "score": 10,
+        "rrg": 0,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "JPM",
+        "score": 9,
+        "rrg": 0,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2025-08-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMD",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "META",
+        "score": 7,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "NKE",
+        "score": 6,
+        "rrg": -2,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GS",
+        "score": 6,
+        "rrg": -2,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "CVX",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 5,
+        "rrg": 0,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 5,
+        "rrg": 0,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 4,
+        "rrg": -2,
+        "sector": "XLC"
+      }
+    ]
+  },
+  {
+    "date": "2025-09-02",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "GOOGL",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "LOW",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "INTC",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "CVX",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "COP",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "HD",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "XOM",
+        "score": 9,
+        "rrg": 3,
+        "sector": "XLE"
+      }
+    ]
+  },
+  {
+    "date": "2025-10-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "INTC",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 11,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 10,
+        "rrg": 0,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TJX",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "UNH",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLV"
+      }
+    ]
+  },
+  {
+    "date": "2025-11-03",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "INTC",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "LLY",
+        "score": 12,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLY"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 8,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 8,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "BAC",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "WFC",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLF"
+      }
+    ]
+  },
+  {
+    "date": "2025-12-01",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "LLY",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "MRK",
+        "score": 13,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "INTC",
+        "score": 9,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 8,
+        "rrg": 1,
+        "sector": "XLK"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 8,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 8,
+        "rrg": -2,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "MS",
+        "score": 7,
+        "rrg": 0,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 5,
+        "rrg": -2,
+        "sector": "XLY"
+      }
+    ]
+  },
+  {
+    "date": "2026-01-02",
+    "cold_start": false,
+    "leaders": [
+      {
+        "symbol": "WFC",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "GS",
+        "score": 11,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "BAC",
+        "score": 10,
+        "rrg": 3,
+        "sector": "XLF"
+      },
+      {
+        "symbol": "LLY",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "MRK",
+        "score": 10,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 8,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 8,
+        "rrg": 0,
+        "sector": "XLC"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 6,
+        "rrg": 1,
+        "sector": "XLV"
+      },
+      {
+        "symbol": "XOM",
+        "score": 6,
+        "rrg": 0,
+        "sector": "XLE"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 5,
+        "rrg": 0,
+        "sector": "XLK"
+      }
+    ]
+  }
+]

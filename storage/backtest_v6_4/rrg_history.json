@@ -1,0 +1,2518 @@
+[
+  {
+    "date": "2023-01-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.878
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.912
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.418
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.111
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -5.271
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -8.148
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.29
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.951
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 6.239
+      }
+    }
+  },
+  {
+    "date": "2023-02-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.648
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 8.059
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 5.069
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.424
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.401
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.547
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.249
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.349
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.943
+      }
+    }
+  },
+  {
+    "date": "2023-03-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.639
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.302
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.967
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.072
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.572
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.331
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.456
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.337
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.814
+      }
+    }
+  },
+  {
+    "date": "2023-04-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 2.787
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.167
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 2.804
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.655
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.917
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.385
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.043
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.083
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.235
+      }
+    }
+  },
+  {
+    "date": "2023-05-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.172
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.869
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.26
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.506
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.988
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.437
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.897
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.129
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.634
+      }
+    }
+  },
+  {
+    "date": "2023-06-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.856
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.386
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.394
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.616
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.153
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.666
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.682
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.369
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.004
+      }
+    }
+  },
+  {
+    "date": "2023-07-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.172
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.568
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.237
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.402
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.923
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.179
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.0
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.753
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -5.011
+      }
+    }
+  },
+  {
+    "date": "2023-08-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.034
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.668
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.026
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.387
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.749
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 4.795
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.367
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.932
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.656
+      }
+    }
+  },
+  {
+    "date": "2023-09-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.555
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.028
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.911
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.956
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.124
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 2.396
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.007
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.079
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.666
+      }
+    }
+  },
+  {
+    "date": "2023-10-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.349
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.969
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.984
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.621
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.227
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.28
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.24
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.703
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.807
+      }
+    }
+  },
+  {
+    "date": "2023-11-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.808
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.546
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.042
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.174
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.516
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.807
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.268
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.318
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.495
+      }
+    }
+  },
+  {
+    "date": "2023-12-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.985
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.156
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.863
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.382
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.903
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.309
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.004
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.392
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.882
+      }
+    }
+  },
+  {
+    "date": "2024-01-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.958
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.141
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.117
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 2.619
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.811
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.376
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.828
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 4.202
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 6.914
+      }
+    }
+  },
+  {
+    "date": "2024-02-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.694
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.007
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.478
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 3,
+        "rs_momentum_ema": 0.752
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.621
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 3.383
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.746
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.458
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.622
+      }
+    }
+  },
+  {
+    "date": "2024-03-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.478
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.96
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.96
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.667
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.247
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.39
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.085
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.95
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.267
+      }
+    }
+  },
+  {
+    "date": "2024-04-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 2.767
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 3,
+        "rs_momentum_ema": 2.138
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.378
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.9
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.254
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.924
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.768
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.138
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.807
+      }
+    }
+  },
+  {
+    "date": "2024-05-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.189
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.145
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.674
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.515
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.587
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.108
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.272
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.179
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 3.538
+      }
+    }
+  },
+  {
+    "date": "2024-06-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.534
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.306
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.369
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.625
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.658
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.101
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.457
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.428
+      },
+      "XLU": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.316
+      }
+    }
+  },
+  {
+    "date": "2024-07-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.699
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.488
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.73
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.154
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.488
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.794
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.325
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.257
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.911
+      }
+    }
+  },
+  {
+    "date": "2024-08-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -5.62
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.475
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.031
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.38
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.85
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.688
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.742
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.511
+      },
+      "XLU": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.614
+      }
+    }
+  },
+  {
+    "date": "2024-09-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.109
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.351
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.16
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 2.304
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 1.527
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.039
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.772
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.023
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.499
+      }
+    }
+  },
+  {
+    "date": "2024-10-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -4.161
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.999
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.345
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.693
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 3,
+        "rs_momentum_ema": 0.905
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.587
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 2.429
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.326
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 3.135
+      }
+    }
+  },
+  {
+    "date": "2024-11-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.491
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.153
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.473
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.154
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.274
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.469
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.844
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.928
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.142
+      }
+    }
+  },
+  {
+    "date": "2024-12-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 4.684
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 3.415
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 4.026
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.711
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.167
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.887
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.83
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.072
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.895
+      }
+    }
+  },
+  {
+    "date": "2025-01-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.018
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.625
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.623
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.242
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.058
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.228
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.474
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.425
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.087
+      }
+    }
+  },
+  {
+    "date": "2025-02-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.484
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.662
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.121
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 2.081
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 4.272
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.406
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.811
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.718
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.295
+      }
+    }
+  },
+  {
+    "date": "2025-03-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.016
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.69
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -6.655
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.124
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.879
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.78
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.087
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.641
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.102
+      }
+    }
+  },
+  {
+    "date": "2025-04-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.303
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.123
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.593
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 1.676
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.197
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.145
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.716
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 3.636
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 0.412
+      }
+    }
+  },
+  {
+    "date": "2025-05-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 4.435
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.997
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 3.941
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 2.738
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.256
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.529
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 4.714
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 3,
+        "rs_momentum_ema": 1.849
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 3,
+        "rs_momentum_ema": 3.491
+      }
+    }
+  },
+  {
+    "date": "2025-06-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 7.221
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.628
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 5.124
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.708
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.388
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 3.098
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 3,
+        "rs_momentum_ema": 3.76
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.55
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 4,
+        "rs_momentum_ema": 4.581
+      }
+    }
+  },
+  {
+    "date": "2025-07-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 10.055
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 5.235
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 5.033
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 5.186
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.799
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 3.375
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 2,
+        "consecutive_leading": 4,
+        "rs_momentum_ema": 6.163
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.692
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 3.053
+      }
+    }
+  },
+  {
+    "date": "2025-08-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.034
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.484
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.137
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.586
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.277
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.046
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.239
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.33
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.055
+      }
+    }
+  },
+  {
+    "date": "2025-09-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.628
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.115
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.186
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.448
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.155
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 4.307
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.46
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.651
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.144
+      }
+    }
+  },
+  {
+    "date": "2025-10-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.99
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.953
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "raw_score": 0,
+        "confirmed_score": 0,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.022
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.7
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 1.206
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.479
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.465
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.54
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 2.327
+      }
+    }
+  },
+  {
+    "date": "2025-11-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 2,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.646
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -2.581
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.965
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.028
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 2.906
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 2.1
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.729
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -3.569
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.111
+      }
+    }
+  },
+  {
+    "date": "2025-12-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.763
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.872
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.227
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.124
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "raw_score": 3,
+        "confirmed_score": 3,
+        "consecutive_leading": 2,
+        "rs_momentum_ema": 2.384
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.097
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.187
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.269
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.482
+      }
+    }
+  },
+  {
+    "date": "2026-01-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.042
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.254
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.762
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.113
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.047
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": 0.782
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "raw_score": 2,
+        "confirmed_score": 1,
+        "consecutive_leading": 1,
+        "rs_momentum_ema": 0.86
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "raw_score": -1,
+        "confirmed_score": -1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -0.95
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "raw_score": 1,
+        "confirmed_score": 1,
+        "consecutive_leading": 0,
+        "rs_momentum_ema": -1.798
+      }
+    }
+  }
+]

@@ -1,0 +1,200 @@
+[
+  {
+    "date": "2023-03-10",
+    "mode": "danger",
+    "vix": 24.8,
+    "vix_trend": "stable",
+    "max_exposure": 0.3,
+    "cooldown": 10,
+    "reason": "VIX\u6025\u5347(34.1%)"
+  },
+  {
+    "date": "2023-03-27",
+    "mode": "normal",
+    "vix": 20.6,
+    "vix_trend": "stable",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2023-10-25",
+    "mode": "watch",
+    "vix": 20.19,
+    "vix_trend": "rising",
+    "max_exposure": 0.7,
+    "cooldown": 3,
+    "reason": "VIX\u4e0a\u5347\u8d8b\u52bf(20.2)"
+  },
+  {
+    "date": "2023-10-31",
+    "mode": "normal",
+    "vix": 18.14,
+    "vix_trend": "stable",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2024-08-02",
+    "mode": "danger",
+    "vix": 23.39,
+    "vix_trend": "rising",
+    "max_exposure": 0.3,
+    "cooldown": 10,
+    "reason": "VIX\u6025\u5347(42.7%)"
+  },
+  {
+    "date": "2024-08-19",
+    "mode": "normal",
+    "vix": 14.65,
+    "vix_trend": "falling",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2024-09-06",
+    "mode": "danger",
+    "vix": 22.38,
+    "vix_trend": "rising",
+    "max_exposure": 0.3,
+    "cooldown": 10,
+    "reason": "VIX\u6025\u5347(43.0%)"
+  },
+  {
+    "date": "2024-09-23",
+    "mode": "normal",
+    "vix": 15.89,
+    "vix_trend": "stable",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2024-10-07",
+    "mode": "danger",
+    "vix": 22.64,
+    "vix_trend": "rising",
+    "max_exposure": 0.3,
+    "cooldown": 10,
+    "reason": "VIX\u6025\u5347(35.3%)"
+  },
+  {
+    "date": "2024-10-22",
+    "mode": "normal",
+    "vix": 18.2,
+    "vix_trend": "stable",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2024-12-18",
+    "mode": "danger",
+    "vix": 27.62,
+    "vix_trend": "rising",
+    "max_exposure": 0.3,
+    "cooldown": 10,
+    "reason": "VIX\u6025\u5347(103.4%)"
+  },
+  {
+    "date": "2025-01-06",
+    "mode": "normal",
+    "vix": 16.04,
+    "vix_trend": "stable",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2025-02-27",
+    "mode": "watch",
+    "vix": 21.13,
+    "vix_trend": "rising",
+    "max_exposure": 0.7,
+    "cooldown": 3,
+    "reason": "VIX\u4e0a\u5347\u8d8b\u52bf(21.1)"
+  },
+  {
+    "date": "2025-03-06",
+    "mode": "caution",
+    "vix": 24.87,
+    "vix_trend": "rising",
+    "max_exposure": 0.5,
+    "cooldown": 5,
+    "reason": "VIX\u4e0a\u5347\u8d8b\u52bf(24.9) + SPY\u7834\u4f4d"
+  },
+  {
+    "date": "2025-03-14",
+    "mode": "watch",
+    "vix": 21.77,
+    "vix_trend": "rising",
+    "max_exposure": 0.7,
+    "cooldown": 0,
+    "reason": "VIX\u4e0a\u5347\u8d8b\u52bf(21.8)"
+  },
+  {
+    "date": "2025-03-19",
+    "mode": "normal",
+    "vix": 19.9,
+    "vix_trend": "stable",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2025-04-03",
+    "mode": "danger",
+    "vix": 30.02,
+    "vix_trend": "stable",
+    "max_exposure": 0.3,
+    "cooldown": 10,
+    "reason": "VIX\u9ad8\u4f4d(30.0) \u6216\u5feb\u901f\u4e0a\u5347"
+  },
+  {
+    "date": "2025-04-24",
+    "mode": "normal",
+    "vix": 26.47,
+    "vix_trend": "stable",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2025-10-14",
+    "mode": "watch",
+    "vix": 20.81,
+    "vix_trend": "rising",
+    "max_exposure": 0.7,
+    "cooldown": 3,
+    "reason": "VIX\u4e0a\u5347\u8d8b\u52bf(20.8)"
+  },
+  {
+    "date": "2025-10-20",
+    "mode": "normal",
+    "vix": 18.23,
+    "vix_trend": "rising",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  },
+  {
+    "date": "2025-11-18",
+    "mode": "danger",
+    "vix": 24.69,
+    "vix_trend": "rising",
+    "max_exposure": 0.3,
+    "cooldown": 10,
+    "reason": "VIX\u6025\u5347(42.9%)"
+  },
+  {
+    "date": "2025-12-04",
+    "mode": "normal",
+    "vix": 15.78,
+    "vix_trend": "falling",
+    "max_exposure": 0.95,
+    "cooldown": 0,
+    "reason": "\u6b63\u5e38\u8fd0\u884c"
+  }
+]

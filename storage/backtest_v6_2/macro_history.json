@@ -1,0 +1,443 @@
+[
+  {
+    "date": "2022-01-03",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 16.6,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf | VIX\u4e0b\u964d",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2022-02-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 21.96,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-03-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 33.32,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-04-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 19.63,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-05-02",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 32.34,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-06-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 25.69,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-07-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 26.7,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-08-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 22.84,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-09-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 25.56,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-10-03",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 30.1,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-11-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 25.81,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2022-12-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 19.84,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2023-01-03",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 22.9,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6050\u614c(29.9)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2023-02-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 17.87,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf | VIX\u4e0b\u964d",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2023-03-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 20.58,
+    "reasoning": "\ud83d\udea8DANGER: SPY\u66b4\u8dcc(-2.0%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2023-04-03",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 18.55,
+    "reasoning": "\ud83d\udea8DANGER: SPY\u66b4\u8dcc(-2.0%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2023-05-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 2,
+    "vix": 16.08,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2023-06-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 3,
+    "vix": 15.65,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2023-07-03",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 13.57,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2023-08-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 3,
+    "vix": 13.93,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2023-09-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 13.09,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u8d8b\u52bf\u5411\u4e0a | VIX\u4e0b\u964d",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2023-10-02",
+    "regime": "defensive",
+    "exposure": 0.4,
+    "score": -1,
+    "vix": 17.61,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u8dcc\u783450\u65e5\u7ebf | VIX\u4e0a\u5347",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2023-11-01",
+    "regime": "defensive",
+    "exposure": 0.4,
+    "score": -50,
+    "vix": 16.87,
+    "reasoning": "\u26a0\ufe0fCAUTION: SPY\u8dcc\u7834SMA200",
+    "circuit_breaker_level": "caution"
+  },
+  {
+    "date": "2023-12-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 12.63,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-01-02",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 3,
+    "vix": 13.2,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-02-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 13.88,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-03-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 13.11,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-04-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 3,
+    "vix": 13.65,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-05-01",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "score": 0,
+    "vix": 15.39,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u8dcc\u783450\u65e5\u7ebf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-06-03",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 13.11,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-07-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 4,
+    "vix": 12.22,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-08-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 18.59,
+    "reasoning": "\ud83d\udea8DANGER: SPY\u66b4\u8dcc(-2.3%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2024-09-03",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 20.72,
+    "reasoning": "\ud83d\udea8DANGER: SPY\u66b4\u8dcc(-2.1%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2024-10-01",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "score": 0,
+    "vix": 19.26,
+    "reasoning": "VIX\u504f\u9ad8 | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2024-11-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 21.88,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6025\u5347(35%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2024-12-02",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 5,
+    "vix": 13.34,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u5f3a\u52bf | VIX\u4e0b\u964d",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2025-01-02",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 17.93,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6025\u5347(103%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2025-02-03",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "score": 0,
+    "vix": 18.62,
+    "reasoning": "VIX\u504f\u9ad8 | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2025-03-03",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 22.78,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6025\u5347(20%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2025-04-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 21.77,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6025\u5347(20%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2025-05-01",
+    "regime": "defensive",
+    "exposure": 0.2,
+    "score": -99,
+    "vix": 24.6,
+    "reasoning": "\ud83d\udea8DANGER: VIX\u6025\u5347(20%)",
+    "circuit_breaker_level": "danger"
+  },
+  {
+    "date": "2025-06-02",
+    "regime": "neutral",
+    "exposure": 0.6,
+    "score": -20,
+    "vix": 18.36,
+    "reasoning": "\ud83d\udc40WATCH: VIX\u89c2\u5bdf(20.9)",
+    "circuit_breaker_level": "watch"
+  },
+  {
+    "date": "2025-07-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 3,
+    "vix": 16.83,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2025-08-01",
+    "regime": "neutral",
+    "exposure": 0.6,
+    "score": -20,
+    "vix": 20.38,
+    "reasoning": "\ud83d\udc40WATCH: VIX\u89c2\u5bdf(20.4)",
+    "circuit_breaker_level": "watch"
+  },
+  {
+    "date": "2025-09-02",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 2,
+    "vix": 17.17,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2025-10-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 3,
+    "vix": 16.29,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2025-11-03",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 2,
+    "vix": 17.17,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2025-12-01",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 2,
+    "vix": 17.24,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  },
+  {
+    "date": "2026-01-02",
+    "regime": "offensive",
+    "exposure": 1.0,
+    "score": 3,
+    "vix": 14.51,
+    "reasoning": "VIX\u6781\u4f4e | SPY\u8d8b\u52bf\u5411\u4e0a",
+    "circuit_breaker_level": "normal"
+  }
+]

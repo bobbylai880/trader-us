@@ -1,0 +1,17 @@
+{
+  "final_value": 186419.6768,
+  "total_return": 0.8641967679999998,
+  "annualized_return": 0.22751183744705905,
+  "spy_return": 0.8162386429284176,
+  "alpha": 0.04795812507158215,
+  "max_drawdown": 0.14457267940448615,
+  "sharpe": 1.4688889601316402,
+  "win_rate": 0.5080645161290323,
+  "profit_factor": 2.2566865826180837,
+  "total_trades": 254,
+  "stock_trades": 124,
+  "avg_win": 1955.5433317460313,
+  "avg_loss": -894.9667721311475,
+  "cold_start_months": 0,
+  "universe_updates": 79
+}

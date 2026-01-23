@@ -1,0 +1,1562 @@
+[
+  {
+    "date": "2020-01-02",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2020-01-22",
+    "focus_sectors": [
+      "XLY",
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "META",
+      "TSLA",
+      "GOOGL",
+      "AMZN",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2020-02-11",
+    "focus_sectors": [
+      "XLY",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "AMZN",
+      "MSFT",
+      "NFLX",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2020-03-02",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NVDA",
+      "TSLA",
+      "NFLX"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2020-03-23",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [
+      "XLK",
+      "XLY"
+    ],
+    "risk_level": "low",
+    "theme_drivers": [
+      "Avoid: XLK, XLY"
+    ]
+  },
+  {
+    "date": "2020-04-13",
+    "focus_sectors": [
+      "XLY",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "AMZN",
+      "TSLA",
+      "NFLX",
+      "AVGO",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2020-05-04",
+    "focus_sectors": [
+      "XLK",
+      "XLY",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "AMZN",
+      "GOOGL",
+      "NVDA",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK, XLY"
+    ]
+  },
+  {
+    "date": "2020-05-26",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "GOOGL",
+      "AAPL",
+      "META",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2020-06-15",
+    "focus_sectors": [
+      "XLY",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "GOOGL",
+      "AVGO",
+      "AAPL",
+      "AMZN"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2020-07-06",
+    "focus_sectors": [
+      "XLY",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "AMZN",
+      "TSLA",
+      "NFLX",
+      "MSFT",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2020-07-27",
+    "focus_sectors": [
+      "XLY",
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "TSLA",
+      "AMZN",
+      "NFLX",
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2020-08-17",
+    "focus_sectors": [
+      "XLY",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "TSLA",
+      "META",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2020-09-08",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "AVGO",
+      "NFLX",
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2020-09-28",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2020-10-19",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META",
+      "AMZN",
+      "NFLX",
+      "AVGO",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2020-11-09",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2020-11-30",
+    "focus_sectors": [
+      "XLK",
+      "XLY",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "META",
+      "AVGO",
+      "GOOGL",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK, XLY"
+    ]
+  },
+  {
+    "date": "2020-12-21",
+    "focus_sectors": [
+      "XLY",
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "META",
+      "AVGO",
+      "AMD",
+      "NFLX"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2021-01-11",
+    "focus_sectors": [
+      "XLY",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "AVGO",
+      "AMD",
+      "META",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2021-02-01",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "TSLA",
+      "GOOGL",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2021-02-22",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "GOOGL",
+      "NVDA"
+    ],
+    "avoid_sectors": [
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLY"
+    ]
+  },
+  {
+    "date": "2021-03-15",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2021-04-05",
+    "focus_sectors": [
+      "XLY",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "META",
+      "TSLA",
+      "AVGO",
+      "NVDA",
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2021-04-26",
+    "focus_sectors": [
+      "XLK",
+      "XLY",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "META",
+      "TSLA",
+      "GOOGL",
+      "AMZN"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK, XLY"
+    ]
+  },
+  {
+    "date": "2021-05-17",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2021-06-07",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "META",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2021-06-28",
+    "focus_sectors": [
+      "XLY",
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "META",
+      "TSLA",
+      "AMD",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2021-07-19",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AAPL",
+      "NFLX",
+      "MSFT",
+      "META",
+      "TSLA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2021-08-09",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMD",
+      "GOOGL",
+      "TSLA",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2021-08-30",
+    "focus_sectors": [
+      "XLC"
+    ],
+    "focus_stocks": [
+      "META",
+      "NVDA",
+      "NFLX",
+      "GOOGL",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLC"
+    ]
+  },
+  {
+    "date": "2021-09-20",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META",
+      "TSLA",
+      "NFLX",
+      "AVGO",
+      "AMZN"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2021-10-11",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "TSLA",
+      "NFLX"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2021-11-01",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "AMD",
+      "MSFT",
+      "META",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2021-11-22",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMD",
+      "MSFT",
+      "AMZN",
+      "AAPL",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2021-12-13",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AAPL",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-01-03",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AVGO",
+      "AAPL",
+      "META",
+      "AMD",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-01-24",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLY"
+    ]
+  },
+  {
+    "date": "2022-02-14",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-03-07",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLY"
+    ]
+  },
+  {
+    "date": "2022-03-28",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "NVDA",
+      "AMZN",
+      "AAPL",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2022-04-18",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "TSLA",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-05-09",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [
+      "XLC",
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLC, XLY"
+    ]
+  },
+  {
+    "date": "2022-05-31",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMD",
+      "TSLA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-06-21",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "GOOGL",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-07-11",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AAPL",
+      "MSFT",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-08-01",
+    "focus_sectors": [
+      "XLY",
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "NVDA",
+      "NFLX",
+      "AAPL",
+      "AMZN"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2022-08-22",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "AAPL",
+      "AMZN",
+      "GOOGL",
+      "AMD",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2022-09-12",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMZN"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-10-03",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMZN",
+      "TSLA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-10-24",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "AMZN",
+      "NFLX",
+      "NVDA",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2022-11-14",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "NFLX"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2022-12-05",
+    "focus_sectors": [
+      "XLC",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "META",
+      "NVDA",
+      "NFLX",
+      "AMD",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLC, XLK"
+    ]
+  },
+  {
+    "date": "2022-12-27",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AVGO",
+      "META"
+    ],
+    "avoid_sectors": [
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLY"
+    ]
+  },
+  {
+    "date": "2023-01-17",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META",
+      "AVGO",
+      "NVDA",
+      "TSLA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-02-06",
+    "focus_sectors": [
+      "XLC",
+      "XLK",
+      "XLY"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "META",
+      "TSLA",
+      "AMD",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLC, XLK"
+    ]
+  },
+  {
+    "date": "2023-02-27",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "TSLA",
+      "NVDA",
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-03-20",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AMD",
+      "META",
+      "AVGO",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2023-04-10",
+    "focus_sectors": [
+      "XLC",
+      "XLK",
+      "XLY"
+    ],
+    "focus_stocks": [
+      "META",
+      "NVDA",
+      "NFLX",
+      "GOOGL",
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLC, XLK"
+    ]
+  },
+  {
+    "date": "2023-05-01",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-05-22",
+    "focus_sectors": [
+      "XLC",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "GOOGL",
+      "META",
+      "NVDA",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLC, XLK"
+    ]
+  },
+  {
+    "date": "2023-06-12",
+    "focus_sectors": [
+      "XLY",
+      "XLC",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "TSLA",
+      "NFLX"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLC"
+    ]
+  },
+  {
+    "date": "2023-07-03",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "NFLX",
+      "AVGO",
+      "NVDA",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2023-07-24",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AVGO",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-08-14",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMZN",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-09-05",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-09-25",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-10-16",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AVGO",
+      "META",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-11-06",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NFLX",
+      "AMZN",
+      "MSFT",
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2023-11-27",
+    "focus_sectors": [
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "NFLX",
+      "NVDA",
+      "AMZN",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK, XLC"
+    ]
+  },
+  {
+    "date": "2023-12-18",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AVGO",
+      "AMD",
+      "TSLA",
+      "AMZN"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-01-08",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AVGO",
+      "AMD",
+      "META",
+      "NFLX"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2024-01-29",
+    "focus_sectors": [
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "NVDA",
+      "META",
+      "NFLX",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK, XLC"
+    ]
+  },
+  {
+    "date": "2024-02-20",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META",
+      "NFLX",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-03-11",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NVDA",
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-04-01",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-04-22",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [
+      "XLK",
+      "XLC",
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLK, XLC"
+    ]
+  },
+  {
+    "date": "2024-05-13",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "GOOGL",
+      "TSLA",
+      "AAPL",
+      "NFLX"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-06-03",
+    "focus_sectors": [
+      "XLC"
+    ],
+    "focus_stocks": [
+      "NFLX",
+      "AMD",
+      "TSLA",
+      "AAPL",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLC"
+    ]
+  },
+  {
+    "date": "2024-06-24",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "AVGO",
+      "NVDA",
+      "AAPL",
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2024-07-15",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "AMD",
+      "AAPL",
+      "AVGO",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2024-08-05",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [
+      "XLC",
+      "XLY",
+      "XLK"
+    ],
+    "risk_level": "low",
+    "theme_drivers": [
+      "Avoid: XLC, XLY"
+    ]
+  },
+  {
+    "date": "2024-08-26",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "META",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-09-16",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "TSLA",
+      "AMZN",
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-10-07",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AVGO",
+      "META",
+      "TSLA",
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2024-10-28",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NVDA",
+      "NFLX",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-11-18",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "NFLX",
+      "GOOGL",
+      "TSLA",
+      "AMZN"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2024-12-09",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NFLX",
+      "AAPL",
+      "TSLA",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2024-12-30",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AVGO",
+      "TSLA",
+      "GOOGL",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-01-21",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NVDA",
+      "AVGO"
+    ],
+    "avoid_sectors": [
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLY"
+    ]
+  },
+  {
+    "date": "2025-02-10",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "NFLX"
+    ],
+    "avoid_sectors": [
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLY"
+    ]
+  },
+  {
+    "date": "2025-03-03",
+    "focus_sectors": [],
+    "focus_stocks": [],
+    "avoid_sectors": [
+      "XLY"
+    ],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Avoid: XLY"
+    ]
+  },
+  {
+    "date": "2025-03-24",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-04-14",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "TSLA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-05-05",
+    "focus_sectors": [
+      "XLY",
+      "XLC",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NFLX",
+      "MSFT",
+      "NVDA",
+      "AVGO",
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLC"
+    ]
+  },
+  {
+    "date": "2025-05-27",
+    "focus_sectors": [
+      "XLY",
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "AVGO",
+      "MSFT",
+      "NVDA",
+      "TSLA",
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY, XLK"
+    ]
+  },
+  {
+    "date": "2025-06-16",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AVGO",
+      "META",
+      "AMD",
+      "GOOGL",
+      "MSFT"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-07-07",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "NVDA",
+      "AAPL",
+      "AMZN",
+      "META"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2025-07-28",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "AMD",
+      "NVDA",
+      "AVGO",
+      "GOOGL",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2025-08-18",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMD",
+      "GOOGL",
+      "AAPL",
+      "META",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-09-08",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "GOOGL",
+      "AVGO",
+      "AMZN"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-09-29",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "GOOGL",
+      "AAPL",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLK"
+    ]
+  },
+  {
+    "date": "2025-10-20",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-11-10",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "GOOGL",
+      "AMZN",
+      "AMD",
+      "AAPL",
+      "NVDA"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-12-01",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "GOOGL",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  },
+  {
+    "date": "2025-12-22",
+    "focus_sectors": [
+      "XLY"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "META",
+      "AMD"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": [
+      "Focus: XLY"
+    ]
+  },
+  {
+    "date": "2026-01-12",
+    "focus_sectors": [],
+    "focus_stocks": [
+      "AMZN",
+      "GOOGL"
+    ],
+    "avoid_sectors": [],
+    "risk_level": "normal",
+    "theme_drivers": []
+  }
+]

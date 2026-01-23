@@ -1,0 +1,298 @@
+[
+  {
+    "date": "2023-01-03",
+    "regime": "defensive",
+    "exposure": 0.3,
+    "vix": 22.9,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u504f\u9ad8(\u8c28\u614e) | SPY\u5728\u5747\u7ebf\u4e0b\u65b9"
+  },
+  {
+    "date": "2023-02-01",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 17.87,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0b\u65b9"
+  },
+  {
+    "date": "2023-03-01",
+    "regime": "defensive",
+    "exposure": 0.3,
+    "vix": 20.58,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u504f\u9ad8(\u8c28\u614e) | SPY\u5728\u5747\u7ebf\u4e0b\u65b9"
+  },
+  {
+    "date": "2023-04-03",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "vix": 18.55,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2023-05-01",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "vix": 16.08,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2023-06-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 15.65,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2023-07-03",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.57,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2023-08-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.93,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2023-09-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.09,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2023-10-02",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 17.61,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f31\u52bf\u4e0b\u8dcc"
+  },
+  {
+    "date": "2023-11-01",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 16.87,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0b\u65b9"
+  },
+  {
+    "date": "2023-12-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 12.63,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2024-01-02",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.2,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2024-02-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.88,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2024-03-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.11,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2024-04-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.65,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2024-05-01",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 15.39,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f31\u52bf\u4e0b\u8dcc"
+  },
+  {
+    "date": "2024-06-03",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.11,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2024-07-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 12.22,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2024-08-01",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 18.59,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0b\u65b9"
+  },
+  {
+    "date": "2024-09-03",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "vix": 20.72,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u504f\u9ad8(\u8c28\u614e) | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2024-10-01",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "vix": 19.26,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2024-11-01",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 21.88,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u504f\u9ad8(\u8c28\u614e) | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2024-12-02",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 13.34,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2025-01-02",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 17.93,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f31\u52bf\u4e0b\u8dcc"
+  },
+  {
+    "date": "2025-02-03",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "vix": 18.62,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2025-03-03",
+    "regime": "defensive",
+    "exposure": 0.3,
+    "vix": 22.78,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u504f\u9ad8(\u8c28\u614e) | SPY\u5728\u5747\u7ebf\u4e0b\u65b9"
+  },
+  {
+    "date": "2025-04-01",
+    "regime": "defensive",
+    "exposure": 0.3,
+    "vix": 21.77,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u504f\u9ad8(\u8c28\u614e) | SPY\u5728\u5747\u7ebf\u4e0b\u65b9"
+  },
+  {
+    "date": "2025-05-01",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 24.6,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u504f\u9ad8(\u8c28\u614e) | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2025-06-02",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 18.36,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2025-07-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 16.83,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2025-08-01",
+    "regime": "neutral",
+    "exposure": 0.5,
+    "vix": 20.38,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u504f\u9ad8(\u8c28\u614e) | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2025-09-02",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "vix": 17.17,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2025-10-01",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 16.29,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5f3a\u52bf\u4e0a\u6da8"
+  },
+  {
+    "date": "2025-11-03",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "vix": 17.17,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2025-12-01",
+    "regime": "neutral",
+    "exposure": 0.7,
+    "vix": 17.24,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u6b63\u5e38 | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  },
+  {
+    "date": "2026-01-02",
+    "regime": "offensive",
+    "exposure": 0.95,
+    "vix": 14.51,
+    "sentiment": 0.0,
+    "reasoning": "VIX\u4f4e\u4f4d(\u8d2a\u5a6a) | SPY\u5728\u5747\u7ebf\u4e0a\u65b9"
+  }
+]

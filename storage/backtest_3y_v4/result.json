@@ -1,0 +1,27 @@
+{
+  "final_value": 140648.6209000001,
+  "total_return": 0.406486209000001,
+  "annualized_return": 0.11880690826593043,
+  "spy_return": 0.8162386429284176,
+  "alpha": -0.40975243392841665,
+  "max_drawdown": 0.1369027511148748,
+  "sharpe": 0.8924657940526247,
+  "win_rate": 0.5380710659898477,
+  "profit_factor": 1.5643020374068843,
+  "total_trades": 398,
+  "regime_distribution": {
+    "defensive": 4,
+    "neutral": 17,
+    "offensive": 16
+  },
+  "sector_distribution": {
+    "XLP": 19,
+    "XLV": 24,
+    "XLY": 32,
+    "XLC": 41,
+    "XLK": 44,
+    "XLE": 16,
+    "XLF": 17,
+    "XLI": 8
+  }
+}

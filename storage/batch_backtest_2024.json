@@ -1,0 +1,257 @@
+{
+  "start_date": "2024-01-01",
+  "end_date": "2024-12-31",
+  "initial_capital": 100000.0,
+  "symbols": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "META",
+    "AMD"
+  ],
+  "results": {
+    "AAPL": {
+      "old_system": {
+        "total_return": 0.03646643432617187,
+        "max_drawdown": 0.04552629854641166,
+        "sharpe_ratio": 0.8684523231800558,
+        "win_rate": 0.42857142857142855,
+        "total_trades": 28,
+        "final_value": 103646.64343261719
+      },
+      "new_no_smoothing": {
+        "total_return": 0.014017122497558593,
+        "max_drawdown": 0.02343036777357101,
+        "sharpe_ratio": 0.5803492184086395,
+        "win_rate": 0.5,
+        "total_trades": 16,
+        "final_value": 101401.71224975586
+      },
+      "new_with_smoothing": {
+        "total_return": 0.04364920440673828,
+        "max_drawdown": 0.011374398510305127,
+        "sharpe_ratio": 1.5847893453534625,
+        "win_rate": 0.75,
+        "total_trades": 8,
+        "final_value": 104364.92044067383,
+        "regime_distribution": {
+          "bull_trend": 42,
+          "bear_trend": 20,
+          "bull_pullback": 0,
+          "bear_rally": 0,
+          "range_bound": 186,
+          "unknown": 3
+        }
+      },
+      "improvement": {
+        "return_vs_old": 0.007182770080566406,
+        "drawdown_reduction": 0.03415190003610653,
+        "trade_reduction": 20
+      }
+    },
+    "MSFT": {
+      "old_system": {
+        "total_return": -0.008187414855957031,
+        "max_drawdown": 0.040135645093029984,
+        "sharpe_ratio": -0.20509663500097466,
+        "win_rate": 0.3888888888888889,
+        "total_trades": 36,
+        "final_value": 99181.2585144043
+      },
+      "new_no_smoothing": {
+        "total_return": 0.004424780578613281,
+        "max_drawdown": 0.02439501747717028,
+        "sharpe_ratio": 0.16178828695346953,
+        "win_rate": 0.4,
+        "total_trades": 20,
+        "final_value": 100442.47805786133
+      },
+      "new_with_smoothing": {
+        "total_return": 0.008345659790039062,
+        "max_drawdown": 0.024215238523286834,
+        "sharpe_ratio": 0.3136401077022554,
+        "win_rate": 0.4,
+        "total_trades": 10,
+        "final_value": 100834.5659790039,
+        "regime_distribution": {
+          "bull_trend": 69,
+          "bear_trend": 9,
+          "bull_pullback": 0,
+          "bear_rally": 0,
+          "range_bound": 170,
+          "unknown": 3
+        }
+      },
+      "improvement": {
+        "return_vs_old": 0.01653307464599609,
+        "drawdown_reduction": 0.01592040656974315,
+        "trade_reduction": 26
+      }
+    },
+    "NVDA": {
+      "old_system": {
+        "total_return": 0.042842024955749514,
+        "max_drawdown": 0.09375055080650897,
+        "sharpe_ratio": 0.4893718378579637,
+        "win_rate": 0.46153846153846156,
+        "total_trades": 53,
+        "final_value": 104284.20249557495
+      },
+      "new_no_smoothing": {
+        "total_return": 0.14930775379180908,
+        "max_drawdown": 0.047261738012002535,
+        "sharpe_ratio": 1.7347723179632155,
+        "win_rate": 0.6,
+        "total_trades": 30,
+        "final_value": 114930.77537918091
+      },
+      "new_with_smoothing": {
+        "total_return": 0.1537999485015869,
+        "max_drawdown": 0.0512674606758084,
+        "sharpe_ratio": 1.6928125672792327,
+        "win_rate": 0.6666666666666666,
+        "total_trades": 24,
+        "final_value": 115379.99485015869,
+        "regime_distribution": {
+          "bull_trend": 92,
+          "bear_trend": 9,
+          "bull_pullback": 0,
+          "bear_rally": 0,
+          "range_bound": 147,
+          "unknown": 3
+        }
+      },
+      "improvement": {
+        "return_vs_old": 0.11095792354583739,
+        "drawdown_reduction": 0.04248309013070057,
+        "trade_reduction": 29
+      }
+    },
+    "AMZN": {
+      "old_system": {
+        "total_return": 0.05424528274536133,
+        "max_drawdown": 0.026125391423881508,
+        "sharpe_ratio": 0.9845629994335198,
+        "win_rate": 0.5,
+        "total_trades": 37,
+        "final_value": 105424.52827453613
+      },
+      "new_no_smoothing": {
+        "total_return": 0.04909563247680664,
+        "max_drawdown": 0.025497526114481587,
+        "sharpe_ratio": 1.0811237870403887,
+        "win_rate": 0.5384615384615384,
+        "total_trades": 26,
+        "final_value": 104909.56324768066
+      },
+      "new_with_smoothing": {
+        "total_return": 0.045519117431640624,
+        "max_drawdown": 0.01972106562351948,
+        "sharpe_ratio": 1.363407266126737,
+        "win_rate": 0.6,
+        "total_trades": 10,
+        "final_value": 104551.91174316406,
+        "regime_distribution": {
+          "bull_trend": 72,
+          "bear_trend": 10,
+          "bull_pullback": 0,
+          "bear_rally": 0,
+          "range_bound": 166,
+          "unknown": 3
+        }
+      },
+      "improvement": {
+        "return_vs_old": -0.008726165313720703,
+        "drawdown_reduction": 0.006404325800362029,
+        "trade_reduction": 27
+      }
+    },
+    "META": {
+      "old_system": {
+        "total_return": 0.0770935482788086,
+        "max_drawdown": 0.049991469438935725,
+        "sharpe_ratio": 0.9820138958325101,
+        "win_rate": 0.5294117647058824,
+        "total_trades": 35,
+        "final_value": 107709.35482788086
+      },
+      "new_no_smoothing": {
+        "total_return": 0.07109401306152344,
+        "max_drawdown": 0.038969998199570845,
+        "sharpe_ratio": 1.0399586687054647,
+        "win_rate": 0.4166666666666667,
+        "total_trades": 24,
+        "final_value": 107109.40130615234
+      },
+      "new_with_smoothing": {
+        "total_return": 0.10056320343017579,
+        "max_drawdown": 0.025516033054572756,
+        "sharpe_ratio": 1.4710794114863792,
+        "win_rate": 0.6666666666666666,
+        "total_trades": 18,
+        "final_value": 110056.32034301758,
+        "regime_distribution": {
+          "bull_trend": 72,
+          "bear_trend": 10,
+          "bull_pullback": 0,
+          "bear_rally": 0,
+          "range_bound": 166,
+          "unknown": 3
+        }
+      },
+      "improvement": {
+        "return_vs_old": 0.02346965515136719,
+        "drawdown_reduction": 0.024475436384362968,
+        "trade_reduction": 17
+      }
+    },
+    "AMD": {
+      "old_system": {
+        "total_return": -0.05833131866455078,
+        "max_drawdown": 0.11255282803014195,
+        "sharpe_ratio": -0.709681110651591,
+        "win_rate": 0.35714285714285715,
+        "total_trades": 28,
+        "final_value": 94166.86813354492
+      },
+      "new_no_smoothing": {
+        "total_return": -0.020271579742431642,
+        "max_drawdown": 0.057215165947784835,
+        "sharpe_ratio": -0.2972837359431723,
+        "win_rate": 0.3,
+        "total_trades": 20,
+        "final_value": 97972.84202575684
+      },
+      "new_with_smoothing": {
+        "total_return": -0.03795674591064453,
+        "max_drawdown": 0.09550649612136745,
+        "sharpe_ratio": -0.6481659530512137,
+        "win_rate": 0.25,
+        "total_trades": 16,
+        "final_value": 96204.32540893555,
+        "regime_distribution": {
+          "bull_trend": 60,
+          "bear_trend": 29,
+          "bull_pullback": 0,
+          "bear_rally": 0,
+          "range_bound": 159,
+          "unknown": 3
+        }
+      },
+      "improvement": {
+        "return_vs_old": 0.02037457275390625,
+        "drawdown_reduction": 0.017046331908774498,
+        "trade_reduction": 12
+      }
+    }
+  },
+  "summary": {
+    "avg_old_return": 0.024021426130930584,
+    "avg_new_return": 0.04461128711064657,
+    "avg_new_smooth_return": 0.05232006460825602,
+    "avg_improvement": 0.028298638477325434,
+    "symbols_processed": 6,
+    "symbols_failed": 0
+  }
+}

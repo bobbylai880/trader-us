@@ -1,0 +1,2922 @@
+[
+  {
+    "date": "2022-01-03",
+    "symbol": "AAPL",
+    "action": "BUY",
+    "price": 182.01,
+    "shares": 94,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-01-03",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 66.332,
+    "shares": 241,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-01-03",
+    "symbol": "AMD",
+    "action": "BUY",
+    "price": 150.24,
+    "shares": 57,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-01-03",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 399.9267,
+    "shares": 20,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-01-03",
+    "symbol": "LOW",
+    "action": "BUY",
+    "price": 255.51,
+    "shares": 80,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-01-03",
+    "symbol": "HD",
+    "action": "BUY",
+    "price": 408.64,
+    "shares": 48,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-01-07",
+    "symbol": "AMD",
+    "action": "SELL",
+    "price": 132.0,
+    "shares": 57,
+    "pnl": -1039.6800000000003,
+    "pnl_pct": -0.12140575079872208,
+    "reason": "\u6b62\u635f\u89e6\u53d1($132.21, -12.1%)"
+  },
+  {
+    "date": "2022-01-07",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 342.32,
+    "shares": 20,
+    "pnl": -1152.134,
+    "pnl_pct": -0.14404314590648737,
+    "reason": "\u6b62\u635f\u89e6\u53d1($346.21, -14.4%)"
+  },
+  {
+    "date": "2022-01-10",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 62.116,
+    "shares": 241,
+    "pnl": -1016.0559999999987,
+    "pnl_pct": -0.0635590665138997,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-6.4%)"
+  },
+  {
+    "date": "2022-01-10",
+    "symbol": "AAPL",
+    "action": "SELL",
+    "price": 172.19,
+    "shares": 94,
+    "pnl": -923.0799999999981,
+    "pnl_pct": -0.053953079501126204,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-5.4%)"
+  },
+  {
+    "date": "2022-01-18",
+    "symbol": "HD",
+    "action": "SELL",
+    "price": 366.72,
+    "shares": 48,
+    "pnl": -2012.1599999999999,
+    "pnl_pct": -0.10258418167580265,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-10.3%)"
+  },
+  {
+    "date": "2022-01-20",
+    "symbol": "LOW",
+    "action": "SELL",
+    "price": 223.93,
+    "shares": 80,
+    "pnl": -2526.399999999998,
+    "pnl_pct": -0.12359594536417351,
+    "reason": "\u6b62\u635f\u89e6\u53d1($228.63, -12.4%)"
+  },
+  {
+    "date": "2022-03-30",
+    "symbol": "CVX",
+    "action": "BUY",
+    "price": 165.48,
+    "shares": 85,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-03-30",
+    "symbol": "COP",
+    "action": "BUY",
+    "price": 101.1,
+    "shares": 118,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-03-30",
+    "symbol": "ABBV",
+    "action": "BUY",
+    "price": 163.75,
+    "shares": 152,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-03-30",
+    "symbol": "XOM",
+    "action": "BUY",
+    "price": 83.78,
+    "shares": 146,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-03-30",
+    "symbol": "TMUS",
+    "action": "BUY",
+    "price": 128.61,
+    "shares": 163,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-03-30",
+    "symbol": "LLY",
+    "action": "BUY",
+    "price": 289.89,
+    "shares": 7,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-04-13",
+    "symbol": "ABBV",
+    "action": "SELL",
+    "price": 158.95,
+    "shares": 152,
+    "pnl": -729.6000000000022,
+    "pnl_pct": -0.02931297709923673,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-2.9%)"
+  },
+  {
+    "date": "2022-04-13",
+    "symbol": "COP",
+    "action": "SELL",
+    "price": 100.23,
+    "shares": 118,
+    "pnl": -102.65999999999804,
+    "pnl_pct": -0.008605341246290636,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-0.9%)"
+  },
+  {
+    "date": "2022-04-13",
+    "symbol": "XOM",
+    "action": "SELL",
+    "price": 86.81,
+    "shares": 146,
+    "pnl": 442.3799999999992,
+    "pnl_pct": 0.03616614943900685,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+3.6%)"
+  },
+  {
+    "date": "2022-04-21",
+    "symbol": "CVX",
+    "action": "SELL",
+    "price": 164.58,
+    "shares": 85,
+    "pnl": -76.49999999999818,
+    "pnl_pct": -0.005438723712835259,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-0.5%)"
+  },
+  {
+    "date": "2022-04-28",
+    "symbol": "LLY",
+    "action": "SELL",
+    "price": 297.27,
+    "shares": 7,
+    "pnl": 51.659999999999854,
+    "pnl_pct": 0.02545793231915547,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+2.5%)"
+  },
+  {
+    "date": "2022-05-05",
+    "symbol": "TMUS",
+    "action": "SELL",
+    "price": 129.56,
+    "shares": 163,
+    "pnl": 154.8499999999949,
+    "pnl_pct": 0.007386672887022537,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+0.7%)"
+  },
+  {
+    "date": "2022-12-01",
+    "symbol": "MRK",
+    "action": "BUY",
+    "price": 109.8,
+    "shares": 189,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-12-01",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 17.135,
+    "shares": 570,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-12-01",
+    "symbol": "NFLX",
+    "action": "BUY",
+    "price": 31.695,
+    "shares": 304,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-12-01",
+    "symbol": "TJX",
+    "action": "BUY",
+    "price": 79.74,
+    "shares": 206,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-12-01",
+    "symbol": "JPM",
+    "action": "BUY",
+    "price": 136.24,
+    "shares": 165,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-12-01",
+    "symbol": "GS",
+    "action": "BUY",
+    "price": 383.81,
+    "shares": 19,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2022-12-15",
+    "symbol": "GS",
+    "action": "SELL",
+    "price": 349.83,
+    "shares": 19,
+    "pnl": -645.6200000000008,
+    "pnl_pct": -0.08853338891639102,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-8.9%)"
+  },
+  {
+    "date": "2022-12-15",
+    "symbol": "NFLX",
+    "action": "SELL",
+    "price": 29.041,
+    "shares": 304,
+    "pnl": -806.8160000000007,
+    "pnl_pct": -0.08373560498501348,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-8.4%)"
+  },
+  {
+    "date": "2022-12-15",
+    "symbol": "JPM",
+    "action": "SELL",
+    "price": 130.1,
+    "shares": 165,
+    "pnl": -1013.1000000000022,
+    "pnl_pct": -0.045067527891955464,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-4.5%)"
+  },
+  {
+    "date": "2022-12-22",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 15.339,
+    "shares": 570,
+    "pnl": -1023.7200000000012,
+    "pnl_pct": -0.10481470674058954,
+    "reason": "\u6b62\u635f\u89e6\u53d1($15.90, -10.5%)"
+  },
+  {
+    "date": "2022-12-23",
+    "symbol": "TJX",
+    "action": "SELL",
+    "price": 79.5,
+    "shares": 206,
+    "pnl": -49.43999999999869,
+    "pnl_pct": -0.003009781790820086,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-0.3%)"
+  },
+  {
+    "date": "2023-01-03",
+    "symbol": "MRK",
+    "action": "SELL",
+    "price": 111.14,
+    "shares": 189,
+    "pnl": 253.2599999999984,
+    "pnl_pct": 0.012204007285974422,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+1.2%)"
+  },
+  {
+    "date": "2023-01-25",
+    "symbol": "JPM",
+    "action": "BUY",
+    "price": 139.12,
+    "shares": 123,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-01-25",
+    "symbol": "BLK",
+    "action": "BUY",
+    "price": 751.25,
+    "shares": 19,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-01-25",
+    "symbol": "T",
+    "action": "BUY",
+    "price": 20.42,
+    "shares": 651,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-01-25",
+    "symbol": "NKE",
+    "action": "BUY",
+    "price": 126.82,
+    "shares": 141,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-01-25",
+    "symbol": "MRK",
+    "action": "BUY",
+    "price": 108.59,
+    "shares": 66,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "JPM",
+    "action": "SELL",
+    "price": 139.59,
+    "shares": 123,
+    "pnl": 57.80999999999767,
+    "pnl_pct": 0.003378378378378242,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "BLK",
+    "action": "SELL",
+    "price": 762.63,
+    "shares": 19,
+    "pnl": 216.21999999999935,
+    "pnl_pct": 0.015148086522462516,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "T",
+    "action": "SELL",
+    "price": 20.18,
+    "shares": 651,
+    "pnl": -156.2400000000016,
+    "pnl_pct": -0.011753183153770932,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "NKE",
+    "action": "SELL",
+    "price": 129.5,
+    "shares": 141,
+    "pnl": 377.880000000001,
+    "pnl_pct": 0.02113231351521848,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "MRK",
+    "action": "SELL",
+    "price": 106.98,
+    "shares": 66,
+    "pnl": -106.26000000000022,
+    "pnl_pct": -0.014826411271756176,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "META",
+    "action": "BUY",
+    "price": 153.12,
+    "shares": 87,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 20.943,
+    "shares": 409,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 60.275,
+    "shares": 326,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "AMD",
+    "action": "BUY",
+    "price": 84.64,
+    "shares": 108,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "NFLX",
+    "action": "BUY",
+    "price": 36.199,
+    "shares": 344,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-02-01",
+    "symbol": "CMCSA",
+    "action": "BUY",
+    "price": 37.4602,
+    "shares": 452,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-02-24",
+    "symbol": "NFLX",
+    "action": "SELL",
+    "price": 31.715,
+    "shares": 344,
+    "pnl": -1542.496000000001,
+    "pnl_pct": -0.12387082516091613,
+    "reason": "\u6b62\u635f\u89e6\u53d1($32.14, -12.4%)"
+  },
+  {
+    "date": "2023-03-02",
+    "symbol": "CMCSA",
+    "action": "SELL",
+    "price": 34.6298,
+    "shares": 452,
+    "pnl": -1279.3407999999981,
+    "pnl_pct": -0.07555752505325641,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-03-02",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 190.9,
+    "shares": 41,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-03-09",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 172.92,
+    "shares": 41,
+    "pnl": -737.1800000000012,
+    "pnl_pct": -0.09418543740178119,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-9.4%)"
+  },
+  {
+    "date": "2023-03-16",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 63.65,
+    "shares": 326,
+    "pnl": 1100.25,
+    "pnl_pct": 0.05599336374948155,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+5.6%)"
+  },
+  {
+    "date": "2023-03-30",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 63.375,
+    "shares": 286,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-03-30",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 195.28,
+    "shares": 46,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-04-06",
+    "symbol": "AMD",
+    "action": "SELL",
+    "price": 92.47,
+    "shares": 108,
+    "pnl": 845.6399999999994,
+    "pnl_pct": 0.09250945179584114,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-04-06",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 62.264,
+    "shares": 286,
+    "pnl": -317.7459999999992,
+    "pnl_pct": -0.01753057199211041,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-04-06",
+    "symbol": "AAPL",
+    "action": "BUY",
+    "price": 164.66,
+    "shares": 135,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-04-06",
+    "symbol": "MSFT",
+    "action": "BUY",
+    "price": 291.6,
+    "shares": 49,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-04-14",
+    "symbol": "AMZN",
+    "action": "BUY",
+    "price": 102.51,
+    "shares": 151,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-04-21",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 165.08,
+    "shares": 46,
+    "pnl": -1389.199999999999,
+    "pnl_pct": -0.15464973371569019,
+    "reason": "\u6b62\u635f\u89e6\u53d1($165.75, -15.5%)"
+  },
+  {
+    "date": "2023-05-05",
+    "symbol": "AMZN",
+    "action": "SELL",
+    "price": 105.66,
+    "shares": 151,
+    "pnl": 475.64999999999964,
+    "pnl_pct": 0.030728709394205418,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-05-12",
+    "symbol": "LLY",
+    "action": "BUY",
+    "price": 434.43,
+    "shares": 31,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-05-12",
+    "symbol": "MRK",
+    "action": "BUY",
+    "price": 117.14,
+    "shares": 101,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-06-05",
+    "symbol": "AAPL",
+    "action": "SELL",
+    "price": 179.58,
+    "shares": 135,
+    "pnl": 2014.2000000000044,
+    "pnl_pct": 0.09061095590914632,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-06-05",
+    "symbol": "LLY",
+    "action": "SELL",
+    "price": 444.26,
+    "shares": 31,
+    "pnl": 304.72999999999956,
+    "pnl_pct": 0.02262735078148375,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-06-05",
+    "symbol": "MRK",
+    "action": "SELL",
+    "price": 113.11,
+    "shares": 101,
+    "pnl": -407.02999999999884,
+    "pnl_pct": -0.03440327812873475,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-06-05",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 80.23,
+    "shares": 119,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-06-05",
+    "symbol": "GOOGL",
+    "action": "BUY",
+    "price": 126.01,
+    "shares": 130,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-06-05",
+    "symbol": "GOOG",
+    "action": "BUY",
+    "price": 126.63,
+    "shares": 131,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-07-05",
+    "symbol": "MSFT",
+    "action": "SELL",
+    "price": 338.15,
+    "shares": 49,
+    "pnl": 2280.949999999997,
+    "pnl_pct": 0.1596364883401918,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-07-05",
+    "symbol": "GOOGL",
+    "action": "SELL",
+    "price": 121.75,
+    "shares": 130,
+    "pnl": -553.8000000000011,
+    "pnl_pct": -0.033806840726926496,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-07-05",
+    "symbol": "GOOG",
+    "action": "SELL",
+    "price": 122.63,
+    "shares": 131,
+    "pnl": -524.0,
+    "pnl_pct": -0.03158809128958383,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-07-05",
+    "symbol": "AMZN",
+    "action": "BUY",
+    "price": 130.38,
+    "shares": 134,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-07-05",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 282.48,
+    "shares": 32,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-07-05",
+    "symbol": "ADBE",
+    "action": "BUY",
+    "price": 487.26,
+    "shares": 30,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-08-02",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 254.11,
+    "shares": 32,
+    "pnl": -907.8400000000001,
+    "pnl_pct": -0.10043188898329086,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-08-02",
+    "symbol": "ADBE",
+    "action": "SELL",
+    "price": 530.3,
+    "shares": 30,
+    "pnl": 1291.199999999999,
+    "pnl_pct": 0.08833066535319946,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-08-02",
+    "symbol": "GOOGL",
+    "action": "BUY",
+    "price": 128.38,
+    "shares": 112,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-08-02",
+    "symbol": "GOOG",
+    "action": "BUY",
+    "price": 128.64,
+    "shares": 115,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-08-09",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 42.554,
+    "shares": 409,
+    "pnl": 8838.899,
+    "pnl_pct": 1.031896098935205,
+    "reason": "\u6b62\u635f\u89e6\u53d1($42.74, +103.2%)"
+  },
+  {
+    "date": "2023-08-09",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 42.554,
+    "shares": 267,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-08-17",
+    "symbol": "META",
+    "action": "SELL",
+    "price": 285.09,
+    "shares": 87,
+    "pnl": 11481.389999999998,
+    "pnl_pct": 0.8618730407523509,
+    "reason": "\u6b62\u635f\u89e6\u53d1($292.93, +86.2%)"
+  },
+  {
+    "date": "2023-08-30",
+    "symbol": "META",
+    "action": "BUY",
+    "price": 295.1,
+    "shares": 45,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-09-07",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 85.703,
+    "shares": 119,
+    "pnl": 651.2870000000003,
+    "pnl_pct": 0.06821637791349872,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-09-14",
+    "symbol": "LLY",
+    "action": "BUY",
+    "price": 591.61,
+    "shares": 38,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-09-20",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 42.239,
+    "shares": 267,
+    "pnl": -84.10499999999956,
+    "pnl_pct": -0.0074023593551722135,
+    "reason": "\u6b62\u635f\u89e6\u53d1($43.43, -0.7%)"
+  },
+  {
+    "date": "2023-09-26",
+    "symbol": "AMZN",
+    "action": "SELL",
+    "price": 125.98,
+    "shares": 134,
+    "pnl": -589.5999999999985,
+    "pnl_pct": -0.03374750728639354,
+    "reason": "\u6b62\u635f\u89e6\u53d1($127.47, -3.4%)"
+  },
+  {
+    "date": "2023-09-28",
+    "symbol": "ADBE",
+    "action": "BUY",
+    "price": 504.67,
+    "shares": 28,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-10-05",
+    "symbol": "LLY",
+    "action": "SELL",
+    "price": 541.48,
+    "shares": 38,
+    "pnl": -1904.9399999999987,
+    "pnl_pct": -0.08473487601629445,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-8.5%)"
+  },
+  {
+    "date": "2023-10-05",
+    "symbol": "ADBE",
+    "action": "SELL",
+    "price": 516.44,
+    "shares": 28,
+    "pnl": 329.5600000000013,
+    "pnl_pct": 0.02332217092357391,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+2.3%)"
+  },
+  {
+    "date": "2023-10-12",
+    "symbol": "GOOGL",
+    "action": "SELL",
+    "price": 138.97,
+    "shares": 112,
+    "pnl": 1186.08,
+    "pnl_pct": 0.08248948434335567,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+8.2%)"
+  },
+  {
+    "date": "2023-10-19",
+    "symbol": "UNH",
+    "action": "BUY",
+    "price": 531.63,
+    "shares": 46,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-10-19",
+    "symbol": "GOOGL",
+    "action": "BUY",
+    "price": 137.75,
+    "shares": 136,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-10-19",
+    "symbol": "LLY",
+    "action": "BUY",
+    "price": 590.8,
+    "shares": 6,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-10-26",
+    "symbol": "GOOG",
+    "action": "SELL",
+    "price": 123.44,
+    "shares": 115,
+    "pnl": -597.9999999999982,
+    "pnl_pct": -0.04042288557213918,
+    "reason": "\u6b62\u635f\u89e6\u53d1($124.70, -4.0%)"
+  },
+  {
+    "date": "2023-10-26",
+    "symbol": "META",
+    "action": "SELL",
+    "price": 288.35,
+    "shares": 45,
+    "pnl": -303.75,
+    "pnl_pct": -0.02287360216875635,
+    "reason": "\u6b62\u635f\u89e6\u53d1($288.45, -2.3%)"
+  },
+  {
+    "date": "2023-10-26",
+    "symbol": "META",
+    "action": "BUY",
+    "price": 288.35,
+    "shares": 40,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-10-26",
+    "symbol": "XOM",
+    "action": "BUY",
+    "price": 107.6,
+    "shares": 156,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-11-02",
+    "symbol": "UNH",
+    "action": "SELL",
+    "price": 536.13,
+    "shares": 46,
+    "pnl": 207.0,
+    "pnl_pct": 0.008464533604198408,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-11-02",
+    "symbol": "GOOGL",
+    "action": "SELL",
+    "price": 127.49,
+    "shares": 136,
+    "pnl": -1395.3600000000006,
+    "pnl_pct": -0.07448275862068969,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-11-02",
+    "symbol": "LLY",
+    "action": "SELL",
+    "price": 580.29,
+    "shares": 6,
+    "pnl": -63.059999999999945,
+    "pnl_pct": -0.017789438050101542,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-11-02",
+    "symbol": "XOM",
+    "action": "SELL",
+    "price": 109.11,
+    "shares": 156,
+    "pnl": 235.5600000000013,
+    "pnl_pct": 0.014033457249070711,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-11-02",
+    "symbol": "MSFT",
+    "action": "BUY",
+    "price": 348.32,
+    "shares": 49,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-11-02",
+    "symbol": "AMD",
+    "action": "BUY",
+    "price": 107.83,
+    "shares": 97,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-11-02",
+    "symbol": "ADBE",
+    "action": "BUY",
+    "price": 558.71,
+    "shares": 25,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-11-02",
+    "symbol": "T",
+    "action": "BUY",
+    "price": 15.73,
+    "shares": 851,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2023-11-09",
+    "symbol": "VZ",
+    "action": "BUY",
+    "price": 35.62,
+    "shares": 462,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-12-01",
+    "symbol": "ADBE",
+    "action": "SELL",
+    "price": 612.47,
+    "shares": 25,
+    "pnl": 1344.0,
+    "pnl_pct": 0.09622165345170124,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-12-01",
+    "symbol": "T",
+    "action": "SELL",
+    "price": 16.76,
+    "shares": 851,
+    "pnl": 876.5300000000025,
+    "pnl_pct": 0.06547997457088385,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-12-01",
+    "symbol": "VZ",
+    "action": "SELL",
+    "price": 38.58,
+    "shares": 462,
+    "pnl": 1367.5200000000004,
+    "pnl_pct": 0.0830993823694554,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2023-12-01",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 93.0,
+    "shares": 175,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-12-01",
+    "symbol": "BAC",
+    "action": "BUY",
+    "price": 30.96,
+    "shares": 692,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2023-12-01",
+    "symbol": "WFC",
+    "action": "BUY",
+    "price": 45.02,
+    "shares": 528,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-01-02",
+    "symbol": "MSFT",
+    "action": "SELL",
+    "price": 370.87,
+    "shares": 49,
+    "pnl": 1104.9500000000007,
+    "pnl_pct": 0.06473932016536522,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-01-02",
+    "symbol": "JPM",
+    "action": "BUY",
+    "price": 172.08,
+    "shares": 145,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-02-07",
+    "symbol": "BAC",
+    "action": "SELL",
+    "price": 33.18,
+    "shares": 692,
+    "pnl": 1536.2400000000016,
+    "pnl_pct": 0.07170542635658922,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-02-07",
+    "symbol": "WFC",
+    "action": "SELL",
+    "price": 48.48,
+    "shares": 528,
+    "pnl": 1826.8799999999974,
+    "pnl_pct": 0.07685473123056408,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-02-07",
+    "symbol": "JPM",
+    "action": "SELL",
+    "price": 175.43,
+    "shares": 145,
+    "pnl": 485.75,
+    "pnl_pct": 0.019467689446768945,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-02-07",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 70.099,
+    "shares": 183,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-02-07",
+    "symbol": "MRK",
+    "action": "BUY",
+    "price": 127.47,
+    "shares": 196,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-02-07",
+    "symbol": "NFLX",
+    "action": "BUY",
+    "price": 55.93,
+    "shares": 227,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-03-07",
+    "symbol": "MRK",
+    "action": "SELL",
+    "price": 123.99,
+    "shares": 196,
+    "pnl": -682.0800000000017,
+    "pnl_pct": -0.027300541303836266,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-03-07",
+    "symbol": "AMZN",
+    "action": "BUY",
+    "price": 176.82,
+    "shares": 122,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-03-13",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 125.787,
+    "shares": 175,
+    "pnl": 5737.725000000002,
+    "pnl_pct": 0.35254838709677433,
+    "reason": "\u6b62\u635f\u89e6\u53d1($126.63, +35.3%)"
+  },
+  {
+    "date": "2024-03-14",
+    "symbol": "AMD",
+    "action": "SELL",
+    "price": 187.06,
+    "shares": 97,
+    "pnl": 7685.3099999999995,
+    "pnl_pct": 0.734767689882222,
+    "reason": "\u6b62\u635f\u89e6\u53d1($190.24, +73.5%)"
+  },
+  {
+    "date": "2024-03-14",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 126.227,
+    "shares": 79,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-03-14",
+    "symbol": "AMD",
+    "action": "BUY",
+    "price": 187.06,
+    "shares": 42,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-04-05",
+    "symbol": "NFLX",
+    "action": "SELL",
+    "price": 63.618,
+    "shares": 227,
+    "pnl": 1745.1759999999995,
+    "pnl_pct": 0.1374575362059717,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-04-05",
+    "symbol": "AMD",
+    "action": "SELL",
+    "price": 170.42,
+    "shares": 42,
+    "pnl": -698.880000000001,
+    "pnl_pct": -0.0889554153747462,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-04-05",
+    "symbol": "DIS",
+    "action": "BUY",
+    "price": 118.38,
+    "shares": 153,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-04-05",
+    "symbol": "GOOGL",
+    "action": "BUY",
+    "price": 152.5,
+    "shares": 108,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-04-19",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 76.2,
+    "shares": 183,
+    "pnl": 1116.4830000000002,
+    "pnl_pct": 0.08703405184096778,
+    "reason": "\u6b62\u635f\u89e6\u53d1($83.60, +8.7%)"
+  },
+  {
+    "date": "2024-04-19",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 120.471,
+    "shares": 79,
+    "pnl": -454.72400000000016,
+    "pnl_pct": -0.0456003866050845,
+    "reason": "\u6b62\u635f\u89e6\u53d1($121.66, -4.6%)"
+  },
+  {
+    "date": "2024-04-19",
+    "symbol": "DIS",
+    "action": "SELL",
+    "price": 112.61,
+    "shares": 153,
+    "pnl": -882.8100000000013,
+    "pnl_pct": -0.04874134144281136,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-4.9%)"
+  },
+  {
+    "date": "2024-04-25",
+    "symbol": "META",
+    "action": "SELL",
+    "price": 441.38,
+    "shares": 40,
+    "pnl": 6121.200000000001,
+    "pnl_pct": 0.5307092075602567,
+    "reason": "\u6b62\u635f\u89e6\u53d1($474.61, +53.1%)"
+  },
+  {
+    "date": "2024-04-26",
+    "symbol": "DIS",
+    "action": "BUY",
+    "price": 112.73,
+    "shares": 194,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-04-26",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 87.735,
+    "shares": 91,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-04-26",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 134.407,
+    "shares": 84,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-05-03",
+    "symbol": "DIS",
+    "action": "SELL",
+    "price": 113.66,
+    "shares": 194,
+    "pnl": 180.4200000000019,
+    "pnl_pct": 0.00824980040805473,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-05-03",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 127.811,
+    "shares": 84,
+    "pnl": -554.0640000000003,
+    "pnl_pct": -0.04907482497191369,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-05-03",
+    "symbol": "WFC",
+    "action": "BUY",
+    "price": 59.94,
+    "shares": 340,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-05-03",
+    "symbol": "GS",
+    "action": "BUY",
+    "price": 438.18,
+    "shares": 49,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-05-10",
+    "symbol": "BAC",
+    "action": "BUY",
+    "price": 38.45,
+    "shares": 624,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-06-03",
+    "symbol": "AMZN",
+    "action": "SELL",
+    "price": 178.34,
+    "shares": 122,
+    "pnl": 185.4399999999987,
+    "pnl_pct": 0.008596312634317324,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-06-03",
+    "symbol": "WFC",
+    "action": "SELL",
+    "price": 59.34,
+    "shares": 340,
+    "pnl": -203.99999999999636,
+    "pnl_pct": -0.010010010010009833,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-06-03",
+    "symbol": "GOOG",
+    "action": "BUY",
+    "price": 174.42,
+    "shares": 136,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-06-03",
+    "symbol": "AAPL",
+    "action": "BUY",
+    "price": 194.03,
+    "shares": 128,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-06-24",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 118.11,
+    "shares": 91,
+    "pnl": 2764.125,
+    "pnl_pct": 0.3462130278680116,
+    "reason": "\u6b62\u635f\u89e6\u53d1($122.02, +34.6%)"
+  },
+  {
+    "date": "2024-06-25",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 126.09,
+    "shares": 64,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-07-02",
+    "symbol": "GS",
+    "action": "SELL",
+    "price": 465.61,
+    "shares": 49,
+    "pnl": 1344.0699999999997,
+    "pnl_pct": 0.06259984481263406,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-07-02",
+    "symbol": "BAC",
+    "action": "SELL",
+    "price": 40.93,
+    "shares": 624,
+    "pnl": 1547.5199999999968,
+    "pnl_pct": 0.06449934980494135,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-07-02",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 165.748,
+    "shares": 54,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-07-02",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 231.26,
+    "shares": 42,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-07-24",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 114.25,
+    "shares": 64,
+    "pnl": -757.7600000000002,
+    "pnl_pct": -0.09390118169561427,
+    "reason": "\u6b62\u635f\u89e6\u53d1($118.72, -9.4%)"
+  },
+  {
+    "date": "2024-07-24",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 151.34,
+    "shares": 54,
+    "pnl": -778.0319999999992,
+    "pnl_pct": -0.08692714240895809,
+    "reason": "\u6b62\u635f\u89e6\u53d1($153.64, -8.7%)"
+  },
+  {
+    "date": "2024-07-24",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 215.99,
+    "shares": 42,
+    "pnl": -641.3400000000001,
+    "pnl_pct": -0.06602957709936869,
+    "reason": "\u6b62\u635f\u89e6\u53d1($223.84, -6.6%)"
+  },
+  {
+    "date": "2024-07-24",
+    "symbol": "GOOG",
+    "action": "SELL",
+    "price": 174.37,
+    "shares": 136,
+    "pnl": -6.799999999999272,
+    "pnl_pct": -0.0002866643733516492,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-0.0%)"
+  },
+  {
+    "date": "2024-07-25",
+    "symbol": "GOOGL",
+    "action": "SELL",
+    "price": 167.28,
+    "shares": 108,
+    "pnl": 1596.2400000000016,
+    "pnl_pct": 0.09691803278688535,
+    "reason": "\u6b62\u635f\u89e6\u53d1($168.24, +9.7%)"
+  },
+  {
+    "date": "2024-07-31",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 117.02,
+    "shares": 68,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-07-31",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 160.68,
+    "shares": 49,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-07-31",
+    "symbol": "GOOGL",
+    "action": "BUY",
+    "price": 171.54,
+    "shares": 89,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-07-31",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 232.07,
+    "shares": 34,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-08-07",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 191.76,
+    "shares": 34,
+    "pnl": -1370.54,
+    "pnl_pct": -0.1736975912440212,
+    "reason": "\u6b62\u635f\u89e6\u53d1($196.17, -17.4%)"
+  },
+  {
+    "date": "2024-08-07",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 98.91,
+    "shares": 68,
+    "pnl": -1231.4799999999996,
+    "pnl_pct": -0.15475987010767386,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-15.5%)"
+  },
+  {
+    "date": "2024-08-07",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 136.27,
+    "shares": 49,
+    "pnl": -1196.0900000000001,
+    "pnl_pct": -0.15191685337316405,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-15.2%)"
+  },
+  {
+    "date": "2024-08-14",
+    "symbol": "GOOGL",
+    "action": "SELL",
+    "price": 160.37,
+    "shares": 89,
+    "pnl": -994.1299999999992,
+    "pnl_pct": -0.06511600792817997,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-6.5%)"
+  },
+  {
+    "date": "2024-08-21",
+    "symbol": "T",
+    "action": "BUY",
+    "price": 19.54,
+    "shares": 1085,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-08-21",
+    "symbol": "TMUS",
+    "action": "BUY",
+    "price": 195.46,
+    "shares": 109,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-08-21",
+    "symbol": "BLK",
+    "action": "BUY",
+    "price": 863.09,
+    "shares": 23,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-08-21",
+    "symbol": "UNH",
+    "action": "BUY",
+    "price": 578.07,
+    "shares": 36,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-08-21",
+    "symbol": "ABBV",
+    "action": "BUY",
+    "price": 196.53,
+    "shares": 105,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-09-05",
+    "symbol": "T",
+    "action": "SELL",
+    "price": 20.65,
+    "shares": 1085,
+    "pnl": 1204.3500000000022,
+    "pnl_pct": 0.056806550665302054,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-09-05",
+    "symbol": "TMUS",
+    "action": "SELL",
+    "price": 197.18,
+    "shares": 109,
+    "pnl": 187.47999999999956,
+    "pnl_pct": 0.008799754425457874,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-09-05",
+    "symbol": "ABBV",
+    "action": "SELL",
+    "price": 192.86,
+    "shares": 105,
+    "pnl": -385.34999999999854,
+    "pnl_pct": -0.01867399379229627,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-09-05",
+    "symbol": "JPM",
+    "action": "BUY",
+    "price": 217.63,
+    "shares": 114,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-09-05",
+    "symbol": "LLY",
+    "action": "BUY",
+    "price": 912.75,
+    "shares": 3,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-09-12",
+    "symbol": "ADBE",
+    "action": "BUY",
+    "price": 586.55,
+    "shares": 29,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-09-18",
+    "symbol": "ADBE",
+    "action": "SELL",
+    "price": 508.13,
+    "shares": 29,
+    "pnl": -2274.1799999999967,
+    "pnl_pct": -0.1336970420254026,
+    "reason": "\u6b62\u635f\u89e6\u53d1($516.16, -13.4%)"
+  },
+  {
+    "date": "2024-09-19",
+    "symbol": "ADBE",
+    "action": "BUY",
+    "price": 526.44,
+    "shares": 22,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-10-03",
+    "symbol": "AAPL",
+    "action": "SELL",
+    "price": 225.67,
+    "shares": 128,
+    "pnl": 4049.9199999999983,
+    "pnl_pct": 0.16306756687110233,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-10-03",
+    "symbol": "JPM",
+    "action": "SELL",
+    "price": 205.23,
+    "shares": 114,
+    "pnl": -1413.6000000000022,
+    "pnl_pct": -0.05697743877222818,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-10-03",
+    "symbol": "LLY",
+    "action": "SELL",
+    "price": 885.55,
+    "shares": 3,
+    "pnl": -81.60000000000036,
+    "pnl_pct": -0.029800054779512596,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-10-03",
+    "symbol": "ADBE",
+    "action": "SELL",
+    "price": 503.8,
+    "shares": 22,
+    "pnl": -498.0799999999999,
+    "pnl_pct": -0.04300585061925385,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-10-03",
+    "symbol": "HD",
+    "action": "BUY",
+    "price": 411.58,
+    "shares": 59,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-10-03",
+    "symbol": "LOW",
+    "action": "BUY",
+    "price": 270.21,
+    "shares": 89,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-10-03",
+    "symbol": "MCD",
+    "action": "BUY",
+    "price": 303.45,
+    "shares": 15,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-10-10",
+    "symbol": "HD",
+    "action": "SELL",
+    "price": 409.96,
+    "shares": 59,
+    "pnl": -95.57999999999811,
+    "pnl_pct": -0.003936051314446689,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-0.4%)"
+  },
+  {
+    "date": "2024-10-10",
+    "symbol": "MCD",
+    "action": "SELL",
+    "price": 304.04,
+    "shares": 15,
+    "pnl": 8.850000000000364,
+    "pnl_pct": 0.0019443071346186332,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+0.2%)"
+  },
+  {
+    "date": "2024-10-17",
+    "symbol": "HD",
+    "action": "BUY",
+    "price": 415.6,
+    "shares": 56,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-10-17",
+    "symbol": "MCD",
+    "action": "BUY",
+    "price": 314.7,
+    "shares": 62,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-10-31",
+    "symbol": "MCD",
+    "action": "SELL",
+    "price": 292.11,
+    "shares": 62,
+    "pnl": -1400.579999999998,
+    "pnl_pct": -0.07178265014299323,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-7.2%)"
+  },
+  {
+    "date": "2024-10-31",
+    "symbol": "HD",
+    "action": "SELL",
+    "price": 393.75,
+    "shares": 56,
+    "pnl": -1223.6000000000022,
+    "pnl_pct": -0.05257459095283936,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-5.3%)"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "BLK",
+    "action": "SELL",
+    "price": 1036.0601,
+    "shares": 23,
+    "pnl": 3978.312299999998,
+    "pnl_pct": 0.20040795282067908,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "UNH",
+    "action": "SELL",
+    "price": 605.45,
+    "shares": 36,
+    "pnl": 985.6800000000003,
+    "pnl_pct": 0.04736450602868166,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "LOW",
+    "action": "SELL",
+    "price": 266.3,
+    "shares": 89,
+    "pnl": -347.98999999999796,
+    "pnl_pct": -0.014470226860589828,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "AMZN",
+    "action": "BUY",
+    "price": 210.05,
+    "shares": 75,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "SBUX",
+    "action": "BUY",
+    "price": 96.12,
+    "shares": 189,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 148.88,
+    "shares": 90,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 296.91,
+    "shares": 28,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "MS",
+    "action": "BUY",
+    "price": 128.44,
+    "shares": 129,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-11-07",
+    "symbol": "WFC",
+    "action": "BUY",
+    "price": 69.82,
+    "shares": 208,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-12-06",
+    "symbol": "SBUX",
+    "action": "SELL",
+    "price": 100.11,
+    "shares": 189,
+    "pnl": 754.1100000000006,
+    "pnl_pct": 0.04151061173533087,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2024-12-06",
+    "symbol": "NFLX",
+    "action": "BUY",
+    "price": 93.474,
+    "shares": 171,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2024-12-18",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 128.91,
+    "shares": 90,
+    "pnl": -1797.2999999999993,
+    "pnl_pct": -0.13413487372380437,
+    "reason": "\u6b62\u635f\u89e6\u53d1($131.01, -13.4%)"
+  },
+  {
+    "date": "2024-12-20",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 421.06,
+    "shares": 28,
+    "pnl": 3476.199999999999,
+    "pnl_pct": 0.4181401771580612,
+    "reason": "\u6b62\u635f\u89e6\u53d1($431.87, +41.8%)"
+  },
+  {
+    "date": "2024-12-20",
+    "symbol": "MS",
+    "action": "SELL",
+    "price": 123.44,
+    "shares": 129,
+    "pnl": -644.9999999999982,
+    "pnl_pct": -0.038928682653378906,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-3.9%)"
+  },
+  {
+    "date": "2024-12-20",
+    "symbol": "NFLX",
+    "action": "SELL",
+    "price": 90.905,
+    "shares": 171,
+    "pnl": -439.29899999999907,
+    "pnl_pct": -0.027483578321244352,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-2.7%)"
+  },
+  {
+    "date": "2024-12-30",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 137.49,
+    "shares": 73,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-12-30",
+    "symbol": "NFLX",
+    "action": "BUY",
+    "price": 90.043,
+    "shares": 194,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2024-12-30",
+    "symbol": "DIS",
+    "action": "BUY",
+    "price": 110.8,
+    "shares": 208,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2025-01-07",
+    "symbol": "NFLX",
+    "action": "SELL",
+    "price": 87.919,
+    "shares": 194,
+    "pnl": -412.0560000000005,
+    "pnl_pct": -0.023588729829081688,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-2.4%)"
+  },
+  {
+    "date": "2025-01-07",
+    "symbol": "DIS",
+    "action": "SELL",
+    "price": 111.39,
+    "shares": 208,
+    "pnl": 122.72000000000116,
+    "pnl_pct": 0.00532490974729247,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(+0.5%)"
+  },
+  {
+    "date": "2025-01-15",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 228.0,
+    "shares": 47,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2025-01-15",
+    "symbol": "GOOGL",
+    "action": "BUY",
+    "price": 195.55,
+    "shares": 88,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2025-01-23",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 412.38,
+    "shares": 19,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-02-03",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 116.66,
+    "shares": 73,
+    "pnl": -1520.5900000000001,
+    "pnl_pct": -0.15150192741290278,
+    "reason": "\u6b62\u635f\u89e6\u53d1($116.80, -15.2%)"
+  },
+  {
+    "date": "2025-02-06",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 374.32,
+    "shares": 19,
+    "pnl": -723.1400000000003,
+    "pnl_pct": -0.09229351568941271,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-02-06",
+    "symbol": "META",
+    "action": "BUY",
+    "price": 711.99,
+    "shares": 18,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-02-06",
+    "symbol": "NFLX",
+    "action": "BUY",
+    "price": 101.568,
+    "shares": 122,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-02-21",
+    "symbol": "GOOGL",
+    "action": "SELL",
+    "price": 179.66,
+    "shares": 88,
+    "pnl": -1398.3200000000015,
+    "pnl_pct": -0.08125799028381496,
+    "reason": "\u6b62\u635f\u89e6\u53d1($181.61, -8.1%)"
+  },
+  {
+    "date": "2025-02-24",
+    "symbol": "AMZN",
+    "action": "SELL",
+    "price": 212.71,
+    "shares": 75,
+    "pnl": 199.5,
+    "pnl_pct": 0.01266365151154487,
+    "reason": "\u6b62\u635f\u89e6\u53d1($213.01, +1.3%)"
+  },
+  {
+    "date": "2025-02-24",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 207.93,
+    "shares": 47,
+    "pnl": -943.289999999999,
+    "pnl_pct": -0.08802631578947359,
+    "reason": "\u6b62\u635f\u89e6\u53d1($215.34, -8.8%)"
+  },
+  {
+    "date": "2025-02-28",
+    "symbol": "JPM",
+    "action": "BUY",
+    "price": 264.65,
+    "shares": 66,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2025-02-28",
+    "symbol": "GS",
+    "action": "BUY",
+    "price": 622.29,
+    "shares": 23,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2025-03-04",
+    "symbol": "META",
+    "action": "SELL",
+    "price": 640.0,
+    "shares": 18,
+    "pnl": -1295.8199999999997,
+    "pnl_pct": -0.10111097065970026,
+    "reason": "\u6b62\u635f\u89e6\u53d1($648.27, -10.1%)"
+  },
+  {
+    "date": "2025-03-06",
+    "symbol": "NFLX",
+    "action": "SELL",
+    "price": 90.636,
+    "shares": 122,
+    "pnl": -1333.7040000000015,
+    "pnl_pct": -0.10763232514177706,
+    "reason": "\u6b62\u635f\u89e6\u53d1($93.16, -10.8%)"
+  },
+  {
+    "date": "2025-03-07",
+    "symbol": "WFC",
+    "action": "SELL",
+    "price": 71.05,
+    "shares": 208,
+    "pnl": 255.84000000000196,
+    "pnl_pct": 0.017616728731022768,
+    "reason": "\u6b62\u635f\u89e6\u53d1($71.65, +1.8%)"
+  },
+  {
+    "date": "2025-03-07",
+    "symbol": "GS",
+    "action": "SELL",
+    "price": 559.67,
+    "shares": 23,
+    "pnl": -1440.2599999999984,
+    "pnl_pct": -0.10062832441466188,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-10.1%)"
+  },
+  {
+    "date": "2025-03-10",
+    "symbol": "JPM",
+    "action": "SELL",
+    "price": 232.22,
+    "shares": 66,
+    "pnl": -2140.3799999999974,
+    "pnl_pct": -0.12253920272057421,
+    "reason": "\u6b62\u635f\u89e6\u53d1($232.89, -12.3%)"
+  },
+  {
+    "date": "2025-05-12",
+    "symbol": "MSFT",
+    "action": "BUY",
+    "price": 449.26,
+    "shares": 34,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-05-12",
+    "symbol": "NFLX",
+    "action": "BUY",
+    "price": 111.0,
+    "shares": 131,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-05-12",
+    "symbol": "T",
+    "action": "BUY",
+    "price": 27.01,
+    "shares": 601,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-05-12",
+    "symbol": "VZ",
+    "action": "BUY",
+    "price": 43.0,
+    "shares": 470,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-05-12",
+    "symbol": "MCD",
+    "action": "BUY",
+    "price": 311.92,
+    "shares": 71,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-05-12",
+    "symbol": "TJX",
+    "action": "BUY",
+    "price": 131.49,
+    "shares": 189,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-06-03",
+    "symbol": "T",
+    "action": "SELL",
+    "price": 27.96,
+    "shares": 601,
+    "pnl": 570.9499999999989,
+    "pnl_pct": 0.03517215845982963,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-06-03",
+    "symbol": "VZ",
+    "action": "SELL",
+    "price": 43.83,
+    "shares": 470,
+    "pnl": 390.09999999999854,
+    "pnl_pct": 0.019302325581395278,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-06-03",
+    "symbol": "MCD",
+    "action": "SELL",
+    "price": 312.39,
+    "shares": 71,
+    "pnl": 33.36999999999898,
+    "pnl_pct": 0.0015067966145164966,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-06-03",
+    "symbol": "TJX",
+    "action": "SELL",
+    "price": 128.12,
+    "shares": 189,
+    "pnl": -636.9300000000003,
+    "pnl_pct": -0.025629325423986625,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-06-03",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 141.22,
+    "shares": 91,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-06-03",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 256.85,
+    "shares": 55,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-06-03",
+    "symbol": "META",
+    "action": "BUY",
+    "price": 666.85,
+    "shares": 26,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-06-03",
+    "symbol": "TSLA",
+    "action": "BUY",
+    "price": 344.27,
+    "shares": 27,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-07-02",
+    "symbol": "NFLX",
+    "action": "SELL",
+    "price": 128.486,
+    "shares": 131,
+    "pnl": 2290.6659999999974,
+    "pnl_pct": 0.15753153153153135,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-07-02",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 269.9,
+    "shares": 55,
+    "pnl": 717.7499999999964,
+    "pnl_pct": 0.05080786451236104,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-07-02",
+    "symbol": "TSLA",
+    "action": "SELL",
+    "price": 315.65,
+    "shares": 27,
+    "pnl": -772.7399999999998,
+    "pnl_pct": -0.08313242513143752,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-07-02",
+    "symbol": "AMD",
+    "action": "BUY",
+    "price": 138.52,
+    "shares": 68,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-07-02",
+    "symbol": "AMZN",
+    "action": "BUY",
+    "price": 219.92,
+    "shares": 86,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-07-02",
+    "symbol": "NKE",
+    "action": "BUY",
+    "price": 76.39,
+    "shares": 152,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-08-07",
+    "symbol": "MSFT",
+    "action": "SELL",
+    "price": 520.84,
+    "shares": 34,
+    "pnl": 2433.720000000001,
+    "pnl_pct": 0.15932867381916938,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-08-07",
+    "symbol": "AMZN",
+    "action": "SELL",
+    "price": 223.13,
+    "shares": 86,
+    "pnl": 276.0600000000013,
+    "pnl_pct": 0.014596216806111383,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-08-07",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 303.76,
+    "shares": 41,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-08-07",
+    "symbol": "GOOGL",
+    "action": "BUY",
+    "price": 196.52,
+    "shares": 94,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "AMD",
+    "action": "SELL",
+    "price": 151.14,
+    "shares": 68,
+    "pnl": 858.159999999998,
+    "pnl_pct": 0.0911059774761765,
+    "reason": "\u6b62\u635f\u89e6\u53d1($153.76, +9.1%)"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 167.02,
+    "shares": 91,
+    "pnl": 2347.800000000001,
+    "pnl_pct": 0.18269366945191906,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "META",
+    "action": "SELL",
+    "price": 752.45,
+    "shares": 26,
+    "pnl": 2225.5999999999985,
+    "pnl_pct": 0.12836469970758033,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "NKE",
+    "action": "SELL",
+    "price": 73.91,
+    "shares": 152,
+    "pnl": -376.96000000000095,
+    "pnl_pct": -0.03246498232752986,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 334.89,
+    "shares": 41,
+    "pnl": 1276.33,
+    "pnl_pct": 0.10248222280747958,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "AAPL",
+    "action": "BUY",
+    "price": 239.69,
+    "shares": 101,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "GOOG",
+    "action": "BUY",
+    "price": 235.17,
+    "shares": 70,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "INTC",
+    "action": "BUY",
+    "price": 24.49,
+    "shares": 352,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "BAC",
+    "action": "BUY",
+    "price": 49.77,
+    "shares": 482,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-09-05",
+    "symbol": "CVX",
+    "action": "BUY",
+    "price": 153.66,
+    "shares": 148,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-10-03",
+    "symbol": "INTC",
+    "action": "SELL",
+    "price": 36.83,
+    "shares": 352,
+    "pnl": 4343.68,
+    "pnl_pct": 0.5038791343405472,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-10-03",
+    "symbol": "BAC",
+    "action": "SELL",
+    "price": 50.64,
+    "shares": 482,
+    "pnl": 419.3399999999965,
+    "pnl_pct": 0.017480409885473027,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-10-03",
+    "symbol": "CVX",
+    "action": "SELL",
+    "price": 153.55,
+    "shares": 148,
+    "pnl": -16.279999999998836,
+    "pnl_pct": -0.0007158661980996494,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-10-03",
+    "symbol": "ABBV",
+    "action": "BUY",
+    "price": 233.91,
+    "shares": 77,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-10-03",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 187.62,
+    "shares": 71,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-10-03",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 338.37,
+    "shares": 38,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-10-10",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 324.63,
+    "shares": 38,
+    "pnl": -522.119999999999,
+    "pnl_pct": -0.04060643674084574,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-4.1%)"
+  },
+  {
+    "date": "2025-10-10",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 183.16,
+    "shares": 71,
+    "pnl": -316.65999999999985,
+    "pnl_pct": -0.02377145293678711,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-2.4%)"
+  },
+  {
+    "date": "2025-10-17",
+    "symbol": "ABBV",
+    "action": "SELL",
+    "price": 229.57,
+    "shares": 77,
+    "pnl": -334.1800000000003,
+    "pnl_pct": -0.018554144756530305,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-1.9%)"
+  },
+  {
+    "date": "2025-10-24",
+    "symbol": "ABBV",
+    "action": "BUY",
+    "price": 227.99,
+    "shares": 109,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-10-24",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 186.26,
+    "shares": 68,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-10-24",
+    "symbol": "AVGO",
+    "action": "BUY",
+    "price": 354.13,
+    "shares": 27,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-11-07",
+    "symbol": "AAPL",
+    "action": "SELL",
+    "price": 268.47,
+    "shares": 101,
+    "pnl": 2906.7800000000025,
+    "pnl_pct": 0.12007175935583472,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-11-07",
+    "symbol": "ABBV",
+    "action": "SELL",
+    "price": 219.16,
+    "shares": 109,
+    "pnl": -962.4700000000012,
+    "pnl_pct": -0.03872976884951099,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2025-11-07",
+    "symbol": "AMD",
+    "action": "BUY",
+    "price": 233.54,
+    "shares": 34,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(neutral)"
+  },
+  {
+    "date": "2025-11-18",
+    "symbol": "NVDA",
+    "action": "SELL",
+    "price": 181.36,
+    "shares": 68,
+    "pnl": -333.1999999999989,
+    "pnl_pct": -0.026307312359067882,
+    "reason": "\u6b62\u635f\u89e6\u53d1($182.20, -2.6%)"
+  },
+  {
+    "date": "2025-11-20",
+    "symbol": "AMD",
+    "action": "SELL",
+    "price": 206.02,
+    "shares": 34,
+    "pnl": -935.6799999999994,
+    "pnl_pct": -0.11783848591247745,
+    "reason": "\u6b62\u635f\u89e6\u53d1($217.89, -11.8%)"
+  },
+  {
+    "date": "2025-11-21",
+    "symbol": "AVGO",
+    "action": "SELL",
+    "price": 340.2,
+    "shares": 27,
+    "pnl": -376.1100000000006,
+    "pnl_pct": -0.03933583712196092,
+    "reason": "\u98ce\u63a7\u6e05\u4ed3(-3.9%)"
+  },
+  {
+    "date": "2025-12-01",
+    "symbol": "LLY",
+    "action": "BUY",
+    "price": 1057.89,
+    "shares": 13,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-12-01",
+    "symbol": "MRK",
+    "action": "BUY",
+    "price": 101.83,
+    "shares": 116,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-12-01",
+    "symbol": "JNJ",
+    "action": "BUY",
+    "price": 205.34,
+    "shares": 121,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2025-12-01",
+    "symbol": "AAPL",
+    "action": "BUY",
+    "price": 283.1,
+    "shares": 68,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  },
+  {
+    "date": "2026-01-07",
+    "symbol": "JNJ",
+    "action": "SELL",
+    "price": 207.49,
+    "shares": 121,
+    "pnl": 260.15000000000146,
+    "pnl_pct": 0.010470439271452284,
+    "reason": "\u8f6e\u51fa\u9f99\u5934\u6c60"
+  },
+  {
+    "date": "2026-01-07",
+    "symbol": "NVDA",
+    "action": "BUY",
+    "price": 189.11,
+    "shares": 78,
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "reason": "\u9f99\u5934\u4e70\u5165(offensive)"
+  }
+]

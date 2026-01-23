@@ -1,0 +1,287 @@
+{
+  "2023-Q1": {
+    "theme": "AI复苏+ChatGPT爆发",
+    "reasoning": "ChatGPT 2022年11月发布，2023年初引爆AI概念",
+    "focus_sectors": [
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "MSFT",
+      "GOOGL",
+      "META",
+      "AMD"
+    ],
+    "avoid_sectors": [
+      "XLE",
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2
+    }
+  },
+  "2023-Q2": {
+    "theme": "AI基础设施+GPU短缺",
+    "reasoning": "NVIDIA财报超预期，GPU供不应求",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "MSFT",
+      "GOOGL"
+    ],
+    "avoid_sectors": [
+      "XLE"
+    ],
+    "sector_bonus": {
+      "XLK": 4,
+      "XLC": 1
+    }
+  },
+  "2023-Q3": {
+    "theme": "AI扩散+云计算",
+    "reasoning": "AI应用开始扩散到企业端，云厂商受益",
+    "focus_sectors": [
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "MSFT",
+      "GOOGL",
+      "AMZN",
+      "META",
+      "AVGO"
+    ],
+    "avoid_sectors": [
+      "XLE",
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLY": 1
+    }
+  },
+  "2023-Q4": {
+    "theme": "AI+半导体周期复苏",
+    "reasoning": "半导体库存周期触底，AI需求持续",
+    "focus_sectors": [
+      "XLK"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "MSFT",
+      "META",
+      "ADBE"
+    ],
+    "avoid_sectors": [
+      "XLE"
+    ],
+    "sector_bonus": {
+      "XLK": 4,
+      "XLC": 2
+    }
+  },
+  "2024-Q1": {
+    "theme": "AI算力军备竞赛",
+    "reasoning": "科技巨头加大AI投资，算力需求爆发",
+    "focus_sectors": [
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "META",
+      "GOOGL",
+      "MSFT"
+    ],
+    "avoid_sectors": [
+      "XLE",
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLK": 4,
+      "XLC": 2
+    }
+  },
+  "2024-Q2": {
+    "theme": "AI应用落地+数据中心",
+    "reasoning": "AI从概念进入应用，电力/冷却需求关注",
+    "focus_sectors": [
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "META",
+      "GOOGL",
+      "MSFT",
+      "AMZN",
+      "AVGO"
+    ],
+    "avoid_sectors": [
+      "XLE"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLI": 1
+    }
+  },
+  "2024-Q3": {
+    "theme": "降息预期+防御转换",
+    "reasoning": "Fed降息预期升温，资金轮动到防御板块",
+    "focus_sectors": [
+      "XLV",
+      "XLF",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "UNH",
+      "LLY",
+      "JPM",
+      "NVDA",
+      "AAPL",
+      "MSFT"
+    ],
+    "avoid_sectors": [
+      "XLE"
+    ],
+    "sector_bonus": {
+      "XLV": 2,
+      "XLF": 2,
+      "XLK": 1
+    }
+  },
+  "2024-Q4": {
+    "theme": "Trump交易+金融/能源",
+    "reasoning": "大选后Trump交易，金融去监管+能源利好",
+    "focus_sectors": [
+      "XLF",
+      "XLE",
+      "XLY"
+    ],
+    "focus_stocks": [
+      "JPM",
+      "GS",
+      "TSLA",
+      "AMZN",
+      "NVDA",
+      "XOM"
+    ],
+    "avoid_sectors": [
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLF": 3,
+      "XLE": 2,
+      "XLY": 2,
+      "XLK": 1
+    }
+  },
+  "2025-Q1": {
+    "theme": "关税不确定性+防御",
+    "reasoning": "关税政策不确定，市场波动加大",
+    "focus_sectors": [
+      "XLV",
+      "XLP",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "UNH",
+      "LLY",
+      "NVDA",
+      "MSFT",
+      "GOOGL",
+      "META"
+    ],
+    "avoid_sectors": [
+      "XLI"
+    ],
+    "sector_bonus": {
+      "XLV": 2,
+      "XLP": 1,
+      "XLK": 2
+    }
+  },
+  "2025-Q2": {
+    "theme": "AI Agent+软件应用",
+    "reasoning": "AI从硬件转向软件应用，Agent概念兴起",
+    "focus_sectors": [
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "MSFT",
+      "GOOGL",
+      "META",
+      "NVDA",
+      "CRM",
+      "ADBE"
+    ],
+    "avoid_sectors": [
+      "XLE"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2
+    }
+  },
+  "2025-Q3": {
+    "theme": "AI持续+半导体",
+    "reasoning": "AI投资持续，半导体需求强劲",
+    "focus_sectors": [
+      "XLK",
+      "XLC"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "GOOGL",
+      "META",
+      "AAPL"
+    ],
+    "avoid_sectors": [
+      "XLE",
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLK": 4,
+      "XLC": 2
+    }
+  },
+  "2025-Q4": {
+    "theme": "年末配置+科技龙头",
+    "reasoning": "年末资金配置，科技龙头受青睐",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLV"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "GOOGL",
+      "META",
+      "LLY",
+      "MSFT",
+      "AAPL"
+    ],
+    "avoid_sectors": [],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLV": 1
+    }
+  }
+}

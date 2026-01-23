@@ -1,0 +1,405 @@
+{
+  "2023-Q1": {
+    "theme": "AI萌芽+银行危机避险",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLV",
+      "XLP"
+    ],
+    "focus_stocks": [
+      "MSFT",
+      "NVDA",
+      "AAPL",
+      "GOOGL",
+      "META",
+      "AMZN",
+      "UNH",
+      "PG"
+    ],
+    "avoid_sectors": [
+      "XLF",
+      "XLI",
+      "XLY"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLV": 2,
+      "XLP": 1
+    },
+    "reasoning": "加息末段但通胀顽固，区域银行事件抬升尾部风险；用AI主线的高质量科技对冲，叠加必选消费与医疗稳波动。"
+  },
+  "2023-Q2": {
+    "theme": "AI算力爆发+龙头抱团",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLY",
+      "XLF"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "MSFT",
+      "AAPL",
+      "AMZN",
+      "META",
+      "GOOGL",
+      "TSLA",
+      "AVGO"
+    ],
+    "avoid_sectors": [
+      "XLU",
+      "XLP",
+      "XLV"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLY": 2,
+      "XLF": 1
+    },
+    "reasoning": "加息暂停提升风险偏好，AI叙事强化并向平台与消费互联网扩散；以大盘龙头为主、适度配金融受益于软着陆预期。"
+  },
+  "2023-Q3": {
+    "theme": "利率高位+能源通胀再起",
+    "focus_sectors": [
+      "XLE",
+      "XLV",
+      "XLP",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "XOM",
+      "CVX",
+      "UNH",
+      "LLY",
+      "MSFT",
+      "NVDA",
+      "JPM",
+      "GS"
+    ],
+    "avoid_sectors": [
+      "XLU",
+      "XLI",
+      "XLY"
+    ],
+    "sector_bonus": {
+      "XLE": 3,
+      "XLV": 2,
+      "XLP": 2,
+      "XLK": 1
+    },
+    "reasoning": "长端利率上行压估值，油价走强推升通胀与波动；用能源与防御板块做底仓，同时保留少量AI核心资产。"
+  },
+  "2023-Q4": {
+    "theme": "降息预期升温+年末风险偏好回归",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLY",
+      "XLF"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "MSFT",
+      "AAPL",
+      "AMZN",
+      "META",
+      "GOOGL",
+      "TSLA",
+      "JPM"
+    ],
+    "avoid_sectors": [
+      "XLP",
+      "XLU",
+      "XLV"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLY": 2,
+      "XLF": 1
+    },
+    "reasoning": "收益率回落与鸽派信号改善流动性预期；配置向成长与可选消费倾斜，但仍以盈利确定性强的龙头为核心。"
+  },
+  "2024-Q1": {
+    "theme": "AI资本开支竞赛+高利率耐受度",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLI",
+      "XLV"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "MSFT",
+      "AVGO",
+      "AMD",
+      "ORCL",
+      "META",
+      "AAPL",
+      "LLY"
+    ],
+    "avoid_sectors": [
+      "XLU",
+      "XLP",
+      "XLF"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLI": 2,
+      "XLV": 1
+    },
+    "reasoning": "AI算力与云侧投入加速，但降息预期后移；选择现金流/定价权强的AI链与平台，同时配少量医疗增强组合抗利率韧性。"
+  },
+  "2024-Q2": {
+    "theme": "AI应用扩散+选举扰动前的结构分化",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLI",
+      "XLE"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "MSFT",
+      "AMZN",
+      "ORCL",
+      "ADBE",
+      "CRM",
+      "XOM",
+      "CAT"
+    ],
+    "avoid_sectors": [
+      "XLU",
+      "XLP",
+      "XLV"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLI": 2,
+      "XLE": 1
+    },
+    "reasoning": "通胀粘性下高利率维持，市场更偏好'确定性增长+真实需求'；以软件应用与云/数据中心链条为主，辅以能源与工业作对冲。"
+  },
+  "2024-Q3": {
+    "theme": "高波动+降息开启的防御轮动",
+    "focus_sectors": [
+      "XLV",
+      "XLP",
+      "XLU",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "UNH",
+      "LLY",
+      "JNJ",
+      "PG",
+      "KO",
+      "MSFT",
+      "AAPL",
+      "NVDA"
+    ],
+    "avoid_sectors": [
+      "XLY",
+      "XLI",
+      "XLF"
+    ],
+    "sector_bonus": {
+      "XLV": 3,
+      "XLP": 2,
+      "XLU": 2,
+      "XLK": 1
+    },
+    "reasoning": "全球去杠杆/套息波动提高回撤风险，资金先偏向防御；同时保留少量高质量科技作为降息后的中期主线仓位。"
+  },
+  "2024-Q4": {
+    "theme": "Trump交易+降息延续+风险偏好上行",
+    "focus_sectors": [
+      "XLF",
+      "XLE",
+      "XLY",
+      "XLI"
+    ],
+    "focus_stocks": [
+      "TSLA",
+      "JPM",
+      "GS",
+      "XOM",
+      "CVX",
+      "AMZN",
+      "CAT",
+      "NVDA"
+    ],
+    "avoid_sectors": [
+      "XLV",
+      "XLP",
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLF": 3,
+      "XLE": 2,
+      "XLY": 2,
+      "XLI": 1
+    },
+    "reasoning": "减税与去监管预期利好金融与周期，叠加降息改善融资环境；用金融/能源/工业承接政策交易，同时保留科技龙头弹性。"
+  },
+  "2025-Q1": {
+    "theme": "关税不确定+风险控制+AI结构性机会",
+    "focus_sectors": [
+      "XLV",
+      "XLP",
+      "XLK",
+      "XLU"
+    ],
+    "focus_stocks": [
+      "MSFT",
+      "AAPL",
+      "NVDA",
+      "ORCL",
+      "UNH",
+      "LLY",
+      "PG",
+      "KO"
+    ],
+    "avoid_sectors": [
+      "XLI",
+      "XLY",
+      "XLF"
+    ],
+    "sector_bonus": {
+      "XLV": 3,
+      "XLP": 2,
+      "XLK": 2,
+      "XLU": 1
+    },
+    "reasoning": "关税与政策路径增加盈利与供应链不确定；以防御底仓降低波动，同时选取受益于AI渗透、受宏观冲击更小的高质量科技。"
+  },
+  "2025-Q2": {
+    "theme": "关税新常态+AI Agent软件化",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLV",
+      "XLI"
+    ],
+    "focus_stocks": [
+      "MSFT",
+      "ADBE",
+      "CRM",
+      "ORCL",
+      "META",
+      "GOOGL",
+      "NVDA",
+      "CAT"
+    ],
+    "avoid_sectors": [
+      "XLE",
+      "XLY",
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLV": 1,
+      "XLI": 1
+    },
+    "reasoning": "市场对关税反复逐步定价，资金更关注可见的企业IT/生产力升级；偏向软件与平台型公司，并用医疗/工业分散政策噪音。"
+  },
+  "2025-Q3": {
+    "theme": "软着陆交易+AI回报质疑下的质量与盈利",
+    "focus_sectors": [
+      "XLK",
+      "XLI",
+      "XLC",
+      "XLF"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AVGO",
+      "AMD",
+      "MSFT",
+      "ORCL",
+      "AMZN",
+      "JPM",
+      "GS"
+    ],
+    "avoid_sectors": [
+      "XLU",
+      "XLP",
+      "XLV"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLI": 2,
+      "XLC": 1,
+      "XLF": 1
+    },
+    "reasoning": "AI投资进入'验证期'，更偏好盈利兑现与确定性需求（半导体/云）；若软着陆预期强化，可适度提高金融与工业权重。"
+  },
+  "2025-Q4": {
+    "theme": "年末配置+降息预期+龙头再集中",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLY",
+      "XLF"
+    ],
+    "focus_stocks": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "AMZN",
+      "META",
+      "GOOGL",
+      "TSLA",
+      "JPM"
+    ],
+    "avoid_sectors": [
+      "XLE",
+      "XLV",
+      "XLP"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLY": 2,
+      "XLF": 1
+    },
+    "reasoning": "年末资金偏好流动性与确定性，叠加降息预期利好久期资产；以科技/通信平台为核心，配可选消费与金融获取顺周期弹性。"
+  },
+  "2026-Q1": {
+    "theme": "关税反复+AI降温+能源地缘溢价",
+    "focus_sectors": [
+      "XLE",
+      "XLV",
+      "XLP",
+      "XLK"
+    ],
+    "focus_stocks": [
+      "XOM",
+      "CVX",
+      "UNH",
+      "LLY",
+      "PG",
+      "KO",
+      "MSFT",
+      "NVDA"
+    ],
+    "avoid_sectors": [
+      "XLY",
+      "XLI",
+      "XLF"
+    ],
+    "sector_bonus": {
+      "XLE": 3,
+      "XLV": 2,
+      "XLP": 2,
+      "XLK": 1
+    },
+    "reasoning": "政策与地缘带来输入性不确定，利率平稳下更适合用防御+资源对冲；AI热度回落时聚焦少数基本面最强的龙头以控制回撤。"
+  }
+}

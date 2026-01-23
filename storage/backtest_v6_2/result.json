@@ -1,0 +1,37 @@
+{
+  "final_value": 128199.53120000003,
+  "total_return": 0.2819953120000003,
+  "annualized_return": 0.06344597996049428,
+  "spy_return": 0.44786586004061046,
+  "alpha": -0.1658705480406102,
+  "max_drawdown": 0.09684931789363106,
+  "sharpe": 0.8990011006524866,
+  "win_rate": 0.4380165289256198,
+  "profit_factor": 1.7089437212705723,
+  "total_trades": 248,
+  "stock_trades": 121,
+  "avg_win": 965.646962264151,
+  "avg_loss": -440.41040882352945,
+  "regime_distribution": {
+    "offensive": 21,
+    "defensive": 23,
+    "neutral": 5
+  },
+  "circuit_breaker_triggers": {
+    "watch": 2,
+    "caution": 1,
+    "danger": 21
+  },
+  "cold_start_months": 0,
+  "rrg_leading_sectors": {
+    "XLK": 16,
+    "XLY": 11,
+    "XLV": 13,
+    "XLP": 10,
+    "XLE": 6,
+    "XLU": 16,
+    "XLI": 17,
+    "XLF": 13,
+    "XLC": 13
+  }
+}

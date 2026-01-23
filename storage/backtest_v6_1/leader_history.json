@@ -1,0 +1,2687 @@
+[
+  {
+    "date": "2022-01-03",
+    "leaders": [
+      {
+        "symbol": "AAPL",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMD",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 11,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "LOW",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "PFE",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "HD",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "META",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      }
+    ]
+  },
+  {
+    "date": "2022-02-01",
+    "leaders": [
+      {
+        "symbol": "AAPL",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "XOM",
+        "score": 9,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "COP",
+        "score": 9,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 8,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "CVX",
+        "score": 8,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 7,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MCD",
+        "score": 7,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TJX",
+        "score": 7,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "WFC",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "PFE",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2022-03-01",
+    "leaders": [
+      {
+        "symbol": "TMUS",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "CVX",
+        "score": 9,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "COP",
+        "score": 9,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "XOM",
+        "score": 8,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "VZ",
+        "score": 6,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "LLY",
+        "score": 6,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 5,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "UNH",
+        "score": 5,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2022-04-01",
+    "leaders": [
+      {
+        "symbol": "TMUS",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "LLY",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "CVX",
+        "score": 8,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "MSFT",
+        "score": 7,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 7,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 7,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2022-05-02",
+    "leaders": [
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "T",
+        "score": 7,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 7,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "LLY",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 6,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 6,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "XOM",
+        "score": 6,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "CVX",
+        "score": 6,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "MCD",
+        "score": 4,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "COP",
+        "score": 4,
+        "sector": "\u80fd\u6e90"
+      }
+    ]
+  },
+  {
+    "date": "2022-06-01",
+    "leaders": [
+      {
+        "symbol": "T",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "MCD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "COP",
+        "score": 8,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "AMD",
+        "score": 7,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 7,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "PFE",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "XOM",
+        "score": 7,
+        "sector": "\u80fd\u6e90"
+      }
+    ]
+  },
+  {
+    "date": "2022-07-01",
+    "leaders": [
+      {
+        "symbol": "T",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MCD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "VZ",
+        "score": 5,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 5,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "XOM",
+        "score": 3,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "COP",
+        "score": 1,
+        "sector": "\u80fd\u6e90"
+      }
+    ]
+  },
+  {
+    "date": "2022-08-01",
+    "leaders": [
+      {
+        "symbol": "NFLX",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MCD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 7,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 7,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "DIS",
+        "score": 6,
+        "sector": "\u901a\u8baf"
+      }
+    ]
+  },
+  {
+    "date": "2022-09-01",
+    "leaders": [
+      {
+        "symbol": "NFLX",
+        "score": 7,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 7,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 6,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 6,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "DIS",
+        "score": 6,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MCD",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 5,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "UNH",
+        "score": 5,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2022-10-03",
+    "leaders": [
+      {
+        "symbol": "NFLX",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 7,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "COP",
+        "score": 7,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "UNH",
+        "score": 5,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "LLY",
+        "score": 5,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "MRK",
+        "score": 4,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "XOM",
+        "score": 4,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "CVX",
+        "score": 4,
+        "sector": "\u80fd\u6e90"
+      }
+    ]
+  },
+  {
+    "date": "2022-11-01",
+    "leaders": [
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TJX",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MRK",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MCD",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "JPM",
+        "score": 9,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "XOM",
+        "score": 9,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "COP",
+        "score": 9,
+        "sector": "\u80fd\u6e90"
+      }
+    ]
+  },
+  {
+    "date": "2022-12-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TJX",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MRK",
+        "score": 11,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "T",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "HD",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2023-01-03",
+    "leaders": [
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NKE",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TJX",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "T",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "JPM",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2023-02-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "CMCSA",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NKE",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LOW",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "MS",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2023-03-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "CRM",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 5,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MCD",
+        "score": 5,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "NKE",
+        "score": 5,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "JPM",
+        "score": 5,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 5,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2023-04-03",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MSFT",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "MCD",
+        "score": 7,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 5,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2023-05-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MSFT",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MCD",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "MRK",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "CMCSA",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 6,
+        "sector": "\u901a\u8baf"
+      }
+    ]
+  },
+  {
+    "date": "2023-06-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MSFT",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "LOW",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2023-07-03",
+    "leaders": [
+      {
+        "symbol": "ADBE",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "META",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LLY",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "CMCSA",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "LOW",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2023-08-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "HD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "WFC",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2023-09-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "TJX",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "META",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "HD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2023-10-02",
+    "leaders": [
+      {
+        "symbol": "GOOG",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "UNH",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "META",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "INTC",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 7,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 7,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "LLY",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "TJX",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 5,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2023-11-01",
+    "leaders": [
+      {
+        "symbol": "MSFT",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "INTC",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "T",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "VZ",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TJX",
+        "score": 7,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LLY",
+        "score": 6,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2023-12-01",
+    "leaders": [
+      {
+        "symbol": "AMD",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "CRM",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "INTC",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "DIS",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "T",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "VZ",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NKE",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "BAC",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "WFC",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "UNH",
+        "score": 8,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2024-01-02",
+    "leaders": [
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "INTC",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "BAC",
+        "score": 10,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "VZ",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "HD",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "MCD",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "JPM",
+        "score": 9,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2024-02-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "META",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "VZ",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "HD",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "MRK",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LOW",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2024-03-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "DIS",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "LOW",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "HD",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2024-04-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "DIS",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LOW",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LLY",
+        "score": 8,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "BAC",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2024-05-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "WFC",
+        "score": 9,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "GS",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "DIS",
+        "score": 6,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "BAC",
+        "score": 6,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "LLY",
+        "score": 6,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 5,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 5,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2024-06-03",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TJX",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "BAC",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "GS",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "MS",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2024-07-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TJX",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      }
+    ]
+  },
+  {
+    "date": "2024-08-01",
+    "leaders": [
+      {
+        "symbol": "AAPL",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ADBE",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "T",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TJX",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "LOW",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "BLK",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2024-09-03",
+    "leaders": [
+      {
+        "symbol": "ADBE",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "T",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "HD",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "LLY",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2024-10-01",
+    "leaders": [
+      {
+        "symbol": "HD",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LOW",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "T",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MCD",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "CRM",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "CMCSA",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "BLK",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2024-11-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "CRM",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MS",
+        "score": 10,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "WFC",
+        "score": 9,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2024-12-02",
+    "leaders": [
+      {
+        "symbol": "CRM",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "DIS",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "HD",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "WFC",
+        "score": 10,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2025-01-02",
+    "leaders": [
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "WFC",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "TJX",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2025-02-03",
+    "leaders": [
+      {
+        "symbol": "META",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "CRM",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "JPM",
+        "score": 10,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "WFC",
+        "score": 10,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "GS",
+        "score": 10,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2025-03-03",
+    "leaders": [
+      {
+        "symbol": "T",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "SBUX",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LLY",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "VZ",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MCD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 8,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2025-04-01",
+    "leaders": [
+      {
+        "symbol": "T",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "VZ",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "TMUS",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "MCD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "CVX",
+        "score": 8,
+        "sector": "\u80fd\u6e90"
+      },
+      {
+        "symbol": "TJX",
+        "score": 7,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 7,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "XOM",
+        "score": 7,
+        "sector": "\u80fd\u6e90"
+      }
+    ]
+  },
+  {
+    "date": "2025-05-01",
+    "leaders": [
+      {
+        "symbol": "NFLX",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MSFT",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "T",
+        "score": 9,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "VZ",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MCD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "TJX",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 6,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 5,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 5,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "JPM",
+        "score": 3,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2025-06-02",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "DIS",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "MCD",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "JPM",
+        "score": 5,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2025-07-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "ORCL",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "DIS",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NKE",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "META",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NFLX",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "GS",
+        "score": 10,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "MS",
+        "score": 10,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2025-08-01",
+    "leaders": [
+      {
+        "symbol": "NVDA",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "META",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NKE",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 8,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GS",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 6,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "BLK",
+        "score": 6,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2025-09-02",
+    "leaders": [
+      {
+        "symbol": "GOOGL",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "INTC",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "LOW",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "AMD",
+        "score": 9,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "HD",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "BAC",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 8,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2025-10-01",
+    "leaders": [
+      {
+        "symbol": "ORCL",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "INTC",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 12,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 11,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "ABBV",
+        "score": 11,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "TJX",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "UNH",
+        "score": 8,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 8,
+        "sector": "\u533b\u7597"
+      }
+    ]
+  },
+  {
+    "date": "2025-11-03",
+    "leaders": [
+      {
+        "symbol": "AMD",
+        "score": 13,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "GOOGL",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "INTC",
+        "score": 12,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 11,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "AMZN",
+        "score": 10,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "LLY",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "BAC",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "WFC",
+        "score": 7,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  },
+  {
+    "date": "2025-12-01",
+    "leaders": [
+      {
+        "symbol": "GOOGL",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 12,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "INTC",
+        "score": 11,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "LLY",
+        "score": 11,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "MRK",
+        "score": 11,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "AAPL",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AVGO",
+        "score": 10,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TSLA",
+        "score": 9,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "JNJ",
+        "score": 9,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "TJX",
+        "score": 7,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      }
+    ]
+  },
+  {
+    "date": "2026-01-02",
+    "leaders": [
+      {
+        "symbol": "GOOGL",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "GOOG",
+        "score": 10,
+        "sector": "\u901a\u8baf"
+      },
+      {
+        "symbol": "LLY",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "MRK",
+        "score": 10,
+        "sector": "\u533b\u7597"
+      },
+      {
+        "symbol": "NVDA",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "AMD",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "CSCO",
+        "score": 8,
+        "sector": "\u79d1\u6280"
+      },
+      {
+        "symbol": "TJX",
+        "score": 8,
+        "sector": "\u53ef\u9009\u6d88\u8d39"
+      },
+      {
+        "symbol": "WFC",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      },
+      {
+        "symbol": "GS",
+        "score": 8,
+        "sector": "\u91d1\u878d"
+      }
+    ]
+  }
+]

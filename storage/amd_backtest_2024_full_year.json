@@ -1,0 +1,188 @@
+{
+  "old_system": {
+    "total_return": -0.05833131866455078,
+    "max_drawdown": 0.11255282803014195,
+    "sharpe_ratio": -0.709681110651591,
+    "win_rate": 0.35714285714285715,
+    "total_trades": 28,
+    "final_value": 94166.86813354492
+  },
+  "new_no_smoothing": {
+    "total_return": -0.020271579742431642,
+    "max_drawdown": 0.057215165947784835,
+    "sharpe_ratio": -0.2972837359431723,
+    "win_rate": 0.3,
+    "total_trades": 20,
+    "final_value": 97972.84202575684
+  },
+  "new_with_smoothing": {
+    "total_return": -0.03795674591064453,
+    "max_drawdown": 0.09550649612136745,
+    "sharpe_ratio": -0.6481659530512137,
+    "win_rate": 0.25,
+    "total_trades": 16,
+    "final_value": 96204.32540893555,
+    "regime_distribution": {
+      "bull_trend": 60,
+      "bear_trend": 29,
+      "bull_pullback": 0,
+      "bear_rally": 0,
+      "range_bound": 159,
+      "unknown": 3
+    }
+  },
+  "improvement": {
+    "return_improvement": 0.02037457275390625,
+    "drawdown_reduction": 0.017046331908774498,
+    "sharpe_improvement": 0.06151515760037729,
+    "trade_reduction": 12
+  },
+  "trades": {
+    "new_system": [
+      {
+        "date": "2024-01-02",
+        "action": "BUY",
+        "price": 138.5800018310547,
+        "shares": 108,
+        "regime": "unknown",
+        "score": 0.7150000000000001,
+        "pnl": 0.0
+      },
+      {
+        "date": "2024-01-09",
+        "action": "SELL",
+        "price": 149.25999450683594,
+        "shares": 108,
+        "regime": "range_bound",
+        "score": 0.5535596948496856,
+        "pnl": 1153.439208984375
+      },
+      {
+        "date": "2024-01-31",
+        "action": "BUY",
+        "price": 167.69000244140625,
+        "shares": 127,
+        "regime": "bull_trend",
+        "score": 0.8000000000000002,
+        "pnl": 0.0
+      },
+      {
+        "date": "2024-03-01",
+        "action": "SELL",
+        "price": 202.63999938964844,
+        "shares": 127,
+        "regime": "bull_trend",
+        "score": 0.7500000000000001,
+        "pnl": 4438.649612426758
+      },
+      {
+        "date": "2024-03-04",
+        "action": "BUY",
+        "price": 205.36000061035156,
+        "shares": 128,
+        "regime": "bull_trend",
+        "score": 0.7500000000000001,
+        "pnl": 0.0
+      },
+      {
+        "date": "2024-03-14",
+        "action": "SELL",
+        "price": 187.05999755859375,
+        "shares": 128,
+        "regime": "bull_trend",
+        "score": 0.7324947378167311,
+        "pnl": -2342.400390625
+      },
+      {
+        "date": "2024-03-15",
+        "action": "BUY",
+        "price": 191.05999755859375,
+        "shares": 118,
+        "regime": "bull_trend",
+        "score": 0.7782067861870613,
+        "pnl": 0.0
+      },
+      {
+        "date": "2024-03-27",
+        "action": "SELL",
+        "price": 179.58999633789062,
+        "shares": 118,
+        "regime": "bull_trend",
+        "score": 0.3030896411918228,
+        "pnl": -1353.4601440429688
+      },
+      {
+        "date": "2024-04-01",
+        "action": "BUY",
+        "price": 183.33999633789062,
+        "shares": 129,
+        "regime": "bull_trend",
+        "score": 0.6000000000000001,
+        "pnl": 0.0
+      },
+      {
+        "date": "2024-04-02",
+        "action": "SELL",
+        "price": 178.6999969482422,
+        "shares": 129,
+        "regime": "range_bound",
+        "score": 0.375,
+        "pnl": -598.5599212646484
+      },
+      {
+        "date": "2024-07-08",
+        "action": "BUY",
+        "price": 178.69000244140625,
+        "shares": 141,
+        "regime": "bull_trend",
+        "score": 0.7246239323953,
+        "pnl": 0.0
+      },
+      {
+        "date": "2024-07-17",
+        "action": "SELL",
+        "price": 159.42999267578125,
+        "shares": 141,
+        "regime": "bull_trend",
+        "score": 0.4156358067107818,
+        "pnl": -2715.661376953125
+      },
+      {
+        "date": "2024-10-07",
+        "action": "BUY",
+        "price": 170.97000122070312,
+        "shares": 144,
+        "regime": "bull_trend",
+        "score": 0.8000000000000002,
+        "pnl": 0.0
+      },
+      {
+        "date": "2024-10-15",
+        "action": "SELL",
+        "price": 156.63999938964844,
+        "shares": 144,
+        "regime": "bull_trend",
+        "score": 0.7235690413428565,
+        "pnl": -2063.520263671875
+      },
+      {
+        "date": "2024-10-16",
+        "action": "BUY",
+        "price": 156.1300048828125,
+        "shares": 154,
+        "regime": "bull_trend",
+        "score": 0.6762826243398852,
+        "pnl": 0.0
+      },
+      {
+        "date": "2024-10-22",
+        "action": "SELL",
+        "price": 154.08999633789062,
+        "shares": 154,
+        "regime": "range_bound",
+        "score": 0.39581903588809536,
+        "pnl": -314.16131591796875
+      }
+    ]
+  }
+}

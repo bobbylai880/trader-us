@@ -1,0 +1,357 @@
+{
+  "2023-Q1": {
+    "theme": "AI/ChatGPT + 银行危机避险",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLP",
+      "XLV"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "PG",
+      "KO",
+      "UNH",
+      "LLY"
+    ],
+    "avoid_sectors": [
+      "XLF",
+      "XLRE",
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLP": 1,
+      "XLV": 0
+    }
+  },
+  "2023-Q2": {
+    "theme": "AI基础设施 + GPU短缺",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLY"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "AMZN",
+      "TSLA",
+      "AMD",
+      "AVGO"
+    ],
+    "avoid_sectors": [
+      "XLRE",
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLY": 1
+    }
+  },
+  "2023-Q3": {
+    "theme": "AI扩散 + 高利率担忧",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLP",
+      "XLV"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "PG",
+      "KO",
+      "UNH",
+      "LLY"
+    ],
+    "avoid_sectors": [
+      "XLRE",
+      "XLU",
+      "XLY"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLP": 1,
+      "XLV": 0
+    }
+  },
+  "2023-Q4": {
+    "theme": "降息预期 + AI+半导体",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLF",
+      "XLRE"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "JPM",
+      "BAC",
+      "AMT",
+      "PLD"
+    ],
+    "avoid_sectors": [
+      "XLU"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLF": 1,
+      "XLRE": 0
+    }
+  },
+  "2024-Q1": {
+    "theme": "AI算力 + 科技龙头",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLY"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "AMZN",
+      "TSLA",
+      "AMD",
+      "AVGO"
+    ],
+    "avoid_sectors": [],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLY": 1
+    }
+  },
+  "2024-Q2": {
+    "theme": "AI应用落地 + 数据中心",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLI",
+      "XLY"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "CAT",
+      "DE",
+      "AMZN",
+      "TSLA"
+    ],
+    "avoid_sectors": [],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLI": 1,
+      "XLY": 0
+    }
+  },
+  "2024-Q3": {
+    "theme": "降息利好 + 防御配置",
+    "focus_sectors": [
+      "XLF",
+      "XLRE",
+      "XLY",
+      "XLP"
+    ],
+    "focus_stocks": [
+      "JPM",
+      "BAC",
+      "AMT",
+      "PLD",
+      "AMZN",
+      "TSLA",
+      "PG",
+      "KO"
+    ],
+    "avoid_sectors": [],
+    "sector_bonus": {
+      "XLF": 3,
+      "XLRE": 2,
+      "XLY": 1,
+      "XLP": 0
+    }
+  },
+  "2024-Q4": {
+    "theme": "Trump交易 + 金融去监管",
+    "focus_sectors": [
+      "XLF",
+      "XLE",
+      "XLI",
+      "XLP"
+    ],
+    "focus_stocks": [
+      "JPM",
+      "BAC",
+      "XOM",
+      "CVX",
+      "CAT",
+      "DE",
+      "PG",
+      "KO"
+    ],
+    "avoid_sectors": [
+      "XLY"
+    ],
+    "sector_bonus": {
+      "XLF": 3,
+      "XLE": 2,
+      "XLI": 1,
+      "XLP": 0
+    }
+  },
+  "2025-Q1": {
+    "theme": "关税不确定性 + 防御配置",
+    "focus_sectors": [
+      "XLP",
+      "XLV",
+      "XLF",
+      "XLRE"
+    ],
+    "focus_stocks": [
+      "PG",
+      "KO",
+      "UNH",
+      "LLY",
+      "JPM",
+      "BAC",
+      "AMT",
+      "PLD"
+    ],
+    "avoid_sectors": [
+      "XLI",
+      "XLY",
+      "XLK"
+    ],
+    "sector_bonus": {
+      "XLP": 3,
+      "XLV": 2,
+      "XLF": 1,
+      "XLRE": 0
+    }
+  },
+  "2025-Q2": {
+    "theme": "AI软件应用 + 关税适应",
+    "focus_sectors": [
+      "XLP",
+      "XLV",
+      "XLE"
+    ],
+    "focus_stocks": [
+      "PG",
+      "KO",
+      "UNH",
+      "LLY",
+      "XOM",
+      "CVX"
+    ],
+    "avoid_sectors": [
+      "XLI",
+      "XLY"
+    ],
+    "sector_bonus": {
+      "XLP": 3,
+      "XLV": 2,
+      "XLE": 1
+    }
+  },
+  "2025-Q3": {
+    "theme": "AI持续 + 半导体",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLY",
+      "XLF"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "AMZN",
+      "TSLA",
+      "JPM",
+      "BAC"
+    ],
+    "avoid_sectors": [],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLY": 1,
+      "XLF": 0
+    }
+  },
+  "2025-Q4": {
+    "theme": "年末配置 + 科技龙头",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLF",
+      "XLRE"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "JPM",
+      "BAC",
+      "AMT",
+      "PLD"
+    ],
+    "avoid_sectors": [],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLF": 1,
+      "XLRE": 0
+    }
+  },
+  "2026-Q1": {
+    "theme": "能源景气 + 关税不确定",
+    "focus_sectors": [
+      "XLK",
+      "XLC",
+      "XLP",
+      "XLV"
+    ],
+    "focus_stocks": [
+      "NVDA",
+      "AAPL",
+      "META",
+      "GOOGL",
+      "PG",
+      "KO",
+      "UNH",
+      "LLY"
+    ],
+    "avoid_sectors": [
+      "XLI",
+      "XLY"
+    ],
+    "sector_bonus": {
+      "XLK": 3,
+      "XLC": 2,
+      "XLP": 1,
+      "XLV": 0
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "start_date": "2023-01-03",
+  "end_date": "2026-01-16",
+  "initial_capital": 100000.0,
+  "final_value": 128211.16400000009,
+  "total_return": 0.282111640000001,
+  "annualized_return": 0.08522834762248199,
+  "max_drawdown": 0.26325145346858964,
+  "sharpe_ratio": 0.5339134968569301,
+  "win_rate": 0.4141791044776119,
+  "total_trades": 541,
+  "avg_trade_pnl": 44.63669776119411,
+  "spy_return": 0.8162386429284176,
+  "alpha": -0.5341270029284166,
+  "regime_distribution": {
+    "bull": 240,
+    "bear": 46,
+    "neutral": 477
+  }
+}

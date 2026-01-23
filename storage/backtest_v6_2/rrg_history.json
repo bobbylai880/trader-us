@@ -1,0 +1,2452 @@
+[
+  {
+    "date": "2022-01-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.66594507253193
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 88.2599806372253
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.25883626066505
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.48095178067884
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.36180836338298
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.74088827449567
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.44549171643997
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.95184043277577
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.7345467853459
+      }
+    }
+  },
+  {
+    "date": "2022-02-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.70682760186969
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.86598043029863
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 91.37473711327111
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.05119770394084
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.94918065655465
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 122.368446545933
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.95980332669151
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 107.79726036514373
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.77555611847984
+      }
+    }
+  },
+  {
+    "date": "2022-03-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.64052274189544
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.03344713732463
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 91.29376802759221
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.08453733588398
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.64949475167123
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 136.44511043728136
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.30161077004836
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 112.0502823230531
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 107.34946691103472
+      }
+    }
+  },
+  {
+    "date": "2022-04-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 97.35556302760726
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 94.17157215630351
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.17997569476105
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.56509701635692
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 104.51097213813732
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 134.6348554256343
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.65841610799882
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.21325075491234
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 110.57516185740283
+      }
+    }
+  },
+  {
+    "date": "2022-05-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.31750940561633
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 92.11600629136785
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.31219900935815
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.33202326356526
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.07155651367187
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 121.26580151123663
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.51022129352232
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 107.45495680346468
+      },
+      "XLU": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 110.09083099658508
+      }
+    }
+  },
+  {
+    "date": "2022-06-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.39286343944278
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 94.77160732605661
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.96420981309763
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.63322675895859
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.49677524848404
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 118.87478256354338
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.65009328673608
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.04143611997016
+      },
+      "XLU": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.82484726754329
+      }
+    }
+  },
+  {
+    "date": "2022-07-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.35885576725501
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 92.26828676061054
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 89.55950586990521
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.75130915804164
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 111.81349080642424
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 113.05666088462655
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.60599752653943
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 113.26319650499646
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 112.75089501020044
+      }
+    }
+  },
+  {
+    "date": "2022-08-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.97249675677126
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.416549212269
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.72853824184733
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.88820381375743
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.3905434285354
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.12795973013759
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.26879195385756
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.84250001879127
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 106.83375198761198
+      }
+    }
+  },
+  {
+    "date": "2022-09-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.63993154843708
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.36808955478793
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 106.76494980382564
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.65381572565951
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.11019243762887
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 89.42958900052955
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.36547690061343
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.85652560241749
+      },
+      "XLU": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.26446959169165
+      }
+    }
+  },
+  {
+    "date": "2022-10-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.71112946503584
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 92.03370416203194
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.27940077761593
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.04299295132509
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.22745515299441
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 113.69775713367503
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.91793691576949
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.71678859160762
+      },
+      "XLU": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.38822839038122
+      }
+    }
+  },
+  {
+    "date": "2022-11-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 93.42684907926177
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 89.5968884365524
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 92.77548283049627
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 108.67999742700667
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 108.2762456631443
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 132.8587635391078
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.35856439071883
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 104.39499550848399
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.85723146238304
+      }
+    }
+  },
+  {
+    "date": "2022-12-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.15095097773053
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.26896361684443
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 89.23025251943815
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.34756574435377
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 107.06609264342251
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 113.29386923646962
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.930524252114
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.1500998878386
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 90.35154950097196
+      }
+    }
+  },
+  {
+    "date": "2023-01-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.11206472326148
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.59857375661478
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 86.66152993789062
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.90167493612255
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.70826402209444
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.17695213901645
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 110.9598203216902
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 107.34571752152708
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.68257376834858
+      }
+    }
+  },
+  {
+    "date": "2023-02-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.73189127983267
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 109.24953798461937
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.79277782423053
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.1745985617808
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 93.64384431858547
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 90.71856008650514
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.0984027898995
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.19837065887698
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.12976674523516
+      }
+    }
+  },
+  {
+    "date": "2023-03-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.94387375213836
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 106.44602419703
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.53996560552203
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.25862332860815
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.31872017330004
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.69504838878092
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.92274594559831
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.66504285860951
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 92.43412274177376
+      }
+    }
+  },
+  {
+    "date": "2023-04-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 114.86016454051284
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 108.36497581666195
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 106.00378532586743
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 85.91610358434392
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 89.90049264799457
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.01611943397451
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.26911250456446
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.93126671788721
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 89.17421995292658
+      }
+    }
+  },
+  {
+    "date": "2023-05-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.8906580066376
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.15011428654721
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.03654545016967
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 90.51038875407494
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.16489434182363
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.00030682039271
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.54067026015471
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.49175949537286
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.92964691436714
+      }
+    }
+  },
+  {
+    "date": "2023-06-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 112.67445300808399
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 109.88611640893329
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.0999264185849
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 86.37182395670952
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.63600577850826
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 85.3473776090173
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 90.66439967979699
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.20374941207908
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 92.93187030793374
+      }
+    }
+  },
+  {
+    "date": "2023-07-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 107.49666771388264
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.04973041876326
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 108.9339082855405
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.69544109930298
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 90.7763921656868
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 86.59785489400264
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.80437923369769
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 91.17439373700881
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 87.35367589306125
+      }
+    }
+  },
+  {
+    "date": "2023-08-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 107.46471496367984
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.83553549365901
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.66810852567858
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.38410328494541
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 89.45471630143918
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.93149144642781
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.26685246320619
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 87.43940131066337
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 85.72307264800617
+      }
+    }
+  },
+  {
+    "date": "2023-09-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.93214859393476
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.8996223066025
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.50232738890996
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.87108704591148
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 97.74409018202934
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 104.44975673688725
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.35935996670557
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.77196810315873
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 89.06475895025497
+      }
+    }
+  },
+  {
+    "date": "2023-10-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.32149080164031
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 104.22390173329461
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.62522977904507
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.491638780538
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.28035162824078
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 112.53902610274939
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.01569437960357
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.47729566973095
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 88.19089574144093
+      }
+    }
+  },
+  {
+    "date": "2023-11-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 104.21542053429445
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.62538198680878
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.08805519388524
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.5760670285995
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.1799549868643
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.18613089898095
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.05879637001561
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.3256800055243
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.7145699690622
+      }
+    }
+  },
+  {
+    "date": "2023-12-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 104.28567207603419
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.46804112665268
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.23972700210555
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.38772934865452
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.72734365972207
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 90.3598389025153
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.25096109701215
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.00304944456545
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.28850871476807
+      }
+    }
+  },
+  {
+    "date": "2024-01-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.94697106688952
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.76669337897127
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.75753999593157
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.52044372990103
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.8771532338585
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 89.30688923495637
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.93594444094376
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 97.58295468574964
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.22266948026959
+      }
+    }
+  },
+  {
+    "date": "2024-02-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.55478201057136
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.82596215616704
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.61611147815664
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.11489305771993
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.17204795227492
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 85.49492763110979
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.4105185792649
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.17269872890805
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 89.94900190047478
+      }
+    }
+  },
+  {
+    "date": "2024-03-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.37867005605938
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.95817600370944
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.66701170667199
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.30256077809429
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.66363973441604
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 91.69050337209298
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.35077756165266
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 93.33643767341484
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 86.85415294688823
+      }
+    }
+  },
+  {
+    "date": "2024-04-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.06367215043812
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.63842031047814
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 94.4083779293265
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.4498423666519
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.91107462619394
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.15095458814794
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.94887169899573
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.10210138389296
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 90.83702000466923
+      }
+    }
+  },
+  {
+    "date": "2024-05-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.34221205491629
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.39100673283471
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.2721613232481
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.5311598010425
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.16245598522656
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 108.74485207611903
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.81060530356024
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.19062087281002
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 110.37631737836664
+      }
+    }
+  },
+  {
+    "date": "2024-06-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.63615687285233
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.28668516970076
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.79559426592057
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.53531981858018
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.21571645804777
+      },
+      "XLE": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.7583105058713
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.08524547054536
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.53442128730244
+      },
+      "XLU": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 110.26996762666002
+      }
+    }
+  },
+  {
+    "date": "2024-07-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.0668057371074
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.24023729685565
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.8175189529001
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 94.12828401913247
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.05769543411093
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 88.42057161764895
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 91.50945649103996
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.40264378261207
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.99244129810691
+      }
+    }
+  },
+  {
+    "date": "2024-08-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.78149190042478
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.79423081849835
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.76035923327358
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.87927988820911
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.69716046865076
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 92.52060933900007
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.26618583903398
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.45140240903217
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.51884227639016
+      }
+    }
+  },
+  {
+    "date": "2024-09-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.64303123857496
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.68797683978181
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.18881124970542
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 106.4845621897683
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.88273182789372
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.4083365122689
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.87709548249724
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.09830641299142
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 104.33639108460235
+      }
+    }
+  },
+  {
+    "date": "2024-10-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 91.73567308810071
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.5839323772952
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.89786211155598
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 106.25732402103671
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.71968547769306
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 97.92659340535897
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 109.03097449348735
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 104.55522051639696
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 115.88403842542758
+      }
+    }
+  },
+  {
+    "date": "2024-11-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.64267112950371
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.62681128552671
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 107.00823830865671
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.65543572945568
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 91.99293864105265
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 91.69777554442659
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.2184071479567
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.24388544351878
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.96921820005542
+      }
+    }
+  },
+  {
+    "date": "2024-12-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.57919619647544
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 106.01792781462531
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 110.05268127826649
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.73698268622273
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 85.56436869702188
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.3755429979978
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.63529156822686
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 89.65864005595407
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.69779032348956
+      }
+    }
+  },
+  {
+    "date": "2025-01-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.6920195043224
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.37356901783433
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 110.21722448676586
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.83977984552695
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 88.52505440189566
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 90.00517698232122
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.3320226278198
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.36229428913705
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.24410256717658
+      }
+    }
+  },
+  {
+    "date": "2025-02-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 97.00974166374404
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 106.2015460207751
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 109.52061816377415
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.57988941006306
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.75776018271554
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 93.85398549182241
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 97.54438892550044
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 94.04168471542637
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.6808395209102
+      }
+    }
+  },
+  {
+    "date": "2025-03-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.8292890716775
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.24681444690616
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.74866754705141
+      },
+      "XLF": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.25321191424976
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.10958114237839
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.07242716148934
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.22380262257214
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.89962835410064
+      },
+      "XLU": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.08296518800275
+      }
+    }
+  },
+  {
+    "date": "2025-04-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.445743055244
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.3945489626521
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.91991890933402
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 107.54862019549012
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 108.55911510745896
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 113.04674400961893
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 104.62428987348251
+      },
+      "XLP": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 108.76752611943073
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 108.0182202053464
+      }
+    }
+  },
+  {
+    "date": "2025-05-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.39054292141948
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.85460143936533
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 92.20546759756985
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.71924006801112
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.13369926653132
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.69717265623471
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.97244178481809
+      },
+      "XLP": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 111.18157038028413
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 109.86551193336547
+      }
+    }
+  },
+  {
+    "date": "2025-06-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 104.48867090454941
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.80738207894593
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.49444682357604
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.75651239650999
+      },
+      "XLV": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 85.91249901890471
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 92.84876944341721
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.86349178947218
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.96495227687592
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 104.64809489416957
+      }
+    }
+  },
+  {
+    "date": "2025-07-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 111.70288910137643
+      },
+      "XLC": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.19619193344556
+      },
+      "XLY": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.27998999268407
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.9494924730855
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 82.99630568077532
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 85.61160128516006
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.19437413542256
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 86.8514950151751
+      },
+      "XLU": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 90.2190048944159
+      }
+    }
+  },
+  {
+    "date": "2025-08-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 108.1357773664709
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.6957139695569
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.31486667085811
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 93.97510159353718
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 87.73858085966633
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.5390281640673
+      },
+      "XLI": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.8360273607026
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 88.5649150416864
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.77343867831493
+      }
+    }
+  },
+  {
+    "date": "2025-09-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.90984393996834
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 100.5849460969591
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 101.7172265775036
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.00144161171147
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.72153196671897
+      },
+      "XLE": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 102.41130771886841
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.03324479843123
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 91.73775203031141
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.30340036496533
+      }
+    }
+  },
+  {
+    "date": "2025-10-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.06106151413105
+      },
+      "XLC": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 101.4329393166219
+      },
+      "XLY": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 102.81381866586912
+      },
+      "XLF": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 94.90019083074593
+      },
+      "XLV": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.64718767716451
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 93.67300780208446
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.88246241786898
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 89.26632321845763
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.70596955461126
+      }
+    }
+  },
+  {
+    "date": "2025-11-03",
+    "scores": {
+      "XLK": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 105.86485043801808
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.40837297668993
+      },
+      "XLY": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.91188008865299
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.78445182419698
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 103.48211550270932
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 96.76921417530535
+      },
+      "XLI": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 95.4519614543043
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 85.55743644846842
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 96.45842136574574
+      }
+    }
+  },
+  {
+    "date": "2025-12-01",
+    "scores": {
+      "XLK": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 103.64699473640728
+      },
+      "XLC": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.27730781060897
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.74754979686081
+      },
+      "XLF": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 94.82186864536206
+      },
+      "XLV": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 107.14286471140852
+      },
+      "XLE": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 99.45744716424005
+      },
+      "XLI": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 95.4660732137596
+      },
+      "XLP": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 93.28568502091478
+      },
+      "XLU": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.88949716860694
+      }
+    }
+  },
+  {
+    "date": "2026-01-02",
+    "scores": {
+      "XLK": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.94451265530584
+      },
+      "XLC": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 98.65228959166498
+      },
+      "XLY": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 98.35895354910076
+      },
+      "XLF": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.05638011461457
+      },
+      "XLV": {
+        "quadrant": "Weakening",
+        "score": 1,
+        "rs": 105.60340999424531
+      },
+      "XLE": {
+        "quadrant": "Improving",
+        "score": 0,
+        "rs": 99.92438721520502
+      },
+      "XLI": {
+        "quadrant": "Leading",
+        "score": 3,
+        "rs": 100.31183175561897
+      },
+      "XLP": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 97.32954195483289
+      },
+      "XLU": {
+        "quadrant": "Lagging",
+        "score": -2,
+        "rs": 93.79455491483962
+      }
+    }
+  }
+]

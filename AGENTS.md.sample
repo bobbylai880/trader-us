@@ -1,0 +1,267 @@
+# Agent Development Guide
+
+This document provides guidelines for AI coding agents working in this repository.
+
+> **⚠️ MANDATORY**: All agents **MUST** read and strictly follow `.opencode/conventions.md` before making any changes.
+
+## Project Overview
+
+This is an **Amazon Business Analysis System MVP** using the Sub Agent/Skill/MCP architecture pattern:
+- **Sub Agents** (`.opencode/agent/`): Dynamic skill orchestrators that load and execute analysis workflows
+- **Skills** (`.opencode/skill/`): SOP definitions for specific analysis tasks
+- **MCP Tools** (`.mcp.json`): Data access layer connecting to external databases
+- **Documentation** (`tools/`, root): Database schemas and configuration references
+
+## Build, Lint, and Test Commands
+
+### Project Structure
+This is a configuration and documentation project with no build/test pipeline. The primary artifacts are:
+- Markdown documentation files (Agent definitions, Skills, Schemas)
+- JSON configuration files (MCP server definitions)
+- Shell scripts (MCP loader)
+
+### Validation Commands
+
+```bash
+# Validate MCP configuration
+./load-mcp.sh
+
+# Test MCP server connection
+curl -X POST http://172.16.33.121:9291/mcp \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc":"2.0","method":"tools/list","id":1}'
+
+# Validate JSON syntax
+jq empty .mcp.json
+
+# Check shell script syntax
+bash -n load-mcp.sh
+```
+
+### Git Workflow
+```bash
+# Commit message format
+git commit -m "type: description"
+# Types: feat, fix, docs, chore, refactor
+
+# Example
+git commit -m "docs: update skill SOP for variant query"
+git commit -m "feat: add profit analysis skill"
+```
+
+## Code Style Guidelines
+
+### File Organization
+
+```
+aws/
+├── .mcp.json                    # MCP server configurations
+├── .opencode/
+│   ├── agent/                   # Sub agent definitions (*.md)
+│   │   └── aws.md
+│   ├── skill/                   # Skill SOP definitions (*.md)
+│   │   └── variant_query.md
+│   ├── tool/                    # Cognitive tools & documentation (*.md)
+│   │   ├── db_schema.md         # Database schema reference
+│   │   ├── method_5_whys.md     # 5 Whys analysis method
+│   │   ├── method_fishbone.md   # Fishbone diagram method
+│   │   ├── rule_algo_a9.md      # A9 algorithm rules
+│   │   ├── rule_algo_cosmo.md   # COSMO algorithm rules
+│   │   └── strategy_plc.md      # Product lifecycle strategy
+│   └── package.json             # OpenCode plugin dependencies
+├── load-mcp.sh                  # MCP loader script
+├── TABLES.md                    # Table structure documentation
+├── AGENTS.md                    # This file
+└── README.md                    # Project documentation
+```
+
+### Markdown Files (.md)
+
+#### Agent Definitions (`.opencode/agent/*.md`)
+
+```markdown
+---
+name: agent_name
+description: Brief description for agent discovery
+model: google/gemini-2.0-flash-thinking-exp
+tools:
+  hyy-bi-mcp: true
+---
+
+# 🤖 Identity
+[Agent purpose and role]
+
+# 🌍 Global Context
+[Available resources and world view]
+
+# ⚡ Prime Directive
+[Core behavior and decision-making logic]
+```
+
+**Style Rules**:
+- Use emojis for section headers (🤖, 🌍, ⚡, 🎯, 🚫, 📚)
+- YAML frontmatter must include: `name`, `description`, `model`, `tools`
+- Use Markdown tables for structured comparisons
+- Code blocks must specify language (```bash, ```json, ```python)
+- Use triple backticks for code examples, not single quotes
+
+#### Skill Definitions (`.opencode/skill/*.md`)
+
+```markdown
+---
+name: skill_name
+description: What this skill does
+适用场景: When to use this skill
+触发关键词: Keywords that trigger this skill
+---
+
+# 📋 Skill Overview
+[Brief summary]
+
+# 🔧 SOP (Standard Operating Procedure)
+
+## Step 1: [Step Name]
+[Detailed instructions]
+
+## Step 2: [Step Name]
+[Detailed instructions]
+```
+
+**Style Rules**:
+- YAML frontmatter must include: `name`, `description`, `适用场景`, `触发关键词`
+- SOP steps must be numbered sequentially
+- Each step must include error handling and validation logic
+- Output formats must be specified with JSON schemas
+- Include complete working examples in "完整执行示例" section
+
+#### Documentation (root and `.opencode/tool/`)
+
+**Style Rules**:
+- Use Chinese for business-specific content (ASIN analysis, database schemas)
+- Use English for technical architecture docs (README architecture section)
+- Include code examples for all MCP tool usage
+- Maintain table of contents for documents > 100 lines
+- Use consistent heading hierarchy (h1 for title, h2 for sections, h3 for subsections)
+
+### JSON Files
+
+#### MCP Configuration (`.mcp.json`)
+
+```json
+{
+  "mcpServers": {
+    "server-name": {
+      "url": "http://host:port/path",
+      "_comment": "Descriptive comment",
+      "description": "Human-readable description",
+      "tools": [
+        {
+          "name": "tool_name",
+          "description": "What the tool does",
+          "parameters": {
+            "param_name": "param description"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+**Style Rules**:
+- Use 2-space indentation
+- Tool names use `snake_case`
+- Descriptions in Chinese for business context
+- Include `_comment` field for deployment environment notes
+- Parameter descriptions must be concise (< 50 chars)
+
+### Shell Scripts (`.sh`)
+
+```bash
+#!/bin/bash
+
+# Script purpose description
+# Usage: ./script.sh [args]
+
+# Constants in UPPERCASE
+CONFIG_FILE=".mcp.json"
+
+# Check prerequisites
+if [ -f "$CONFIG_FILE" ]; then
+    echo "✓ Configuration found"
+else
+    echo "✗ Configuration not found"
+    exit 1
+fi
+```
+
+**Style Rules**:
+- Use `#!/bin/bash` shebang
+- Constants in `UPPERCASE_WITH_UNDERSCORES`
+- Variables in `lowercase_with_underscores`
+- Always quote variables: `"$VAR"` not `$VAR`
+- Use `✓` and `✗` for success/failure output
+- Include usage documentation in header comments
+
+## Naming Conventions
+
+- **Agent names**: `lowercase` (e.g., `aws`, `finance`)
+- **Skill names**: `snake_case` (e.g., `variant_query`, `profit_analysis`)
+- **MCP tools**: `snake_case` (e.g., `get_child_asins`, `query_database`)
+- **File names**: Match content name (e.g., `aws.md` for aws agent, `variant_query.md` for variant_query skill)
+- **Database fields**: `camelCase` as per existing schema (e.g., `parentAsin`, `itemName`)
+
+### Adding New Components
+
+### New Skill
+
+1. Create `.opencode/skill/your_skill_name.md`
+2. Copy frontmatter from `variant_query.md` and update
+3. Define complete SOP with 5 steps minimum:
+   - Step 1: Parameter extraction & validation
+   - Step 2: MCP tool invocation
+   - Step 3: Data parsing & analysis
+   - Step 4: JSON report generation
+   - Step 5: Natural language summary
+4. Include at least 3 complete examples (success, empty result, error)
+5. Document constraints and success criteria
+6. Test with AWS agent: `@aws <trigger keywords>`
+
+### New MCP Tool
+
+1. Add tool definition to `.mcp.json` under appropriate server
+2. Update `.opencode/tool/db_schema.md` with usage examples
+3. Reference tool in relevant skill SOPs
+4. Test with `curl` command before integration
+
+### New Agent
+
+1. Create `.opencode/agent/your_agent_name.md`
+2. Define agent identity, context, and prime directive
+3. Specify tool access in frontmatter
+4. Document skill discovery and loading protocol
+5. Provide usage examples
+
+## Error Handling
+
+- **MCP tools**: Always handle empty results and connection failures
+- **Skills**: Define error output format in SOP Step 4
+- **Scripts**: Exit with non-zero status on failure, use descriptive error messages
+- **Documentation**: Mark experimental features with ⚠️ warning emojis
+
+## Best Practices
+
+1. **Keep skills focused**: One skill = one analysis task
+2. **Make SOPs executable**: Every step should be implementable by an LLM without ambiguity
+3. **Document data sources**: Always cite which MCP tool and database table was used
+4. **Version awareness**: Include `query_time` timestamps in all analysis outputs
+5. **Graceful degradation**: Skills should handle missing data without crashing
+
+---
+
+## 📖 Additional References
+
+- **Project Conventions (MANDATORY)**: `.opencode/conventions.md` - 强制规范，所有 agents 必读
+- **Architecture Documentation**: `README.md` - 系统架构与快速开始
+- **This Guide**: `AGENTS.md` - Agent 开发详细指南

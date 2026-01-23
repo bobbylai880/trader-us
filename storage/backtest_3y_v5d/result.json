@@ -1,0 +1,16 @@
+{
+  "final_value": 160580.99800000008,
+  "total_return": 0.6058099800000007,
+  "annualized_return": 0.16868954141000292,
+  "spy_return": 0.8162386429284176,
+  "alpha": -0.2104286629284169,
+  "max_drawdown": 0.13416822089099298,
+  "max_drawdown_date": "2024-09-06",
+  "sharpe": 1.1662554370535338,
+  "win_rate": 0.4444444444444444,
+  "profit_factor": 3.465742934047624,
+  "total_trades": 57,
+  "avg_win": 7069.685833333334,
+  "avg_loss": -1631.9008000000008,
+  "risk_triggers": 12
+}

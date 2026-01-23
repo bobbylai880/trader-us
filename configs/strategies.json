@@ -1,0 +1,315 @@
+{
+  "_comment": "策略选择器配置文件 - 管理所有可用策略的元信息、回测指标和选择规则",
+  
+  "strategies": {
+    "v3_trend_following": {
+      "id": "v3_trend_following",
+      "name": "V3 趋势跟踪",
+      "version": "3.0",
+      "description": "纯趋势跟踪策略，让利润充分奔跑",
+      "module": "scripts.run_backtest_v3",
+      "class": "TrendFollowingBacktest",
+      "enabled": true,
+      
+      "principle": {
+        "core_idea": "只做多头趋势，SPY > SMA50 才开仓，不止盈让利润奔跑",
+        "universe": ["NVDA", "META", "GOOGL", "AMZN", "MSFT", "AAPL", "AMD", "AVGO", "NFLX", "TSLA"],
+        "entry_rules": [
+          "SPY 在 50日均线之上",
+          "个股 20日动量 > 0",
+          "个股价格 > 20日均线"
+        ],
+        "exit_rules": [
+          "跟踪止损: 从最高点回撤 15%",
+          "熊市保护: 非牛市时亏损 8% 止损"
+        ],
+        "position_sizing": {
+          "max_positions": 5,
+          "per_position_pct": 0.19,
+          "rebalance_interval_days": 10
+        }
+      },
+      
+      "backtest": {
+        "period": "2023-01-03 ~ 2026-01-16",
+        "initial_capital": 100000,
+        "metrics": {
+          "total_return": 1.1702,
+          "annualized_return": 0.2905,
+          "spy_return": 0.8162,
+          "alpha": 0.354,
+          "max_drawdown": 0.161,
+          "sharpe_ratio": 1.32,
+          "win_rate": null,
+          "profit_factor": null,
+          "total_trades": null
+        },
+        "result_path": "storage/backtest_3y_v3"
+      },
+      
+      "suitable_for": ["追求最高收益", "能承受16%+回撤", "牛市环境"],
+      "risk_level": "high",
+      "recommended_regimes": ["bull_trend", "bull_pullback"]
+    },
+    
+    "v4_hierarchical": {
+      "id": "v4_hierarchical",
+      "name": "V4 分层决策",
+      "version": "4.0",
+      "description": "宏观→板块→个股三层决策架构",
+      "module": "scripts.run_backtest_v4",
+      "class": "HierarchicalBacktest",
+      "enabled": true,
+      
+      "principle": {
+        "core_idea": "从大到小分层决策，月度宏观→周度板块→板块内选股",
+        "layers": {
+          "macro": {
+            "frequency": "monthly",
+            "signals": ["VIX水平与趋势", "SPY月度动量", "新闻情绪"],
+            "output": "市场倾向(进攻/中性/防御) + 目标仓位"
+          },
+          "sector": {
+            "frequency": "weekly",
+            "signals": ["11个板块ETF相对强度", "板块动量", "相对SPY强度"],
+            "output": "Top 3 强势板块"
+          },
+          "stock": {
+            "frequency": "daily",
+            "signals": ["板块内个股动量", "技术指标过滤"],
+            "output": "每板块 Top 2 个股"
+          }
+        },
+        "exit_rules": [
+          "跟踪止损 15%",
+          "硬止损 12%",
+          "板块轮出时卖出"
+        ]
+      },
+      
+      "backtest": {
+        "period": "2023-01-03 ~ 2026-01-16",
+        "initial_capital": 100000,
+        "metrics": {
+          "total_return": 0.4065,
+          "annualized_return": 0.1188,
+          "spy_return": 0.8162,
+          "alpha": -0.4098,
+          "max_drawdown": 0.1369,
+          "sharpe_ratio": 0.89,
+          "win_rate": null,
+          "profit_factor": null,
+          "total_trades": null
+        },
+        "result_path": "storage/backtest_3y_v4"
+      },
+      
+      "suitable_for": ["分散投资", "板块轮动偏好", "多元化配置"],
+      "risk_level": "medium",
+      "recommended_regimes": ["range_bound", "bull_pullback"]
+    },
+    
+    "v5_hybrid": {
+      "id": "v5_hybrid",
+      "name": "V5 融合策略",
+      "version": "5.0",
+      "description": "V3趋势跟踪 + V4分层决策融合，权重动态控制",
+      "module": "scripts.run_backtest_v5",
+      "class": "HybridBacktestV5",
+      "enabled": true,
+      
+      "principle": {
+        "core_idea": "融合趋势跟踪和分层决策，offensive模式聚焦科技龙头",
+        "improvements": [
+          "放宽进攻阈值 (score >= 2 即进入 offensive)",
+          "延长板块持有周期 (双周)",
+          "宽松止损 18% + 禁用止盈",
+          "offensive 模式聚焦科技龙头"
+        ],
+        "entry_rules": [
+          "趋势信号 + 板块轮动确认",
+          "根据市场状态调整买入阈值"
+        ],
+        "exit_rules": [
+          "跟踪止损 18%",
+          "防御模式硬止损 10%",
+          "趋势破坏 (价格 < SMA50*0.92 且动量 < -10%)"
+        ],
+        "position_sizing": {
+          "offensive_max_positions": 6,
+          "neutral_max_positions": 5,
+          "per_position_pct": 0.16
+        }
+      },
+      
+      "backtest": {
+        "period": "2023-01-03 ~ 2026-01-16",
+        "initial_capital": 100000,
+        "metrics": {
+          "total_return": 0.9043,
+          "annualized_return": 0.2361,
+          "spy_return": 0.8162,
+          "alpha": 0.088,
+          "max_drawdown": 0.1256,
+          "sharpe_ratio": 1.43,
+          "win_rate": 0.345,
+          "profit_factor": 2.47,
+          "total_trades": null
+        },
+        "result_path": "storage/backtest_3y_v5"
+      },
+      
+      "suitable_for": ["追求最低回撤", "稳健型投资者", "震荡市环境"],
+      "risk_level": "medium",
+      "recommended_regimes": ["range_bound", "bear_rally"]
+    },
+    
+    "v5c_preventive_risk": {
+      "id": "v5c_preventive_risk",
+      "name": "V5c 预防式风控",
+      "version": "5.3",
+      "description": "V3趋势引擎 + 预防性风控刹车系统",
+      "module": "scripts.run_backtest_v5c",
+      "class": "TrendFollowingWithPreventiveRisk",
+      "enabled": true,
+      
+      "principle": {
+        "core_idea": "主引擎(V3趋势跟踪) + 刹车系统(预防式风控)",
+        "key_improvements": [
+          "提前预警: VIX趋势上升时开始减仓 (不等VIX>30)",
+          "延迟恢复: 冷却期机制防止频繁切换",
+          "渐进减仓: 每次只减1只，优先减亏损最大的"
+        ],
+        "risk_control": {
+          "normal": {"trigger": "默认", "max_exposure": 0.95, "cooldown_days": 0},
+          "watch": {"trigger": "VIX>20 且上升趋势", "max_exposure": 0.70, "cooldown_days": 3},
+          "caution": {"trigger": "VIX>22 + SPY破位", "max_exposure": 0.50, "cooldown_days": 5},
+          "danger": {"trigger": "VIX>28 或急升", "max_exposure": 0.30, "cooldown_days": 10}
+        },
+        "exit_rules": [
+          "跟踪止损 15%",
+          "熊市保护 8%",
+          "预防性减仓 (风控触发时)"
+        ]
+      },
+      
+      "backtest": {
+        "period": "2023-01-03 ~ 2026-01-16",
+        "initial_capital": 100000,
+        "metrics": {
+          "total_return": 1.1452,
+          "annualized_return": 0.2856,
+          "spy_return": 0.8162,
+          "alpha": 0.329,
+          "max_drawdown": 0.2026,
+          "sharpe_ratio": 1.34,
+          "win_rate": 0.611,
+          "profit_factor": 3.67,
+          "total_trades": null,
+          "risk_triggers": 12
+        },
+        "result_path": "storage/backtest_3y_v5c"
+      },
+      
+      "suitable_for": ["追求最优平衡", "高胜率偏好", "不确定市场环境"],
+      "risk_level": "medium-high",
+      "recommended_regimes": ["bull_pullback", "bear_trend", "range_bound"]
+    },
+    
+    "v6_neuro_adaptive": {
+      "id": "v6_neuro_adaptive",
+      "name": "V6 神经自适应",
+      "version": "6.0",
+      "description": "动态龙头池 + 熔断机制 + 避险资产配置",
+      "module": "scripts.run_backtest_v6",
+      "class": "V6BacktestEngine",
+      "enabled": true,
+      
+      "principle": {
+        "core_idea": "全天候策略，含熊市适应能力",
+        "key_features": [
+          "动态龙头池: Quant筛选 (消除幸存者偏差)",
+          "每日熔断检查: T+0响应市场崩盘",
+          "真避险资产: SGOV/BIL 替代防御股",
+          "ATR自适应止损 + 利润锁定机制"
+        ],
+        "circuit_breaker": {
+          "vix_spike": 30,
+          "market_crash_pct": 0.025,
+          "cooldown_days": 3,
+          "recovery_vix": 25
+        },
+        "profit_lock_tiers": [
+          {"threshold": 0.30, "lock_pct": 0.90},
+          {"threshold": 0.15, "lock_pct": 1.02}
+        ],
+        "atr_multiplier": {
+          "offensive": 3.0,
+          "neutral": 2.0,
+          "defensive": 1.5
+        }
+      },
+      
+      "backtest": {
+        "period": "2022-01-03 ~ 2026-01-16",
+        "initial_capital": 100000,
+        "metrics": {
+          "total_return": null,
+          "annualized_return": null,
+          "spy_return": null,
+          "alpha": null,
+          "max_drawdown": null,
+          "sharpe_ratio": null,
+          "win_rate": null,
+          "profit_factor": null,
+          "total_trades": null
+        },
+        "result_path": "storage/backtest_v6"
+      },
+      
+      "suitable_for": ["全天候配置", "含熊市期间", "机构级风控"],
+      "risk_level": "medium",
+      "recommended_regimes": ["bear_trend", "bear_rally"]
+    }
+  },
+  
+  "default_strategy": "v5c_preventive_risk",
+  
+  "selection_rules": {
+    "by_market_regime": {
+      "_comment": "根据当前市场状态自动推荐策略",
+      "bull_trend": "v3_trend_following",
+      "bull_pullback": "v5c_preventive_risk",
+      "range_bound": "v5_hybrid",
+      "bear_rally": "v5_hybrid",
+      "bear_trend": "v6_neuro_adaptive"
+    },
+    "by_user_preference": {
+      "_comment": "根据用户投资偏好推荐",
+      "max_return": "v3_trend_following",
+      "min_drawdown": "v5_hybrid",
+      "best_balance": "v5c_preventive_risk",
+      "high_win_rate": "v5c_preventive_risk",
+      "sector_rotation": "v4_hierarchical",
+      "all_weather": "v6_neuro_adaptive"
+    },
+    "by_risk_tolerance": {
+      "_comment": "根据风险承受能力推荐",
+      "aggressive": "v3_trend_following",
+      "moderate": "v5c_preventive_risk",
+      "conservative": "v5_hybrid"
+    }
+  },
+  
+  "comparison_table": {
+    "_comment": "策略对比快速参考表",
+    "headers": ["策略", "收益率", "Alpha", "回撤", "夏普", "胜率", "适用场景"],
+    "data": [
+      ["V3 趋势跟踪", "+117%", "+35.4%", "16.1%", "1.32", "-", "牛市、高收益"],
+      ["V4 分层决策", "+40%", "-41%", "13.7%", "0.89", "-", "板块轮动"],
+      ["V5 融合策略", "+90%", "+8.8%", "12.6%", "1.43", "34.5%", "最低回撤"],
+      ["V5c 预防风控", "+114%", "+32.9%", "20.3%", "1.34", "61.1%", "最优平衡"],
+      ["V6 神经自适应", "待测", "待测", "待测", "待测", "待测", "全天候"]
+    ]
+  }
+}
