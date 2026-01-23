@@ -353,12 +353,15 @@ class V81BacktestEngine:
     
     def run(self, start: date, end: date) -> dict:
         print("\n" + "=" * 70)
-        print("V8.1 策略: V5c预防式风控 + 事前主题生成 (Forward-Looking)")
+        print("V8.2 策略: V5c预防式风控 + 真实宏观主题 (Objective Macro)")
         print("=" * 70)
-        print("  融合数据源:")
-        print("    - 动量 (30%) + Insider (20%) + Analyst (15%)")
-        print("    - Options PCR (10%) + Social (10%) + Policy (10%) + Fed (5%)")
-        print("  关键区别: 只使用 as_of 日期之前可获取的数据")
+        print("  数据源: Yahoo Finance 真实历史数据 (非合成)")
+        print("  核心驱动:")
+        print("    - 风险偏好: HYG/TLT (高收益债/国债)")
+        print("    - 恐慌指数: ^VIX (CBOE Volatility)")
+        print("    - 宏观环境: ^TNX (10年美债), UUP (美元), ^IRX (短债)")
+        print("    - 经济前景: XLY/XLP (非必需/必需消费)")
+        print("  回测区间: 2020-01-02 ~ 2026-01-16")
         
         self._load_data(start, end)
         

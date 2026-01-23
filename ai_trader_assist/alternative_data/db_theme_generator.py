@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 """
-V8.1 回测专用的数据库数据源
+V8.2 真实客观策略生成器 (Objective Macro Generator)
 
-从 PostgreSQL 读取 Alternative Data，避免网络请求，加速回测。
+完全基于 Yahoo Finance 的真实宏观数据，替代旧的人工合成数据。
+数据源: daily_prices 表中的宏观指标 (^VIX, ^TNX, HYG, TLT, etc.)
 """
 from __future__ import annotations
 
 import os
 from dataclasses import dataclass, field
 from datetime import date, timedelta
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
+import pandas as pd
 import psycopg2
 
 
@@ -38,14 +40,15 @@ class ThemeConfig:
 
 class DatabaseThemeGenerator:
     
+    # 权重配置 (总和 1.0)
     WEIGHTS = {
-        "momentum": 0.30,
-        "insider": 0.20,
-        "analyst": 0.15,
-        "options": 0.10,
-        "social": 0.10,
-        "policy": 0.10,
-        "fed": 0.05,
+        "momentum": 0.30,      # 个股动量
+        "risk_on": 0.20,       # 风险偏好 (HYG/TLT)
+        "economic": 0.15,      # 经济前景 (XLY/XLP)
+        "vix": 0.15,           # 恐慌指数 (^VIX)
+        "yields": 0.10,        # 长期利率 (^TNX)
+        "dollar": 0.05,        # 美元汇率 (UUP)
+        "rates": 0.05,         # 短期利率 (^IRX)
     }
     
     SECTOR_STOCKS = {
@@ -58,15 +61,6 @@ class DatabaseThemeGenerator:
         "XLC": ["META", "GOOGL", "NFLX"],
     }
     
-    STOCK_SECTOR = {
-        "NVDA": "XLK", "AAPL": "XLK", "MSFT": "XLK", "AMD": "XLK", "AVGO": "XLK",
-        "META": "XLC", "GOOGL": "XLC", "NFLX": "XLC",
-        "AMZN": "XLY", "TSLA": "XLY",
-        "JPM": "XLF", "GS": "XLF",
-        "UNH": "XLV", "LLY": "XLV",
-        "XOM": "XLE", "CVX": "XLE",
-    }
-    
     def __init__(self, universe: Optional[List[str]] = None):
         self.universe = universe or [
             "NVDA", "META", "GOOGL", "AMZN", "MSFT", "AAPL", 
@@ -74,12 +68,29 @@ class DatabaseThemeGenerator:
         ]
         self._conn = None
         self._cache = {}
+        # 预加载宏观数据以加速回测
+        self._macro_data = {}
     
     def _get_conn(self):
         if self._conn is None or self._conn.closed:
             self._conn = get_connection()
         return self._conn
     
+    def _fetch_history(self, symbol: str, end_date: date, lookback: int = 200) -> pd.Series:
+        """获取单个指标的历史收盘价"""
+        if symbol not in self._macro_data:
+            conn = self._get_conn()
+            # 一次性加载所有历史数据到内存缓存
+            query = "SELECT trade_date, close FROM daily_prices WHERE symbol = %s ORDER BY trade_date"
+            df = pd.read_sql(query, conn, params=(symbol,))
+            df['trade_date'] = pd.to_datetime(df['trade_date']).dt.date
+            df.set_index('trade_date', inplace=True)
+            self._macro_data[symbol] = df['close']
+            
+        series = self._macro_data[symbol]
+        # 截取截止日期前的数据
+        return series[series.index <= end_date].tail(lookback)
+
     def generate_theme(
         self,
         as_of: date,
@@ -92,266 +103,142 @@ class DatabaseThemeGenerator:
         if momentum_scores is None:
             momentum_scores = {}
         
-        insider_signals = self._get_insider_signals(as_of)
-        analyst_signals = self._get_analyst_signals(as_of)
-        pcr_signal = self._get_pcr_signal(as_of)
-        social_signals = self._get_social_signals(as_of)
-        policy_adj = self._get_policy_adjustment(as_of)
-        fed_adj = self._get_fed_adjustment(as_of)
+        # 1. 计算宏观信号 (-1.0 到 1.0)
+        risk_signal = self._calc_risk_appetite(as_of)
+        econ_signal = self._calc_economic_outlook(as_of)
+        vix_signal = self._calc_vix_signal(as_of)
+        yield_signal = self._calc_yield_signal(as_of)
+        dollar_signal = self._calc_dollar_signal(as_of)
+        rate_signal = self._calc_short_rate_signal(as_of)
         
-        stock_scores = self._compute_stock_scores(
-            momentum_scores, insider_signals, analyst_signals, 
-            pcr_signal, social_signals
-        )
-        
-        sector_scores = self._compute_sector_scores(stock_scores, policy_adj, fed_adj)
-        
-        theme = self._build_theme(stock_scores, sector_scores, pcr_signal)
-        
+        # 2. 综合评分
+        stock_scores = {}
+        for symbol in self.universe:
+            # 基础宏观分
+            macro_score = (
+                risk_signal * self.WEIGHTS["risk_on"] +
+                econ_signal * self.WEIGHTS["economic"] +
+                vix_signal * self.WEIGHTS["vix"] +
+                yield_signal * self.WEIGHTS["yields"] +
+                dollar_signal * self.WEIGHTS["dollar"] +
+                rate_signal * self.WEIGHTS["rates"]
+            )
+            # 加上个股动量
+            mom_score = momentum_scores.get(symbol, 0) * self.WEIGHTS["momentum"]
+            
+            # 总分
+            total_score = macro_score + mom_score
+            stock_scores[symbol] = max(-1.0, min(1.0, total_score))
+            
+        # 3. 生成配置
+        theme = self._build_theme(stock_scores, vix_signal, risk_signal)
         self._cache[cache_key] = theme
         return theme
-    
-    def _get_insider_signals(self, as_of: date) -> Dict[str, float]:
-        conn = self._get_conn()
-        cur = conn.cursor()
+
+    def _calc_trend_score(self, series: pd.Series) -> float:
+        """计算趋势得分: 当前价相对于 MA50 的位置"""
+        if len(series) < 50:
+            return 0.0
+        current = series.iloc[-1]
+        ma50 = series.rolling(50).mean().iloc[-1]
+        if ma50 == 0: return 0.0
+        return (current / ma50) - 1.0
+
+    def _calc_risk_appetite(self, as_of: date) -> float:
+        """HYG/TLT 比率: 上升代表风险偏好增强"""
+        hyg = self._fetch_history("HYG", as_of)
+        tlt = self._fetch_history("TLT", as_of)
+        if len(hyg) < 50 or len(tlt) < 50: return 0.0
         
-        start = as_of - timedelta(days=90)
+        ratio = hyg / tlt
+        score = self._calc_trend_score(ratio)
+        return max(-1.0, min(1.0, score * 10))  # 放大系数
+
+    def _calc_economic_outlook(self, as_of: date) -> float:
+        """XLY/XLP 比率: 上升代表经济前景乐观"""
+        xly = self._fetch_history("XLY", as_of)
+        xlp = self._fetch_history("XLP", as_of)
+        if len(xly) < 50 or len(xlp) < 50: return 0.0
         
-        cur.execute("""
-            SELECT symbol,
-                   SUM(CASE WHEN transaction_type = 'P' THEN value ELSE 0 END) as buy_value,
-                   SUM(CASE WHEN transaction_type = 'S' THEN value ELSE 0 END) as sell_value
-            FROM insider_transactions
-            WHERE filing_date BETWEEN %s AND %s
-              AND symbol IN %s
-            GROUP BY symbol
-        """, (start, as_of, tuple(self.universe)))
+        ratio = xly / xlp
+        score = self._calc_trend_score(ratio)
+        return max(-1.0, min(1.0, score * 5))
+
+    def _calc_vix_signal(self, as_of: date) -> float:
+        """VIX: 低于20看多，高于30看空"""
+        vix = self._fetch_history("^VIX", as_of, 10)
+        if len(vix) == 0: return 0.0
         
-        signals = {}
-        for row in cur.fetchall():
-            symbol, buy_val, sell_val = row
-            total = float(buy_val or 0) + float(sell_val or 0)
-            if total > 0:
-                signals[symbol] = (float(buy_val or 0) - float(sell_val or 0)) / total
-            else:
-                signals[symbol] = 0.0
-        
-        for sym in self.universe:
-            if sym not in signals:
-                signals[sym] = 0.0
-        
-        return signals
-    
-    def _get_analyst_signals(self, as_of: date) -> Dict[str, float]:
-        conn = self._get_conn()
-        cur = conn.cursor()
-        
-        start = as_of - timedelta(days=60)
-        
-        cur.execute("""
-            SELECT symbol,
-                   AVG((new_target - old_target) / NULLIF(old_target, 0)) as avg_target_change,
-                   COUNT(*) as rating_count
-            FROM analyst_ratings
-            WHERE rating_date BETWEEN %s AND %s
-              AND symbol IN %s
-            GROUP BY symbol
-        """, (start, as_of, tuple(self.universe)))
-        
-        signals = {}
-        for row in cur.fetchall():
-            symbol, avg_change, count = row
-            if avg_change is not None:
-                signals[symbol] = float(avg_change) * 2
-            else:
-                signals[symbol] = 0.0
-        
-        for sym in self.universe:
-            if sym not in signals:
-                signals[sym] = 0.0
-        
-        return signals
-    
-    def _get_pcr_signal(self, as_of: date) -> float:
-        conn = self._get_conn()
-        cur = conn.cursor()
-        
-        cur.execute("""
-            SELECT total_pcr FROM options_pcr
-            WHERE trade_date <= %s
-            ORDER BY trade_date DESC LIMIT 1
-        """, (as_of,))
-        
-        row = cur.fetchone()
-        if row and row[0]:
-            pcr = float(row[0])
-            if pcr > 1.2:
-                return 0.5
-            elif pcr > 1.0:
-                return 0.2
-            elif pcr < 0.7:
-                return -0.3
-            else:
-                return 0.0
+        curr = vix.iloc[-1]
+        if curr < 15: return 0.5
+        if curr < 20: return 0.2
+        if curr > 30: return -0.8
+        if curr > 25: return -0.4
         return 0.0
-    
-    def _get_social_signals(self, as_of: date) -> Dict[str, float]:
-        conn = self._get_conn()
-        cur = conn.cursor()
-        
-        start = as_of - timedelta(days=7)
-        
-        cur.execute("""
-            SELECT symbol, AVG(signal_strength) as avg_signal
-            FROM social_sentiment
-            WHERE trade_date BETWEEN %s AND %s
-              AND symbol IN %s
-            GROUP BY symbol
-        """, (start, as_of, tuple(self.universe)))
-        
-        signals = {}
-        for row in cur.fetchall():
-            symbol, avg_signal = row
-            signals[symbol] = float(avg_signal) if avg_signal else 0.0
-        
-        for sym in self.universe:
-            if sym not in signals:
-                signals[sym] = 0.0
-        
-        return signals
-    
-    def _get_policy_adjustment(self, as_of: date) -> Dict[str, float]:
-        conn = self._get_conn()
-        cur = conn.cursor()
-        
-        start = as_of - timedelta(days=30)
-        
-        cur.execute("""
-            SELECT sector_impacts FROM policy_events
-            WHERE event_date BETWEEN %s AND %s
-            ORDER BY event_date DESC
-        """, (start, as_of))
-        
-        sector_adj = {}
-        for row in cur.fetchall():
-            if row[0]:
-                impacts = row[0]
-                for sector, impact in impacts.items():
-                    if sector not in sector_adj:
-                        sector_adj[sector] = 0.0
-                    sector_adj[sector] += impact * 0.5
-        
-        return sector_adj
-    
-    def _get_fed_adjustment(self, as_of: date) -> Dict[str, float]:
-        conn = self._get_conn()
-        cur = conn.cursor()
-        
-        cur.execute("""
-            SELECT hawkish_score, dovish_score, rate_decision
-            FROM fed_decisions
-            WHERE meeting_date <= %s
-            ORDER BY meeting_date DESC LIMIT 1
-        """, (as_of,))
-        
-        row = cur.fetchone()
-        if not row:
-            return {}
-        
-        hawkish, dovish, decision = row
-        stance = (hawkish or 0) - (dovish or 0)
-        
-        if stance > 0.2:
-            return {"XLF": 0.1, "XLU": -0.2, "XLK": -0.1, "XLRE": -0.3}
-        elif stance < -0.2:
-            return {"XLF": -0.1, "XLU": 0.2, "XLK": 0.2, "XLRE": 0.3}
-        else:
-            return {}
-    
-    def _compute_stock_scores(
-        self,
-        momentum: Dict[str, float],
-        insider: Dict[str, float],
-        analyst: Dict[str, float],
-        pcr: float,
-        social: Dict[str, float],
-    ) -> Dict[str, float]:
-        scores = {}
-        
-        for symbol in self.universe:
-            score = (
-                momentum.get(symbol, 0) * self.WEIGHTS["momentum"] +
-                insider.get(symbol, 0) * self.WEIGHTS["insider"] +
-                analyst.get(symbol, 0) * self.WEIGHTS["analyst"] +
-                pcr * self.WEIGHTS["options"] +
-                social.get(symbol, 0) * self.WEIGHTS["social"]
-            )
-            scores[symbol] = max(-1, min(1, score))
-        
-        return scores
-    
-    def _compute_sector_scores(
-        self,
-        stock_scores: Dict[str, float],
-        policy_adj: Dict[str, float],
-        fed_adj: Dict[str, float],
-    ) -> Dict[str, float]:
-        sector_scores = {}
-        
-        for sector, stocks in self.SECTOR_STOCKS.items():
-            stock_vals = [stock_scores.get(s, 0) for s in stocks if s in stock_scores]
-            avg_stock = sum(stock_vals) / len(stock_vals) if stock_vals else 0
-            
-            policy = policy_adj.get(sector, 0)
-            fed = fed_adj.get(sector, 0)
-            
-            score = avg_stock * 0.6 + policy * 0.25 + fed * 0.15
-            sector_scores[sector] = max(-1, min(1, score))
-        
-        return sector_scores
-    
-    def _build_theme(
-        self,
-        stock_scores: Dict[str, float],
-        sector_scores: Dict[str, float],
-        pcr_signal: float,
-    ) -> ThemeConfig:
+
+    def _calc_yield_signal(self, as_of: date) -> float:
+        """^TNX (10年美债): 急升对科技股利空"""
+        tnx = self._fetch_history("^TNX", as_of)
+        score = self._calc_trend_score(tnx)
+        # 收益率上升是负面信号
+        return max(-1.0, min(1.0, -score * 5))
+
+    def _calc_dollar_signal(self, as_of: date) -> float:
+        """UUP (美元): 走强对跨国巨头利空"""
+        uup = self._fetch_history("UUP", as_of)
+        score = self._calc_trend_score(uup)
+        return max(-1.0, min(1.0, -score * 3))
+
+    def _calc_short_rate_signal(self, as_of: date) -> float:
+        """^IRX (3月美债): 反映加息预期"""
+        irx = self._fetch_history("^IRX", as_of)
+        score = self._calc_trend_score(irx)
+        return max(-1.0, min(1.0, -score * 2))
+
+    def _build_theme(self, stock_scores: Dict[str, float], vix_signal: float, risk_signal: float) -> ThemeConfig:
         sorted_stocks = sorted(stock_scores.items(), key=lambda x: -x[1])
+        
+        # 选股门槛
+        focus_stocks = [s for s, v in sorted_stocks if v > 0.05][:5]
+        avoid_stocks = [s for s, v in sorted_stocks if v < -0.05]
+        
+        # 简单的板块逻辑 (基于个股归属)
+        sector_scores = {s: 0.0 for s in self.SECTOR_STOCKS.keys()}
+        for sector, stocks in self.SECTOR_STOCKS.items():
+            vals = [stock_scores.get(s, 0) for s in stocks if s in stock_scores]
+            if vals:
+                sector_scores[sector] = sum(vals) / len(vals)
+        
         sorted_sectors = sorted(sector_scores.items(), key=lambda x: -x[1])
+        focus_sectors = [s for s, v in sorted_sectors if v > 0.05][:2]
         
-        focus_stocks = [s for s, v in sorted_stocks if v > 0.1][:5]
-        avoid_stocks = [s for s, v in sorted_stocks if v < -0.2]
-        
-        focus_sectors = [s for s, v in sorted_sectors if v > 0.1][:3]
-        avoid_sectors = [s for s, v in sorted_sectors if v < -0.1]
-        
+        # 风险定级
+        if vix_signal < -0.3 or risk_signal < -0.5:
+            risk_level = "high"
+        elif vix_signal > 0.2 and risk_signal > 0.1:
+            risk_level = "low"
+        else:
+            risk_level = "normal"
+            
         stock_bonus = {s: round(v * 0.1, 3) for s, v in stock_scores.items() if abs(v) > 0.05}
         sector_bonus = {s: round(v * 0.1, 3) for s, v in sector_scores.items() if abs(v) > 0.05}
         
-        if pcr_signal > 0.3:
-            risk_level = "low"
-        elif pcr_signal < -0.2:
-            risk_level = "high"
-        else:
-            risk_level = "normal"
-        
         drivers = []
-        if focus_sectors:
-            drivers.append(f"Focus: {', '.join(focus_sectors[:2])}")
-        if avoid_sectors:
-            drivers.append(f"Avoid: {', '.join(avoid_sectors[:2])}")
+        if risk_signal > 0.2: drivers.append("Risk-On")
+        elif risk_signal < -0.2: drivers.append("Risk-Off")
+        if vix_signal < 0: drivers.append("High Volatility")
         
         return ThemeConfig(
             focus_sectors=focus_sectors,
             focus_stocks=focus_stocks,
-            avoid_sectors=avoid_sectors,
+            avoid_sectors=[],
             avoid_stocks=avoid_stocks,
             sector_bonus=sector_bonus,
             stock_bonus=stock_bonus,
             risk_level=risk_level,
-            theme_drivers=drivers,
+            theme_drivers=drivers
         )
-    
+
     def close(self):
         if self._conn and not self._conn.closed:
             self._conn.close()
